@@ -1,0 +1,21 @@
+<svg version="1.1" id="SJzNJl90M" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 117 116" style="enable-background:new 0 0 117 116.8;" xml:space="preserve"><style>@-webkit-keyframes HJlMEJxcAG_B1HRkl9Cf_Animation{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}24.67%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}27.33%{-webkit-transform: rotate(360deg);transform: rotate(360deg);}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg);}}@keyframes HJlMEJxcAG_B1HRkl9Cf_Animation{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}24.67%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}27.33%{-webkit-transform: rotate(360deg);transform: rotate(360deg);}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg);}}#SJzNJl90M *{-webkit-animation-duration: 20s;animation-duration: 20s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);animation-timing-function: cubic-bezier(0, 0, 1, 1);}#ryZz41l90z{fill: #FFFFFF;stroke: #231F20;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -32.5415, 78.9617);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -32.5415, 78.9617);}#rJzG41g9AM{fill: #FFFFFF;stroke: #231F20;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -44.3709, 49.986);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -44.3709, 49.986);}#rJQMVklc0G{fill: #FFFFFF;stroke: #231F20;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -3.7466, 66.8031);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -3.7466, 66.8031);}#r14MNJgqAz{fill: #FFFFFF;stroke: #231F20;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -15.6052, 37.8981);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -15.6052, 37.8981);}#HkUfN1lqCf{fill: #231F20;stroke: #FFFFFF;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -52.8391, 70.5592);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -52.8391, 70.5592);}#rJwfE1lcAf{fill: #231F20;stroke: #FFFFFF;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -35.9027, 29.4956);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -35.9027, 29.4956);}#r1dMVJe90f{fill: #231F20;stroke: #FFFFFF;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -12.2441, 87.3642);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, -12.2441, 87.3642);}#BJYz4JlcCM{fill: #231F20;stroke: #FFFFFF;stroke-linejoin: round;-webkit-transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, 4.6559, 46.5056);transform:  matrix(0.7071, -0.7071, 0.7071, 0.7071, 4.6559, 46.5056);}#HJlMEJxcAG_Sy8B1x5CM{-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;-webkit-transform: rotate(180deg);transform: rotate(180deg);}#HJlMEJxcAG_B1HRkl9Cf{-webkit-animation-name: HJlMEJxcAG_B1HRkl9Cf_Animation;animation-name: HJlMEJxcAG_B1HRkl9Cf_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;-webkit-transform: rotate(0deg);transform: rotate(0deg);}</style>
+
+<g id="HJlMEJxcAG_B1HRkl9Cf" data-animator-group="true" data-animator-type="1"><g id="HJlMEJxcAG">
+	
+		<rect x="66.9" y="66.6" width="24.3" height="24.3" id="ryZz41l90z"/>
+	<rect x="26" y="66.4" width="24.3" height="24.3" id="rJzG41g9AM"/>
+	
+		<rect x="66.6" y="25.8" width="24.3" height="24.3" id="rJQMVklc0G"/>
+	
+		<rect x="25.8" y="25.6" width="24.3" height="24.3" id="r14MNJgqAz"/>
+</g></g>
+<g id="SJSf4ye9AM">
+	
+		<rect x="46.6" y="86.9" width="24.3" height="24.3" id="HkUfN1lqCf"/>
+	
+		<rect x="5.5" y="45.9" width="24.3" height="24.3" id="rJwfE1lcAf"/>
+	
+		<rect x="87.2" y="46.3" width="24.3" height="24.3" id="r1dMVJe90f"/>
+	<rect x="46.3" y="5.5" width="24.3" height="24.3" id="BJYz4JlcCM"/>
+</g>
+<script>(function(){var a=document.querySelector('#SJzNJl90M'),b=a.querySelectorAll('style'),c=function(d){b.forEach(function(f){var g=f.textContent;g&amp;&amp;(f.textContent=g.replace(/transform-box:[^;\r\n]*/gi,'transform-box: '+d))})};c('initial'),window.requestAnimationFrame(function(){return c('fill-box')})})();</script></svg>

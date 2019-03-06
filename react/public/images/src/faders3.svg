@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Faders" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 524 717" style="enable-background:new 0 0 524 717;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#00AB9C;}
+	.st1{fill:#3A3A3A;}
+	.st2{fill:#808285;}
+	.st3{opacity:0.52;fill:#191919;}
+	.st4{fill:#231F20;}
+</style>
+<g id="Lines">
+	<path class="st0" d="M464.8,15.7L464.8,15.7c2.8,0,5,5.6,5,12.6v649.4c0,6.9-2.2,12.6-5,12.6s-5-5.6-5-12.6V28.3
+		C459.8,21.4,462.1,15.7,464.8,15.7z"/>
+	<path class="st0" d="M271.8,15.7L271.8,15.7c2.8,0,5.1,5.6,5.1,12.6v649.4c0,6.9-2.3,12.6-5.1,12.6s-5.1-5.6-5.1-12.6V28.3
+		C266.7,21.4,269,15.7,271.8,15.7z"/>
+	<path class="st0" d="M74.9,15.7L74.9,15.7c2.8,0,5,5.6,5,12.6v649.4c0,6.9-2.2,12.6-5,12.6s-5-5.6-5-12.6V28.3
+		C69.9,21.4,72.1,15.7,74.9,15.7z"/>
+</g>
+<g id="Fader2">
+	<rect x="229.6" y="75.3" class="st1" width="84.4" height="91.6"/>
+	<polyline class="st2" points="235.5,112.3 306.2,112.3 306.2,110.3 235.5,110.3 	"/>
+	<polyline class="st2" points="235.5,128.7 306.2,128.7 306.2,126.7 235.5,126.7 	"/>
+	<polyline class="st2" points="235.5,145.3 306.2,145.3 306.2,143.3 235.5,143.3 	"/>
+	<rect x="229.6" y="167" class="st1" width="84.4" height="91.6"/>
+	<rect x="229.6" y="231.7" class="st3" width="84.4" height="27.2"/>
+	<polyline class="st2" points="235.5,187.7 306.2,187.7 306.2,185.7 235.5,185.7 	"/>
+	<polyline class="st2" points="235.5,204.1 306.2,204.1 306.2,202.1 235.5,202.1 	"/>
+	<polyline class="st2" points="235.5,220.5 306.2,220.5 306.2,218.5 235.5,218.5 	"/>
+	<polyline class="st4" points="235.5,168.1 306.2,168.1 306.2,166.1 235.5,166.1 	"/>
+	<rect x="229.6" y="75.3" class="st3" width="84.4" height="27.2"/>
+</g>
+<g id="Fader1">
+	<rect x="32.7" y="274.3" class="st1" width="84.4" height="91.6"/>
+	<polyline class="st2" points="38.5,311.3 109.3,311.3 109.3,309.3 38.5,309.3 	"/>
+	<polyline class="st2" points="38.5,327.7 109.3,327.7 109.3,325.7 38.5,325.7 	"/>
+	<polyline class="st2" points="38.5,344.3 109.3,344.3 109.3,342.3 38.5,342.3 	"/>
+	<rect x="32.7" y="365.9" class="st1" width="84.4" height="91.6"/>
+	<rect x="32.7" y="430.7" class="st3" width="84.4" height="27.2"/>
+	<polyline class="st2" points="38.5,386.6 109.3,386.6 109.3,384.6 38.5,384.6 	"/>
+	<polyline class="st2" points="38.5,403 109.3,403 109.3,401 38.5,401 	"/>
+	<polyline class="st2" points="38.5,419.4 109.3,419.4 109.3,417.4 38.5,417.4 	"/>
+	<polyline class="st4" points="38.5,367.1 109.3,367.1 109.3,365.1 38.5,365.1 	"/>
+	<rect x="32.7" y="274.3" class="st3" width="84.4" height="27.2"/>
+</g>
+<g id="Fader3">
+	<rect x="422.6" y="196.1" class="st1" width="84.4" height="91.6"/>
+	<polyline class="st2" points="428.5,233.1 499.2,233.1 499.2,231.1 428.5,231.1 	"/>
+	<polyline class="st2" points="428.5,249.5 499.2,249.5 499.2,247.5 428.5,247.5 	"/>
+	<polyline class="st2" points="428.5,266.1 499.2,266.1 499.2,264.1 428.5,264.1 	"/>
+	<rect x="422.6" y="287.8" class="st1" width="84.4" height="91.6"/>
+	<rect x="422.6" y="352.5" class="st3" width="84.4" height="27.2"/>
+	<polyline class="st2" points="428.5,308.5 499.2,308.5 499.2,306.5 428.5,306.5 	"/>
+	<polyline class="st2" points="428.5,324.9 499.2,324.9 499.2,322.9 428.5,322.9 	"/>
+	<polyline class="st2" points="428.5,341.2 499.2,341.2 499.2,339.2 428.5,339.2 	"/>
+	<polyline class="st4" points="428.5,288.9 499.2,288.9 499.2,286.9 428.5,286.9 	"/>
+	<rect x="422.6" y="196.1" class="st3" width="84.4" height="27.2"/>
+</g>
+</svg>

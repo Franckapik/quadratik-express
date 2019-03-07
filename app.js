@@ -102,6 +102,12 @@ app.get('/commande', (req,res) =>{
 app.get('/quadralab', (req,res) =>{
     res.sendFile(path.join(__dirname+'/react/build/index.html'));
 });
+app.get('/callback', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+});
+app.get('/admin', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+});
 
 
 

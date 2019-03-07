@@ -17,7 +17,7 @@ const knex = require('knex')(configuration);
 router.get('/adminData', function(req, res, next) {
 
   console.log('Demande de connexion sur la page admin :', req.query.user);
-  if(req.query.user == 'fanchcavellec@gmail.com') {
+  if(req.query.user == 'fanchcavellec@gmail.com' || 'franckapik') {
     knex('product')
       .leftJoin('collection', 'product.collectionId', 'collection.id')
       .innerJoin('product_performances', 'product.performance', 'product_performances.type')

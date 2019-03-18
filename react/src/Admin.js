@@ -27,13 +27,18 @@ class Admin extends Component {
 
   }
 
+  facture(id){
+    fetch('/facture?sessid=' + id)
+    .then(response => console.log(response))
+  }
+
   render() {
 
   return (<div>
       <h1>Admin</h1>
 
       <hr></hr>
-      Utilisateur actuel (name) | {this.state.user_id}
+      Utilisateur actuel (name) | {this.state.user_id} 
       <hr></hr>
       <h2>--- Informations générales</h2>
       {
@@ -70,7 +75,7 @@ class Admin extends Component {
         <li onClick={() => this.setState({filterLast: 1})}>La dernière</li>
       </ul>
       <hr></hr>
-      <h2>--- user</h2>
+      <h2>--- Clients</h2>
       {
         this.state.user
           ? <div>
@@ -80,7 +85,7 @@ class Admin extends Component {
                 }).slice(Math.max(this.state.user.length - this.state.filterLast, 1)).map((p, i) => {
                   return (<div key={i}>
                     <h2>
-                      Client [{p.id}] : {p.prenom + ' ' + p.nom}
+                      Client [{p.id}] : {p.prenom + ' ' + p.nom} | <i class="fas fa-file-pdf" onClick={() => this.facture(p.sessid)}></i>  <i class="fab fa-html5"></i>
                     </h2>
                     [{p.sessid}]
                     <div className="admin_list">
@@ -92,7 +97,7 @@ class Admin extends Component {
                         <li key={'Client_nom' + i}>
                           {p.nom}
                         </li>
-                        <li key={'Client_prenom' + i}>{p.prenom}</li>
+                      {p.prenom?  <li key={'Client_prenom' + i}>{p.prenom}</li> : null }
                         <li key={'Client_adresse' + i}>{p.adresse}</li>
                         <li key={'Client_ville' + i}>{p.postal + p.ville}</li>
                         <li key={'Client_mail' + i}>{p.mail}</li>
@@ -118,14 +123,14 @@ class Admin extends Component {
                         </li>
                         <li key={'Panier_qte' + i}>
                           {p.quantite}</li>
-                        <li key={'Panier_fdp' + i}>
-                          {p.fdp}</li>
                         <li key={'Panier_reduction' + i}>
                           {p.reduction}</li>
-                        <li key={'Panier_total' + i}>
-                          {p.total}</li>
-                        <li key={'Panier_cart' + i}>
-                          {p.cart.split("src").shift()}</li>
+                        <li key={'Panier_sous_total' + i}>
+                          {p.sous_total}</li>
+                        <li key={'Produit_id' + i}>
+                            {p.product_id}</li>
+                          <li key={'Panier_nom' + i}>
+                          {p.name}</li>
                       </ul>
                       <ul>
                         <li key={'Paiement_title' + i}>
@@ -152,7 +157,7 @@ class Admin extends Component {
                 })
               }
             </div>
-          : null
+          : 'Pas d\'utilisateur enregistré dans la base de donnée'
       }
 
       <hr></hr>

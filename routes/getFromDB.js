@@ -13,11 +13,11 @@ var cors = require('cors');
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../config')[environment]; // require environment's settings from knexfile
 const knex = require('knex')(configuration);
+const config = require('../config');
 
 router.get('/adminData', function(req, res, next) {
-
   console.log('Demande de connexion sur la page admin :', req.query.user);
-  if(req.query.user == 'fanchcavellec@gmail.com' || 'franckapik') {
+  if(req.query.user == config.adminUser.user1 || config.adminUser.user2) {
     knex('product')
       .leftJoin('collection', 'product.collectionId', 'collection.id')
       .innerJoin('product_performances', 'product.performance', 'product_performances.type')
@@ -33,6 +33,7 @@ router.get('/adminData', function(req, res, next) {
                 knex('informations')
                   .then(function(informations) {
                     console.log('[Admin] Connection autorisée');
+                    console.log(userData);
                     res.json({
                       product: productData,
                       essence: essencesData,
@@ -44,14 +45,14 @@ router.get('/adminData', function(req, res, next) {
           })
       })
   } else {
-    res.send('L utilisateur ne dispose pas des droits d admin')
+    res.status(500);
+    console.log('[Admin] Nom d\'utilisateur incorrect');
   }
 
 
 });
 
 router.get('/user', function(req, res, next) {
-
   knex('user')
     .where('userid', req.sessionID)
     .then(user => {
@@ -81,6 +82,14 @@ router.get('/getsessioncart', cors(corsOptions), function(req, res, next) {
       cart: []
     })
   }
+});
+
+router.get('/getDBCart', cors(corsOptions), function(req, res, next) {
+  knex('cart')
+    .where('sessid', req.sessionID)
+    .then(cart => {
+      res.json(cart)
+    }).catch(error => console.log(error));
 });
 
 router.get('/getreduction', cors(corsOptions), function(req, res, next) {

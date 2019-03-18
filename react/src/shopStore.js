@@ -122,6 +122,7 @@ const shopStore = store({
         })
         .then(data => {
           if(data.success) {
+            console.log('Panier enregistré [', data.success[0],']');
             window.location = '/commande';
           } else {
             window.location ='/error' ;

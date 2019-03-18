@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var cors = require('cors');
-const fetch = require('node-fetch');
 var corsOptions = {
   origin: "http://localhost:3000",
   credentials: true
@@ -47,7 +46,7 @@ var saveInDBRouter = require('./routes/saveInDB');
 var getFromDB = require('./routes/getFromDB');
 var paiementRouter = require('./routes/paiement');
 var sendMail = require('./routes/sendMail');
-
+var facture = require('./routes/facture');
 
 
 //gestion des sessions
@@ -115,6 +114,7 @@ app.use('/saveInDB', saveInDBRouter);
 app.use('/paiement', paiementRouter);
 app.use('/getFromDB', getFromDB);
 app.use('/sendMail', sendMail);
+app.use('/facture', facture);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -132,16 +132,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//Io
-
+//Io (desactivé)
+/*
 const io = require('socket.io')();
 
 io.on('connection', (client) => {
   console.log('Nouveau client [ID] :', client.id);
   client.on('clientServer', (messageRecu) => {
-    fetch('http://localhost:3005/sendMail/quadraMessenger')
-    .then(res => res.text())
-    .then(body => console.log(body));
+    sendMail.quadraMessenger(messageRecu);
     client.broadcast.emit('Serverclient', messageRecu);
   });
 });
@@ -149,7 +147,7 @@ io.on('connection', (client) => {
 const port = 8000;
 io.listen(port);
 console.log('[QuadraMessenger (Io)] Ecoute sur le port', port);
-
+*/
 
 
 module.exports = app;

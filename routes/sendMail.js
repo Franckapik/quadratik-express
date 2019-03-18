@@ -9,32 +9,34 @@ const knex = require('knex')(configuration);
 
 var nodemailer = require('nodemailer');
 
+function quadraMessenger(messageRecu) {
 
-router.get('/quadraMessenger', function(req, res, next) {
+    nodemailer.createTestAccount((err, account) => {
+      // create reusable transporter object using the default SMTP transport
+      let transporter = nodemailer.createTransport(config.mail);
 
-  nodemailer.createTestAccount((err, account) => {
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport(config.mail);
+      // setup email data with unicode symbols
+      let mailOptions = {
+        from: 'QuadraMessenger', // sender address
+        to: 'atelier@quadratik.fr', // list of receivers
+        subject: '[Message envoyé via QuadraMessenger]', // Subject line
+        text: 'Reponse demandée à la phrase suivante:'+messageRecu // plain text body
+        //html: '<b>Hello world?</b>' // html body
+      };
 
-    // setup email data with unicode symbols
-    let mailOptions = {
-      from: 'QuadraMessenger', // sender address
-      to: 'atelier@quadratik.fr', // list of receivers
-      subject: '[Message envoyé via QuadraMessenger]', // Subject line
-      text: 'Reponse demandée' // plain text body
-      //html: '<b>Hello world?</b>' // html body
-    };
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
 
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return console.log(error);
-      }
-      res.send(info.messageId);
+      });
     });
-  });
 
-});
+  };
+
+
+
 
 
 router.post('/mailcontact', function(req, res, next) {
@@ -175,3 +177,4 @@ router.post('/facture', function(req, res, next) {
 
 
 module.exports = router;
+module.exports.quadraMessenger = quadraMessenger;

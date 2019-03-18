@@ -2,13 +2,24 @@ import auth0 from 'auth0-js';
 
 class Auth {
   constructor() {
-    this.auth0 = new auth0.WebAuth({
-      domain: 'quadratik.eu.auth0.com',
-      clientID: 'jtjmgEXugxV92nFwdfKqXyQ6VMuh3ivK',
-      redirectUri: 'https://quadratik.fr/callback',
-      responseType: 'id_token',
-      scope: 'openid profile'
-    });
+
+    if (process.env.NODE_ENV == 'production') {
+      this.auth0 = new auth0.WebAuth({
+        domain: 'quadratik.eu.auth0.com',
+        clientID: 'jtjmgEXugxV92nFwdfKqXyQ6VMuh3ivK',
+        redirectUri: 'https://quadratik.fr/callback',
+        responseType: 'id_token',
+        scope: 'openid profile'
+      });
+    } else {
+      this.auth0 = new auth0.WebAuth({
+        domain: 'quadratik.eu.auth0.com',
+        clientID: 'jtjmgEXugxV92nFwdfKqXyQ6VMuh3ivK',
+        redirectUri: 'http://localhost:3000/callback',
+        responseType: 'id_token',
+        scope: 'openid profile'
+      });
+    }
 
     this.getProfile = this.getProfile.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);

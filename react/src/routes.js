@@ -6,7 +6,6 @@ import Header from './Header'
 import PanelDetails from './PanelDetails';
 import Guide from './Guide';
 import Quadralab from './Quadralab0';
-import Messenger from './Messenger';
 import Commande from './Commande';
 import CartWidget from './CartWidget';
 import PanelInfo from './PanelInfo';
@@ -33,7 +32,6 @@ export default function MainRouter() {
       <Route path="/admin" component={Admin}/>
       <Route path="/callback" component={Callback}/>
       <PanelDetails/>
-      <Messenger></Messenger>
       <CartWidget></CartWidget>
       <PanelInfo></PanelInfo>
 

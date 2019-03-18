@@ -5,7 +5,6 @@ import {view} from 'react-easy-state';
 class Cart extends Component {
 
   render() {
-    console.log(shopStore.cart.length)
     const A = () => <tbody>{
         shopStore.cart.map((p, i) => {
           return <tr key={i}>

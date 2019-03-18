@@ -35,6 +35,7 @@ router.get("/nonce/:nonce", function(req, res) {
     await knex('user')
       .where('userid', req.sessionID)
       .then(user => {
+        console.log(req.sessionID, user); // probleme a regler sur la session id
         gateway.customer.create({
           firstName: user[user.length - 1].prenom,
           lastName: user[user.length - 1].nom,
@@ -55,7 +56,7 @@ router.get("/nonce/:nonce", function(req, res) {
       .where('sessid', req.sessionID)
       .then(cart => {
         console.log(cart);
-        const amount = parseInt(cart[cart.length - 1].total, 10).toFixed(2);
+        const amount = parseInt(cart[cart.length - 1].sous_total, 10).toFixed(2);
         gateway.transaction.sale({
           amount: amount,
           paymentMethodNonce: nonceFromTheClient,

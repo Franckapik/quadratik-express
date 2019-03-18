@@ -76,24 +76,30 @@ router.post('/saveCartOnDB', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", "true");
-  console.log(req.body);
-  knex('cart')
-    .returning('id')
-    .insert({
-      cart: req.body.cart,
-      quantite: req.body.qte,
-      fdp: req.body.fdp,
-      reduction: req.body.reduction,
-      total: req.body.total,
-      sessid: req.session.id
-    })
-    .then(id => {
-      console.log('[DB] Panier enregistré', id);
-      res.json({
+  /*console.log(req.body.cart[1].produit.nom);*/
+  const panier = req.body.cart;
+
+  panier.map((p, i) => {
+    console.log(p.produit.nom, p.qte, req.body.fdp, req.body.reduction, p.produit.prix, req.session.id);
+
+    knex('cart')
+      .returning('id')
+      .insert({
+        name: p.produit.nom,
+        quantite: p.qte,
+        reduction: req.body.reduction,
+        sous_total: p.qte * p.produit.prix,
+        sessid: req.session.id,
+        product_id: '2'
+      }).then((id) => res.json({
         success: id
-      })
-    })
-    .catch(error => console.log(error))
+      })).catch((error) => console.log(error));
+
+  })
+
+
+
+
 });
 
 module.exports = router;

@@ -4,7 +4,6 @@ import commandeStore from './commandeStore';
 
 class Braintree extends React.Component {
   instance;
-
   state = {
     clientToken: null
   };
@@ -20,7 +19,10 @@ class Braintree extends React.Component {
   async buy() {
     // Send the nonce to your server
     const {nonce} = await this.instance.requestPaymentMethod();
-    const response2 = await fetch(`/paiement/nonce/${nonce}`);
+    const response2 = await fetch(`/paiement/nonce/${nonce}`,  {
+  method: 'GET',
+  credentials: 'same-origin',
+});
     commandeStore.facture = await response2.json();
 /*    const mail = await fetch('/sendMail/facture', {
       credentials: 'include',
@@ -36,7 +38,7 @@ class Braintree extends React.Component {
   render() {
     if (!this.state.clientToken) {
       return (<div>
-        <h2>Loading...</h2>
+        <h2>Chargement...</h2>
       </div>);
     } else {
       return (<div>
@@ -45,7 +47,6 @@ class Braintree extends React.Component {
             locale: 'fr_FR,'
           }} onInstance={instance => (this.instance = instance)}/>
         <button onClick={this.buy.bind(this)}>Régler la commande</button>
-        {this.state.ticket}
       </div>);
     }
   }

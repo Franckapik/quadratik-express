@@ -5,86 +5,82 @@ import {view} from 'react-easy-state';
 class Cart extends Component {
 
   render() {
-    const A = () => <tbody>{
-        shopStore.cart.map((p, i) => {
-          return <tr key={i}>
-            <td><img src={p.produit.srcImg} alt='Aperçu du produit'/></td>
-            <td>{p.produit.nom}</td>
-            <td >{p.qte}</td>
+    return (<div className="cart">
+      <table style={this.props.background
+          ? {
+            'backgroundColor': 'white'
+          }
+          : null}>
+        <tbody>
+          <tr>
+            <th>
+              Aperçu
+            </th>
+            <th>
+              Nom
+            </th>
+            <th>
+              Quantité</th>
             {
               this.props.control
-                ? <span>
-                    <td>
-                      <i className="fas fa-plus cursor" onClick={shopStore.plusCart.bind(p.produit.nom)}></i>
+                ? <>
+                <th></th>
+                <th></th>
+                <th></th>
+              </>
+                : null
+            }
+            {
+              this.props.prices
+                ? <> <th> Article</th> <th> Frais de ports </th>
+                  <th>
+                    Sous-total</th> </>
+
+                : null
+            }
+          </tr>
+          {
+            shopStore.cart.map((p, i) => {
+              return <tr key={i}>
+                <td><img src={p.produit.srcImg} alt='Aperçu du produit'/></td>
+                <td>{p.produit.nom}</td>
+                <td>{p.qte}</td>
+                {
+                  this.props.control
+                    ? <> <td> <i className="fas fa-plus cursor" onClick={shopStore.plusCart.bind(p.produit.nom)}></i>
                     </td>
                     <td>
                       <i className='fas fa-minus cursor' onClick={shopStore.lessCart.bind(p.produit.nom)}></i>
 
                     </td>
-                    <td >
+                    <td>
                       <i className="fas fa-times cursor" onClick={shopStore.removeFromCart.bind(p.produit.nom)}></i>
                     </td>
-                  </span>
+                  </>
 
-                : null
-            }
-            {
-              this.props.prices
-                ? <span>
-                    <td>
-                      {p.produit.prix} €
-                    </td>
-                    <td>
-                      {p.produit.packaging} €
+                    : null
+                }
+                {
+                  this.props.prices
+                    ? <> <td> {
+                      p.produit.prix
+                    }
+                    € </td>
+                        <td>
+                          {p.produit.packaging} €
 
-                    </td>
-                    <td >
-                      {(p.produit.prix + p.produit.packaging) * p.qte} € TTC
-                    </td>
-                  </span>
+                        </td> <td>
+                        {(p.produit.prix + p.produit.packaging) * p.qte}
+                        € TTC
+                      </td>
+                    </>
 
-                : null
-            }
-          </tr>
-        })
-      }</tbody>;
-    return (<div className="cart">
-      <table style={this.props.background? {'background-color' : 'white'} :null}>
-        <tr>
-          <th>
-            Aperçu
-          </th>
-          <th>
-            Nom
-          </th>
-          <th>
-            Quantité</th>
-          {
-            this.props.control
-              ? <strong>
-                  <th></th>
-                  <th></th>
-                  <th ></th>
-                </strong>
-
-              : null
+                    : null
+                }
+              </tr>
+            })
           }
-          {
-            this.props.prices
-              ? <strong>
-                  <th>Article</th>
-                  <th>
-                    Frais de ports
-
-                  </th>
-                  <th >
-                    Sous-total</th>
-                </strong>
-
-              : null
-          }
-        </tr>
-        <A/>
+        </tbody>
       </table>
     </div>)
 

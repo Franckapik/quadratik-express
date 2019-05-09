@@ -44,6 +44,37 @@ const shopStore = store({
 
   },
 
+  get hauteur(){
+    if (this.cart.length > 0) {
+      return shopStore.cart.reduce((h, i) => (
+        h += i.qte * i.produit.unite * 10
+      ), 0);
+    } else {
+      return 0
+    }
+  },
+
+  get poids(){
+    if (this.cart.length > 0) {
+      return shopStore.cart.reduce((h, i) => (
+        h += i.qte * i.produit.unite * i.produit.poids
+      ), 0);
+    } else {
+      return 0
+    }
+  },
+
+  get unite(){
+    if (this.cart.length > 0) {
+      return shopStore.cart.reduce((h, i) => (
+        h += i.qte * i.produit.unite
+      ), 0);
+    } else {
+      return 0
+    }
+  },
+
+
   lessCart() {
     var i = shopStore.cart.findIndex(x => x.produit.nom === this);
     if (shopStore.cart[i].qte > 1) {
@@ -101,8 +132,12 @@ const shopStore = store({
       qte: shopStore.sumProduits,
       fdp: shopStore.fdp,
       reduction: shopStore.reduction,
-      total: shopStore.total
+      total: shopStore.total,
+      hauteur: shopStore.hauteur,
+      poids: shopStore.poids,
+      unites: shopStore.unite
     };
+    console.log(body.hauteur, body.poids);
     if (body) {
       fetch('/saveInDB/saveCartOnDB', {
           credentials: 'include',
@@ -149,11 +184,7 @@ const shopStore = store({
       .then(data => {
         if (data.cart.length > 0) {
           shopStore.cart = data.cart;
-          console.log('Panier retrouvé');
-        } else {
-          console.log('Pas de panier enregistré');
         }
-
       });
   },
 

@@ -4,6 +4,17 @@ import commandeStore from './commandeStore';
 import {view} from 'react-easy-state';
 
 class Paiement extends Component {
+
+
+  componentDidMount() {
+
+      console.log('mail');
+      fetch('/sendMail/mailfacture')
+      .then(response => console.log(response))
+
+
+  }
+
   render() {
     return (
       <div>

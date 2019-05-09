@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var cors = require('cors');
@@ -47,6 +46,7 @@ var getFromDB = require('./routes/getFromDB');
 var paiementRouter = require('./routes/paiement');
 var sendMail = require('./routes/sendMail');
 var facture = require('./routes/facture');
+var boxtal = require('./routes/boxtal');
 
 
 //gestion des sessions
@@ -73,7 +73,7 @@ app.use(session({
     maxAge: 1800000 // 30min
   },
   store: store,
-  resave: false, //laissé sur false pour le panier
+  resave: true, //laissé sur false pour le panier
   saveUninitialized: true
 }));
 
@@ -86,7 +86,6 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'react/build')));
 
 app.get('/guide', (req,res) =>{
@@ -109,12 +108,12 @@ app.get('/admin', (req,res) =>{
 });
 
 
-
 app.use('/saveInDB', saveInDBRouter);
 app.use('/paiement', paiementRouter);
 app.use('/getFromDB', getFromDB);
 app.use('/sendMail', sendMail);
 app.use('/facture', facture);
+app.use('/boxtal', boxtal);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

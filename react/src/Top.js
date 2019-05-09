@@ -46,6 +46,8 @@ class Top extends Component {
               onClick={this.produitSelected.bind(this)}
               details={this.state.selection === produit.nom}
               color = 'blue'
+              unite={produit.unite}
+              poids={produit.poids}
               />
           );
 

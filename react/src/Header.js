@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import shopStore from './shopStore';
 import {view} from 'react-easy-state';
-import auth0Client from './Auth';
+import auth0Client from './Admin/Auth';
 
 class Header extends Component {
   constructor(props) {

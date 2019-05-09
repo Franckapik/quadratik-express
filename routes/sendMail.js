@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config');
+var facture = require('./facture');
+
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../config')[environment]; // require environment's settings from knexfile
@@ -11,29 +13,29 @@ var nodemailer = require('nodemailer');
 
 function quadraMessenger(messageRecu) {
 
-    nodemailer.createTestAccount((err, account) => {
-      // create reusable transporter object using the default SMTP transport
-      let transporter = nodemailer.createTransport(config.mail);
+  nodemailer.createTestAccount((err, account) => {
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport(config.mail);
 
-      // setup email data with unicode symbols
-      let mailOptions = {
-        from: 'QuadraMessenger', // sender address
-        to: 'atelier@quadratik.fr', // list of receivers
-        subject: '[Message envoyé via QuadraMessenger]', // Subject line
-        text: 'Reponse demandée à la phrase suivante:'+messageRecu // plain text body
-        //html: '<b>Hello world?</b>' // html body
-      };
+    // setup email data with unicode symbols
+    let mailOptions = {
+      from: 'QuadraMessenger', // sender address
+      to: 'atelier@quadratik.fr', // list of receivers
+      subject: '[Message envoyé via QuadraMessenger]', // Subject line
+      text: 'Reponse demandée à la phrase suivante:' + messageRecu // plain text body
+      //html: '<b>Hello world?</b>' // html body
+    };
 
-      // send mail with defined transport object
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
 
-      });
     });
+  });
 
-  };
+};
 
 
 
@@ -143,36 +145,55 @@ router.post('/newsletter', function(req, res, next) {
 
 });
 
-router.post('/facture', function(req, res, next) {
+router.get('/mailfacture', function(req, res, next) {
+
+  console.log('ici', req.sessionID);
 
   knex('user')
     .where('userid', req.sessionID)
     .then(user => {
+      knex('cart')
+        .where('sessid', req.sessionID)
+        .then(cart => {
+          knex('commande')
+            .where('userid', req.sessionID)
+            .then(commande => {
+              knex('livraison')
+                .where('userid', req.sessionID)
+                .then(livraison => {
+                  facture.facturation(user, cart, commande, livraison).then(result => console.log(result))
 
-      nodemailer.createTestAccount((err, account) => {
-        let transporter = nodemailer.createTransport(config.mail);
-        let mailOptions = {
-          from: user[user.length - 1].mail, // sender address
-          to: 'atelier@quadratik.fr', // list of receivers
-          subject: req.body.reference + ' | Votre commande Quadratik.fr', // Subject line
-          html: 'Bonjour </br> Votre commande n°' + req.body.reference + 'a bien été enregistrée! </br> Nous allons vous tenir informé de son expédition. </br> Transaction N° :' + req.body.result.transaction.id + '</br> Total:' + req.body.result.transaction.amount + '€' // plain text body
-          //html: '<b>Hello world?</b>' // html body
-        };
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            res.json({
-              error: error
-            });
-          } else {
-            res.json({
-              success: 'Facture envoyée par mail au client! :)'
+                  nodemailer.createTestAccount((err, account) => {
+                    console.log(user[user.length - 1].mail);
+                    let transporter = nodemailer.createTransport(config.mail);
+                    let mailOptions = {
+                      from: user[user.length - 1].mail, // sender address
+                      to: 'contact@quadratik.fr', // list of receivers
+                      subject: 'Votre commande Quadratik.fr', // Subject line
+                      html: 'Bonjour </br> Votre commande chez Quadratik.fr à bien été enregistrée! </br> Nous allons vous tenir informé de son expédition. </br> Transaction N° :' + commande.transactionid + '</br> Total: €', // plain text body
+                      /*attachments: [{
+                        filename: 'commande.pdf',
+                        path: '../factures/commande.pdf',
+                        contentType: 'application/pdf'
+                      }]*/
+                    };
+                    transporter.sendMail(mailOptions, (error, info) => {
+                      if (error) {
+                        res.json({
+                          error: error
+                        });
+                      } else {
+                        res.json({
+                          success: 'Facture envoyée par mail au client! :)'
+                        })
+                      }
+                    });
+                  });
+                })
             })
-          }
-        });
-      });
-    }).catch(error => console.log(error));
-
-
+        })
+    })
+    .catch(error => console.log(error));
 });
 
 

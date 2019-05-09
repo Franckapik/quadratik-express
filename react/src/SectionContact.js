@@ -15,17 +15,17 @@ export default function SectionContact() {
         </p>
       </div>
       <div id='flexcanvas'>
-        <div id="container" class="flexChild rowParent">
+        <div id="container" className="flexChild rowParent">
 
-          <div class="flexChild rowParent">
+          <div className="flexChild rowParent">
             <div className="e2 e1 flexChild selected mobile_hide cursor">
               <h6>Réseaux sociaux</h6>
               <hr></hr>
               <span className="e_gros">Twitter</span>
             </div>
 
-            <div class="flexChild columnParent">
-              <div class="e2 flexChild cursor">
+            <div className="flexChild columnParent">
+              <div className="e2 flexChild cursor">
                 <h6>Téléphone</h6>
                 <hr></hr>
                 <p className="e_box">
@@ -36,8 +36,8 @@ export default function SectionContact() {
                 </p>
               </div>
 
-              <div class="flexChild columnParent">
-                <div class="e2 flexChild cursor">
+              <div className="flexChild columnParent">
+                <div className="e2 flexChild cursor">
                   <h6>Mail</h6>
                   <hr></hr>
                   <p className="e_box" onClick={() => {
@@ -52,9 +52,9 @@ export default function SectionContact() {
             </div>
           </div>
 
-          <div class="flexChild columnParent">
-            <div class="flexChild rowParent">
-              <div class="e2 flexChild mobile_hide cursor">
+          <div className="flexChild columnParent">
+            <div className="flexChild rowParent">
+              <div className="e2 flexChild mobile_hide cursor">
                 <h6>Newsletter</h6>
                 <hr></hr>
                 <p className="e_box" onClick={() => {
@@ -67,7 +67,7 @@ export default function SectionContact() {
                   en un seul mail mensuel</p>
               </div>
 
-              <div class="e2 flexChild mobile_hide cursor">
+              <div className="e2 flexChild mobile_hide cursor">
                 <h6>Votre studio</h6>
                 <hr></hr>
                 <p className="e_box" onClick={() => {
@@ -80,7 +80,7 @@ export default function SectionContact() {
               </div>
             </div>
 
-            <div class="e2 flexChild">
+            <div className="e2 flexChild">
               <h6>Atelier</h6>
               <hr></hr>
               <p className="e_box">

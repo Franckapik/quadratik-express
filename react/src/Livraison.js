@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import './App.css';
 import LivraisonAdresse from './LivraisonAdresse';
 import LivraisonDomicile from './LivraisonDomicile';
+import LivraisonRelais from './LivraisonRelais';
+
 import {view} from 'react-easy-state';
 
 class Livraison extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: "domicile"
+      selectedOption: "relais"
     };
   }
 
@@ -31,12 +33,12 @@ class Livraison extends Component {
             </label>
           </div>
 
-        {/*<div className="form-check">
+        <div className="form-check">
             <label>
               <input type="radio" name="react-tips" value="relais" checked={this.state.selectedOption === "relais"} className="form-check-input" onChange={this.handleOptionChange}/>
               Livraison en point relais
             </label>
-          </div>*/}
+          </div>
 
           <div className="form-check">
             <label>
@@ -53,6 +55,11 @@ class Livraison extends Component {
         {
           this.state.selectedOption === "domicile"
             ? <LivraisonDomicile></LivraisonDomicile>
+            : null
+        }
+        {
+          this.state.selectedOption === "relais"
+            ? <LivraisonRelais></LivraisonRelais>
             : null
         }
       </div>

@@ -42,13 +42,16 @@ router.post('/enregistrement', function(req, res, next) {
 });
 
 router.post('/livraison', function(req, res, next) {
+  console.log('Enregistrement livraison',req.sessionID, req.body);
   knex('livraison')
     .insert({
       livr_mode: req.body.mode,
+      livr_service: req.body.service,
       livr_nom: req.body.firstName,
       livr_adresse: req.body.adresse,
       livr_ville: req.body.ville,
       livr_postal: req.body.codepostal,
+      operateur: req.body.operateur,
       userid: req.sessionID,
     })
     .then(
@@ -76,21 +79,24 @@ router.post('/saveCartOnDB', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", "true");
-  /*console.log(req.body.cart[1].produit.nom);*/
   const panier = req.body.cart;
 
   panier.map((p, i) => {
-    console.log(p.produit.nom, p.qte, req.body.fdp, req.body.reduction, p.produit.prix, req.session.id);
-
     knex('cart')
       .returning('id')
       .insert({
         name: p.produit.nom,
         quantite: p.qte,
         reduction: req.body.reduction,
+        fdp: req.body.fdp,
         sous_total: p.qte * p.produit.prix,
+        prix: p.produit.prix,
+        montant : req.body.total,
         sessid: req.session.id,
-        product_id: '2'
+        hauteur: req.body.hauteur,
+        poids: req.body.poids,
+        unites: req.body.unites
+
       }).then((id) => res.json({
         success: id
       })).catch((error) => console.log(error));

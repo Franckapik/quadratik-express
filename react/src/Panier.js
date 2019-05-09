@@ -20,6 +20,7 @@ class Panier extends Component {
         </div>
         <div>
           <table className="cart_total flex_c">
+            <tbody>
             <tr>
               <th>Sous total</th>
               <td>{shopStore.somme}
@@ -50,7 +51,7 @@ class Panier extends Component {
                 <Reduction></Reduction>
               </td>
             </tr>
-
+</tbody>
           </table>
           En cliquant sur "Commander", vous acceptez les <u className="cursor" onClick={() => {
               homeStore.width = '100%';

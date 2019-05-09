@@ -28,7 +28,7 @@ class Produit extends Component {
 
 
   render() {
-    let {nom, prix, frequence, classement, nbColors, nbcellules, largeur, longueur, srcImg} = this.props;
+    let {nom, prix, frequence, classement, nbColors, nbcellules, largeur, longueur, srcImg, unite} = this.props;
 
     return (
       <div className="flex_c center produit" >
@@ -59,9 +59,9 @@ class Produit extends Component {
 
           <i className="fas fa-tint" />{nbColors} couleur(s)
 
-          <i className="fas fa-th-large" />{nbcellules} celules
+          <i className="fas fa-th-large" />{nbcellules} cellules
+{unite > 1 ? <><i className="fab fa-codepen" />{unite} unités de {largeur} x {longueur} cm </> : <><i className="fab fa-codepen" />  {largeur} x {longueur} cm </>}
 
-        <i className="fab fa-codepen" />  {largeur} x {longueur} cm
         </p>
 
   <label>

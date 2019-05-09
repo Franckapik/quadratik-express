@@ -170,6 +170,11 @@ img {
   padding: 4px;
 }
 
+.leaflet-container {
+    height: 400px;
+    width: 800px;
+}
+
 .hide {
   top: -90px
 }
@@ -274,11 +279,95 @@ body {
 }
 
 /*Admin /*/
+
+.admin {
+  width: 100%;
+  position: relative;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.admin_menu {
+  position: relative;
+  top: 1em;
+  left: 0em;
+  margin-right: 5em;
+  min-width: 18vw;
+  height: 600px;
+  background: lavender;
+  border-radius: 5px;
+}
+
+.admin_menu li {
+  padding: 1.2vw;
+  cursor: pointer;
+}
+
+.admin_main {
+  width: 90%;
+  height: 100%;
+  padding: 2em;
+}
+
+.admin_form_relais {
+  background: cornsilk;
+  padding: 1em;
+  margin: 1em 0em 1em 0em;
+}
+
+.admin_form_button {
+  padding : 1em;
+  background: var(--accentcolor2);
+}
+
+.horaires {
+  justify-content: flex-start;
+  align-items: baseline;
+  background: var(--colorbg2);
+}
+
+.horaires li {
+  padding: 2px;
+}
+
+.admin_filter{
+  background: var(--colorbg2);
+  justify-content: flex-start;
+}
+
+.admin_filter li {
+  padding: 1em;
+}
+
+.client_title {
+  background: var(--accentcolor);
+  padding : 0.5em 0em 0.5em 2em;
+  border-radius: 0.5em;
+}
+
+.client_title i {
+  padding: 0 2em 0 2em;
+
+}
+
+.client_column {
+  margin: 0.5em;
+  max-width: 22em;
+}
+
+.facture_i, .colis_i {
+  color: var(--accentcolor2);
+}
+
+.miniature {
+  max-width: 8em;
+  margin: 1em;
+}
+
 .admin_list {
-  display: flex;
-flex-direction: row;
-justify-content: space-around;
-align-items: baseline;
+  justify-content: flex-start;
+  align-items: baseline;
+  max-width: 72vw;
 }
 
 .admin_list ul {
@@ -294,6 +383,26 @@ margin: 4em;
   width: 70%;
   margin: auto;
   margin-top: 2%;
+}
+
+.relais_liste {
+  overflow-y: scroll;
+  max-height: 400px;
+}
+
+.relais_liste .package li {
+padding: 1.5em;
+border: 1px solid black;
+}
+
+.relais_liste .package {
+  margin-bottom: 20px;
+}
+
+.relais_box {
+  padding: 0.5em;
+  margin: 10px;
+  border: 1px solid black;
 }
 
 /*Presentation*/

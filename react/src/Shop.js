@@ -13,17 +13,31 @@ class CollectionsList extends Component {
     this.state = {
       collections: [],
       filtre: '',
-      top:''
+      top: ''
     };
+
+
   }
 
   componentDidMount() {
-    fetch('/getFromDB/shopDB').then(response => response.json()).then(data => {
+
+    fetch('/getFromDB/shopDB')
+    .then(response => response.json())
+    .then(data => {
       const collectionsObj = data[0].collections.sort();
       this.setState({collections: collectionsObj});
-      const top =  this.state.collections.reduce(function(a,b) { return a.concat(b);  })
-       .filter(function(obj) { return obj.top !== null; });
-     this.setState({top:top});
+
+      if(data[0].collections.length !== 0) {
+        const top = data[0].collections.reduce(function(a, b) {
+          return a.concat(b);
+        }).filter(function(obj) {
+          return obj.top !== null;
+        });
+        this.setState({top: top});
+      } else {
+        console.log("Top non valide");
+      }
+
     });
   }
 
@@ -39,17 +53,20 @@ class CollectionsList extends Component {
                   <li onClick={() => this.setState({
                       filtre: 'couleur' | 'classique'
                     })}>Tous nos produits</li>
-                  <li onClick={() => this.setState({filtre: 'classique'})}>
-                    Les diffuseurs Classiques</li>
+                    <li onClick={() => this.setState({filtre: 'couleur'})}>Les Diffuseurs Colorés</li>
+
                   <li onClick={() => this.setState({filtre: 'absorbeur'})}>
                     Les Absorbeurs</li>
-                  <li onClick={() => this.setState({filtre: 'couleur'})}>Les Diffuseurs Colorés</li>
                   <li onClick={() => this.setState({filtre: 'pack'})}>Les Packs</li>
                 </ul>
               </div>
-{this.state.filtre === '' ? <Top key="1" collectionid={this.state.top} /> : null}
+              {
+                this.state.top
+                  ? <Top key="1" collectionid={this.state.top}/>
+                  : null
+              }
 
-                {
+              {
                 this.state.collections.filter((item => {
                   if (this.state.filtre) {
                     return item[0].filter === this.state.filtre;

@@ -26,14 +26,10 @@ router.get('/adminData', function(req, res, next) {
         knex('product_essences')
           .then(function(essencesData) {
             knex('user')
-              .innerJoin('cart', 'user.userid', 'cart.sessid')
-              .innerJoin('livraison', 'user.userid', 'livraison.userid')
-              .innerJoin('commande', 'user.userid', 'commande.userid')
               .then(function(userData) {
                 knex('informations')
                   .then(function(informations) {
                     console.log('[Admin] Connection autorisée');
-                    console.log(userData);
                     res.json({
                       product: productData,
                       essence: essencesData,
@@ -51,6 +47,44 @@ router.get('/adminData', function(req, res, next) {
 
 
 });
+
+router.get('/adminCart', function(req, res, next) {
+  knex('cart')
+    .where('sessid', req.query.sessid)
+    .then(cart => {
+      res.json(cart)
+    }).catch(error => console.log(error));
+
+});
+
+router.get('/adminLivraison', function(req, res, next) {
+  knex('livraison')
+    .where('userid', req.query.sessid)
+    .then(livraison => {
+      res.json(livraison)
+    }).catch(error => console.log(error));
+
+});
+
+router.get('/adminPaiement', function(req, res, next) {
+  knex('commande')
+    .where('userid', req.query.sessid)
+    .then(commande => {
+      res.json(commande)
+    }).catch(error => console.log(error));
+
+});
+
+router.get('/adminAdresse', function(req, res, next) {
+  knex('user')
+    .where('userid', req.query.sessid)
+    .then(adresse => {
+      res.json(adresse)
+    }).catch(error => console.log(error));
+
+});
+
+
 
 router.get('/user', function(req, res, next) {
   knex('user')

@@ -11,8 +11,8 @@ import CartWidget from './CartWidget';
 import PanelInfo from './PanelInfo';
 import Burger from './Burger';
 import ReactGA from 'react-ga';
-import Admin from './Admin';
-import Callback from './Callback';
+import Admin from './Admin/Admin';
+import Callback from './Admin/Callback';
 import history from './History';
 
 

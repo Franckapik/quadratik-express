@@ -3,7 +3,7 @@ import auth0 from 'auth0-js';
 class Auth {
   constructor() {
 
-    if (process.env.NODE_ENV == 'production') {
+    if (process.env.NODE_ENV === 'production') {
       this.auth0 = new auth0.WebAuth({
         domain: 'quadratik.eu.auth0.com',
         clientID: 'jtjmgEXugxV92nFwdfKqXyQ6VMuh3ivK',

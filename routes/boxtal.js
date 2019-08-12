@@ -1,23 +1,28 @@
 var express = require('express');
 var router = express.Router();
-const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
-const configuration = require('../config')[environment]; // require environment's settings from knexfile
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('../config')[environment];
 const knex = require('knex')(configuration);
 const config = require('../config');
 const parseString = require('xml2js').parseString;
 const fetch = require('node-fetch');
 global.Headers = fetch.Headers;
+let boxtalUrl = null;
 
 if (environment === 'development') {
   console.log('[Boxtal] Mode Test');
   var headers = new Headers(config.boxtalTest);
+  boxtalUrl = 'https://test.envoimoinscher.com/api/v1/';
+
 } else if (environment === 'production') {
   console.log('[Boxtal] Mode PRODUCTION');
   var headers = new Headers(config.boxtalProduction);
+  boxtalUrl = 'https://www.envoimoinscher.com/api/v1/';
+
 }
 
 router.get('/relais', function(req, res, next) {
-  fetch("https://test.envoimoinscher.com/api/v1/pickup_point/" + req.query.pickup_code + "/informations", {
+  fetch(boxtalUrl + "pickup_point/" + req.query.pickup_code + "/informations", {
       headers: headers,
       credentials: 'include',
       mode: 'cors',
@@ -37,7 +42,7 @@ router.get('/etiquette', function(req, res, next) {
     .where('userid', req.query.sessid)
     .then(user => {
       knex('cart')
-        .where('sessid', req.query.sessid)
+        .where('userid', req.query.sessid)
         .then(cart => {
           knex('commande')
             .where('userid', req.query.sessid)
@@ -133,7 +138,7 @@ router.get('/etiquette', function(req, res, next) {
 router.post('/order', function(req, res, next) {
   let recherche = new URLSearchParams(req.body);
 
-  var url = new URL('https://test.envoimoinscher.com/api/v1/order')
+  var url = new URL(boxtalUrl +'order')
 
   url.search = recherche;
 
@@ -149,7 +154,7 @@ router.post('/order', function(req, res, next) {
         if (err) {
           res.json(err);
         } else {
-          res.json(result);
+            res.json(result);
         }
 
       });
@@ -202,7 +207,7 @@ router.get('/cotation', function(req, res, next) {
   };
   let recherche = new URLSearchParams(envoi);
 
-  var url = new URL('https://test.envoimoinscher.com/api/v1/cotation'); //attention a bien supprimer le test.
+  var url = new URL(boxtalUrl +'cotation');
 
   url.search = recherche;
 

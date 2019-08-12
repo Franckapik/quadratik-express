@@ -50,7 +50,7 @@ router.get('/adminData', function(req, res, next) {
 
 router.get('/adminCart', function(req, res, next) {
   knex('cart')
-    .where('sessid', req.query.sessid)
+    .where('userid', req.query.sessid)
     .then(cart => {
       res.json(cart)
     }).catch(error => console.log(error));
@@ -120,7 +120,7 @@ router.get('/getsessioncart', cors(corsOptions), function(req, res, next) {
 
 router.get('/getDBCart', cors(corsOptions), function(req, res, next) {
   knex('cart')
-    .where('sessid', req.sessionID)
+    .where('userid', req.sessionID)
     .then(cart => {
       res.json(cart)
     }).catch(error => console.log(error));

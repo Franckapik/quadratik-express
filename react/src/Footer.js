@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import homeStore from './homeStore'
+import homeStore from './Store/homeStore'
 
 class Footer extends Component {
   render() {

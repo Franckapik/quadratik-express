@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
-import shopStore from './shopStore';
+import './App.scss';
+import shopStore from './Store/shopStore';
 import {view} from 'react-easy-state';
 import auth0Client from './Admin/Auth';
 

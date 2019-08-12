@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 
 class Produits extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
   return (
     <div>
@@ -20,7 +15,7 @@ class Produits extends Component {
                   <div className="admin_produits">
                     <ul>
                       <li></li>
-                      <li key={'Produit_src' + i}><img className="miniature" src={'images/modeles/'+p.name+'/'+p.src+'.jpg'}></img></li>
+                      <li key={'Produit_src' + i}><img className="miniature" src={'images/modeles/'+p.name+'/'+p.src+'.jpg'} alt={"Miniature du "+p.name}></img></li>
                       <li key={'Produit_nom' + i}>{p.nom}</li>
                       <li key={'Produit_name' + i}>{p.name}</li>
                       <li key={'Produit_prix' + i}>{p.prix} €</li>

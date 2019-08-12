@@ -67,11 +67,12 @@ function facturation(user, cart, commande, livraison) {
     qt: 1,
   };
 
-  order.order_note = 'Transaction : ' + commande[0].transactionid + ' Livraison : ' + livraison[0].livr_mode ;
+  order.order_note = 'Transaction : ' + commande[0].transactionid + ' Livraison : ' + livraison[0].livr_mode;
 
-  return order.getOrder().toPDF().toFile('./factures/commande' + u.nom + '.pdf')
+  const url = './factures/commande' + commande[0].transactionid + '.pdf';
+  return order.getOrder().toPDF().toFile(url)
     .then(() => {
-      return '[PDF] Commande générée'
+      return commande[0].transactionid
     });
 }
 
@@ -81,7 +82,7 @@ router.get('/', function(req, res, next) {
     .where('userid', req.query.sessid)
     .then(user => {
       knex('cart')
-        .where('sessid', req.query.sessid)
+        .where('userid', req.query.sessid)
         .then(cart => {
           knex('commande')
             .where('userid', req.query.sessid)
@@ -89,18 +90,38 @@ router.get('/', function(req, res, next) {
               knex('livraison')
                 .where('userid', req.query.sessid)
                 .then(livraison => {
-                  facturation(user, cart, commande, livraison).then(result =>
-                  res.json(result));
+                  facturation(user, cart, commande, livraison)
+                    .then(result =>
+                      res.json(result));
                 })
             })
         })
     })
     .catch(error => {
-      console.log('[Facturation]', error)
-    }
+        console.log('[Facturation]', error)
+      }
 
 
     );
+});
+
+router.get('/getFacture', function(req, res, next) {
+  knex('commande')
+    .where('userid', req.query.sessid)
+    .then(commande => {
+      const url = './factures/commande' + commande[0].transactionid + '.pdf';
+      res.download(url, 'facture', (err) => {
+        if (err) {
+          console.log(err);
+          return
+        } else {
+          console.log('[Facture] Demande de téléchargement :', url );
+        }
+      });
+    })
+    .catch(error => {
+      console.log('[Facture] ', error)
+    });
 });
 
 

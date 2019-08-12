@@ -16,7 +16,7 @@ const knex = require('knex')(configuration);
 
 
 router.post('/enregistrement', function(req, res, next) {
-  console.log('Enregistrement utilisateur', req.body);
+  console.log('[Enregistrement]',req.sessionID, req.body.lastName);
   knex('user')
     .insert({
       nom: req.body.firstName,
@@ -42,7 +42,7 @@ router.post('/enregistrement', function(req, res, next) {
 });
 
 router.post('/livraison', function(req, res, next) {
-  console.log('Enregistrement livraison',req.sessionID, req.body);
+  console.log('[Livraison]',req.sessionID, req.body.firstName);
   knex('livraison')
     .insert({
       livr_mode: req.body.mode,
@@ -92,7 +92,7 @@ router.post('/saveCartOnDB', function(req, res, next) {
         sous_total: p.qte * p.produit.prix,
         prix: p.produit.prix,
         montant : req.body.total,
-        sessid: req.session.id,
+        userid: req.session.id,
         hauteur: req.body.hauteur,
         poids: req.body.poids,
         unites: req.body.unites

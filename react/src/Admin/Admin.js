@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import '../App.scss';
 import auth0Client from './Auth';
 import AdminRelais from './AdminRelais';
 import Infos from './Infos';
@@ -58,7 +58,7 @@ Administrateur : {this.state.user_id}
     </ul>
     <div className="admin_main">
       {this.state.page==="infos" ?<Infos info={this.state.info}></Infos> : null}
-      {this.state.page==="relais" ? <AdminRelais></AdminRelais> : null }
+      {this.state.page==="relais" ? <AdminRelais admin></AdminRelais> : null }
       {this.state.page==="clients" ? <Clients user={this.state.user}></Clients>: null }
       {this.state.page==="produits" ? <Produits produits={this.state.produits}></Produits>: null }
       {this.state.page==="construction" ? <Construction essence={this.state.essence}></Construction>: null }

@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 
 class Construction extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
   return (
     <div>       <h2>Mes Frais de construction</h2>

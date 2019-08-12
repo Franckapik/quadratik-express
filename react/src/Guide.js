@@ -3,10 +3,10 @@ import React from 'react'
 export default function Guide() {
   return (<div>
     <h1>
-      Guide de l'acoustique Quadratik.fr
+    >  Guide de l'acoustique Quadratik.fr
     </h1>
     <div className="sommaire">
-      1- Pourquoi contrôler l’acoustique d’une pièce?
+      <i class="fas fa-angle-right"></i> Pourquoi contrôler l’acoustique d’une pièce?
       <ul>
         <li>
           <a href="#1a">Maîtriser l’acoustique de sa pièce
@@ -24,7 +24,7 @@ export default function Guide() {
         </li>
       </ul>
       <p/>
-      2- Comment savoir si j’en ai besoin ?
+      <i class="fas fa-angle-right"></i> Comment savoir si j’en ai besoin ?
       <ul>
         <li>
           <a href="#2a">
@@ -48,7 +48,7 @@ export default function Guide() {
         </li>
       </ul>
       <p/>
-      3- Comment fonctionne un diffuseur ?
+      <i class="fas fa-angle-right"></i> Comment fonctionne un diffuseur ?
       <ul>
         <li>
           <a href="#3a">
@@ -62,7 +62,7 @@ export default function Guide() {
         </li>
       </ul>
       <p/>
-      4- Des diffuseurs acoustiques selon ma situation
+      <i class="fas fa-angle-right"></i> Des diffuseurs acoustiques selon ma situation
       <ul>
         <li>
           <a href="#4a">
@@ -81,7 +81,7 @@ export default function Guide() {
         </li>
       </ul>
       <p/>
-      5- Les atouts de Quadratik.fr
+      <i class="fas fa-angle-right"></i> Les atouts de Quadratik.fr
     </div>
     <div className="guide_container">
 
@@ -98,14 +98,14 @@ export default function Guide() {
         <p>
           Seulement voilà, elle nous joue aussi des tours et nous trompe même parfois.
         </p>
+      </div><div>
         <p></p>
         <h2>
-          <i className="fas fa-th"/>
-          Pourquoi contrôler l’acoustique d’une pièce ?
+          <i class="far fa-question-circle"></i>  Pourquoi contrôler l’acoustique d’une pièce ?
         </h2>
         <p></p>
         <h3 id="1a">
-          Maîtriser l’acoustique de sa pièce
+        <i class="fas fa-long-arrow-alt-right"></i>  Maîtriser l’acoustique de sa pièce
         </h3>
         <p></p>
         <p>Existe-t-il un moyen de supprimer l’acoustique ? Oui!
@@ -123,7 +123,7 @@ export default function Guide() {
         Vous n’y connaissez rien ? Vous n’êtes même pas ingénieur du son ? Juste curieux ? Suivez-moi !<p/>
         <p></p>
         <h4>
-          Mon expérience
+          <i class="fas fa-dot-circle"></i> Mon expérience
         </h4>
         <p>Partons alors sur mon expérience d’amateur afin de finir sur mon activité professionnelle de ces dernières années. Qui ne se souvient pas du jour où il a acheté ses premières enceintes? Pour ma part, je me souviens de ces enceintes de monitoring, qui allait révolutionner mon activité de production musicale MAO (Musique Assistée par Ordinateur). Je me souviens du son qu’elles avaient dans le magasin, ainsi que celui qu’elles ont eues dans mon premier Home Studio : le son d’une petite déception!
         </p>
@@ -149,7 +149,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="1b">
-          Qu’est-ce qui sonne mal ?
+          <i class="fas fa-long-arrow-alt-right"></i> Qu’est-ce qui sonne mal ?
         </h3>
         <p>
           Lors de vos témoignages au téléphone, de nombreuses constatations reviennent fréquemment : “Ca resonne !” “J’aimerais plus de précision dans le son” “le son est brouillon et manque de clarté” …
@@ -161,7 +161,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h4>
-          Un tout petit peu de théorie...
+          <i class="fas fa-dot-circle"></i> Un tout petit peu de théorie...
         </h4>
         <p>
           Pour faire court, le son se déplace en ligne droite à partir d’une source sonore vers différents objets que l’on qualifie d’obstacles. Lorsqu’une onde sonore rencontre de la matière, elle dispose de trois comportements possibles :
@@ -190,7 +190,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="1c">
-          Pourquoi des diffuseurs alors ?
+           <i class="fas fa-long-arrow-alt-right"></i> Pourquoi des diffuseurs alors ?
         </h3>
         <p></p>
         <p>Les phénomènes d’absorption et diffusion existent peut-être probablement déjà dans votre pièce. Il est intéressant de mener un équilibre entre ces deux phénomènes.
@@ -199,7 +199,7 @@ export default function Guide() {
         Par exemple, votre canapé de salon absorbe pendant que votre bibliothèque diffuse le son. Ces petits conseils (que je donne souvent au téléphone) sont intéressants pour les faibles budgets mais le matériel de studio permets souvent de réaliser ces mêmes actions avec davantage de précision et une esthétique travaillée.<p/>
         <p></p>
         <p>
-          Le rôle d’un diffuseur est de renvoyer un son en de multiples directions, telle une vague sur un rocher (vous remarquerez l’exemple local, habitant en Bretagne). Les intérêts de la diffusion sont multiples :
+          Le rôle d’un diffuseur est de renvoyer un son en de multiples directions, telle une vague sur un rocher. Les intérêts de la diffusion sont multiples :
         </p>
         <p></p>
         <ul className="guide_liste">
@@ -221,14 +221,14 @@ export default function Guide() {
         </ul>
         <p></p>
         <h2>
-          Comment savoir si j’en ai besoin ?
+          <i class="far fa-question-circle"></i> Comment savoir si j’en ai besoin ?
         </h2>
         <p>
           Le choix de diffuseur acoustique nécessite naturellement de connaître les propriétés de la pièce à traiter. Voici les différents tests qui existent.
         </p>
         <p></p>
         <h3 id="2a">
-          Les tests simples
+          <i class="fas fa-long-arrow-alt-right"></i> Les tests simples
         </h3>
         <p>
           Faites confiance à vos oreilles! Ce sont elles qui décident et vous donneront votre satisfaction.
@@ -255,7 +255,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="2b">
-          Les mesures à l’aide d’un microphone
+          <i class="fas fa-long-arrow-alt-right"></i> Les mesures à l’aide d’un microphone
         </h3>
         <p></p>
         <p>
@@ -279,7 +279,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="2c">
-          Les phénomènes acoustiques indésirables
+          <i class="fas fa-long-arrow-alt-right"></i> Les phénomènes acoustiques indésirables
         </h3>
         <p></p>
         <ul className="guide_liste">
@@ -294,7 +294,7 @@ export default function Guide() {
         <p/>
         <p>
           Ces phénomènes acoustiques indésirables peuvent être supprimés avec des diffuseurs acoustiques, en les plaçant
-          <a href="/">stratégiquement</a>
+          stratégiquement
           dans votre pièce. Pour les curieux, laissez moi vous expliquer ce qui est à la base des problèmes majeurs à l’origine de tout cela.
         </p>
         <p></p>
@@ -329,7 +329,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="2d">
-          Quelles sont alors les limites du diffuseur acoustique ?
+          <i class="fas fa-long-arrow-alt-right"></i> Quelles sont alors les limites du diffuseur acoustique ?
         </h3>
         <p></p>
         <p>Il me parait essentiel de dire ce que ne peuvent pas réaliser les diffuseurs acoustiques afin que vous compreniez intégralement leurs rôles.
@@ -346,10 +346,10 @@ export default function Guide() {
         </p>
         <p></p>
         <h2>
-          Comment fonctionne un diffuseur ?
+          <i class="far fa-question-circle"></i> Comment fonctionne un diffuseur ?
         </h2>
         <h3 id="3a">
-          Des règles fondamentales issues de travaux de recherche
+          <i class="fas fa-long-arrow-alt-right"></i> Des règles fondamentales issues de travaux de recherche
         </h3>
         <p>
           Il est tout à fait naturel de douter d’un matériel. Au tout début, j’ai moi même lu de nombreux ouvrages afin de comprendre le fonctionnement des diffuseurs acoustiques avant de vous en proposer. Et pour passer de la magie à la théorie, il existe par ailleurs un document de référence : les travaux de recherche de Schroeder. Si ces recherches sont peu accessibles, je vous propose de comprendre ensemble toutes ces théories diaboliques en plusieurs règles fondamentales :
@@ -367,7 +367,7 @@ export default function Guide() {
         </ul>
         <p></p>
         <h3 id="3b">
-          Les différents types de diffuseurs
+          <i class="fas fa-long-arrow-alt-right"></i> Les différents types de diffuseurs
         </h3>
         <p>
           Il existe différents types de diffuseurs :
@@ -379,11 +379,11 @@ export default function Guide() {
         </p>
         <p></p>
         <h2>
-          Des diffuseurs acoustiques selon ma situation
+        <i class="far fa-question-circle"></i>  Des diffuseurs acoustiques selon ma situation
         </h2>
         <p></p>
         <h3 id="4a">
-          Comment les positionner ?
+          <i class="fas fa-long-arrow-alt-right"></i> Comment les positionner ?
         </h3>
         <p>
           Que vous enregistriez un album ou que vous profitiez de votre vinyle de David Bowie, il existe toujours pour le son, une source (les enceintes, les instruments) et un point d’écoute (vos oreilles, microphones).
@@ -446,7 +446,7 @@ export default function Guide() {
         </p>
         <p></p>
         <h3 id="4b">
-          Combien de diffuseurs acoustiques ai-je besoin ?
+          <i class="fas fa-long-arrow-alt-right"></i> Combien de diffuseurs acoustiques ai-je besoin ?
         </h3>
         <p>C’est la question que l’on me pose le plus fréquemment lorsque l’on me contacte pour des conseils.
         </p>
@@ -481,7 +481,7 @@ export default function Guide() {
         <p className="rule">
           <span className="rule_title">Règle 6
           </span>
-          le nombre de diffuseur acoustique doit répondre au besoin de la pièce et aux surfaces “nues” qu’elle dispose.
+          le nombre de diffuseur acoustique doit répondre au besoin de la pièce et aux surfaces “nues” dont elle dispose.
         </p>
         <p></p>
         <p>
@@ -547,7 +547,7 @@ export default function Guide() {
         <p></p>
         <p></p>
         <h3 id="4c">
-          Comment les positionner entre eux ?
+          <i class="fas fa-long-arrow-alt-right"></i> Comment les positionner entre eux ?
         </h3>
         <p></p>
         <p>
@@ -557,7 +557,7 @@ export default function Guide() {
         <img src="images/image4.png" alt=''/>
         <p/>
         <h2>
-          Les atouts de Quadratik.fr
+          <i class="far fa-question-circle"></i> Les atouts de Quadratik.fr
         </h2>
         <p>
           A travers mon métier et mes diverses expériences, j’ai acquis de nombreux modèles de diffuseurs acoustiques de marques déposées différentes. J’ai constaté à quel point il était agréable de travailler avec ces matériaux acoustiques. Omnibulé par la recherche du “meilleur son”, je me suis rendu compte que je pouvais à mon tour partager mes expériences afin de rendre accessible à tous la possibilité d’évoluer dans cette passion.

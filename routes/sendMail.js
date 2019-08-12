@@ -153,7 +153,7 @@ router.get('/mailfacture', function(req, res, next) {
     .where('userid', req.sessionID)
     .then(user => {
       knex('cart')
-        .where('sessid', req.sessionID)
+        .where('userid', req.sessionID)
         .then(cart => {
           knex('commande')
             .where('userid', req.sessionID)

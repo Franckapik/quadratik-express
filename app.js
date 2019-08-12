@@ -1,55 +1,64 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var app = express();
-var cors = require('cors');
-var corsOptions = {
-  origin: "http://localhost:3000",
-  credentials: true
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+
+const app = express();
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
 };
+
+const helmet = require('helmet');
+
+app.use(helmet());
+
 app.options('*', cors(corsOptions));
 
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
-var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://quadratik.eu.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'http://localhost:3000/api',
-    issuer: "https://quadratik.eu.auth0.com/",
-    algorithms: ['RS256']
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://quadratik.eu.auth0.com/.well-known/jwks.json',
+  }),
+  audience: 'http://localhost:3000/api',
+  issuer: 'https://quadratik.eu.auth0.com/',
+  algorithms: ['RS256'],
 });
 
-var request = require("request");
+const request = require('request');
 
-var options = { method: 'POST',
+const options = {
+  method: 'POST',
   url: 'https://quadratik.eu.auth0.com/oauth/token',
   headers: { 'content-type': 'application/json' },
-  body: '{"client_id":"vHVgmtxQDZVNW15Hz8rPVzLByGHZ9Vmj","client_secret":"LbTm6isIw1ww0iJd5NQ0qOYyxukph8sSklSBXShQh3c3N9tVrkHr8SNyxIMwS9DB","audience":"http://localhost:3000/api","grant_type":"client_credentials"}' };
+  body: '{"client_id":"vHVgmtxQDZVNW15Hz8rPVzLByGHZ9Vmj","client_secret":"LbTm6isIw1ww0iJd5NQ0qOYyxukph8sSklSBXShQh3c3N9tVrkHr8SNyxIMwS9DB","audience":"http://localhost:3000/api","grant_type":"client_credentials"}',
+};
 
-request(options, function (error, response, body) {
+request(options, (error, response, body) => {
   if (error) throw new Error(error);
-  if(body) {
+  if (body) {
     console.log('[Auth0] Ok');
-  };
+  }
 });
 
-console.log('[Express] Port',process.env.PORT);
+console.log('[Express] Port', process.env.PORT);
 
-var saveInDBRouter = require('./routes/saveInDB');
-var getFromDB = require('./routes/getFromDB');
-var paiementRouter = require('./routes/paiement');
-var sendMail = require('./routes/sendMail');
-var facture = require('./routes/facture');
-var boxtal = require('./routes/boxtal');
+const saveInDBRouter = require('./routes/saveInDB');
+const getFromDB = require('./routes/getFromDB');
+const paiementRouter = require('./routes/paiement');
+const sendMail = require('./routes/sendMail');
+const facture = require('./routes/facture');
+const boxtal = require('./routes/boxtal');
 
 
-//gestion des sessions
+// gestion des sessions
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('./config')[environment]; // require environment's settings from knexfile
@@ -61,8 +70,8 @@ const session = require('express-session');
 const KnexSessionStore = require('connect-session-knex')(session);
 
 const store = new KnexSessionStore({
-  knex: knex,
-  tablename: 'sessions' // optional. Defaults to 'sessions'
+  knex,
+  tablename: 'sessions', // optional. Defaults to 'sessions'
 
 });
 
@@ -70,11 +79,11 @@ const store = new KnexSessionStore({
 app.use(session({
   secret: 'mycatiscuteandyoudontcare',
   cookie: {
-    maxAge: 1800000 // 30min
+    maxAge: 1800000, // 30min
   },
-  store: store,
-  resave: true, //laissé sur false pour le panier
-  saveUninitialized: true
+  store,
+  resave: true, // laissé sur false pour le panier
+  saveUninitialized: true,
 }));
 
 // view engine setup
@@ -84,27 +93,27 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+  extended: false,
 }));
 app.use(express.static(path.join(__dirname, 'react/build')));
 
-app.get('/guide', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/guide', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
-app.get('/shop', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/shop', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
-app.get('/commande', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/commande', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
-app.get('/quadralab', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/quadralab', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
-app.get('/callback', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/callback', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
-app.get('/admin', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/react/build/index.html'));
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
 
 
@@ -116,12 +125,12 @@ app.use('/facture', facture);
 app.use('/boxtal', boxtal);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -131,7 +140,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//Io (desactivé)
+// Io (desactivé)
 /*
 const io = require('socket.io')();
 

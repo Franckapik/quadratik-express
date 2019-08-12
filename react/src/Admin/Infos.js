@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 
 class Infos extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
   return (
     <div>       <h2>Informations générales</h2>

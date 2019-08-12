@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import CarteRelais from '../CarteRelais';
-import RelaisList from '../RelaisList';
+import CarteRelais from '../Commande/CarteRelais';
+import RelaisList from '../Commande/RelaisList';
 import {view} from 'react-easy-state';
-import commandeStore from '../commandeStore';
+import commandeStore from '../Store/commandeStore';
 
 class AdminRelais extends Component {
   constructor(props) {
@@ -18,16 +18,55 @@ class AdminRelais extends Component {
       code_postal: 35000,
       ville: "Rennes",
       adresse: "boulevard magenta",
-      lat: 48.12076,
-      long: -1.71134,
+      lat: 0,
+      long: 0,
       showInfoRelais: false,
-      relais_selected: ''
+      relais_selected: '',
+      sessid:'',
+      wrongAdresse: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAdresse = this.handleAdresse.bind(this);
     this.submitRelais = this.submitRelais.bind(this);
 
+  }
+
+  componentDidMount() {
+    if (!this.props.admin) {
+      this.initialAdress()
+      .then(user => {
+        this.getCotation();
+      });
+    }
+  }
+
+  initialAdress() {
+    return fetch('/getFromDB/user', {
+      credentials: 'include',
+      method: 'GET',
+      mode: "cors" // no-cors, cors, *same-origin
+    }).then(response => response.json()).then(user => {
+      console.log(user);
+      if (user.length === 0) {
+        this.setState({
+          wrongAdresse : true
+        })
+      }
+      this.setState({adresse: user[0].adresse, code_postal: user[0].postal, ville: user[0].ville})
+      return user
+    });
+  }
+
+  getAdresse(id) {
+    fetch('/getFromDB/adminAdresse?sessid='+id, {
+      credentials: 'include',
+      method: 'GET',
+      mode: "cors" // no-cors, cors, *same-origin
+    }).then(response => response.json()).then(user => {
+      this.setState({adresse: user[0].adresse, code_postal: user[0].postal, ville: user[0].ville});
+    });
   }
 
   handleClick(lat, long, relais) {
@@ -45,6 +84,11 @@ class AdminRelais extends Component {
 
   handleSubmit(event) {
     this.getCotation();
+    event.preventDefault();
+  }
+
+  handleAdresse(event) {
+    this.getAdresse(this.state.sessid);
     event.preventDefault();
   }
 
@@ -71,9 +115,7 @@ class AdminRelais extends Component {
         method: 'post',
         body: JSON.stringify(values),
         headers: new Headers({'Content-Type': 'application/json'})
-      })
-      .then(res => res.json())
-      .then(res => {
+      }).then(res => res.json()).then(res => {
         if (res.error) {
           console.log(res.error);
         } else {
@@ -88,13 +130,13 @@ class AdminRelais extends Component {
   }
 
   getCotation() {
+    console.log(this.state.adresse);
     fetch('/boxtal/cotation?transporteur=' + this.state.transporteur + '&poids=' + this.state.poids + '&longueur=' + this.state.longueur + '&largeur=' + this.state.largeur + '&hauteur=' + this.state.hauteur + '&code_postal=' + this.state.code_postal + '&ville=' + this.state.ville + '&adresse=' + this.state.adresse, {
       credentials: 'include',
       method: 'GET',
       mode: "cors" // no-cors, cors, *same-origin
     }).then(response => response.json()).then(data => {
-      this.setState({cotation: data.cotation.shipment[0],
-      service: data.cotation.shipment[0].offer[0].service[0].code[0] })
+      this.setState({cotation: data.cotation.shipment[0], service: data.cotation.shipment[0].offer[0].service[0].code[0]})
       console.log(data.cotation.shipment[0].offer[0].service[0].code[0]);
     });
   }
@@ -102,94 +144,133 @@ class AdminRelais extends Component {
   render() {
     return (<div>
 
-      <h2>Livraison en Point Relais</h2>
-      <form onSubmit={this.handleSubmit} className="admin_form_relais">
-        <label>Poids (kg):
-          <input name="poids" value={this.state.poids} onChange={this.handleChange} style={{
-              width: "2em"
-            }}/>
-        </label>
-        <label>Longueur (cm):
-          <input maxLength="5" name="longueur" value={this.state.longueur} onChange={this.handleChange} style={{
-              width: "2em"
-            }}/>
-        </label>
-        <label>Largeur (cm):
-          <input name="largeur" value={this.state.largeur} onChange={this.handleChange} style={{
-              width: "2em"
-            }}/>
-        </label>
-        <label>Hauteur (cm):
-          <input name="hauteur" value={this.state.hauteur} onChange={this.handleChange} style={{
-              width: "2em"
-            }}/>
-        </label>
-        <label>Adresse:
-          <input name="adresse" value={this.state.adresse} onChange={this.handleChange} style={{
-              width: "200px"
-            }}/>
-        </label>
-        <label>Code Postal:
-          <input name="code_postal" value={this.state.code_postal} onChange={this.handleChange} style={{
-              width: "50px"
-            }}/>
-        </label>
-        <label>Ville:
-          <input name="ville" value={this.state.ville} onChange={this.handleChange} style={{
-              width: "100px"
-            }}/>
-        </label>
-        <label>
-          Transporteur:
-          <select name="transporteur" onChange={this.handleChange}>
-            <option value="SOGP">Relais Colis</option>
-            <option value="MONR">Mondial relais</option>
-            <option value="UPSE">UPS</option>
-            <option value="CHRP">Chronopost</option>
-            <option value="POFR">La Poste</option>
-          </select>
-        </label>
+{this.state.wrongAdresse ?
+  <form onSubmit={this.handleSubmit} className="center">
+    <label>Adresse:
+      <input name="adresse" value={this.state.adresse} onChange={this.handleChange} style={{
+          width: "200px"
+        }}/>
+    </label>
+    <label>Code Postal:
+      <input name="code_postal" value={this.state.code_postal} onChange={this.handleChange} style={{
+          width: "50px"
+        }}/>
+    </label>
+    <label>Ville:
+      <input name="ville" value={this.state.ville} onChange={this.handleChange} style={{
+          width: "100px"
+        }}/>
+    </label>
+    <input type="submit" value="Rechercher" className="admin_form_button"/>
+  </form>
+  : null}
 
-        <input type="submit" value="Rechercher" className="admin_form_button"/>
-        <p>{this.state.poids}
-          kg | L {this.state.longueur}
-          cm x l {this.state.largeur}
-          cm x h {this.state.hauteur}
-          cm | Transporteur {this.state.transporteur}
-        </p>
-      </form>
+      {
+        this.props.admin
+          ? <>
+          <form onSubmit={this.handleAdresse} className="admin_form_relais">
+              <label>Session Id :
+                <input name="sessid" value={this.state.sessid} onChange={this.handleChange} style={{
+                    width: "10em"
+                  }}/>
+              </label>
+              <input type="submit" value="Trouver" className="admin_form_button"/>
+            </form>
+
+
+          <form onSubmit={this.handleSubmit} className="admin_form_relais">
+              <label>Poids (kg):
+                <input name="poids" value={this.state.poids} onChange={this.handleChange} style={{
+                    width: "2em"
+                  }}/>
+              </label>
+              <label>Longueur (cm):
+                <input maxLength="5" name="longueur" value={this.state.longueur} onChange={this.handleChange} style={{
+                    width: "2em"
+                  }}/>
+              </label>
+              <label>Largeur (cm):
+                <input name="largeur" value={this.state.largeur} onChange={this.handleChange} style={{
+                    width: "2em"
+                  }}/>
+              </label>
+              <label>Hauteur (cm):
+                <input name="hauteur" value={this.state.hauteur} onChange={this.handleChange} style={{
+                    width: "2em"
+                  }}/>
+              </label>
+              <br></br>
+              <label>Adresse:
+                <input name="adresse" value={this.state.adresse} onChange={this.handleChange} style={{
+                    width: "200px"
+                  }}/>
+              </label>
+              <label>Code Postal:
+                <input name="code_postal" value={this.state.code_postal} onChange={this.handleChange} style={{
+                    width: "50px"
+                  }}/>
+              </label>
+              <label>Ville:
+                <input name="ville" value={this.state.ville} onChange={this.handleChange} style={{
+                    width: "100px"
+                  }}/>
+              </label>
+              <label>
+                Transporteur:
+                <select name="transporteur" onChange={this.handleChange}>
+                  <option value="SOGP">Relais Colis</option>
+                  <option value="MONR">Mondial relais</option>
+                  <option value="UPSE">UPS</option>
+                  <option value="CHRP">Chronopost</option>
+                  <option value="POFR">La Poste</option>
+                </select>
+              </label>
+<br></br>
+              <input type="submit" value="Rechercher" className="admin_form_button"/>
+              <p>{this.state.poids}
+                kg | L {this.state.longueur}
+                cm x l {this.state.largeur}
+                cm x h {this.state.hauteur}
+                cm | Transporteur {this.state.transporteur}
+              </p>
+            </form> </>
+          : null
+      }
+
       <div className="relais_container flex_r">
-        <CarteRelais marker={[this.state.lat, this.state.long]} center={this.state.adresse + ' ' + this.state.code_postal + ' ' + this.state.ville}></CarteRelais>
+        <CarteRelais marker={[this.state.lat, this.state.long]} center={this.state.adresse + ' ' + this.state.code_postal + ' ' + this.state.ville} admin={this.props.admin}></CarteRelais>
         <div className="relais_liste">
           {
             this.state.cotation
-              ? <ul key='cotation'>
-                  <ul key='package' className="flex_r package">
-
-                    <li>
-                      {this.state.cotation.package[0].weight[0]}
-                      Kg
-                    </li>
-                    <li>{this.state.cotation.package[0].length[0]}
-                      cm (L) x
-                    </li>
-                    <li>{this.state.cotation.package[0].width[0]}
-                      cm (l) x
-                    </li>
-                    <li>{this.state.cotation.package[0].height[0]}
-                      cm (h)
-                    </li>
-                    <li>
-                      {this.state.cotation.recipient[0].zipcode[0]}
-                      &nbsp; {this.state.cotation.recipient[0].city[0]}
-                    </li>
-                  </ul>
+              ? <ul key='cotation'> {
+                this.state.admin?
+                    <ul key='package' className="flex_r package">
+                      <li>
+                        {this.state.cotation.package[0].weight[0]}
+                        Kg
+                      </li>
+                      <li>{this.state.cotation.package[0].length[0]}
+                        cm (L) x
+                      </li>
+                      <li>{this.state.cotation.package[0].width[0]}
+                        cm (l) x
+                      </li>
+                      <li>{this.state.cotation.package[0].height[0]}
+                        cm (h)
+                      </li>
+                      <li>
+                        {this.state.cotation.recipient[0].zipcode[0]}
+                        &nbsp; {this.state.cotation.recipient[0].city[0]}
+                      </li>
+                    </ul> : null
+              }
 
                   <li>
                     {
                       this.state.cotation.offer
                         ? this.state.cotation.offer.map((p, i) => {
                           return (<ul key={'cotation' + i}>
+                          {this.state.admin? <>
                             <li key={'op' + i} className="center">{p.operator[0].label[0]}</li>
                             <li key={'price' + i}>{p.price[0]["tax-exclusive"]}
                               €
@@ -202,10 +283,10 @@ class AdminRelais extends Component {
                                 })
                               }}>
                               Informations supplémentaires
-                            </li>
+                            </li></> : null}
                             {
                               this.state.showInfoRelais
-                                ? <ul key={'char' + i}>{
+                                ? <ul key={'char' + i} >{
                                       p.characteristics[0].label.map((p, i) => {
                                         return (<li key={'label' + i}>{p}</li>)
                                       })
@@ -217,7 +298,7 @@ class AdminRelais extends Component {
                                 ? <ul key={'par' + i}>
                                     {
                                       p.mandatory_informations[0].parameter[13].type[0].enum[0].value.map((p, i) => {
-                                        return (<li key={'enum' + i}>
+                                        return (<li key={'enum' + i} className="center">
                                           <RelaisList code={p} setcoords={this.handleClick.bind(this)} selected={this.state.relais_selected}></RelaisList>
                                         </li>)
                                       })
@@ -238,10 +319,10 @@ class AdminRelais extends Component {
       <div className="center">
         {
           this.state.relais_selected
-            ? <form onSubmit={this.submitRelais} >
-                <input type="submit" value="Choisir ce Relais" className="admin_form_button"/>
-              </form>
-            : "Aucun relais selectionné"
+            ? <>{!this.props.admin? <form onSubmit={this.submitRelais}>
+              <input type="submit" value="Choisir ce Relais" className="admin_form_button"/>
+              </form> : null}</>
+            : <p>Choisissez un relais dans la liste</p>
         }
       </div>
 

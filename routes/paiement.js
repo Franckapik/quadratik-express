@@ -7,24 +7,23 @@ var corsOptions = {
   "optionsSuccessStatus": 204,
   "credentials": true
 }
-
 var cors = require('cors');
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
-const configuration = require('../config')[environment]; // require environment's settings from knexfile
-const knex = require('knex')(configuration);
-const config = require('../config');
 
+const logger = require('../log/logger');
+const fromDb = require('./getFromDB');
+var inDb = require('./saveInDB');
 
 //parametres de connexion au server Braintree
 var braintree = require("braintree");
 
 if (environment === 'development') {
-  console.log('[Braintree] Mode Sandbox');
+  logger.debug('[Braintree] Mode Sandbox');
   var gateway = braintree.connect(config.braintreeSandbox);
 } else {
   if (environment === 'production') {
-    console.log('[Braintree] Mode PRODUCTION');
+    logger.debug('[Braintree] Mode PRODUCTION');
     var gateway = braintree.connect(config.braintreeProduction);
   }
 }
@@ -33,32 +32,23 @@ if (environment === 'development') {
 router.get("/client_token", function(req, res) {
   gateway.clientToken.generate({}, function(err, response) {
     res.json(response.clientToken);
-    console.log('[Braintree] Token généré');
+    err ? logger.error('[Braintree] Erreur de génération du token : %s', err) : logger.info('[Braintree] Token généré');
   });
-});
-
-router.get("/pourquoi", function(req, res) {
-  res.json(req.sessionID)
 });
 
 //reception de la methode de paiement (nonce) du client et génération de la transaction
 router.get("/nonce/:nonce", cors(corsOptions), function(req, res, next) {
-  const sessId = req.session.id;
   const nonceFromTheClient = req.params.nonce;
 
   const createUser = (user) => {
     gateway.customer.create({
-      firstName: user[user.length - 1].prenom,
-      lastName: user[user.length - 1].nom,
-      email: user[user.length - 1].mail,
-      phone: user[user.length - 1].telephone,
+      firstName: user.prenom,
+      lastName: user.nom,
+      email: user.mail,
+      phone: user.telephone,
       paymentMethodNonce: nonceFromTheClient
     }, function(err, result) {
-      if (result.success) {
-        console.log('[Braintree] Nouveau client', result.customer.id);
-      } else {
-        console.log(err);
-      }
+      err ? logger.error('[Braintree] Erreur de création de client: %s', err) : logger.info('[Braintree] Nouveau client: %s', result.customer.id);
     });
   };
 
@@ -71,52 +61,25 @@ router.get("/nonce/:nonce", cors(corsOptions), function(req, res, next) {
       }
     }, function(err, result) {
       if (result.success) {
-        console.log('[Braintree] Nouvelle transaction', result.transaction.id);
-        saveCommandeInDB(result);
+        logger.info('[Braintree] Nouvelle transaction: %s', result.transaction.id);
+        inDb.saveCommandeInDB(result, req.sessionID);
+        res.sendStatus(200);
       } else {
-        console.log(result.message);
+        logger.error('[Braintree] Erreur de transaction: %s', result.message);
       }
     });
   };
 
-  //Enregistrement Base de donnée
-  const saveCommandeInDB = (result) => {
-    knex('commande')
-      .returning('transactionid')
-      .insert({
-        userid: req.sessionID,
-        status: result.transaction.status,
-        mode: result.transaction.paymentInstrumentType,
-        amount: result.transaction.amount,
-        cardtype: result.transaction.creditCard.cardType,
-        number: result.transaction.creditCard.maskedNumber,
-        expirationdate: result.transaction.creditCard.expirationDate,
-        transactionid: result.transaction.id
-      })
-      .then(transactionid => {
-        res.json({
-          result: result,
-          reference: transactionid
-        })
-      });
-  };
+  fromDb.userQuery(req.sessionID)
+  .then( user =>
+    createUser(user) );
 
-  knex('user')
-    .where('userid', req.sessionID)
-    .then(user => {
-      createUser(user);
-    })
-    .catch(error => {
-      console.log(error)
-    });
+  fromDb.cartQuery(req.sessionID)
+  .then(cart => {
+    const amount = parseInt(cart[cart.length - 1].montant, 10).toFixed(2);
+    makeTransaction(amount, nonceFromTheClient);
+  })
 
-  knex('cart')
-    .where('userid', req.sessionID)
-    .then(cart => {
-      const amount = parseInt(cart[cart.length - 1].montant, 10).toFixed(2);
-      makeTransaction(amount, nonceFromTheClient);
-    })
-    .catch(error => console.log(error));
 });
 
 module.exports = router;

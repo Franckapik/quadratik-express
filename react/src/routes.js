@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route} from 'react-router-dom'
+import {Redirect, Router, Route} from 'react-router-dom'
 import Home from './Home/Home'
 import Shop from './Shop/Shop'
 import Header from './Header'
@@ -13,6 +13,8 @@ import Burger from './Burger';
 import ReactGA from 'react-ga';
 import Admin from './Admin/Admin';
 import Callback from './Admin/Callback';
+import NotFoundPage from './404';
+
 import history from './History';
 
 
@@ -31,6 +33,8 @@ export default function MainRouter() {
       <Route path="/commande" component={Commande}/>
       <Route path="/admin" component={Admin}/>
       <Route path="/callback" component={Callback}/>
+      <Route path="/404" component={NotFoundPage} />
+      <Route path="*" component={NotFoundPage} />
       <PanelDetails/>
       <CartWidget></CartWidget>
       <PanelInfo></PanelInfo>

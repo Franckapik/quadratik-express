@@ -17,33 +17,28 @@ class SessionPaiement extends Component {
   }
 
   render() {
+    const a = this.state.paiement;
   return (
     <div className="client_column"> <h3>Paiement</h3>
-{ this.state.paiement ? this.state.paiement.map((p, i) => {
-        return (
-          <div key={i}>
+{ a ?
             <ul>
-              <li key={'Paiement_' + i}>
-                {p.amount}</li>
-              <li key={'Paiement_mode' + i}>
-                {p.mode}</li>
-              <li key={'Paiement_cartdtype' + i}>
-                {p.cardtype}</li>
-              <li key={'Paiement_expirationdate' + i}>
-                {p.expirationdate}</li>
-              <li key={'Paiement_number' + i}>
-                {p.number}</li>
-              <li key={'Paiement_status' + i}>
-                {p.status}</li>
-              <li key={'Paiement_transactionid' + i}>
-                {p.transactionid}</li>
+              <li key={'Paiement_'}>
+                {a.amount}</li>
+              <li key={'Paiement_mode'}>
+                {a.mode}</li>
+              <li key={'Paiement_cartdtype'}>
+                {a.cardtype}</li>
+              <li key={'Paiement_expirationdate'}>
+                {a.expirationdate}</li>
+              <li key={'Paiement_number'}>
+                {a.number}</li>
+              <li key={'Paiement_status'}>
+                {a.status}</li>
+              <li key={'Paiement_transactionid'}>
+                {a.transactionid}</li>
 
             </ul>
-
-          </div>
-        )
-
-  }) : null
+            : null
 } </div>
 
 )

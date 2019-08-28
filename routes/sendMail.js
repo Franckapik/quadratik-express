@@ -29,7 +29,7 @@ function quadraMessenger(messageRecu) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return console.log(error);
+        return logger.error(error);
       }
 
     });
@@ -193,7 +193,7 @@ router.get('/mailfacture', function(req, res, next) {
             })
         })
     })
-    .catch(error => console.log(error));
+    .catch(error => logger.error(error));
 });
 
 

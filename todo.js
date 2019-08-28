@@ -1,4 +1,17 @@
-Remettre le bon ordre de la commande.
+page d'erreur à fabriquer pour les fetch
+
+améliorer la page 404 et faire la page 500 avec cet exemple : https://code-maze.com/react-net-core-error-handling/#creating500
+heure et date de transaction ?
+
+
+supprimer ts les logs coté cllient
+et eviter d'envoyer des infos de db en guise de success au client . (mais plutot un res.send(202) ou equivalent)
+Auth0 est-il configuré du coté serveur? Puurquoi autant d'infos sur le auth de react ? Doublon? Sécurité ? Je crois qu'il est possible d'utiliser l'api directement du coté serveur avec des liens sur express et des génération de token coté sevreur uniquement .
+https://auth0.com/docs/quickstart/backend/nodejs/01-authorization
+A revoir donc !
+Revoir aussi la redirection selon l'environnement: localhost ou https.
+
+
 Réduire l'ombre des diffuseurs sur le mur .
 Retirer le zoom et placer le png en icone avec les images de bonnes taille.
 Controler pourquoi certaines images ne sont pas affichées en -b ou -c. (quadrablack)

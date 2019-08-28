@@ -7,7 +7,7 @@ class Auth {
       this.auth0 = new auth0.WebAuth({
         domain: 'quadratik.eu.auth0.com',
         clientID: 'jtjmgEXugxV92nFwdfKqXyQ6VMuh3ivK',
-        redirectUri: 'https://quadratik.fr/callback',
+        redirectUri: 'http://localhost:3000/callback',
         responseType: 'id_token',
         scope: 'openid profile'
       });

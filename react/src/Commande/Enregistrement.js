@@ -48,14 +48,12 @@ class Enregistrement extends Component {
               method: 'post',
               body: JSON.stringify(values),
               headers: new Headers({'Content-Type': 'application/json'})
-            }).then(res => res.json()).then(res => {
-              if (res.error) {
-                console.log(res.error);
-              } else {
-
+            }).then(response => {
+              if(response.ok) {
                 commandeStore.display = 'livraison';
                 commandeStore.status = '60vw';
-
+              } else {
+                console.log(response);
               }
             });
 

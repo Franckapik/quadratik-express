@@ -1,24 +1,47 @@
-import React, { Component } from 'react';
+import React from "react";
 import '../App.scss';
 import {view} from 'react-easy-state';
+import shopStore from '../Store/shopStore';
 
-class Paiement extends Component {
+
+class Paiement extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commande: false
+    };
+  }
+
+  componentDidMount() {
+    fetch('/getFromDB/commande', {
+        credentials: 'include',
+        method: 'GET',
+        mode: "cors" // no-cors, cors, *same-origin
+      }).then(response => response.json()).then(data => {
+        console.log(data);
+      this.setState({
+        commande: data
+      });
+    });
+  }
+
   render() {
-  const ticket = this.props.ticket;
-    return (
-      <div>
+    const c = this.state.commande;
+    shopStore.resetCart();
+    return ( this.state.commande ?
+      <div className="center">
             <h1>Félicitation, votre transaction a bien été enregistrée !</h1>
             <ul>
-                <li>Transaction : {ticket.result.transaction.id}</li>
-                <li>Montant : {ticket.result.transaction.amount}</li>
-                <li>Type de carte : {ticket.result.transaction.creditCard.cardType}</li>
-                <li>Date d'expiration{ticket.result.transaction.creditCard.expirationDate}</li>
+                <li>Transaction : {c.id}</li>
+                <li>Montant : {c.amount}</li>
+                <li>Type de carte : {c.cardType}</li>
+                <li>Date d'expiration{c.expirationDate}</li>
             </ul>
 
       Merci pour votre confiance !
       Vous devriez recevoir un mail de confirmation à l'adresse indiquée lors de votre commande.
 
-        </div>
+    </div> : null
     )
   }
 }

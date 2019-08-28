@@ -1,0 +1,97 @@
+2019-08-21 10:59:41 [31merror[39m: [Boxtal Order] Erreur lors de la commande: %s
+2019-08-21 11:00:44 [31merror[39m: [Boxtal Order] Erreur lors de la commande: %o
+2019-08-26 08:47:38 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 08:50:07 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 08:52:12 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 08:56:43 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 09:00:53 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 09:21:01 [31merror[39m: Cannot set headers after they are sent to the client
+2019-08-26 09:23:41 [31merror[39m: Panier %s
+2019-08-26 09:23:41 [31merror[39m: Panier %s
+2019-08-26 13:52:48 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 13:56:46 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 13:58:46 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 14:00:46 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 14:02:47 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 14:04:47 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-26 14:06:10 [31merror[39m: [Braintree db] Transaction non enregistrée %s
+2019-08-26 14:08:57 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:08:57 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-26 14:10:43 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:15:28 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:21:59 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:23:17 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:24:11 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:29:17 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:34:50 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:38:07 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:39:05 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:43:47 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:43:47 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-26 14:44:25 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:47:48 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:48:47 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:50:50 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:54:21 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 14:54:52 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 15:00:36 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 15:00:37 [31merror[39m: [Braintree db] Transaction non enregistrée %s
+2019-08-26 15:02:50 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-26 15:02:52 [31merror[39m: [Braintree db] Transaction non enregistrée %s
+2019-08-26 15:04:58 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-27 08:19:44 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "promo" where "code" = ?
+2019-08-27 08:19:44 [31merror[39m: [Knex] Données Produits manquantes
+2019-08-27 08:21:44 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "promo" where "code" = ?
+2019-08-27 08:21:44 [31merror[39m: [Knex] Données Produits manquantes
+2019-08-27 08:23:44 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "promo" where "code" = ?
+2019-08-27 08:23:44 [31merror[39m: [Knex] Données Produits manquantes
+2019-08-27 08:35:21 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:37:21 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:39:15 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:39:21 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:39:23 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:39:24 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:40:19 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:40:28 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:40:29 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:43:03 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:43:16 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:44:07 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:45:37 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:45:59 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:46:10 [31merror[39m: Undefined binding(s) detected when compiling SELECT query: select * from "user" where "userid" = ?
+2019-08-27 08:49:47 [31merror[39m: [Knex User] Query error: %s
+2019-08-27 11:21:28 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 11:23:28 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 11:24:22 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-27 11:24:22 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 11:59:10 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-27 11:59:10 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:22:45 [31merror[39m: [Display Success] Session et Transaction ID non concordants
+2019-08-27 12:23:44 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
+2019-08-27 12:26:34 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
+2019-08-27 12:28:03 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
+2019-08-27 12:28:43 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
+2019-08-27 12:32:53 [31merror[39m: Cannot read property 'prenom' of undefined
+2019-08-27 12:32:53 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:33:55 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:34:35 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:35:55 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:36:34 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:38:34 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:40:34 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:41:28 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:42:30 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:42:37 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:42:56 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:44:39 [31merror[39m: Cannot read property 'montant' of undefined
+2019-08-27 12:54:16 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 12:59:22 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 21:35:59 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 21:37:06 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 21:38:13 [31merror[39m: [Braintree db] Transaction non enregistrée %s
+2019-08-27 21:56:41 [31merror[39m: [Braintree db] Erreur de lecture de base de donnée Utilisateur :%s
+2019-08-27 21:58:41 [31merror[39m: [Braintree db] Erreur de lecture de base de donnée Utilisateur :%s
+2019-08-27 22:35:07 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
+2019-08-27 22:41:14 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-08-27 22:48:29 [31merror[39m: [Braintree] Erreur de transaction: %s

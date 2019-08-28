@@ -48,13 +48,12 @@ class AdminRelais extends Component {
       method: 'GET',
       mode: "cors" // no-cors, cors, *same-origin
     }).then(response => response.json()).then(user => {
-      console.log(user);
       if (user.length === 0) {
         this.setState({
           wrongAdresse : true
         })
       }
-      this.setState({adresse: user[0].adresse, code_postal: user[0].postal, ville: user[0].ville})
+      this.setState({adresse: user.adresse, code_postal: user.postal, ville: user.ville})
       return user
     });
   }
@@ -65,7 +64,7 @@ class AdminRelais extends Component {
       method: 'GET',
       mode: "cors" // no-cors, cors, *same-origin
     }).then(response => response.json()).then(user => {
-      this.setState({adresse: user[0].adresse, code_postal: user[0].postal, ville: user[0].ville});
+      this.setState({adresse: user.adresse, code_postal: user.postal, ville: user.ville});
     });
   }
 
@@ -115,29 +114,27 @@ class AdminRelais extends Component {
         method: 'post',
         body: JSON.stringify(values),
         headers: new Headers({'Content-Type': 'application/json'})
-      }).then(res => res.json()).then(res => {
-        if (res.error) {
-          console.log(res.error);
-        } else {
-          console.log(res.success);
-          commandeStore.display = 'paiement';
-          commandeStore.status = '80vw';
-        }
-      });
+    }).then(response => {
+      if(response.ok) {
+        commandeStore.display = 'paiement';
+        commandeStore.status = '80vw';
+        return
+      } else {
+        console.log(response);
+      }
+    });
 
     }
 
   }
 
   getCotation() {
-    console.log(this.state.adresse);
     fetch('/boxtal/cotation?transporteur=' + this.state.transporteur + '&poids=' + this.state.poids + '&longueur=' + this.state.longueur + '&largeur=' + this.state.largeur + '&hauteur=' + this.state.hauteur + '&code_postal=' + this.state.code_postal + '&ville=' + this.state.ville + '&adresse=' + this.state.adresse, {
       credentials: 'include',
       method: 'GET',
       mode: "cors" // no-cors, cors, *same-origin
     }).then(response => response.json()).then(data => {
       this.setState({cotation: data.cotation.shipment[0], service: data.cotation.shipment[0].offer[0].service[0].code[0]})
-      console.log(data.cotation.shipment[0].offer[0].service[0].code[0]);
     });
   }
 
@@ -294,7 +291,7 @@ class AdminRelais extends Component {
                                 : null
                             }
                             {
-                              p.mandatory_informations[0].parameter[13]
+                              p.mandatory_informations[0].parameter[13].type[0].enum[0].value
                                 ? <ul key={'par' + i}>
                                     {
                                       p.mandatory_informations[0].parameter[13].type[0].enum[0].value.map((p, i) => {
@@ -303,7 +300,7 @@ class AdminRelais extends Component {
                                         </li>)
                                       })
                                     }</ul>
-                                : null
+                                  : 'Aucun relais trouvé'
                             }
                           </ul>)
                         })

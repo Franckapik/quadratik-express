@@ -79,6 +79,7 @@ const shopStore = store({
     var i = shopStore.cart.findIndex(x => x.produit.nom === this);
     if (shopStore.cart[i].qte > 1) {
       shopStore.cart[i].qte--;
+      shopStore.sendSessionCart();
     } else {
       shopStore.cart.splice(i, 1);
       shopStore.sendSessionCart();
@@ -88,6 +89,7 @@ const shopStore = store({
   plusCart() {
     var i = shopStore.cart.findIndex(x => x.produit.nom === this);
     shopStore.cart[i].qte++;
+    shopStore.sendSessionCart();
   },
 
   addToCart() {
@@ -104,6 +106,8 @@ const shopStore = store({
 
     shopStore.height = 120;
     setTimeout(() => shopStore.height = 0, 3000);
+    shopStore.sendSessionCart();
+
 
   },
 
@@ -123,7 +127,20 @@ const shopStore = store({
         console.log(error)
       })
     }
+  },
 
+  resetCart() {
+      fetch('/saveInDB/resetcart', {
+        credentials: 'include',
+        method: 'post',
+        mode: 'cors',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }).catch(error => {
+        console.log(error)
+      })
   },
 
   sendCartOnDB() {

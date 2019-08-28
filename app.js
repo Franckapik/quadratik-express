@@ -1,10 +1,22 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const logger = require('morgan');
-
+/*const logger = require('morgan');*/
+//compression gzip
+const compression = require('compression');
 const app = express();
 const cors = require('cors');
+const env = process.env.NODE_ENV;
+const logger = require('./log/logger');
+const morgan = require('morgan');
+
+logger.stream = {
+    write: function(message, encoding){
+        logger.verbose(message);
+    }
+};
+
+app.use(require("morgan")('tiny', { "stream": logger.stream }));
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -12,9 +24,8 @@ const corsOptions = {
 };
 
 const helmet = require('helmet');
-
 app.use(helmet());
-
+app.use(compression());
 app.options('*', cors(corsOptions));
 
 const jwt = require('express-jwt');
@@ -44,11 +55,11 @@ const options = {
 request(options, (error, response, body) => {
   if (error) throw new Error(error);
   if (body) {
-    console.log('[Auth0] Ok');
+    logger.info('[Auth0] Ok');
   }
 });
 
-console.log('[Express] Port', process.env.PORT);
+logger.info('[Express] Port %d', process.env.PORT);
 
 const saveInDBRouter = require('./routes/saveInDB');
 const getFromDB = require('./routes/getFromDB');
@@ -60,11 +71,11 @@ const boxtal = require('./routes/boxtal');
 
 // gestion des sessions
 
-const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
+const environment = env|| 'development'; // if something else isn't setting ENV, use development
 const configuration = require('./config')[environment]; // require environment's settings from knexfile
 const knex = require('knex')(configuration);
 
-console.log('[Knex] Mode', environment);
+logger.info('[Knex] Mode %s', environment);
 
 const session = require('express-session');
 const KnexSessionStore = require('connect-session-knex')(session);
@@ -79,7 +90,7 @@ const store = new KnexSessionStore({
 app.use(session({
   secret: 'mycatiscuteandyoudontcare',
   cookie: {
-    maxAge: 1800000, // 30min
+    maxAge: 3600000, // 30min
   },
   store,
   resave: true, // laissé sur false pour le panier
@@ -90,7 +101,7 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+//app.use(logger('dev')); //ligne à reconsiderer/comprendre.
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false,
@@ -139,23 +150,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// Io (desactivé)
-/*
-const io = require('socket.io')();
-
-io.on('connection', (client) => {
-  console.log('Nouveau client [ID] :', client.id);
-  client.on('clientServer', (messageRecu) => {
-    sendMail.quadraMessenger(messageRecu);
-    client.broadcast.emit('Serverclient', messageRecu);
-  });
-});
-
-const port = 8000;
-io.listen(port);
-console.log('[QuadraMessenger (Io)] Ecoute sur le port', port);
-*/
 
 
 module.exports = app;

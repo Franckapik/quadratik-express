@@ -82,6 +82,8 @@ class Cart extends Component {
           }
         </tbody>
       </table>
+
+        <i className="fas fa-times cursor" onClick={shopStore.resetCart}></i>
     </div>)
 
   }

@@ -17,8 +17,9 @@ class LivraisonAdresse extends Component {
         method: 'GET',
         mode: "cors" // no-cors, cors, *same-origin
       }).then(response => response.json()).then(data => {
+        console.log(data);
       this.setState({
-        user: data[data.length - 1]
+        user: data
       });
     });
   }
@@ -39,14 +40,13 @@ class LivraisonAdresse extends Component {
               method: 'post',
               body: JSON.stringify(values),
               headers: new Headers({'Content-Type': 'application/json'})
-            }).then(res => res.json()).then(res => {
-              if (res.error) {
-                console.log(res.error);
-              } else {
-                console.log(res.success);
-
+            }).then(response => {
+              if(response.ok) {
                 commandeStore.display = 'paiement';
                 commandeStore.status = '80vw';
+                return
+              } else {
+                console.log(response);
               }
             });
 

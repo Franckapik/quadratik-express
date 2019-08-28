@@ -17,26 +17,24 @@ class SessionLivraison extends Component {
   }
 
   render() {
+    const a = this.state.livraison;
   return (
     <div className="client_column"> <h3>Livraison</h3>
-{ this.state.livraison ? this.state.livraison.map((p, i) => {
-        return (
-          <div key={i}>
+{ a ?
             <ul>
-              <li key={'Livraison_mode' + i}>
-                {p.livr_mode}</li>
-              <li key={'Livraison_nom' + i}>
-                {p.livr_nom}</li>
-              <li key={'Livraison_adresse' + i}>
-                {p.livr_adresse}</li>
-              <li key={'Livraison_ville' + i}>
-                {p.livr_postal + p.livr_ville}</li>
+              <li key={'Livraison_mode' }>
+                {a.livr_mode}</li>
+              <li key={'Livraison_nom' }>
+                {a.livr_nom}</li>
+              <li key={'Livraison_adresse' }>
+                {a.livr_adresse}</li>
+              <li key={'Livraison_ville' }>
+                {a.livr_postal + a.livr_ville}</li>
             </ul>
 
-          </div>
-        )
 
-  }) : null
+
+ : null
 } </div>
 
 )

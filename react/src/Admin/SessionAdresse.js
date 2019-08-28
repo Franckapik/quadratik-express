@@ -11,32 +11,32 @@ class SessionAdresse extends Component {
 
   componentDidMount() {
     fetch('/getFromDB/adminAdresse?sessid=' + this.props.sessid).then(response => response.json()).then(adresse => {
+      console.log(adresse);
       this.setState({adresse: adresse});
     });
 
   }
 
   render() {
+    const a = this.state.adresse;
   return (
     <div className="client_column"> <h3>Adresse</h3>
-{ this.state.adresse ? this.state.adresse.map((p, i) => {
-        return (
-          <div key={i}>
+{ a ?
+
             <ul>
-              <li key={'Client_nom' + i}>
-                {p.nom}
+              <li key={'Client_nom' }>
+                {a.nom}
               </li>
-            {p.prenom?  <li key={'Client_prenom' + i}>{p.prenom}</li> : null }
-              <li key={'Client_adresse' + i}>{p.adresse}</li>
-              <li key={'Client_ville' + i}>{p.postal + p.ville}</li>
-              <li key={'Client_mail' + i}>{p.mail}</li>
-              <li key={'Client_telephone' + i}>{p.telephone}</li>
+            {a.prenom?  <li key={'Client_prenom' }>{a.prenom}</li> : null }
+              <li key={'Client_adresse' }>{a.adresse}</li>
+              <li key={'Client_ville' }>{a.postal + a.ville}</li>
+              <li key={'Client_mail' }>{a.mail}</li>
+              <li key={'Client_telephone' }>{a.telephone}</li>
             </ul>
 
-          </div>
-        )
 
-  }) : null
+
+  : null
 } </div>
 
 )

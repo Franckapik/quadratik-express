@@ -12,9 +12,11 @@ var corsOptions = {
   "optionsSuccessStatus": 204,
   "credentials": true
 }
+const logger = require('../log/logger');
 
 
-const invoiceIt = require('@rimiti/invoice-it');
+
+const invoiceIt = require('@rimiti/invoice-it').default;
 invoiceIt.configure({
   global: {
     lang: 'fr',
@@ -27,6 +29,12 @@ invoiceIt.configure({
 
 
 function facturation(user, cart, commande, livraison) {
+  [].forEach.call(arguments, function (el) {
+    if (!el.length) {
+      logger.warn('[Facture] Données client manquantes %s', el);
+    }
+  });
+
   const u = user[0];
   const emitter = {
     name: 'Quadratik.fr',
@@ -50,6 +58,7 @@ function facturation(user, cart, commande, livraison) {
   };
 
   const order = invoiceIt.create(recipient, emitter);
+  logger.info('[Facture] Generation de facture pour le client suivant :%s', recipient.company_name);
 
   cart.map((c, i) => {
     order.article = {
@@ -70,6 +79,8 @@ function facturation(user, cart, commande, livraison) {
   order.order_note = 'Transaction : ' + commande[0].transactionid + ' Livraison : ' + livraison[0].livr_mode;
 
   const url = './factures/commande' + commande[0].transactionid + '.pdf';
+
+  logger.info('[Facture] Creation du fichier %s', url);
   return order.getOrder().toPDF().toFile(url)
     .then(() => {
       return commande[0].transactionid
@@ -81,15 +92,19 @@ router.get('/', function(req, res, next) {
   knex('user')
     .where('userid', req.query.sessid)
     .then(user => {
+      user.length ? logger.debug ('[Facture db] Données utilisateur récupérées (id): %s', user[0].id) : logger.warn('[Facture db] Données utilisateur manquantes');
       knex('cart')
         .where('userid', req.query.sessid)
         .then(cart => {
+          cart.length ? logger.debug ('[Facture db] Données panier récupérées (id): %s', cart[0].id) : logger.warn('[Facture db] Données panier manquantes');
           knex('commande')
             .where('userid', req.query.sessid)
             .then(commande => {
+              commande.length ? logger.debug ('[Facture db] Données commande récupérées (id): %s', commande[0].id) : logger.warn('[Facture db] Données commande manquantes');
               knex('livraison')
                 .where('userid', req.query.sessid)
                 .then(livraison => {
+                  livraison.length ? logger.debug ('[Facture db] Données livraison récupérées (id): %s', livraison[0].id) : logger.warn('[Facture db] Données livraison manquantes');
                   facturation(user, cart, commande, livraison)
                     .then(result =>
                       res.json(result));
@@ -106,21 +121,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getFacture', function(req, res, next) {
+  logger.debug("[Facture sessid] %s", req.query.sessid);
   knex('commande')
     .where('userid', req.query.sessid)
     .then(commande => {
       const url = './factures/commande' + commande[0].transactionid + '.pdf';
       res.download(url, 'facture', (err) => {
         if (err) {
-          console.log(err);
+          logger.error('[Facture download] %s', err);
           return
         } else {
-          console.log('[Facture] Demande de téléchargement :', url );
+          logger.info('[Facture download] Demande de téléchargement : %s', url );
         }
       });
     })
     .catch(error => {
-      console.log('[Facture] ', error)
+      logger.error(err);
     });
 });
 

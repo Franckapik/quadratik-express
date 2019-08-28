@@ -7,58 +7,50 @@ class Braintree extends React.Component {
   instance;
   state = {
     clientToken: null,
-    ticket : null,
-    success : false
+    transactionid : null
   };
 
   componentDidMount() {
     // Get a client token for authorization from your server
-    fetch("/paiement/client_token")
-      .then(response => response.json())
-      .then(data => {
-        this.setState({clientToken: data})
-      });
+    fetch("/paiement/client_token").then(response => response.json()).then(data => {
+      this.setState({clientToken: data})
+    });
 
   }
 
-  buy() {
-    // Send the nonce to your server
-    return this.instance.requestPaymentMethod()
-    .then(({nonce}) => fetch(`/paiement/nonce/${nonce}`, {
-    method: 'GET',
-    credentials: 'include',
-  }))
-  .then(resp => resp.json())
-  .then(res => {
-    console.log(res);
-    if (res.result.success) {
-      this.setState({
-        clientToken : false,
-        ticket : res,
-        success : true
-      })
-      commandeStore.status = '100vw';
-      commandeStore.display='success'
-    } else {
-      console.log("Erreur : ", res.result.transaction.status);
-    }
-  });
-
+  buy = () => {
+    this.instance.requestPaymentMethod().then(({nonce}) => fetch(`/paiement/nonce/${nonce}`, {
+      method: 'GET',
+      credentials: 'include'
+    }).then(response => {
+      if (response.ok) {
+        commandeStore.display = 'success';
+        commandeStore.status = '100vw';
+        response.json()
+      } else {
+        console.log(response)
+      }
+    })
+  );
   }
 
   render() {
-    return(<>
-      {this.state.success ? <Success ticket={this.state.ticket}></Success> : null}
-    {!this.state.success? <div>{this.state.clientToken?
-      <div>
-        <DropIn options={{
-            authorization: this.state.clientToken,
-            locale: 'fr_FR,'
-          }} onInstance={instance => (this.instance = instance)}/>
-        <button className="button_accent" onClick={this.buy.bind(this)}>Régler la commande</button>
-      </div>
-      : 'Chargement...'}</div> : null}
-      </>
+    return (
+    <> {
+      this.state.success
+        ? <Success ></Success>
+        : <div>{
+              this.state.clientToken
+                ? <div>
+                    <DropIn options={{
+                        authorization: this.state.clientToken,
+                        locale: 'fr_FR,'
+                      }} onInstance={instance => (this.instance = instance)}/>
+                    <button className="button_accent" onClick={this.buy.bind(this)}>Régler la commande</button>
+                  </div>
+                : 'Chargement...'
+            }</div>
+    }</>
     )
   }
 }

@@ -1,21 +1,22 @@
 var express = require('express');
 var router = express.Router();
-const environment = process.env.NODE_ENV || 'development';
-const configuration = require('../config')[environment];
+const env = process.env.NODE_ENV || 'development';
+const configuration = require('../config')[env];
 const knex = require('knex')(configuration);
 const config = require('../config');
 const parseString = require('xml2js').parseString;
 const fetch = require('node-fetch');
 global.Headers = fetch.Headers;
 let boxtalUrl = null;
+const logger = require('../log/logger');
 
-if (environment === 'development') {
-  console.log('[Boxtal] Mode Test');
+if (env === 'development') {
+  logger.info('[Boxtal] Mode Test');
   var headers = new Headers(config.boxtalTest);
   boxtalUrl = 'https://test.envoimoinscher.com/api/v1/';
 
-} else if (environment === 'production') {
-  console.log('[Boxtal] Mode PRODUCTION');
+} else if (env === 'production') {
+  logger.info('[Boxtal] Mode PRODUCTION');
   var headers = new Headers(config.boxtalProduction);
   boxtalUrl = 'https://www.envoimoinscher.com/api/v1/';
 
@@ -32,6 +33,10 @@ router.get('/relais', function(req, res, next) {
     .then(data => {
       parseString(data, function(err, result) {
         res.json(result);
+        logger.debug('Informations relais : %s', result.pickup_point.code);
+        if(err) {
+          logger.error('Impossible de recevoir/convertir les données du relais');
+        }
       });
     })
 
@@ -41,15 +46,24 @@ router.get('/etiquette', function(req, res, next) {
   knex('user')
     .where('userid', req.query.sessid)
     .then(user => {
+      user.length ? logger.debug("[Etiquette] Utilisateur retrouvé: %o", user[0].id):
+      logger.warn("[Etiquette] Utilisateur manquant");
       knex('cart')
         .where('userid', req.query.sessid)
         .then(cart => {
+          cart.length ? logger.debug("[Etiquette] Panier retrouvé: %o", cart[0].id):
+          logger.warn("[Etiquette] Panier manquant");
           knex('commande')
             .where('userid', req.query.sessid)
             .then(commande => {
+              commande.length ? logger.debug("[Etiquette] Commande retrouvée: %o", commande[0].id):
+              logger.warn("[Etiquette] Commande manquante");
               knex('livraison')
                 .where('userid', req.query.sessid)
                 .then(livraison => {
+                  livraison.length ? logger.debug("[Etiquette] livraison retrouvée: %o", livraison[0].id):
+                  logger.warn("[Etiquette] Livraison manquante");
+
                   const time = new Date().toLocaleDateString("fr-FR", {
                     year: "numeric",
                     month: "2-digit",
@@ -125,11 +139,12 @@ router.get('/etiquette', function(req, res, next) {
                   };
 
                   res.json(envoi);
+                  logger.debug("Demande de création d'étiquette suivante: %o", envoi);
                 })
             })
         })
     })
-    .catch(error => console.log(error));
+    .catch(error => logger.error(error));
 
 
 
@@ -137,10 +152,9 @@ router.get('/etiquette', function(req, res, next) {
 
 router.post('/order', function(req, res, next) {
   let recherche = new URLSearchParams(req.body);
-
-  var url = new URL(boxtalUrl +'order')
-
+  var url = new URL(boxtalUrl + 'order')
   url.search = recherche;
+  logger.debug("[Boxtal Order] Paramètres de commandes: %o", url.search);
 
   fetch(url, {
       headers: headers,
@@ -150,11 +164,13 @@ router.post('/order', function(req, res, next) {
     })
     .then(response => response.text())
     .then(data => {
-      parseString(data, function(result, err) {
+      parseString(data, function(err, result) {
         if (err) {
           res.json(err);
+          logger.error("[Boxtal Order] Erreur lors de la commande: %o", err);
         } else {
-            res.json(result);
+          res.json(result);
+          logger.info("[Boxtal Order] Commande validée: %s", result.order.shipment[0].reference);
         }
 
       });
@@ -205,11 +221,16 @@ router.get('/cotation', function(req, res, next) {
     ...colis_1,
     ...options
   };
+
+  logger.debug("Recherche Relais avec informations suivantes: %o", envoi);
+
   let recherche = new URLSearchParams(envoi);
 
-  var url = new URL(boxtalUrl +'cotation');
+  var url = new URL(boxtalUrl + 'cotation');
 
   url.search = recherche;
+
+  logger.debug("[Boxtal Relais] Paramètres de recherche relais: %o", url.search);
 
   fetch(url, {
       headers: headers,
@@ -219,11 +240,14 @@ router.get('/cotation', function(req, res, next) {
     })
     .then(response => response.text())
     .then(data => {
-      parseString(data, function(result, err) {
+      parseString(data, function(err, result) {
         if (err) {
           res.json(err);
+          logger.error("[Boxtal Relais] Erreur lors de la recherche relais: %o", err);
         } else {
           res.json(result);
+          logger.debug("[Boxtal Relais] Relais listés: %o", result.cotation.shipment[0].offer[0].mandatory_informations[0].parameter[13].type[0].enum);
+
         }
       });
     })

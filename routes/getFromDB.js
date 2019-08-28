@@ -1,27 +1,174 @@
 var express = require('express');
 var router = express.Router();
-var corsOptions = {
-  "origin": "http://localhost:3005",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204,
-  "credentials": true
-}
-
 var cors = require('cors');
-
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 const configuration = require('../config')[environment]; // require environment's settings from knexfile
 const knex = require('knex')(configuration);
-const config = require('../config');
+const logger = require('../log/logger');
+// Query Database
+
+userQuery = (sessid) => {
+  return knex('user')
+    .where('userid', sessid)
+    .then(user => {
+      user.length ? logger.debug('[Knex] Données Utilisateur chargées (id): %s', user[user.length - 1].id) : logger.warn('[Knex] Données Utilisateur manquantes (sessid): %s', sessid);
+      return user[user.length - 1]
+    }).catch(error => logger.error('[Knex] User Query error: %s', error));
+};
+
+cartQuery = (sessid) => {
+  return knex('cart')
+    .where('userid', sessid)
+    .then(cart => {
+      cart.length ? logger.debug('[Knex] Données Panier chargées (id): %s', cart[cart.length - 1].id) : logger.warn('[Knex] Données Panier manquantes (sessid): %s', sessid);
+      return cart
+    }).catch(error => logger.error('[Knex] Cart Query error: %s', error));
+}
+
+livraisonQuery = (sessid) => {
+  return knex('livraison')
+    .where('userid', sessid)
+    .then(livraison => {
+      livraison.length ? logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
+      return livraison[livraison.length - 1]
+    }).catch(error => logger.error('[Knex] Livraison Query error: %s', error));
+}
+
+commandeQuery = (sessid) => {
+  return knex('commande')
+    .where('userid', sessid)
+    .then(commande => {
+      commande.length ? logger.debug('[Knex] Données Commande chargées (id): %s', commande[commande.length - 1].id) : logger.warn('[Knex] Données Commande manquantes (sessid): %s', sessid);
+      return commande[commande.length - 1]
+    }).catch(error => logger.error('[Knex] Commande Query error: %s', error));
+}
+
+productQuery = () => {
+  return knex('product')
+    .leftJoin('collection', 'product.collectionId', 'collection.id')
+    .innerJoin('product_performances', 'product.performance', 'product_performances.type')
+    .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
+    .then(product => {
+      product.length ? logger.debug('[Knex] Liste des produits chargées (qte): %d', product.length) : logger.error('[Knex] Données Produits manquantes');
+      return product
+    }).catch(error => logger.error('[Knex] Product Query error: %s', error));
+}
+
+promoQuery = (code) => {
+  return knex('promo')
+    .where('code', code)
+    .then(reduction => {
+      reduction.length ? logger.debug('[Knex] Données Reduction chargées (id): %s', reduction[0]) : logger.warn('[Knex] Données Reduction manquantes (code): %s', code);
+      return reduction[0]
+    }).catch(error => logger.error('[Knex] Promo Query error: %s', error));
+}
+
+// Routes
+
+router.get('/adminCart', function(req, res, next) {
+  cartQuery(req.query.sessid)
+    .then(cart => {
+      res.json(cart)
+    })
+});
+
+router.get('/adminLivraison', function(req, res, next) {
+  livraisonQuery(req.query.sessid)
+    .then(livraison => {
+      res.json(livraison)
+    })
+});
+
+router.get('/adminPaiement', function(req, res, next) {
+  commandeQuery(req.query.sessid)
+    .then(commande => {
+      res.json(commande)
+    })
+});
+
+router.get('/adminAdresse', function(req, res, next) {
+  userQuery(req.query.sessid)
+    .then(adresse => {
+      res.json(adresse)
+    })
+});
+
+router.get('/user', function(req, res, next) {
+  userQuery(req.sessionID)
+    .then(user => {
+      res.json(user)
+    })
+});
+
+router.get('/livraison', function(req, res, next) {
+  livraisonQuery(req.sessionID)
+    .then(livraison => {
+      res.json(livraison)
+    })
+});
+
+router.get('/commande', function(req, res, next) {
+  commandeQuery(req.sessionID)
+  .then(commande => {
+    res.json(commande)
+  })
+});
+
+router.get('/getsessioncart', function(req, res, next) {
+  if (req.session.cart) {
+    res.json({
+      cart: req.session.cart
+    });
+    logger.debug('[Panier] Session récupérée (produits) : %o', req.session.cart.length);
+  } else {
+    logger.debug('[Panier] Nouvelle session');
+    res.json({
+      cart: []
+    })
+  }
+});
+
+router.get('/getDBCart', function(req, res, next) {
+  cartQuery(req.sessionID)
+    .then(cart => {
+      res.json(cart)
+    })
+});
+
+router.get('/getreduction', function(req, res, next) {
+  promoQuery(req.query.code)
+    .then(reduction => {
+      res.json(reduction)
+    })
+});
+
+router.get('/shopDB', function(req, res, next) {
+  productQuery()
+    .then(shopData => {
+      shopData.length ? logger.debug('[Knex] Liste des produits chargées (qte): %d', shopData.length) : logger.error('[Knex] Données Produits manquantes');
+      var collections = new Map();
+      shopData.forEach(product => {
+        var currentCollection = collections.get(product.collectionId);
+        if (currentCollection == null) {
+          currentCollection = [];
+          collections.set(product.collectionId, currentCollection);
+        }
+        currentCollection.push(product);
+      })
+      var collectionsArray = [];
+      collections.forEach((products, collectionid, map) => {
+        collectionsArray.push(products);
+      })
+      res.json([{
+        collections: collectionsArray
+      }]);
+    });
+});
 
 router.get('/adminData', function(req, res, next) {
-  console.log('Demande de connexion sur la page admin :', req.query.user);
-  if(req.query.user == config.adminUser.user1 || config.adminUser.user2) {
-    knex('product')
-      .leftJoin('collection', 'product.collectionId', 'collection.id')
-      .innerJoin('product_performances', 'product.performance', 'product_performances.type')
-      .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
+  logger.info('Connexion sur la page admin :', req.query.user);
+  if (req.query.user == config.adminUser.user1 || config.adminUser.user2) {
+    productQuery()
       .then(function(productData) {
         knex('product_essences')
           .then(function(essencesData) {
@@ -29,7 +176,7 @@ router.get('/adminData', function(req, res, next) {
               .then(function(userData) {
                 knex('informations')
                   .then(function(informations) {
-                    console.log('[Admin] Connection autorisée');
+                    logger.debug('[Admin db] Données récupérées');
                     res.json({
                       product: productData,
                       essence: essencesData,
@@ -42,133 +189,11 @@ router.get('/adminData', function(req, res, next) {
       })
   } else {
     res.status(500);
-    console.log('[Admin] Nom d\'utilisateur incorrect');
+    logger.error('[Admin] Nom d\'utilisateur incorrect');
   }
-
-
-});
-
-router.get('/adminCart', function(req, res, next) {
-  knex('cart')
-    .where('userid', req.query.sessid)
-    .then(cart => {
-      res.json(cart)
-    }).catch(error => console.log(error));
-
-});
-
-router.get('/adminLivraison', function(req, res, next) {
-  knex('livraison')
-    .where('userid', req.query.sessid)
-    .then(livraison => {
-      res.json(livraison)
-    }).catch(error => console.log(error));
-
-});
-
-router.get('/adminPaiement', function(req, res, next) {
-  knex('commande')
-    .where('userid', req.query.sessid)
-    .then(commande => {
-      res.json(commande)
-    }).catch(error => console.log(error));
-
-});
-
-router.get('/adminAdresse', function(req, res, next) {
-  knex('user')
-    .where('userid', req.query.sessid)
-    .then(adresse => {
-      res.json(adresse)
-    }).catch(error => console.log(error));
-
-});
-
-
-
-router.get('/user', function(req, res, next) {
-  knex('user')
-    .where('userid', req.sessionID)
-    .then(user => {
-      res.json(user)
-    }).catch(error => console.log(error));
-
-});
-
-router.get('/livraison', cors(corsOptions), function(req, res, next) {
-
-  knex('livraison')
-    .where('userid', req.sessionID)
-    .then(livraison => {
-      res.json(livraison)
-    }).catch(error => console.log(error));
-
-});
-
-router.get('/getsessioncart', cors(corsOptions), function(req, res, next) {
-  if (req.session.cart) {
-    res.json({
-      cart: req.session.cart
-    });
-  } else {
-    console.log('Pas de panier enregistré');
-    res.json({
-      cart: []
-    })
-  }
-});
-
-router.get('/getDBCart', cors(corsOptions), function(req, res, next) {
-  knex('cart')
-    .where('userid', req.sessionID)
-    .then(cart => {
-      res.json(cart)
-    }).catch(error => console.log(error));
-});
-
-router.get('/getreduction', cors(corsOptions), function(req, res, next) {
-  knex('promo')
-    .where('code', req.query.code)
-    .then(reduction => {
-      res.json(reduction)
-    }).catch(error => console.log(error));
-});
-
-
-router.get('/shopDB', function(req, res, next) {
-  knex('product')
-    .leftJoin('collection', 'product.collectionId', 'collection.id')
-    .innerJoin('product_performances', 'product.performance', 'product_performances.type')
-    .then(shopData => {
-        var collections = new Map();
-        shopData.forEach(product => {
-          //Get the array associated with this collection id
-          var currentCollection = collections.get(product.collectionId);
-
-          //If there is no array for this value yet, create it.
-          if (currentCollection == null) {
-            currentCollection = [];
-            collections.set(product.collectionId, currentCollection);
-          }
-
-          //Place the current product into the array
-          currentCollection.push(product);
-        })
-
-        //The map will now contain an array for each collectionid, which again contains an array with its items
-        var collectionsArray = [];
-        collections.forEach((products, collectionid, map) => {
-          collectionsArray.push(products);
-        })
-
-        res.json([{
-          collections: collectionsArray
-        }]);
-      }
-
-    );
-
 });
 
 
 module.exports = router;
+module.exports.userQuery = userQuery;
+module.exports.cartQuery = cartQuery;

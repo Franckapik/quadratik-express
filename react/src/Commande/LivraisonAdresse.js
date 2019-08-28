@@ -43,16 +43,13 @@ class LivraisonAdresse extends Component {
                     headers: new Headers({
                       'Content-Type': 'application/json'
                     })
-                  })
-                  .then(res => res.json())
-                  .then(res => {
-                    if (res.error) {
-                      console.log(res.error);
+                  }).then(response => {
+                    if(response.ok) {
+                      commandeStore.display = 'paiement';
+                      commandeStore.status = '80vw';
+                      return
                     } else {
-                      console.log(res.success);
-
-                      commandeStore.display='paiement';
-                      commandeStore.status='80vw';
+                      console.log(response);
                     }
                   });
 

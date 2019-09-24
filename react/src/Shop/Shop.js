@@ -5,7 +5,7 @@ import Panier from './Panier';
 import Footer from '../Footer';
 import Top from './Top';
 import ScrollAnimation from 'react-animate-on-scroll';
-
+import client from '../Store/client';
 
 import {view} from 'react-easy-state';
 
@@ -23,8 +23,7 @@ class CollectionsList extends Component {
 
   componentDidMount() {
 
-    fetch('/getFromDB/shopDB')
-    .then(response => response.json())
+    client.shopFetch()
     .then(data => {
       const collectionsObj = data[0].collections;
       this.setState({collections: collectionsObj});
@@ -39,7 +38,6 @@ class CollectionsList extends Component {
       } else {
         console.log("Top non valide");
       }
-
     });
   }
 

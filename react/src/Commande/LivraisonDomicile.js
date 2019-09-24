@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import commandeStore from '../Store/commandeStore';
 import {view} from 'react-easy-state';
+import client from '../Store/client';
 
 class LivraisonAdresse extends Component {
   constructor(props) {
@@ -12,12 +13,7 @@ class LivraisonAdresse extends Component {
   }
 
   componentDidMount() {
-    fetch('/getFromDB/user', {
-        credentials: 'include',
-        method: 'GET',
-        mode: "cors" // no-cors, cors, *same-origin
-      }).then(response => response.json()).then(data => {
-        console.log(data);
+    client.userFetch().then(data => {
       this.setState({
         user: data
       });
@@ -35,19 +31,15 @@ class LivraisonAdresse extends Component {
             ville: String(this.state.user.ville),
             codepostal: String(this.state.user.postal)
           }} onSubmit={values => {
-            fetch('/saveInDB/livraison', {
-              credentials: 'include',
-              method: 'post',
-              body: JSON.stringify(values),
-              headers: new Headers({'Content-Type': 'application/json'})
-            }).then(response => {
-              if(response.ok) {
+            client.livraisonPost(values)
+            .then(res => {
+              if(res.ok) {
                 commandeStore.display = 'paiement';
                 commandeStore.status = '80vw';
-                return
               } else {
-                console.log(response);
+                window.location ='/500' ;
               }
+
             });
 
           }}>

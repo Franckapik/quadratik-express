@@ -32,4 +32,10 @@ if (env!== 'production') {
   }));
 }
 
+logger.stream = {
+    write: function(message, encoding){
+        logger.verbose(message);
+    }
+};
+
 module.exports=logger;

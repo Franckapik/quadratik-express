@@ -63,6 +63,15 @@ promoQuery = (code) => {
     }).catch(error => logger.error('[Knex] Promo Query error: %s', error));
 }
 
+adminQuery = (email) => {
+  return knex('admin')
+    .where('user', email)
+    .then(adminUser => {
+      adminUser.length ? logger.debug('[Knex] Données Administration Utilisateur chargées (id): %s', adminUser[adminUser.length - 1].id) : logger.warn('[Knex] Données Administration Utilisateur manquantes (user): %s', user);
+      return adminUser
+    }).catch(error => logger.error('[Knex] Admin User Query error: %s', error));
+}
+
 // Routes
 
 router.get('/adminCart', function(req, res, next) {
@@ -86,10 +95,10 @@ router.get('/adminPaiement', function(req, res, next) {
     })
 });
 
-router.get('/adminAdresse', function(req, res, next) {
+router.get('/adminUser', function(req, res, next) {
   userQuery(req.query.sessid)
-    .then(adresse => {
-      res.json(adresse)
+    .then(user => {
+      res.json(user)
     })
 });
 
@@ -99,6 +108,7 @@ router.get('/user', function(req, res, next) {
       res.json(user)
     })
 });
+
 
 router.get('/livraison', function(req, res, next) {
   livraisonQuery(req.sessionID)
@@ -166,8 +176,6 @@ router.get('/shopDB', function(req, res, next) {
 });
 
 router.get('/adminData', function(req, res, next) {
-  logger.info('Connexion sur la page admin :', req.query.user);
-  if (req.query.user == config.adminUser.user1 || config.adminUser.user2) {
     productQuery()
       .then(function(productData) {
         knex('product_essences')
@@ -187,13 +195,10 @@ router.get('/adminData', function(req, res, next) {
               })
           })
       })
-  } else {
-    res.status(500);
-    logger.error('[Admin] Nom d\'utilisateur incorrect');
-  }
 });
 
 
 module.exports = router;
 module.exports.userQuery = userQuery;
 module.exports.cartQuery = cartQuery;
+module.exports.adminQuery = adminQuery;

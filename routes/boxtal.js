@@ -240,7 +240,8 @@ router.get('/cotation', function(req, res, next) {
     })
     .then(response => response.text())
     .then(data => {
-      parseString(data, function(err, result) {
+      console.log('cotation', data);
+      parseString(data, function(result, err) {
         if (err) {
           res.json(err);
           logger.error("[Boxtal Relais] Erreur lors de la recherche relais: %o", err);

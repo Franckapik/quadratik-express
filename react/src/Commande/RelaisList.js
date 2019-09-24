@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {view} from 'react-easy-state';
+import client from '../Store/client';
 
 class RelaisList extends Component {
   constructor(props) {
@@ -21,11 +22,8 @@ class RelaisList extends Component {
   }
 
   getRelaisInfo(pickup_code) {
-    fetch('/boxtal/relais?pickup_code=' + pickup_code, {
-      credentials: 'include',
-      method: 'GET',
-      mode: "cors" // no-cors, cors, *same-origin
-    }).then(response => response.json()).then(data => {
+    client.relaisFetch(pickup_code)
+    .then(data => {
       this.setState({relais: data.pickup_point});
     });
   }

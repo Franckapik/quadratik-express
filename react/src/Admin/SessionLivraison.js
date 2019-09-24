@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../App.scss';
+import client from '../Store/client';
 
 class SessionLivraison extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class SessionLivraison extends Component {
   }
 
   componentDidMount() {
-    fetch('/getFromDB/adminLivraison?sessid=' + this.props.sessid).then(response => response.json()).then(livraison => {
+    client.adminLivraisonFetch(this.props.sessid)
+    .then(livraison => {
       this.setState({livraison: livraison});
     });
 

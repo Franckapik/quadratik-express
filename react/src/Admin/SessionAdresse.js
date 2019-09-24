@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../App.scss';
+import client from '../Store/client';
 
 class SessionAdresse extends Component {
   constructor(props) {
@@ -10,8 +11,7 @@ class SessionAdresse extends Component {
   }
 
   componentDidMount() {
-    fetch('/getFromDB/adminAdresse?sessid=' + this.props.sessid).then(response => response.json()).then(adresse => {
-      console.log(adresse);
+    client.adminUserFetch(this.props.sessid).then(adresse => {
       this.setState({adresse: adresse});
     });
 

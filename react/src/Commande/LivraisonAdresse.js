@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import commandeStore from '../Store/commandeStore';
 import {view} from 'react-easy-state';
 import * as Yup from 'yup';
+import client from '../Store/client';
 
 var code_postal = /^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/;
 
@@ -36,22 +37,17 @@ class LivraisonAdresse extends Component {
               }}
               validationSchema={SignupSchema}
               onSubmit={values => {
-                fetch('/saveInDB/livraison', {
-                    credentials: 'include',
-                    method: 'post',
-                    body: JSON.stringify(values),
-                    headers: new Headers({
-                      'Content-Type': 'application/json'
-                    })
-                  }).then(response => {
-                    if(response.ok) {
-                      commandeStore.display = 'paiement';
-                      commandeStore.status = '80vw';
-                      return
-                    } else {
-                      console.log(response);
-                    }
-                  });
+                client.livraisonPost(values)
+                .then(res => {
+                  if(res.ok) {
+                    commandeStore.display = 'paiement';
+                    commandeStore.status = '80vw';
+                  } else {
+                    window.location ='/500' ;
+                  }
+
+                });
+              
 
               }}
             >

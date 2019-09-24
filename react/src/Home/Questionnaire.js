@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import client from '../Store/client';
 
 class Questionnaire extends Component {
   constructor(props) {
@@ -9,16 +10,6 @@ class Questionnaire extends Component {
     };
   }
 
-  getResponse(res) {
-    console.log('ici');
-    if (res.error) {
-      console.log(res.error);
-      this.setState({receptionMsg: 'Une erreur est survenue lors de l envoi de votre message. Veuillez nous envoyer un message à l adresse suivante : contact@quadratik.fr. Merci!'});
-    } else {
-      console.log(res.success);
-      this.setState({receptionMsg: res.success});
-    }
-  }
 
   render() {
     return (<div>
@@ -42,12 +33,15 @@ class Questionnaire extends Component {
             autres: ''
           }} onSubmit={values => {
             console.log(values);
-            fetch('/sendMail/questionnaire', {
-              credentials: 'include',
-              method: 'post',
-              body: JSON.stringify(values),
-              headers: new Headers({'Content-Type': 'application/json'})
-            }).then(res => res.json()).then(res => this.getResponse(res));
+            client.questionnairePost(values)
+            .then(res => {
+              if(res.ok) {
+                this.setState({receptionMsg: 'Le formulaire nous a bien été envoyé. Nous vous répondrons dès que possible. Merci!'});
+              } else {
+                this.setState({receptionMsg: 'Une erreur est survenue. Vous pouvez nous envoyer votre demande à l adresse suivante : atelier@quadratik.fr. Merci!'});;
+              }
+
+            });
 
           }}>
           {

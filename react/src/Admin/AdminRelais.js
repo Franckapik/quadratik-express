@@ -3,6 +3,8 @@ import CarteRelais from '../Commande/CarteRelais';
 import RelaisList from '../Commande/RelaisList';
 import {view} from 'react-easy-state';
 import commandeStore from '../Store/commandeStore';
+import client from '../Store/client';
+
 
 class AdminRelais extends Component {
   constructor(props) {
@@ -43,11 +45,7 @@ class AdminRelais extends Component {
   }
 
   initialAdress() {
-    return fetch('/getFromDB/user', {
-      credentials: 'include',
-      method: 'GET',
-      mode: "cors" // no-cors, cors, *same-origin
-    }).then(response => response.json()).then(user => {
+    return client.userFetch().then(user => {
       if (user.length === 0) {
         this.setState({
           wrongAdresse : true
@@ -59,11 +57,7 @@ class AdminRelais extends Component {
   }
 
   getAdresse(id) {
-    fetch('/getFromDB/adminAdresse?sessid='+id, {
-      credentials: 'include',
-      method: 'GET',
-      mode: "cors" // no-cors, cors, *same-origin
-    }).then(response => response.json()).then(user => {
+    client.adminUserFetch(id).then(user => {
       this.setState({adresse: user.adresse, code_postal: user.postal, ville: user.ville});
     });
   }
@@ -109,31 +103,31 @@ class AdminRelais extends Component {
         codepostal: r.zipcode[0]
       }
 
-      fetch('/saveInDB/livraison', {
-        credentials: 'include',
-        method: 'post',
-        body: JSON.stringify(values),
-        headers: new Headers({'Content-Type': 'application/json'})
-    }).then(response => {
-      if(response.ok) {
-        commandeStore.display = 'paiement';
-        commandeStore.status = '80vw';
-        return
-      } else {
-        console.log(response);
-      }
-    });
+      client.livraisonPost(values)
+      .then(res => {
+        if(res.ok) {
+          commandeStore.display = 'paiement';
+          commandeStore.status = '80vw';
+        } else {
+          window.location ='/500' ;
+        }
+
+      });
 
     }
 
   }
 
   getCotation() {
-    fetch('/boxtal/cotation?transporteur=' + this.state.transporteur + '&poids=' + this.state.poids + '&longueur=' + this.state.longueur + '&largeur=' + this.state.largeur + '&hauteur=' + this.state.hauteur + '&code_postal=' + this.state.code_postal + '&ville=' + this.state.ville + '&adresse=' + this.state.adresse, {
-      credentials: 'include',
-      method: 'GET',
-      mode: "cors" // no-cors, cors, *same-origin
-    }).then(response => response.json()).then(data => {
+    client.cotationFetch(this.state)
+    .then(data => {
+      console.log('ici', data);
+      if(data.error) {
+        this.setState({
+          wrongAdresse : true
+        })
+        console.log(data.error.message[0]);
+      }
       this.setState({cotation: data.cotation.shipment[0], service: data.cotation.shipment[0].offer[0].service[0].code[0]})
     });
   }

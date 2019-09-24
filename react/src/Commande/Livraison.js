@@ -15,7 +15,6 @@ class Livraison extends Component {
   }
 
   handleOptionChange = changeEvent => {
-    console.log(changeEvent.target.value);
     this.setState({selectedOption: changeEvent.target.value});
   };
 

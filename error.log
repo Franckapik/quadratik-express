@@ -95,3 +95,38 @@
 2019-08-27 22:35:07 [31merror[39m: [Display Success] Session et Transaction ID non concordants : %s
 2019-08-27 22:41:14 [31merror[39m: [Braintree] Erreur de transaction: %s
 2019-08-27 22:48:29 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-09-04 08:56:21 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:31:15 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:33:15 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:37:12 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:37:40 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:37:40 [31merror[39m: Aucun utilisateur retrouvé
+2019-09-04 10:39:40 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-04 10:39:40 [31merror[39m: Aucun utilisateur retrouvé
+2019-09-04 11:11:06 [31merror[39m: jwt expired
+2019-09-04 11:18:14 [31merror[39m: jwt expired
+2019-09-04 11:19:34 [31merror[39m: jwt expired
+2019-09-24 09:09:03 [31merror[39m: [Livraison] Sauvegarde db %s
+2019-09-24 09:11:17 [31merror[39m: [Livraison] Sauvegarde db %s
+2019-09-24 09:24:02 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:28:45 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:30:13 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:31:46 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:32:18 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:43:32 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:52:37 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 09:52:57 [31merror[39m: [Braintree] Erreur de transaction: %s
+2019-09-24 10:22:02 [31merror[39m: [Auth] Token invalidé %s
+2019-09-24 10:35:41 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-24 10:35:41 [31merror[39m: [Auth] Aucun utilisateur retrouvé
+2019-09-24 10:37:41 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-24 10:37:41 [31merror[39m: [Auth] Aucun utilisateur retrouvé
+2019-09-24 10:40:49 [31merror[39m: [Knex] Admin User Query error: %s
+2019-09-24 10:40:49 [31merror[39m: [Auth] Aucun utilisateur retrouvé
+2019-09-24 10:43:57 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:44:09 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:44:14 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:44:19 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:44:28 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:48:27 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o
+2019-09-24 10:48:56 [31merror[39m: [Boxtal Relais] Erreur lors de la recherche relais: %o

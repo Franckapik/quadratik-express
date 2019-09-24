@@ -70,7 +70,7 @@ class Produit extends Component {
               </div>
             </div>
           <span className="produit_prix">{prix} €</span>
-            <i class="fas fa-cart-arrow-down cart_add cursor" onClick={shopStore.addToCart.bind(this)}></i>
+            <i className="fas fa-cart-arrow-down cart_add cursor" onClick={shopStore.addToCart.bind(this)}></i>
           </div>
         </div>
       </p>

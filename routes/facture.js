@@ -88,7 +88,7 @@ function facturation(user, cart, commande, livraison) {
 }
 
 
-router.get('/', function(req, res, next) {
+router.get('/createFacture', function(req, res, next) {
   knex('user')
     .where('userid', req.query.sessid)
     .then(user => {

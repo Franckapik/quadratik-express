@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import '../App.scss';
-import auth0Client from './Auth';
 import AdminRelais from './AdminRelais';
 import Infos from './Infos';
 import Clients from './Clients';
 import Produits from './Produits';
 import Construction from './Construction';
+import client from '../Store/client';
+
 
 class Admin extends Component {
   constructor(props) {
@@ -15,18 +16,17 @@ class Admin extends Component {
       produits: false,
       essence: false,
       info: false,
-      user_id: false,
       page:"clients"
     };
   }
 
   componentDidMount() {
-    fetch('/getFromDB/adminData?user=' + auth0Client.getProfile().name).then(response => response.json()).then(adminData => {
+    client.adminFetch()
+    .then(adminData => {
       this.setState({user: adminData.user});
       this.setState({produits: adminData.product});
       this.setState({essence: adminData.essence});
       this.setState({info: adminData.info});
-      this.setState({user_id: auth0Client.getProfile().name});
     });
 
     document.body.style.backgroundColor = "palegoldenrod"// Set the style
@@ -47,7 +47,6 @@ class Admin extends Component {
   return (
 <>
 <h1>QuadrAdmin</h1>
-Administrateur : {this.state.user_id}
   <div className="admin flex_r">
     <ul className="flex_c admin_menu">
     <li onClick={() => this.setState({page: "infos"})}>Informations Générales</li>

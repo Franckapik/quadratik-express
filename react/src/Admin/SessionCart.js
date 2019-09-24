@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import '../App.scss';
+import client from '../Store/client';
+
 
 class SessionCart extends Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class SessionCart extends Component {
   }
 
   componentDidMount() {
-    fetch('/getFromDB/adminCart?sessid=' + this.props.sessid).then(response => response.json()).then(cart => {
+    client.adminCartFetch(this.props.sessid).then(cart => {
       this.setState({cart: cart});
     });
 

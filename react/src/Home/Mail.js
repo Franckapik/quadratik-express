@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import client from '../Store/client';
 
 const SignupSchema = Yup.object().shape({
   lastName: Yup.string().min(2, 'Votre nom de famille est trop court').max(50, 'Votre nom de famille est trop long').required('Ce champs est vide'),
@@ -17,17 +18,6 @@ class Mail extends Component {
     };
   }
 
-  getResponse(res){
-    console.log('ici');
-    if (res.error) {
-      console.log(res.error);
-      this.setState({receptionMsg: 'Une erreur est survenue lors de l envoi de votre message. Veuillez nous envoyer un message à l adresse suivante : contact@quadratik.fr. Merci!'});
-    } else {
-      console.log(res.success);
-      this.setState({receptionMsg: res.success});
-    }
-  }
-
   render() {
     return (<div>
       <div>
@@ -38,13 +28,15 @@ class Mail extends Component {
             superficie: '',
             message: ''
           }} validationSchema={SignupSchema} onSubmit={values => {
-            fetch('/sendMail/mailcontact', {
-              credentials: 'include',
-              method: 'post',
-              body: JSON.stringify(values),
-              headers: new Headers({'Content-Type': 'application/json'})
-            }).then(res => res.json())
-            .then(res => this.getResponse(res) );
+            client.mailPost(values)
+            .then(res => {
+              if(res.ok) {
+                this.setState({receptionMsg: 'Votre mail a bien été expédié. Nous vous répondrons dès que possible. Merci!'});
+              } else {
+                this.setState({receptionMsg: 'Une erreur est survenue. Vous pouvez nous envoyer votre demande à l adresse suivante : atelier@quadratik.fr. Merci!'});;
+              }
+
+            });
 
           }}>
           {

@@ -2,6 +2,9 @@ import {
   store
 } from 'react-easy-state'
 
+import client from './client';
+
+
 const shopStore = store({
   showDetails: false,
   showWidget: false,
@@ -112,35 +115,13 @@ const shopStore = store({
   },
 
   sendSessionCart() {
-    var cart = JSON.stringify(this.cart);
-    if (cart) {
-      fetch('/saveInDB/savesessioncart', {
-        credentials: 'include',
-        method: 'post',
-        mode: 'cors',
-        body: cart,
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        })
-      }).catch(error => {
-        console.log(error)
-      })
+    if (this.cart) {
+      client.cartsessionPost(this.cart);
     }
   },
 
   resetCart() {
-      fetch('/saveInDB/resetcart', {
-        credentials: 'include',
-        method: 'post',
-        mode: 'cors',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        })
-      }).catch(error => {
-        console.log(error)
-      })
+    client.resetCartPost();
   },
 
   sendCartOnDB() {
@@ -154,30 +135,14 @@ const shopStore = store({
       poids: shopStore.poids,
       unites: shopStore.unite
     };
-    console.log(body.hauteur, body.poids);
     if (body) {
-      fetch('/saveInDB/saveCartOnDB', {
-          credentials: 'include',
-          method: 'post',
-          mode: 'cors',
-          body: JSON.stringify(body),
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-          })
-        }).then(res => {
-          return res.text();
-
-        })
-        .then(txt => {
-          return JSON.parse(txt);
-        })
-        .then(data => {
-          if(data.success) {
-            console.log('Panier enregistré [', data.success[0],']');
+      client.saveCartPost(body)
+        .then(res => {
+          console.log(res);
+          if(res.ok) {
             window.location = '/commande';
           } else {
-            window.location ='/error' ;
+            window.location ='/500' ;
           }
 
         });
@@ -186,18 +151,7 @@ const shopStore = store({
   },
 
   getSessionCart() {
-    fetch('getFromDB/getsessioncart', {
-        credentials: 'include',
-        method: 'GET',
-        mode: "cors" // no-cors, cors, *same-origin
-      })
-      .then(res => {
-        return res.text();
-
-      })
-      .then(txt => {
-        return JSON.parse(txt);
-      })
+    client.cartsessionFetch()
       .then(data => {
         if (data.cart.length > 0) {
           shopStore.cart = data.cart;
@@ -206,21 +160,10 @@ const shopStore = store({
   },
 
   getReduction(code) {
-    fetch('getFromDB/getreduction?code=' + code, {
-        credentials: 'include',
-        method: 'GET',
-        mode: "cors" // no-cors, cors, *same-origin
-      })
-      .then(res => {
-        return res.text();
-
-      })
-      .then(txt => {
-        return JSON.parse(txt);
-      })
+    client.reductionfetch(code)
       .then(data => {
         if (data.length !== 0) {
-          shopStore.reduction = parseInt(data[0].reduction);
+          shopStore.reduction = parseInt(data.reduction);
         }
 
       });

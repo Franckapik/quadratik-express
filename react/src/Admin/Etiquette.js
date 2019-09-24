@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import client from '../Store/client';
 
 class Etiquette extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Etiquette extends Component {
   }
 
   createEtiquette(id) {
-    fetch('/boxtal/etiquette?sessid=' + id).then(response => response.json()).then(data => {
+    client.createEtiquetteFetch(id).then(data => {
       this.setState({
         etiquette: data,
         sidewidth: {

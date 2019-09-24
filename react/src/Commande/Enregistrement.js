@@ -3,6 +3,7 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import commandeStore from '../Store/commandeStore';
 import {view} from 'react-easy-state';
+import client from '../Store/client';
 
 var code_postal = /^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/;
 var telephonefr = /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
@@ -43,19 +44,17 @@ class Enregistrement extends Component {
             contexte: ''
           }} validationSchema={SignupSchema} onSubmit={values => {
             commandeStore.enreg_recap = values;
-            fetch('/saveInDB/enregistrement', {
-              credentials: 'include',
-              method: 'post',
-              body: JSON.stringify(values),
-              headers: new Headers({'Content-Type': 'application/json'})
-            }).then(response => {
-              if(response.ok) {
+            client.enregistrementPost(values)
+            .then(res => {
+              if(res.ok) {
                 commandeStore.display = 'livraison';
                 commandeStore.status = '60vw';
               } else {
-                console.log(response);
+                window.location ='/500' ;
               }
+
             });
+          
 
           }}>
           {

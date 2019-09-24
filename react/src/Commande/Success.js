@@ -2,6 +2,7 @@ import React from "react";
 import '../App.scss';
 import {view} from 'react-easy-state';
 import shopStore from '../Store/shopStore';
+import client from '../Store/client';
 
 
 class Paiement extends React.Component {
@@ -13,12 +14,7 @@ class Paiement extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/getFromDB/commande', {
-        credentials: 'include',
-        method: 'GET',
-        mode: "cors" // no-cors, cors, *same-origin
-      }).then(response => response.json()).then(data => {
-        console.log(data);
+    client.commandeFetch().then(data => {
       this.setState({
         commande: data
       });
@@ -34,8 +30,8 @@ class Paiement extends React.Component {
             <ul>
                 <li>Transaction : {c.id}</li>
                 <li>Montant : {c.amount}</li>
-                <li>Type de carte : {c.cardType}</li>
-                <li>Date d'expiration{c.expirationDate}</li>
+                <li>Type de carte : {c.cardtype}</li>
+                <li>Date d'expiration: {c.expirationdate}</li>
             </ul>
 
       Merci pour votre confiance !

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FileSaver from 'file-saver';
+import client from '../Store/client';
 
 class Facture extends Component {
   constructor(props) {
@@ -10,13 +11,15 @@ class Facture extends Component {
   }
 
   generateFacture(id) {
-    fetch('/facture?sessid=' + id).then(response => response.json()).then(data => {
+    client.createFactureFetch(id)
+    .then(data => {
       this.setState({facture: data})
     });
   }
 
   getFacture(id) {
-    fetch('/facture/getFacture?sessid=' + id).then(response => {
+    client.getFactureFetch(id)
+    .then(response => {
       return response.blob();
     }).then(myBlob => {
       FileSaver.saveAs(myBlob, "FactureQuadratik" + this.state.facture + ".pdf");
@@ -28,7 +31,7 @@ class Facture extends Component {
       () => {
         this.generateFacture(this.props.id)
       }
-    } > Facture </i> 
+    } > Facture </i>
       {
       this.state.facture
         ? <div className="cursor" onClick={() => this.getFacture(this.props.id)}>

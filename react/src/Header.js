@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.scss';
 import shopStore from './Store/shopStore';
 import {view} from 'react-easy-state';
-import auth0Client from './Admin/Auth';
 
 class Header extends Component {
   constructor(props) {
@@ -12,11 +11,6 @@ class Header extends Component {
     };
     this.hideBar = this.hideBar.bind(this)
 
-  }
-
-  signOut = () => {
-    auth0Client.signOut();
-    window.location = "/";
   }
 
   hideBar() {
@@ -87,13 +81,7 @@ class Header extends Component {
           }
 
           <li>
-            {!auth0Client.isAuthenticated() ? <i onClick={auth0Client.signIn} className="fas fa-sign-in-alt"></i> : null}
-            {
-              auth0Client.isAuthenticated() ? <div onClick={this.signOut}>
-                  <label className="mr-2 text-white">Deconnexion </label>
-                  <i className="cursor fas fa-sign-out-alt"></i>
-                </div> : null
-            }</li>
+          <a href='/admin'><i className="fas fa-user"></i></a>  </li>
         </ul>
 
       </nav>

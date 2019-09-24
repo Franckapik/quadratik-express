@@ -5,6 +5,8 @@ const environment = process.env.NODE_ENV || 'development'; // if something else 
 const configuration = require('../config')[environment]; // require environment's settings from knexfile
 const knex = require('knex')(configuration);
 const logger = require('../log/logger');
+const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session);
 
 var corsOptions = {
   "origin": "http://localhost:3000",
@@ -13,6 +15,17 @@ var corsOptions = {
   "optionsSuccessStatus": 204,
   "credentials": true
 }
+
+logger.info('[Knex] Mode %s', environment);
+
+
+//enregistrement des sessions Express
+
+const sessionStore = new KnexSessionStore({
+  knex,
+  tablename: 'sessions', // optional. Defaults to 'sessions'
+
+});
 
 router.post('/enregistrement', function(req, res, next) {
   knex('user')
@@ -128,3 +141,4 @@ const saveCommandeInDB = (result, sessid) => {
 
 module.exports = router;
 module.exports.saveCommandeInDB = saveCommandeInDB;
+module.exports.sessionStore = sessionStore;

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import client from '../Store/client';
 
 const SignupSchema = Yup.object().shape({
   lastName: Yup.string().min(2, 'Votre nom de famille est trop court').max(50, 'Votre nom de famille est trop long').required('Ce champs est vide'),
@@ -11,19 +12,8 @@ class Newsletter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      receptionMsg: ''
+      receptionMsg: false
     };
-  }
-
-  getResponse(res){
-    console.log('ici');
-    if (res.error) {
-      console.log(res.error);
-      this.setState({receptionMsg: 'Une erreur est survenue. Vous pouvez vous enregistrer en nous envoyant votre demande à l adresse suivante : contact@quadratik.fr. Merci!'});
-    } else {
-      console.log(res.success);
-      this.setState({receptionMsg: res.success});
-    }
   }
 
   render() {
@@ -34,20 +24,22 @@ class Newsletter extends Component {
             lastName: '',
             email: ''
           }} validationSchema={SignupSchema} onSubmit={values => {
-            fetch('/sendMail/newsletter', {
-              credentials: 'include',
-              method: 'post',
-              body: JSON.stringify(values),
-              headers: new Headers({'Content-Type': 'application/json'})
-            }).then(res => res.json())
-            .then(res => this.getResponse(res) );
+            client.newsletterPost(values)
+            .then(res => {
+              console.log('ici', res);
+              if(res.ok) {
+                this.setState({receptionMsg: 'Votre email a bien été enregistré à la newsletter. Merci!'});
+              } else {
+                this.setState({receptionMsg: 'Une erreur est survenue. Vous pouvez vous enregistrer en nous envoyant votre demande à l adresse suivante : atelier@quadratik.fr. Merci!'});;
+              }
 
+            });
           }}>
           {
             ({errors, touched}) => ( <div>
 {
 
-  this.state.receptionMsg === '' ? <Form className='flex_c center'>
+  !this.state.receptionMsg ? <Form className='flex_c center'>
 
 <label>
   <i className="fas fa-user"></i>

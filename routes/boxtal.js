@@ -9,6 +9,8 @@ const fetch = require('node-fetch');
 global.Headers = fetch.Headers;
 let boxtalUrl = null;
 const logger = require('../log/logger');
+const fromDb = require('./getFromDB');
+
 
 if (env === 'development') {
   logger.info('[Boxtal] Mode Test');
@@ -43,27 +45,9 @@ router.get('/relais', function(req, res, next) {
 });
 
 router.get('/etiquette', function(req, res, next) {
-  knex('user')
-    .where('userid', req.query.sessid)
-    .then(user => {
-      user.length ? logger.debug("[Etiquette] Utilisateur retrouvé: %o", user[0].id):
-      logger.warn("[Etiquette] Utilisateur manquant");
-      knex('cart')
-        .where('userid', req.query.sessid)
-        .then(cart => {
-          cart.length ? logger.debug("[Etiquette] Panier retrouvé: %o", cart[0].id):
-          logger.warn("[Etiquette] Panier manquant");
-          knex('commande')
-            .where('userid', req.query.sessid)
-            .then(commande => {
-              commande.length ? logger.debug("[Etiquette] Commande retrouvée: %o", commande[0].id):
-              logger.warn("[Etiquette] Commande manquante");
-              knex('livraison')
-                .where('userid', req.query.sessid)
-                .then(livraison => {
-                  livraison.length ? logger.debug("[Etiquette] livraison retrouvée: %o", livraison[0].id):
-                  logger.warn("[Etiquette] Livraison manquante");
-
+  fromDb.orderQuery(req.query.sessid)
+  .then(order => {
+    console.log('order', order);
                   const time = new Date().toLocaleDateString("fr-FR", {
                     year: "numeric",
                     month: "2-digit",
@@ -71,8 +55,8 @@ router.get('/etiquette', function(req, res, next) {
                   }).replace('/\//g', '-');
 
                   const nbMax = 5;
-                  const nbColis = Math.trunc(cart[0].unites / nbMax);
-                  const resteColis = cart[0].unites % nbMax;
+                  const nbColis = Math.trunc(order.cart[0].unites / nbMax);
+                  const resteColis = order.cart[0].unites % nbMax;
 
                   let listeColis = [];
                   for (i = 1; i <= nbColis; i++) {
@@ -141,10 +125,7 @@ router.get('/etiquette', function(req, res, next) {
                   res.json(envoi);
                   logger.debug("Demande de création d'étiquette suivante: %o", envoi);
                 })
-            })
-        })
-    })
-    .catch(error => logger.error(error));
+    .catch(error => logger.error('[Boxtal Etiquette] Erreur: %o', error));
 
 
 

@@ -1,5 +1,13 @@
-Voir le systeme de template pour les mails :
-ajouter bouton dans l'admin qui permet d'envoyer les mails automatiquement avec les pièces jointes.
+resoudre le probleme du order undefined pour la function etiquette de boxtal. Est-ce le log trop en avance ?
+Il serait bien d'avoir une fonction qui donne ttes les info pour un utilisateur en un seul objet.
+Utiliser ensuite la fonction order dans sendMail 
+
+
+Continuer le template de mail ! Y'at-til des sizes d'image prédéfinie pour un bandeau latéral ?
+
+
+
+
 être prévenu d'une commande avec le mail de succes.
 
 la page config doit ne plus exister ou etre sous forme d'env de variable ou autre methode. possibilité d'un rappel des variables demandées lors du npm start (et noter les mdp sur une feuille dans le bureau)
@@ -25,11 +33,16 @@ Envoyer nouvelle version du site.
 Faire un npm run lint --fix sur tout le dossier
 
 -------
+Proposer une page admin au client avec entre la facture, le suivi du colis.
+
 
 ajouter des packs avec l'absorbeur.
 absorbeurs de différentes couleurs.
 proposer des modèles 1D diffuseur.
 --
+
+Remplacer le react easy state par du Contexte React ou un simple import/export webpack pour les fonctions ne necessitant pas d'actualisation.
+
 
 Enregistrement possible de la commande boxtal dans la base de donnée avec toutes les informations sur les colis, prix, etc ...
 resoudre le pb de child a du table

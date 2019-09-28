@@ -17072,3 +17072,776 @@ info: Hello again distributed logs {"service":"user-service"}
 
 2019-09-24 11:24:21 [36mverbose[39m: GET /images/modeles/Pack%20de%2010%20Diffuseurs/pack_10.jpg 404 193 - 26.608 ms
 
+2019-09-24 11:34:52 [32minfo[39m: [Knex] Mode %s
+2019-09-24 11:34:52 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 11:34:53 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 11:34:53 [32minfo[39m: [Express] Port %d
+2019-09-24 11:34:53 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 11:34:53 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 125.833 ms
+
+2019-09-24 11:34:59 [36mverbose[39m: GET /images/modeles/Organik/Anemone-7c.png 404 176 - 11.459 ms
+
+2019-09-24 11:34:59 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 11:34:59 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 12.559 ms
+
+2019-09-24 11:39:54 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 11:39:54 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 24.713 ms
+
+2019-09-24 11:40:12 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 11:40:12 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 11:40:12 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 11:40:12 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 13.803 ms
+
+2019-09-24 11:40:12 [36mverbose[39m: GET /getFromDB/shopDB 200 - - 77.179 ms
+
+2019-09-24 11:42:26 [36mverbose[39m: GET /images/modeles/Organik/Anemone-7c.png 404 176 - 26.884 ms
+
+2019-09-24 11:42:26 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 11:42:26 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 5.009 ms
+
+2019-09-24 21:54:01 [32minfo[39m: [Knex] Mode %s
+2019-09-24 21:54:01 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 21:54:03 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 21:54:03 [32minfo[39m: [Express] Port %d
+2019-09-24 21:58:07 [32minfo[39m: [Knex] Mode %s
+2019-09-24 21:58:07 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 21:58:07 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 21:58:07 [32minfo[39m: [Express] Port %d
+2019-09-24 22:05:13 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:05:13 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:05:13 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 93.968 ms
+
+2019-09-24 22:05:13 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 85.562 ms
+
+2019-09-24 22:05:14 [32minfo[39m: [Braintree] Token généré
+2019-09-24 22:05:14 [36mverbose[39m: GET /paiement/client_token 200 - - 1446.962 ms
+
+2019-09-24 22:05:16 [36mverbose[39m: GET /images/modeles/Organik/Anemone-7c.png 404 176 - 11.818 ms
+
+2019-09-24 22:05:17 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:05:17 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 6.144 ms
+
+2019-09-24 22:05:48 [36mverbose[39m: GET /images/modeles/Organik/Anemone-7c.png 404 176 - 28.757 ms
+
+2019-09-24 22:05:48 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:05:48 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 6.605 ms
+
+2019-09-24 22:05:53 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:05:53 [33mwarn[39m: [Auth] Session admin expirée (renouvellement token demandé)
+2019-09-24 22:05:53 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:05:53 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzE2NDIyLCJleHAiOjE1NjkzMTgyMjJ9.BqHB-MeeEMjeG05kO8bYHdgulYEC3dOHV4BgV53A_oc 200 91 - 16.044 ms
+
+2019-09-24 22:05:53 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 23.539 ms
+
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Données Administration Utilisateur chargées (id): %s
+2019-09-24 22:06:06 [36mverbose[39m: POST /auth/login 200 321 - 125.894 ms
+
+2019-09-24 22:06:06 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:06:06 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:06:06 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 200 124 - 7.978 ms
+
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:06:06 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:06:06 [36mverbose[39m: GET /getFromDB/adminData 200 - - 34.853 ms
+
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:06:06 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 20.831 ms
+
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:06:06 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 234 - 38.728 ms
+
+2019-09-24 22:06:06 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:06:06 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 374 - 79.089 ms
+
+2019-09-24 22:06:06 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 229 - 95.763 ms
+
+2019-09-24 22:08:12 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=348 - - - - ms
+
+2019-09-24 22:10:12 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=348 - - - - ms
+
+2019-09-24 22:10:13 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:10:13 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 13.659 ms
+
+2019-09-24 22:12:37 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:12:37 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:12:37 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:12:37 [32minfo[39m: [Express] Port %d
+2019-09-24 22:12:47 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:12:47 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:12:47 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:12:47 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 35.349 ms
+
+2019-09-24 22:12:47 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 40.886 ms
+
+2019-09-24 22:12:47 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:12:47 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:12:48 [36mverbose[39m: GET /getFromDB/adminData 200 - - 47.255 ms
+
+2019-09-24 22:12:48 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:12:48 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:12:48 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:12:48 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:12:48 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 18.022 ms
+
+2019-09-24 22:12:48 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 234 - 26.603 ms
+
+2019-09-24 22:12:48 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 37.492 ms
+
+2019-09-24 22:12:48 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 31.662 ms
+
+2019-09-24 22:12:53 [33mwarn[39m: [Knex] Données Utilisateur manquantes (sessid): %s
+2019-09-24 22:12:57 [33mwarn[39m: [Knex] Données Utilisateur manquantes (sessid): %s
+2019-09-24 22:13:59 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=348 - - - - ms
+
+2019-09-24 22:13:59 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=348 - - - - ms
+
+2019-09-24 22:14:01 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:14:01 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.139 ms
+
+2019-09-24 22:14:05 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:14:05 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:14:05 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:14:05 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 7.151 ms
+
+2019-09-24 22:14:05 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 13.935 ms
+
+2019-09-24 22:14:05 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:14:06 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:14:06 [36mverbose[39m: GET /getFromDB/adminData 200 - - 62.063 ms
+
+2019-09-24 22:14:06 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:14:06 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 11.849 ms
+
+2019-09-24 22:14:06 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:14:06 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:14:06 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 16.680 ms
+
+2019-09-24 22:14:06 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 32.831 ms
+
+2019-09-24 22:14:06 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:14:06 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 56.804 ms
+
+2019-09-24 22:14:07 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:15:05 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:15:05 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:15:06 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:15:06 [32minfo[39m: [Express] Port %d
+2019-09-24 22:15:07 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:15:07 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 28.580 ms
+
+2019-09-24 22:15:10 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:15:10 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:15:10 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:15:10 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 10.664 ms
+
+2019-09-24 22:15:10 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 18.807 ms
+
+2019-09-24 22:15:11 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:15:11 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:15:11 [36mverbose[39m: GET /getFromDB/adminData 304 - - 56.082 ms
+
+2019-09-24 22:15:11 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:15:11 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:15:11 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:15:11 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:15:11 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 13.873 ms
+
+2019-09-24 22:15:11 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 234 - 30.265 ms
+
+2019-09-24 22:15:11 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 61.760 ms
+
+2019-09-24 22:15:11 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 53.991 ms
+
+2019-09-24 22:15:13 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:17:13 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-24 22:17:14 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:17:14 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.698 ms
+
+2019-09-24 22:18:34 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:18:34 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:18:35 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:18:35 [32minfo[39m: [Express] Port %d
+2019-09-24 22:18:46 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:18:46 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:18:47 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:18:47 [32minfo[39m: [Express] Port %d
+2019-09-24 22:18:51 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:18:51 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:18:51 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:18:51 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 30.535 ms
+
+2019-09-24 22:18:51 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 39.012 ms
+
+2019-09-24 22:18:51 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:18:51 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:18:51 [36mverbose[39m: GET /getFromDB/adminData 304 - - 46.246 ms
+
+2019-09-24 22:18:52 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:18:52 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:18:52 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 14.185 ms
+
+2019-09-24 22:18:52 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:18:52 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 21.907 ms
+
+2019-09-24 22:18:52 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:18:52 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 34.720 ms
+
+2019-09-24 22:18:52 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 41.256 ms
+
+2019-09-24 22:18:54 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:20:54 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-24 22:20:56 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:20:56 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.253 ms
+
+2019-09-24 22:22:54 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:22:54 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:22:54 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:22:54 [32minfo[39m: [Express] Port %d
+2019-09-24 22:23:02 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:23:02 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:23:02 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 28.226 ms
+
+2019-09-24 22:23:03 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 36.107 ms
+
+2019-09-24 22:23:03 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:23:03 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/adminData 304 - - 44.960 ms
+
+2019-09-24 22:23:03 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:23:03 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:23:03 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:23:03 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 20.547 ms
+
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 29.381 ms
+
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 38.111 ms
+
+2019-09-24 22:23:03 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 38.163 ms
+
+2019-09-24 22:23:05 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:23:10 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:23:27 [32minfo[39m: [Knex] Mode %s
+2019-09-24 22:23:27 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-24 22:23:27 [32minfo[39m: [Boxtal] Mode Test
+2019-09-24 22:23:28 [32minfo[39m: [Express] Port %d
+2019-09-24 22:23:29 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:23:29 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 25.667 ms
+
+2019-09-24 22:23:33 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-24 22:23:33 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-24 22:23:33 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:23:33 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 304 - - 17.271 ms
+
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 22.874 ms
+
+2019-09-24 22:23:33 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-24 22:23:33 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/adminData 304 - - 43.029 ms
+
+2019-09-24 22:23:33 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:23:33 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 12.824 ms
+
+2019-09-24 22:23:33 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 25.377 ms
+
+2019-09-24 22:23:33 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 39.112 ms
+
+2019-09-24 22:23:33 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 45.741 ms
+
+2019-09-24 22:23:36 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-24 22:25:36 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-24 22:25:38 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-24 22:25:38 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 6.699 ms
+
+2019-09-27 22:04:27 [32minfo[39m: [Knex] Mode %s
+2019-09-27 22:04:27 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 22:04:36 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 22:04:39 [32minfo[39m: [Express] Port %d
+2019-09-27 22:06:33 [36mverbose[39m: GET /images/modeles/Organik/Anemone-7c.png 404 176 - 21.636 ms
+
+2019-09-27 22:06:33 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:06:33 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 17.477 ms
+
+2019-09-27 22:11:09 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:11:09 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:11:09 [36mverbose[39m: GET /getFromDB/shopDB 200 - - 101.386 ms
+
+2019-09-27 22:11:09 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:11:09 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 67.327 ms
+
+2019-09-27 22:11:15 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:11:15 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 22:11:15 [33mwarn[39m: [Auth] Session admin expirée (renouvellement token demandé)
+2019-09-27 22:11:15 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 7.782 ms
+
+2019-09-27 22:11:15 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5MzU1NTY2LCJleHAiOjE1NjkzNTczNjZ9._fYVH639g5a2Ki8MyuYfrPOkIdCfOZEBmeLOkWTx354 200 91 - 19.240 ms
+
+2019-09-27 22:11:25 [34mdebug[39m: [Knex] Données Administration Utilisateur chargées (id): %s
+2019-09-27 22:11:25 [36mverbose[39m: POST /auth/login 200 321 - 184.174 ms
+
+2019-09-27 22:11:25 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 22:11:25 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 22:11:25 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjE1MDg1LCJleHAiOjE1Njk2MTY4ODV9.821VuYYdii4mYfH7D6imchVSCm9F2Zjb7kGCFmPp0Hc 200 124 - 7.473 ms
+
+2019-09-27 22:11:25 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:11:25 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 22:11:25 [36mverbose[39m: GET /getFromDB/adminData 200 - - 60.364 ms
+
+2019-09-27 22:11:26 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:11:26 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 16.050 ms
+
+2019-09-27 22:11:26 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 22:11:26 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 22:11:26 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 234 - 48.682 ms
+
+2019-09-27 22:11:26 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 229 - 70.298 ms
+
+2019-09-27 22:11:26 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 22:11:26 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 374 - 138.143 ms
+
+2019-09-27 22:11:28 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:11:36 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:12:27 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:12:50 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:13:09 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:13:28 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:13:28 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:13:28 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:13:28 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:13:28 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:13:29 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:13:29 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.599 ms
+
+2019-09-27 22:14:41 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 22:14:41 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 22:14:41 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:14:41 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjE1MDg1LCJleHAiOjE1Njk2MTY4ODV9.821VuYYdii4mYfH7D6imchVSCm9F2Zjb7kGCFmPp0Hc 304 - - 30.792 ms
+
+2019-09-27 22:14:41 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 33.388 ms
+
+2019-09-27 22:14:41 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:14:41 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 22:14:41 [36mverbose[39m: GET /getFromDB/adminData 304 - - 53.126 ms
+
+2019-09-27 22:14:42 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 22:14:42 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:14:42 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 28.531 ms
+
+2019-09-27 22:14:42 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 22:14:42 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 22:14:42 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 56.959 ms
+
+2019-09-27 22:14:42 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 81.877 ms
+
+2019-09-27 22:14:42 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 87.691 ms
+
+2019-09-27 22:14:43 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:15:14 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:16:43 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:16:43 [36mverbose[39m: GET /sendMail/confirmationCommande?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:16:45 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:16:45 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 7.061 ms
+
+2019-09-27 22:32:45 [32minfo[39m: [Knex] Mode %s
+2019-09-27 22:32:45 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 22:32:45 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 22:32:45 [32minfo[39m: [Express] Port %d
+2019-09-27 22:32:53 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 22:32:53 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 22:32:53 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:32:53 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjE1MDg1LCJleHAiOjE1Njk2MTY4ODV9.821VuYYdii4mYfH7D6imchVSCm9F2Zjb7kGCFmPp0Hc 304 - - 41.336 ms
+
+2019-09-27 22:32:53 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 43.992 ms
+
+2019-09-27 22:32:53 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:32:53 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 22:32:53 [36mverbose[39m: GET /getFromDB/adminData 304 - - 70.881 ms
+
+2019-09-27 22:32:53 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:32:53 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 8.082 ms
+
+2019-09-27 22:32:53 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 22:32:54 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 22:32:54 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 36.322 ms
+
+2019-09-27 22:32:54 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 22:32:54 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 50.549 ms
+
+2019-09-27 22:32:54 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 60.079 ms
+
+2019-09-27 22:32:56 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 500 - - 15.148 ms
+
+2019-09-27 22:32:58 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:32:58 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 5.296 ms
+
+2019-09-27 22:37:09 [32minfo[39m: [Knex] Mode %s
+2019-09-27 22:37:09 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 22:37:10 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 22:37:10 [32minfo[39m: [Express] Port %d
+2019-09-27 22:37:15 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 22:37:15 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 22:37:15 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:37:15 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjE1MDg1LCJleHAiOjE1Njk2MTY4ODV9.821VuYYdii4mYfH7D6imchVSCm9F2Zjb7kGCFmPp0Hc 304 - - 40.161 ms
+
+2019-09-27 22:37:15 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 51.436 ms
+
+2019-09-27 22:37:15 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 22:37:15 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 22:37:15 [36mverbose[39m: GET /getFromDB/adminData 304 - - 58.719 ms
+
+2019-09-27 22:37:15 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 22:37:15 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 22:37:15 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 22:37:16 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 22:37:16 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 24.710 ms
+
+2019-09-27 22:37:16 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 30.558 ms
+
+2019-09-27 22:37:16 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 41.008 ms
+
+2019-09-27 22:37:16 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 48.638 ms
+
+2019-09-27 22:37:18 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:37:18 [31merror[39m: cart is not defined
+2019-09-27 22:37:18 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:37:18 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:37:18 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:37:20 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:37:20 [31merror[39m: cart is not defined
+2019-09-27 22:37:20 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:37:20 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:37:20 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:39:18 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:39:18 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:39:18 [31merror[39m: cart is not defined
+2019-09-27 22:39:18 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:39:18 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:39:18 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:39:20 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:39:20 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:39:20 [31merror[39m: cart is not defined
+2019-09-27 22:39:20 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:39:20 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:39:20 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:41:18 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:41:18 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:41:18 [31merror[39m: cart is not defined
+2019-09-27 22:41:18 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:41:18 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:41:18 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:41:20 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:41:20 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 22:41:20 [31merror[39m: cart is not defined
+2019-09-27 22:41:20 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 22:41:20 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 22:41:20 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 22:43:18 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:43:18 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 22:43:20 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 22:43:20 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 7.152 ms
+
+2019-09-27 23:42:36 [32minfo[39m: [Knex] Mode %s
+2019-09-27 23:42:36 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 23:42:36 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 23:42:36 [32minfo[39m: [Express] Port %d
+2019-09-27 23:42:43 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:42:43 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 23:42:43 [33mwarn[39m: [Auth] Session admin expirée (renouvellement token demandé)
+2019-09-27 23:42:43 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 18.068 ms
+
+2019-09-27 23:42:43 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjE1MDg1LCJleHAiOjE1Njk2MTY4ODV9.821VuYYdii4mYfH7D6imchVSCm9F2Zjb7kGCFmPp0Hc 200 91 - 17.729 ms
+
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Données Administration Utilisateur chargées (id): %s
+2019-09-27 23:42:54 [36mverbose[39m: POST /auth/login 200 321 - 142.216 ms
+
+2019-09-27 23:42:54 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 23:42:54 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 23:42:54 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjIwNTc0LCJleHAiOjE1Njk2MjIzNzR9.fAMnlaKrT7Ucf9-05_C7U63M3QGVUFftJdeLNNpm6TE 200 124 - 10.850 ms
+
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 23:42:54 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 23:42:54 [36mverbose[39m: GET /getFromDB/adminData 304 - - 34.036 ms
+
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 23:42:54 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 31.379 ms
+
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 23:42:54 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 23:42:54 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 51.781 ms
+
+2019-09-27 23:42:54 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 79.609 ms
+
+2019-09-27 23:42:54 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 82.772 ms
+
+2019-09-27 23:42:58 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 23:42:58 [31merror[39m: cart is not defined
+2019-09-27 23:42:58 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 23:42:58 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 23:42:58 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 23:43:34 [32minfo[39m: [Knex] Mode %s
+2019-09-27 23:43:34 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 23:43:34 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 23:43:35 [32minfo[39m: [Express] Port %d
+2019-09-27 23:43:36 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:43:36 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 28.634 ms
+
+2019-09-27 23:43:39 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 23:43:39 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 23:43:39 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:43:39 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjIwNTc0LCJleHAiOjE1Njk2MjIzNzR9.fAMnlaKrT7Ucf9-05_C7U63M3QGVUFftJdeLNNpm6TE 304 - - 15.883 ms
+
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 21.615 ms
+
+2019-09-27 23:43:39 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 23:43:39 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/adminData 304 - - 49.591 ms
+
+2019-09-27 23:43:39 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 23:43:39 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 23:43:39 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 14.298 ms
+
+2019-09-27 23:43:39 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 22.462 ms
+
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 30.959 ms
+
+2019-09-27 23:43:39 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 42.200 ms
+
+2019-09-27 23:43:41 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 23:43:42 [31merror[39m: cart is not defined
+2019-09-27 23:43:42 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 23:43:42 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 23:43:42 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 23:45:41 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 23:45:44 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:45:44 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.019 ms
+
+2019-09-27 23:48:59 [32minfo[39m: [Knex] Mode %s
+2019-09-27 23:48:59 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-27 23:48:59 [32minfo[39m: [Boxtal] Mode Test
+2019-09-27 23:49:00 [32minfo[39m: [Express] Port %d
+2019-09-27 23:49:04 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-27 23:49:04 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-27 23:49:04 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:49:04 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjIwNTc0LCJleHAiOjE1Njk2MjIzNzR9.fAMnlaKrT7Ucf9-05_C7U63M3QGVUFftJdeLNNpm6TE 304 - - 31.415 ms
+
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 34.901 ms
+
+2019-09-27 23:49:04 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-27 23:49:04 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/adminData 304 - - 63.671 ms
+
+2019-09-27 23:49:04 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-27 23:49:04 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 22.894 ms
+
+2019-09-27 23:49:04 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-27 23:49:04 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 32.826 ms
+
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 48.523 ms
+
+2019-09-27 23:49:04 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 59.053 ms
+
+2019-09-27 23:49:07 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 23:49:07 [31merror[39m: cart is not defined
+2019-09-27 23:49:07 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 23:49:07 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 23:49:07 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 23:51:07 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 23:51:07 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-27 23:51:07 [31merror[39m: cart is not defined
+2019-09-27 23:51:07 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-27 23:51:07 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-27 23:51:07 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-27 23:53:07 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-27 23:53:09 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-27 23:53:09 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 8.651 ms
+
+2019-09-28 10:39:30 [32minfo[39m: [Knex] Mode %s
+2019-09-28 10:39:31 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-28 10:39:44 [32minfo[39m: [Boxtal] Mode Test
+2019-09-28 10:39:47 [32minfo[39m: [Express] Port %d
+2019-09-28 10:39:48 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:39:48 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 40.178 ms
+
+2019-09-28 10:39:58 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-28 10:39:58 [33mwarn[39m: [Auth] Session admin expirée (renouvellement token demandé)
+2019-09-28 10:39:58 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:39:58 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjIwNTc0LCJleHAiOjE1Njk2MjIzNzR9.fAMnlaKrT7Ucf9-05_C7U63M3QGVUFftJdeLNNpm6TE 200 91 - 25.479 ms
+
+2019-09-28 10:39:58 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 30.203 ms
+
+2019-09-28 10:40:27 [34mdebug[39m: [Knex] Données Administration Utilisateur chargées (id): %s
+2019-09-28 10:40:27 [36mverbose[39m: POST /auth/login 200 321 - 296.442 ms
+
+2019-09-28 10:40:27 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-28 10:40:27 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-28 10:40:27 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjYwMDI3LCJleHAiOjE1Njk2NjE4Mjd9.3_o3hnFEJR1JwKP9RmDeHSoMNyvRYs3aBfQ0Dl07g-Q 200 124 - 7.989 ms
+
+2019-09-28 10:40:27 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-28 10:40:27 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-28 10:40:27 [36mverbose[39m: GET /getFromDB/adminData 200 - - 148.882 ms
+
+2019-09-28 10:40:27 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-28 10:40:28 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-28 10:40:28 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 208 - 14.493 ms
+
+2019-09-28 10:40:28 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-28 10:40:28 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 229 - 212.047 ms
+
+2019-09-28 10:40:28 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 234 - 170.993 ms
+
+2019-09-28 10:40:28 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-28 10:40:28 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 200 374 - 485.079 ms
+
+2019-09-28 10:40:31 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-28 10:40:31 [31merror[39m: cart is not defined
+2019-09-28 10:40:31 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-28 10:40:31 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-28 10:40:31 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-28 10:42:31 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-28 10:42:31 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-28 10:42:31 [31merror[39m: cart is not defined
+2019-09-28 10:42:31 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-28 10:42:31 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-28 10:42:31 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-28 10:43:08 [32minfo[39m: [Knex] Mode %s
+2019-09-28 10:43:08 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-28 10:43:09 [32minfo[39m: [Boxtal] Mode Test
+2019-09-28 10:43:09 [32minfo[39m: [Express] Port %d
+2019-09-28 10:43:12 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:43:12 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 24.189 ms
+
+2019-09-28 10:43:17 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-28 10:43:17 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-28 10:43:17 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:43:17 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjYwMDI3LCJleHAiOjE1Njk2NjE4Mjd9.3_o3hnFEJR1JwKP9RmDeHSoMNyvRYs3aBfQ0Dl07g-Q 304 - - 16.027 ms
+
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 21.576 ms
+
+2019-09-28 10:43:17 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-28 10:43:17 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/adminData 304 - - 47.023 ms
+
+2019-09-28 10:43:17 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-28 10:43:17 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-28 10:43:17 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 10.462 ms
+
+2019-09-28 10:43:17 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 12.724 ms
+
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 19.300 ms
+
+2019-09-28 10:43:17 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 34.534 ms
+
+2019-09-28 10:43:19 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-28 10:43:19 [31merror[39m: error: %o
+2019-09-28 10:43:19 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-28 10:43:19 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-28 10:43:19 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-28 10:45:19 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-28 10:45:21 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:45:21 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 7.495 ms
+
+2019-09-28 10:45:47 [32minfo[39m: [Knex] Mode %s
+2019-09-28 10:45:47 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-28 10:45:47 [32minfo[39m: [Boxtal] Mode Test
+2019-09-28 10:45:47 [32minfo[39m: [Express] Port %d
+2019-09-28 10:45:53 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-28 10:45:53 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-28 10:45:53 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:45:53 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 39.937 ms
+
+2019-09-28 10:45:53 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjYwMDI3LCJleHAiOjE1Njk2NjE4Mjd9.3_o3hnFEJR1JwKP9RmDeHSoMNyvRYs3aBfQ0Dl07g-Q 304 - - 36.178 ms
+
+2019-09-28 10:45:54 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-28 10:45:54 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-28 10:45:54 [36mverbose[39m: GET /getFromDB/adminData 304 - - 52.955 ms
+
+2019-09-28 10:45:54 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-28 10:45:54 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-28 10:45:54 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-28 10:45:54 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 23.488 ms
+
+2019-09-28 10:45:54 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-28 10:45:54 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 36.625 ms
+
+2019-09-28 10:45:54 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 46.971 ms
+
+2019-09-28 10:45:54 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 56.217 ms
+
+2019-09-28 10:45:55 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-28 10:45:55 [31merror[39m: [Boxtal Etiquette] Erreur: %o
+2019-09-28 10:45:55 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-28 10:45:55 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-28 10:45:55 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-28 10:46:38 [32minfo[39m: [Knex] Mode %s
+2019-09-28 10:46:38 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-09-28 10:46:39 [32minfo[39m: [Boxtal] Mode Test
+2019-09-28 10:46:39 [32minfo[39m: [Express] Port %d
+2019-09-28 10:46:40 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:46:40 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 22.563 ms
+
+2019-09-28 10:46:43 [32minfo[39m: [Auth] Vérification du token suivant: %s
+2019-09-28 10:46:43 [34mdebug[39m: [Auth] Token validé pour l'utilisateur: %s
+2019-09-28 10:46:43 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:46:43 [36mverbose[39m: GET /auth/checkToken?admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MSwidXNlciI6ImZhbmNoNDRAaG90bWFpbC5jb20iLCJoYXNocHdkIjoiJDJiJDEwJG83Y0xEeTVxWEtwc0RLNjJOdFBmOHVVVTdsS1IwWktON3pDR2doNTBIR2pvV1Fsay5NVzBTIiwidXNlcmlkIjpudWxsfSwiaWF0IjoxNTY5NjYwMDI3LCJleHAiOjE1Njk2NjE4Mjd9.3_o3hnFEJR1JwKP9RmDeHSoMNyvRYs3aBfQ0Dl07g-Q 304 - - 14.932 ms
+
+2019-09-28 10:46:43 [36mverbose[39m: GET /getFromDB/getsessioncart 304 - - 22.614 ms
+
+2019-09-28 10:46:45 [34mdebug[39m: [Knex] Liste des produits chargées (qte): %d
+2019-09-28 10:46:45 [34mdebug[39m: [Admin db] Données récupérées
+2019-09-28 10:46:45 [36mverbose[39m: GET /getFromDB/adminData 304 - - 48.854 ms
+
+2019-09-28 10:46:46 [34mdebug[39m: [Knex] Données Utilisateur chargées (id): %s
+2019-09-28 10:46:46 [34mdebug[39m: [Knex] Données Livraison chargées (id): %s
+2019-09-28 10:46:46 [34mdebug[39m: [Knex] Données Panier chargées (id): %s
+2019-09-28 10:46:46 [34mdebug[39m: [Knex] Données Commande chargées (id): %s
+2019-09-28 10:46:46 [36mverbose[39m: GET /getFromDB/adminUser?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 13.991 ms
+
+2019-09-28 10:46:46 [36mverbose[39m: GET /getFromDB/adminLivraison?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 25.199 ms
+
+2019-09-28 10:46:46 [36mverbose[39m: GET /getFromDB/adminCart?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 27.759 ms
+
+2019-09-28 10:46:46 [36mverbose[39m: GET /getFromDB/adminPaiement?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR 304 - - 33.215 ms
+
+2019-09-28 10:46:47 [34mdebug[39m: [Etiquette] Utilisateur retrouvé: %o
+2019-09-28 10:46:48 [31merror[39m: [Boxtal Etiquette] Erreur: %o
+2019-09-28 10:46:48 [34mdebug[39m: [Etiquette] Panier retrouvé: %o
+2019-09-28 10:46:48 [34mdebug[39m: [Etiquette] Commande retrouvée: %o
+2019-09-28 10:46:48 [34mdebug[39m: [Etiquette] livraison retrouvée: %o
+2019-09-28 10:48:47 [36mverbose[39m: GET /boxtal/etiquette?sessid=GSWrkNg0hbQ6H0yGRtHPmm7XBYPF0oIR - - - - ms
+
+2019-09-28 10:48:50 [34mdebug[39m: [Panier] Nouvelle session
+2019-09-28 10:48:50 [36mverbose[39m: GET /getFromDB/getsessioncart 200 11 - 6.932 ms
+

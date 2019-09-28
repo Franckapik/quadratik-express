@@ -6,6 +6,8 @@ import SessionAdresse from './SessionAdresse';
 import Etiquette from './Etiquette';
 import Facture from './Facture';
 import '../App.scss';
+import client from '../Store/client';
+
 
 class Clients extends Component {
   constructor(props) {
@@ -49,6 +51,11 @@ class Clients extends Component {
                     </h3>
                     <Etiquette id= {p.userid}></Etiquette>
                     <Facture id= {p.userid}></Facture>
+                     < i className = "fas fa-file-pdf facture_i cursor" onClick = {
+                      () => {
+                        client.confirmCommandeFetch(p.userid)
+                      }
+                    } > Mail de confirmation </i>
                     <div className="admin_list flex_r">
                       <SessionAdresse sessid={p.userid}></SessionAdresse>
                       <Sessionlivraison sessid={p.userid}></Sessionlivraison>

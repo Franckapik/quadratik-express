@@ -78,10 +78,7 @@ const client = {
   reductionfetch: (code)=> getData('getFromDB/getreduction?code=' + code),
   resetCartPost : () => postData('/saveInDB/resetcart'),
   nonceFetch : (nonce) => getData(`/paiement/nonce/${nonce}`),
-
-
-
-
+  confirmCommandeFetch : (id) => getData('/sendMail/confirmationCommande?sessid=' + id)
 }
 
 export default client;

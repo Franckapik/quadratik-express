@@ -1,5 +1,5 @@
 # dependencies
 /node_modules
-
+/factures
 # configuration file
 config.js

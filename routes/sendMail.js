@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config');
 var facture = require('./facture');
+const fromDb = require('./getFromDB');
+
 
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
@@ -195,6 +197,57 @@ router.get('/mailfacture', function(req, res, next) {
     })
     .catch(error => logger.error(error));
 });
+
+router.get('/confirmationCommande', function(req, res, next) {
+
+  fromDb.userQuery(req.query.sessid).then(
+    user => {
+      console.log(user);
+      const expediteur = 'atelier@quadratik.fr'
+
+        const Email = require('email-templates');
+
+        const email = new Email({
+          message: {
+            from: expediteur
+          },
+          // uncomment below to send emails in development/test env:
+          send: true,
+          transport: {
+            jsonTransport: true
+          }
+        });
+
+        email
+          .send({
+            template: 'mars',
+            message: {
+              to: user.mail
+            },
+            locals: {
+              nom: user.nom,
+              prenom: user.prenom,
+              adresse: user.adresse,
+              mail: user.mail
+
+            },
+            preview: {
+          open: {
+            app: 'firefox',
+            wait: false
+          }
+        }
+          })
+          .then(console.log)
+          .catch(console.error);
+    }
+  )
+
+
+});
+
+
+
 
 
 module.exports = router;

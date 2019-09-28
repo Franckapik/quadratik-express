@@ -7,6 +7,45 @@ const knex = require('knex')(configuration);
 const logger = require('../log/logger');
 // Query Database
 
+orderQuery = (sessid) => {
+  return knex('user')
+    .where('userid', sessid)
+    .then(user => {
+      user.length ? logger.debug("[Etiquette] Utilisateur retrouvé: %o", user[0].id) :
+        logger.warn("[Etiquette] Utilisateur manquant");
+      knex('cart')
+        .where('userid', sessid)
+        .then(cart => {
+          cart.length ? logger.debug("[Etiquette] Panier retrouvé: %o", cart[0].id) :
+            logger.warn("[Etiquette] Panier manquant");
+          knex('commande')
+            .where('userid', sessid)
+            .then(commande => {
+              commande.length ? logger.debug("[Etiquette] Commande retrouvée: %o", commande[0].id) :
+                logger.warn("[Etiquette] Commande manquante");
+              knex('livraison')
+                .where('userid', sessid)
+                .then(livraison => {
+                  livraison.length ? logger.debug("[Etiquette] livraison retrouvée: %o", livraison[0].id) :
+                    logger.warn("[Etiquette] Livraison manquante");
+
+                  const order = {
+                    user: user[user.length - 1],
+                    livraison: livraison[livraison.length - 1],
+                    cart: cart,
+                    commande: commande[commande.length - 1]
+                  };
+
+                  return order
+
+                })
+            })
+        })
+    })
+    .catch(error => logger.error(error));
+
+};
+
 userQuery = (sessid) => {
   return knex('user')
     .where('userid', sessid)
@@ -119,9 +158,9 @@ router.get('/livraison', function(req, res, next) {
 
 router.get('/commande', function(req, res, next) {
   commandeQuery(req.sessionID)
-  .then(commande => {
-    res.json(commande)
-  })
+    .then(commande => {
+      res.json(commande)
+    })
 });
 
 router.get('/getsessioncart', function(req, res, next) {
@@ -176,25 +215,25 @@ router.get('/shopDB', function(req, res, next) {
 });
 
 router.get('/adminData', function(req, res, next) {
-    productQuery()
-      .then(function(productData) {
-        knex('product_essences')
-          .then(function(essencesData) {
-            knex('user')
-              .then(function(userData) {
-                knex('informations')
-                  .then(function(informations) {
-                    logger.debug('[Admin db] Données récupérées');
-                    res.json({
-                      product: productData,
-                      essence: essencesData,
-                      user: userData,
-                      info: informations
-                    });
-                  })
-              })
-          })
-      })
+  productQuery()
+    .then(function(productData) {
+      knex('product_essences')
+        .then(function(essencesData) {
+          knex('user')
+            .then(function(userData) {
+              knex('informations')
+                .then(function(informations) {
+                  logger.debug('[Admin db] Données récupérées');
+                  res.json({
+                    product: productData,
+                    essence: essencesData,
+                    user: userData,
+                    info: informations
+                  });
+                })
+            })
+        })
+    })
 });
 
 
@@ -202,3 +241,4 @@ module.exports = router;
 module.exports.userQuery = userQuery;
 module.exports.cartQuery = cartQuery;
 module.exports.adminQuery = adminQuery;
+module.exports.orderQuery = orderQuery;

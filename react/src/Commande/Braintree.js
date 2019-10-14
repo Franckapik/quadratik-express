@@ -48,7 +48,7 @@ class Braintree extends React.Component {
                         authorization: this.state.clientToken,
                         locale: 'fr_FR,'
                       }} onInstance={instance => (this.instance = instance)}/>
-                    <button className="button_accent" onClick={this.buy.bind(this)}>Régler la commande</button>
+                    <button className="button_light" onClick={this.buy.bind(this)}>Régler la commande</button>
                   </div>
                 : 'Chargement...'
             }</div>

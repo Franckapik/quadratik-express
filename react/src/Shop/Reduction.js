@@ -22,7 +22,7 @@ class Reduction extends Component {
   }
 
   render() {
-    return (<form onSubmit = {
+    return (<form className="flex_r" onSubmit = {
       this.handleSubmit
     } > <input type = "text" size = "8" value = {
       this.state.value

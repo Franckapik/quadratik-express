@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import LivraisonAdresse from './LivraisonAdresse';
 import LivraisonDomicile from './LivraisonDomicile';
 import AdminRelais from '../Admin/AdminRelais';
@@ -25,24 +25,24 @@ class Livraison extends Component {
 
         <h1 className="center">Livraison</h1>
           <h3>Choisissez votre point de livraison</h3>
-        <div className="flex_r livraison_choice_list">
-          <div className="form-check">
+        <div className="flex_r givemespace">
+          <div className="box_light2">
             <label>
               <input type="radio" name="react-tips" value="domicile" checked={this.state.selectedOption === "domicile"} className="form-check-input" onChange={this.handleOptionChange}/>
               A Domicile
             </label>
           </div>
 
-        <div className="form-check">
+          <div className="box_light2">
             <label>
               <input type="radio" name="react-tips" value="relais" checked={this.state.selectedOption === "relais"} className="form-check-input" onChange={this.handleOptionChange}/>
               En Point Relais
             </label>
           </div>
 
-          <div className="form-check">
+          <div className="box_light2">
             <label>
-              <input type="radio" name="react-tips" value="nouvelleadresse" className="form-check-input" checked={this.state.selectedOption === "nouvelleadresse"} onChange={this.handleOptionChange}/>
+              <input type="radio" name="react-tips" value="nouvelleadresse" checked={this.state.selectedOption === "nouvelleadresse"} onChange={this.handleOptionChange}/>
               Nouvelle Adresse
             </label>
           </div>

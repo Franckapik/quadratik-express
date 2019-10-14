@@ -4,11 +4,11 @@ import ScrollAnimation from 'react-animate-on-scroll';
 
 export default function SectionValeurs() {
   return (<section id="valeurs">
-    <div className="flex_r flex_w valeurs_container">
+    <div className="flex_r flex_w style_dark fullsize">
       <ScrollAnimation animateIn="bounceInLeft" animateOnce={true}>
-        <div className="valeurs_slidebox">
+        <div className="valeurs_slidebox box_dark1">
           <div className="valeursbox_container center">
-            <div className="section_title flex_c center valeurs_title  ">
+            <div className=" flex_c center valeurs_title  ">
               <h1>
                 | 0<sub>4</sub>
                 |

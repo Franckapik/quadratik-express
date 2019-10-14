@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import Produit from './Produit'
 
 class Top extends Component {
@@ -21,7 +21,7 @@ class Top extends Component {
   render() {
     return (
       <div>
-        <div className="collection flex_r flex_w" >
+        <div className=" flex_r flex_w" >
           <p className="collection_title ">Top 4 des Ventes</p>
         {this.props.collectionid ? this.props.collectionid.map((produit, i) => {
           return (

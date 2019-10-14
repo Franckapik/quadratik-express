@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import {init_app} from './B4W.js';
 import {SketchPicker} from 'react-color';
 import b4w from "blend4web";
@@ -27,22 +27,22 @@ class Quadralab extends Component {
   }
 
   render() {
-    return (<div className="quadra_container">
-      <div className="quadra_options">
-        <span id="getAll" className="liens">
+    return (<div className="quadralab_3dcontainer fullsize">
+      <div className="options style_dark flex_r">
+        <span id="getAll" className="">
         <i className="fas fa-fill"></i> Tout remplir</span>
         <p></p>
-        <span id="random" className="liens">
+        <span id="random" className="">
           <i className="fas fa-random"></i> Grand hasard</span>
         <p></p>
-        <span id="pair" className="liens">
+        <span id="pair" className="">
         <i className="fas fa-palette"></i>  Petit hasard</span>
         <p></p>
       </div>
 
       <SketchPicker color={this.state.color} className="picker" onChange={this.handleChange}/>
 
-      <div className="b4w" id="b4w"></div>
+      <div className="b4w style_dark fullsize" id="b4w"></div>
       <div id="logo_container"></div>
       <div id="preloader_cont">
         <div id="prelod_static_path">

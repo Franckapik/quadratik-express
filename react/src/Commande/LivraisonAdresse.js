@@ -47,12 +47,12 @@ class LivraisonAdresse extends Component {
                   }
 
                 });
-              
+
 
               }}
             >
               {({ errors, touched }) => (
-                <Form className='flex_c form_enregistrement center'>
+                <Form className='flex_c form center'>
                   <Field name="userid" type="hidden" />
                   <label><i className="fas fa-user"></i> Nom </label>
                   <Field name="lastName" />

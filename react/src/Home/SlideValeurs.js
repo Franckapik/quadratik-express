@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
 
 class SlideValeurs extends React.Component {
   render() {
@@ -14,7 +13,6 @@ class SlideValeurs extends React.Component {
       arrows:false
     };
     return (<div>
-      <Slider {...settings}>
         <div className="case">
           <div className="flex_c">
             <span className="case_titre">Ecoute</span>
@@ -84,7 +82,6 @@ class SlideValeurs extends React.Component {
           <span>Economie circulaire
           </span>        </div>
         </div>
-      </Slider>
     </div>);
   }
 }

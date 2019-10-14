@@ -5,7 +5,8 @@ import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
 import Etiquette from './Etiquette';
 import Facture from './Facture';
-import '../App.scss';
+import Mail from './Mail';
+import '../styles/App.scss';
 import client from '../Store/client';
 
 
@@ -28,7 +29,7 @@ class Clients extends Component {
         this.props.user
           ? <div>
 
-              <ul className="flex_r admin_filter">
+              <ul className="flex_r filter">
                 <li className="cursor" onClick={() => this.setState({filterLast: this.props.user.length})}>Tous les clients</li>
                 <li className="cursor" onClick={() => this.setState({filterLast: 20})}>
                   20</li>
@@ -43,20 +44,18 @@ class Clients extends Component {
                   return a.id - b.id
                 }).slice(Math.max(this.props.user.length - this.state.filterLast, 0)).map((p, i) => {
                   return (<div key={i}>
-                    <h3 className="client_title">
+                    <h3 className="box_light2">
                       <i className="fas fa-user"></i>
                       <small>{p.id}</small>
                       {p.prenom + ' ' + p.nom}
                       <small>{p.userid}</small>
                     </h3>
-                    <Etiquette id= {p.userid}></Etiquette>
-                    <Facture id= {p.userid}></Facture>
-                     < i className = "fas fa-file-pdf facture_i cursor" onClick = {
-                      () => {
-                        client.confirmCommandeFetch(p.userid)
-                      }
-                    } > Mail de confirmation </i>
-                    <div className="admin_list flex_r">
+                    <ul className="flex_r box_light1">
+                      <Etiquette id= {p.userid}></Etiquette>
+                      <Facture id= {p.userid}></Facture>
+                      <Mail id= {p.userid}></Mail>
+                    </ul>
+                    <div className="flex_r details_client">
                       <SessionAdresse sessid={p.userid}></SessionAdresse>
                       <Sessionlivraison sessid={p.userid}></Sessionlivraison>
                       <SessionCart sessid={p.userid}></SessionCart>

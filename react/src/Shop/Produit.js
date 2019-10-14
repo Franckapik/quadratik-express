@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import shopStore from '../Store/shopStore';
 
 class Produit extends Component {
@@ -49,7 +49,7 @@ class Produit extends Component {
       <p>
         <div className="produit_img_container">
           <img className="produit_img cursor" src={srcImg} alt='Affichage non disponible' onClick={this.produitClicked.bind(this)}/>
-          <div className="produit_add">
+          <div className="produit_add flex_r">
             <div className="flex_r">
               <input className="input_qte" type="text" value={this.state.value} onChange={this.handleChange} size="2"/>
               <div className="flex_c">
@@ -69,7 +69,7 @@ class Produit extends Component {
                   }}></i>
               </div>
             </div>
-          <span className="produit_prix">{prix} €</span>
+          <span className="prix">{prix} €</span>
             <i className="fas fa-cart-arrow-down cart_add cursor" onClick={shopStore.addToCart.bind(this)}></i>
           </div>
         </div>

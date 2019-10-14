@@ -10,7 +10,7 @@ class Menu extends Component {
           <li><a href="/guide"> Guide </a></li>
           <li><a href="/quadralab">QuadraLab</a></li>
           <li><a href="/shop">Boutique</a></li>
-          <li className="promo"><a href="https://www.facebook.com/Quadratikfr-528507077617370"><i className="fab fa-facebook"></i></a><a href="https://twitter.com/QuadratikF"><i className="fab fa-twitter-square"></i></a> <i className="fab fa-instagram"></i></li>
+          <li className="reseaux_icones"><a href="https://www.facebook.com/Quadratikfr-528507077617370"><i className="fab fa-facebook"></i></a><a href="https://twitter.com/QuadratikF"><i className="fab fa-twitter-square"></i></a> <i className="fab fa-instagram"></i></li>
 
         </ul>
       </div>

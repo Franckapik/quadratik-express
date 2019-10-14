@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import commandeStore from '../Store/commandeStore';
 import {view} from 'react-easy-state';
 
@@ -17,7 +17,7 @@ class Status extends Component {
       width: commandeStore.status
     }
 
-    return (<div className="status_list">
+    return (<div className="status_container">
       <ul className="flex_r center">
         <li>
           <p className={this.props.statut === 'enregistrement' ? 'status_activated' : null}>1</p>Enregistrement</li>

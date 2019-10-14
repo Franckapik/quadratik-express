@@ -4,13 +4,13 @@ import ScrollAnimation from 'react-animate-on-scroll';
 export default function SectionQuadralab() {
   return (<section id="quadralab">
 
-    <div className="flex_r quadralab_container flex_w">
+    <div className="flex_r fullsize style_dark flex_w">
       <ScrollAnimation animateIn='fadeIn'className="mobile_hide" animateOnce={true}>
         <div>
           <img className="quadra_background" src="images/quadrabg.png" alt="dessine ton diffuseur"/>
         </div>
       </ScrollAnimation>
-      <div className="section_title flex_c center quadralab_title">
+      <div className=" flex_c center quadralab_title">
         <h1>
           | 0<sub>3</sub>
           |
@@ -22,7 +22,7 @@ export default function SectionQuadralab() {
     <div className="quadrabutton">
         <p>Creez un diffuseur acoustique aux couleurs de votre studio !</p>
         <a href="/QuadraLab">
-          <button className="button_dot button_white">Dessiner son diffuseur</button>
+          <button className="button_dark ">Dessiner son diffuseur</button>
         </a>
       </div>
 

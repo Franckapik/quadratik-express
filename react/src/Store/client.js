@@ -32,7 +32,7 @@ function getData(url){
       return data
     }).catch(function(error) {
       console.log('Request failed', error);
-      window.location ='/500' ;
+    //  window.location ='/500' ;
       return error
     });
 }

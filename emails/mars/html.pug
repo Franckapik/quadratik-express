@@ -1,58 +1,85 @@
-p Hi #{nom}, #{prenom}
-p Welcome to Mars, the #{adresse} planet.
+link(rel="stylesheet",href="/styles/App.scss")
+link(rel="stylesheet",href="/styles/basic.scss")
+link(rel="stylesheet",href="/styles/mixins.scss")
+link(rel="stylesheet",href="/styles/colors.scss")
+link(rel="stylesheet",href="/styles/template.scss")
 
-Image Header
+  
+body#mail
+  p(style='line-height: 14px;font-size: 12px;color: #CCCCCC;text-align:left;') 
+    | Quadratik.fr 
+    span(style='float:right;') 
+      | Traitement acoustique de votre studio.
 
-p Merci #{prenom} pour votre commande !p
-  img(style='display: block; margin-left: auto; margin-right: auto;', src='https://quadratik.fr/images/logo_black.svg', alt='Logo Quadratik.fr', width='150', height='149')
-hr
-h2 Confirmation de la commande n° X sur Quadratik.fr
-p
-  span(style='font-size: 12pt;') Bonjour,
-  br
-  | ​
-  br
-  | Nous vous remercions pour votre commande. Nous allons prochainement vous tenir informé par mail de son expédition. Vous pouvez suivre l'avancement de la commande dans Votre commande sur Quadratik.fr.
-  br
-  | ​
-hr
-p
-  strong Détail de la commande
-p
-  | 1 x Pack 5 Woodik | 264 euros
-  br
-  | 1 x Frais de ports | 12 euros
-  br
-  | ​
-  code
-  br
-  | TOTAL (TTC) | 276 euros
-  br
-  | ​
-hr
-p
-  strong Livraison
-p Votre commande va être expédiée à l'adresse suivante :
-p
-  | PHILIPPE BRASSART
-  br
-  | 3 residence Pasteur
-  br
-  | 59780 Camphin-en-Pévèle
-  br
-  | ​
-hr
-p
-  strong Transaction
-p
-  | Mode de paiement : Carte bancaire (10/2019)
-  br
-  | Id : e5tn9d8x
-  br
-  | Session : sXyz5nQlqSsa1Cqm9ZrmaWkT5AK3LFeh
-  br
-  | ​
-  br
+
+
+  p
+    img(style='vertical-align: middle;margin-left: 20px; width:80px', src='logo_black.svg', alt='Logo Quadratik.fr', width='150', height='149')
+    span(style='padding:30px;') 
+      a(href='https://quadratik.fr/shop') Boutique
+    span(style='padding:10px;') 
+      a(href='https://quadratik.fr/guide') Guide
+
+
+  .container
+    span.title Du changement pour votre studio !
+    img.header(src='../public/images/mails/atelier.jpg', alt='Logo Quadratik.fr')
+
+  .flex_c.w50.center
+    h3 Nous avons bien reçu votre commande
+    p(style='line-height: 14px;font-size: 12px;text-align:left;') 
+      | L'acoustique d'un studio est un élément incontournable pour un espace dédié à la production sonore. Vous avez réalisé un choix essentiel à l'attention de vos oreilles!​
+    button.button_dot.button_accent(style='background-color:#FAA912;color:white')
+      | Suivre votre colis  
+      
+  .mail_order_container.flex_r
+    .col_title.red
+      h4| En resume
+      .green Commande #
+      .blue Date
+      .blue Total
+    .col_title.green 
+      h4| Livraison
+      
+  table
+      tr
+        th En resumé
+        th Livraison
+      tr
+        td 
+          table
+            tr Commande #  
+            tr Date    
+            tr Total
+
+            
+        td 
+          table
+            tr
+              td Andry Petrin
+            tr
+              td 78 Somewhere St
+            tr
+              td Somewhere, Canada 9974
+  table
+            tr
+              th Sous-total (x articles)
+              th x euros
+            tr
+              td Frais de ports
+              td x euros
+            tr
+              td Réduction
+              td aucune
+            tr
+              td Total de la commande
+              td x euros
+                
+  p
+  |Contactez-nous
+  p
+  |Nous préparons votre commande tout en restant à votre écoute. Besoin de conseils? Des recommandations? Partagez-nous vos attentes!
+  p      
   | Nous vous remercions pour votre confiance accordée à Quadratik.fr !
   br
   | A bientôt !

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import homeStore from '../Store/homeStore'
 import { view } from 'react-easy-state'
 import Cgv from './Cgv';
@@ -16,12 +16,12 @@ class PanelInfo extends Component {
     return (
       <div className="slide" style={sidewidth}>
         <div
-          className='slide_close cursor'
+          className='close cursor'
           onClick={()=> {homeStore.width = 0;}}>
           <i className="fas fa-times">
           </i> Fermer
         </div>
-        <div className="slide_container flex_c">
+        <div className=" flex_c">
         {homeStore.content === 'Cgv' ? <Cgv></Cgv> : null}
         {homeStore.content === 'Mentions' ? <Mentions></Mentions> : null}
         {homeStore.content === 'Mail' ? <Mail></Mail> : null}

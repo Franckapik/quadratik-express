@@ -3,6 +3,8 @@ var router = express.Router();
 var config = require('../config');
 var facture = require('./facture');
 const fromDb = require('./getFromDB');
+const path = require('path');
+
 
 
 
@@ -200,9 +202,8 @@ router.get('/mailfacture', function(req, res, next) {
 
 router.get('/confirmationCommande', function(req, res, next) {
 
-  fromDb.userQuery(req.query.sessid).then(
-    user => {
-      console.log(user);
+  fromDb.orderQuery(req.query.sessid).then(
+    order => {
       const expediteur = 'atelier@quadratik.fr'
 
         const Email = require('email-templates');
@@ -215,6 +216,14 @@ router.get('/confirmationCommande', function(req, res, next) {
           send: true,
           transport: {
             jsonTransport: true
+          },
+          juice: true,
+          juiceResources: {
+            preserveImportant: true,
+            webResources: {
+              relativeTo: path.join(__dirname, '..', 'react/src/'),
+              images :true
+            }
           }
         });
 
@@ -222,23 +231,24 @@ router.get('/confirmationCommande', function(req, res, next) {
           .send({
             template: 'mars',
             message: {
-              to: user.mail
+              to: order.user.mail
             },
             locals: {
-              nom: user.nom,
-              prenom: user.prenom,
-              adresse: user.adresse,
-              mail: user.mail
+              user: order.user,
+              cart: order.cart[0],
+              livraison : order.livraison,
+              paiement : order.paiement
 
             },
             preview: {
           open: {
             app: 'firefox',
             wait: false
-          }
+          },
+
         }
           })
-          .then(console.log)
+          .then(res.end())
           .catch(console.error);
     }
   )

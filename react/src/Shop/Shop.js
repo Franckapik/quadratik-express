@@ -46,10 +46,10 @@ class CollectionsList extends Component {
     return (<div>{
         shopStore.showCart
           ? <Panier></Panier>
-          : <div className="flex_c">
+          : <div id="shop" className="flex_c style_light">
               <h1 className="boutique_title">> Boutique Quadratik</h1>
               <div >
-                <ul className="flex_r boutique_filter">
+                <ul className="flex_r filter">
                   <li onClick={() => this.setState({
                       filtre: 'couleur' | 'classique'
                     })}>Tous nos produits</li>

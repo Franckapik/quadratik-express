@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import Enregistrement from './Enregistrement'
 import Livraison from './Livraison'
 import Paiement from './Paiement'
@@ -17,8 +17,8 @@ class Commande extends Component {
   render() {
     return (<div>
       <Status statut = {commandeStore.display}></Status>
-      <div className='flex_r commande_container'>
-        <div className='commande_forms_container'>
+      <div className='flex_r'>
+        <div>
           {
             commandeStore.display === 'enregistrement'
               ? <Enregistrement></Enregistrement>

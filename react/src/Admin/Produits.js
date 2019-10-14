@@ -12,10 +12,10 @@ class Produits extends Component {
             {
               this.props.produits.map((p, i) => {
                 return (<div key={i}>
-                  <div className="admin_produits">
+                  <div className="produits box_light1 givemespace">
                     <ul>
                       <li></li>
-                      <li key={'Produit_src' + i}><img className="miniature" src={'images/modeles/'+p.name+'/'+p.src+'.jpg'} alt={"Miniature du "+p.name}></img></li>
+                      <li key={'Produit_src' + i}><img src={'images/modeles/'+p.name+'/'+p.src+'.jpg'} alt={"Miniature du "+p.name}></img></li>
                       <li key={'Produit_nom' + i}>{p.nom}</li>
                       <li key={'Produit_name' + i}>{p.name}</li>
                       <li key={'Produit_prix' + i}>{p.prix} €</li>

@@ -3,7 +3,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 
 export default function SectionBoutique() {
   return (<section id="boutique">
-    <div className="flex_r flex_wr boutique_container">
+    <div className="flex_r flex_wr style_dark fullsize">
       <ScrollAnimation animateIn='bounceInRight' className="mobile_hide" animateOnce={true}>
         <span className="collection_title_home mobile_hide">
           Nouvelles collections
@@ -27,7 +27,7 @@ export default function SectionBoutique() {
 
             <h3 className="boutique_box_title">Botanik</h3>
 
-            <img src="/images/modeles/Organik/Anemone-7c.png" alt="Collection Botanik" className="boutique_dif"/>
+            <img src="/images/modeles/Botanik/Anemone-7c.png" alt="Collection Botanik" className="boutique_dif"/>
 
           </div>
           <div className="boutique_box">
@@ -60,8 +60,8 @@ export default function SectionBoutique() {
           </div>
         </div>
       </ScrollAnimation>
-      <div className="boutique_droite flex_c">
-        <div className="section_title flex_c center">
+      <div className="boutique_droite box_dark2 flex_c center">
+        <div className=" flex_c center">
           <h1>
             | 0<sub>2</sub>
             |
@@ -73,19 +73,18 @@ export default function SectionBoutique() {
 
         </div>
         <div className="boutique_promo flex_c">
-          <p className="promo_title">Ca y est !</p>
-          <div className="calendrier flex_c">
+          <p>Ca y est !</p>
+          <div className="box_light1 flex_c">
             <p>Absorbeurs de nouveau en stock!</p>
-            <p className="nombre">Quadrablack</p>
+            <p><strong>Quadrablack</strong></p>
           </div>
-          <hr></hr>
           <h4>Envoyez-nous vos photos de studio et profitez d'une réduction de
             <strong>-5%</strong>
             sur vos prochaines commandes!
           </h4>
         </div>
         <a href="/shop">
-          <button className="button_dot button_accent">
+          <button className="button_light">
             La Boutique
           </button>
         </a>

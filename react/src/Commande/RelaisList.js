@@ -50,12 +50,12 @@ class RelaisList extends Component {
 
   render() {
     var relaisColor = {
-      backgroundColor: 'gray'
+      backgroundColor: 'white'
     }
 
     if (this.props.selected === this.state.relais) {
 		relaisColor = {
-			backgroundColor: 'var(--accentcolor)'
+			backgroundColor: 'crimson'
 		}
 	}
 
@@ -66,7 +66,7 @@ class RelaisList extends Component {
       <div>
       {
         this.state.relais
-          ? <ul key='relais' className="relais_box" style={relaisColor} onClick={() => this.props.setcoords(this.state.relais.latitude[0], this.state.relais.longitude[0], this.state.relais)}>
+          ? <ul key='relais' className="relais_box box_light1 givemespace" style={relaisColor} onClick={() => this.props.setcoords(this.state.relais.latitude[0], this.state.relais.longitude[0], this.state.relais)}>
               <li><h4>{this.state.relais.name[0]}</h4></li>
               <li>{this.state.relais.address[0]}</li>
               <li>
@@ -90,7 +90,7 @@ class RelaisList extends Component {
                             "Vendredi",
                             "Samedi"
                           ];
-                          return (<ul key={'schedule' + i} className="flex_r horaires">
+                          return (<ul key={'schedule' + i} className="flex_r horaires box_light1 ">
                             <li key={'semaine' + i}>{semaine[p.weekday[0]]}</li>
                             <li key={'am' + i}>{p.open_am[0]}
                               - {p.close_am[0]}</li>

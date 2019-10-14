@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import '../App.scss';
+import React, {Component} from 'react';
+import '../styles/App.scss';
 import shopStore from '../Store/shopStore'
-import { view } from 'react-easy-state'
+import {view} from 'react-easy-state'
 import ReactImageMagnify from 'react-image-magnify';
 
 class PanelDetails extends Component {
@@ -14,48 +14,39 @@ class PanelDetails extends Component {
 
   render() {
 
-    let sidewidth = {width : shopStore.width}
+    let sidewidth = {
+      width: shopStore.width
+    }
     let content = shopStore.selected
 
-    return (
-      <div className="slide" style={sidewidth}>
-        <div
-          className='slide_close cursor'
-          onClick={()=> {shopStore.width = 0;}}>
-          <i className="fas fa-times">
-          </i> Fermer
-        </div>
-        { shopStore.showDetails ?
-          <div className='slide_container flex_r flex_w'>
+    return (<div className="slide" style={sidewidth}>
+      <div className='close cursor' onClick={() => {
+          shopStore.width = 0;
+        }}>
+        <i className="fas fa-times"></i>
+        Fermer
+      </div>
+      {
+        shopStore.showDetails
+          ? <div className=' flex_r flex_w'>
 
-            <div className='slideG'>
-              <div className ="slide_piclist flex_c" >
-                <img
-                  className ="slide_img_small"
-                  src={"images/modeles/"+content.name+"/"+content.src+"-b.jpg"}
-                  alt=""
-                  onClick={() => {
-                    this.setState({view : '-b'})
-                  }} />
-                <img
-                  className ="slide_img_small"
-                  src={"images/modeles/"+content.name+"/"+content.src+"-c.jpg"}
-                  alt=""
-                  onClick={() => {
-                    console.log("images/modeles/"+content.name+"/"+content.src+"-c.jpg");
-                    this.setState({view : '-c'})
-                  }}/>
-                  <img
-                    className ="slide_img_small"
-                    src={"images/modeles/"+content.name+"/"+content.src+".png"}
-                    alt=""
-                    onClick={() => {
-                      this.setState({view : ''})
-                    }}/>
+              <div className='slideG w60'>
+                <ul className="flex_c">
+                  <li><img src={"images/modeles/" + content.name + "/" + content.src + "-b.jpg"} alt="" onClick={() => {
+                this.setState({view: '-b'})
+              }}/></li>
+                  <li><img src={"images/modeles/" + content.name + "/" + content.src + "-c.jpg"} alt="" onClick={() => {
+                console.log("images/modeles/" + content.name + "/" + content.src + "-c.jpg");
+                this.setState({view: '-c'})
+              }}/></li>
+                  <li>
+                    <img src={"images/modeles/" + content.name + "/" + content.src + ".png"} alt="" onClick={() => {
+                        this.setState({view: ''})
+                      }}/></li>
 
-              </div>
+                </ul>
 
-              <ReactImageMagnify className="mobile_hide" {...{
+                <ReactImageMagnify className="mobile_hide" {...{
                   smallImage: {
                     alt: "Affichage du modèle "+content.nom+" non disponible",
                     src: "images/modeles/"+content.name+"/"+content.src+this.state.view+".jpg",
@@ -68,64 +59,57 @@ class PanelDetails extends Component {
                     width: 1920,
                     height: 1080
                   },
-                }} />
+                }}/>
 
               </div>
-              <div className='slideD flex_c center'>
-                <div className='slideD_box'>
-                  <p className='slideD_col'>
-                    {content.name}
-                  </p>
-                  <h5 className='slideD_nom'>
-                    {content.nom}
-                  </h5>
+              <div className='flex_c center'>
+                <div className='slideD_box box_light4'>
+                  <p > {content.name} </p>
+                  <h5 className='nom'> {content.nom} </h5>
+                  <p className="style_light"> {content.descproduct}{content.desccollection} </p>
+                  <ul className="givemespace-hori">
+                    <li>
+                      <i className="fas fa-tint"></i>
+                      Couleur
+                      <span>
+                        {content.nbColors}
+                      </span>
+                    </li>
+                    <li>
+                      <i className="fas fa-codepen"></i>
+                      Taille
+                      <span>
+                        {content.longueur}
+                        x {content.largeur}
+                      </span>
+                    </li>
+                    <li>
+                      <i className="fas fa-chart-bar"></i>
+                      Frequences
+                      <span>
+                        {content.frequence}
+                        Hz
+                      </span>
+                    </li>
+                    <li>
+                      <i className="fas fa-tree"></i>
+                      Matière
+                      <span>
+                        Peuplier
+                      </span>
+                    </li>
+                  </ul>
+                  <p className="center"> {content.prix} € (+ {content.packaging} € de frais de port) </p>
 
-                  <p className="slideD_product_desc">
-                    {content.descproduct}{content.desccollection}
-                  </p>
+                </div>
 
-                  <p className='slideD_caracteristiques'>
-                    <i className="fas fa-tint">
-                    </i> Couleur <span>
-                    {content.nbColors}
-                  </span>
-                </p>
-
-                <p className='slideD_caracteristiques'>
-                  <i className="fab fa-codepen">
-                  </i> Taille <span>
-                  {content.longueur} x  {content.largeur} cm
-                </span>
-              </p>
-
-              <p className='slideD_caracteristiques'>
-                <i className="fas fa-chart-bar">
-                </i> Frequences <span>
-                {content.frequence} Hz
-              </span>
-            </p>
-
-            <p className='slideD_caracteristiques'>
-              <i className="fa fa-tree">
-              </i> Matière <span>Peuplier</span>
-            </p>
-
-            <p className='slideD_cart flex_r'>
-              <span className="price">
-                {content.prix} € (+ {content.packaging} € de frais de port)
-              </span>
-            </p>
-
+              </div>
             </div>
 
-          </div>
-        </div>
+          : null
+      }
 
-        : null }
-
-      </div>
-
-    )
+    </div>)
 
   }
 }

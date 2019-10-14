@@ -54,11 +54,11 @@ class Enregistrement extends Component {
               }
 
             });
-          
+
 
           }}>
           {
-            ({errors, touched}) => (<Form className='flex_c form_enregistrement center'>
+            ({errors, touched}) => (<Form className='flex_c  center'>
               <Field name="userid" type="hidden"/>
               <label>
                 <i className="fas fa-user"></i>
@@ -114,7 +114,7 @@ class Enregistrement extends Component {
                 Dans quel contexte allez-vous utiliser les produits achetés ? (Réponse optionelle)</label>
               <Field name="contexte"/>
               <ErrorMessage name="contexte"/>
-              <button className="boutique_header" type="submit">Valider</button>
+              <button type="submit">Valider</button>
             </Form>)
           }
         </Formik>

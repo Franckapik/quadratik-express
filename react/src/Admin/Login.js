@@ -57,7 +57,7 @@ export default class Login extends Component {
           onChange={this.handleInputChange}
           required
         />
-       <input type="submit" value="Submit"/>
+      <button type="submit"> Se connecter </button>
       </form>
 
       {this.state.error ? this.state.error : null}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 import client from '../Store/client';
 
 class SessionLivraison extends Component {
@@ -33,9 +33,6 @@ class SessionLivraison extends Component {
               <li key={'Livraison_ville' }>
                 {a.livr_postal + a.livr_ville}</li>
             </ul>
-
-
-
  : null
 } </div>
 

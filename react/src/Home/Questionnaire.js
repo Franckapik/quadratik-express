@@ -68,7 +68,6 @@ class Questionnaire extends Component {
                       <Field name="email"/>
                       <ErrorMessage name="email"/>
 
-                      <div className="flex_r">
                         <label>
                           <i className="far fa-question-circle"></i>
                           Longueur</label>
@@ -85,7 +84,7 @@ class Questionnaire extends Component {
                           Hauteur</label>
                         <Field name="hauteur"/>
                         <ErrorMessage name="hauteur"/>
-                      </div>
+
 
                       <label>
                         <i className="far fa-question-circle"></i>

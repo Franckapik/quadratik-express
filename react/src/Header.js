@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.scss';
+import './styles/App.scss';
 import shopStore from './Store/shopStore';
 import {view} from 'react-easy-state';
 
@@ -29,14 +29,12 @@ class Header extends Component {
   }
 
   render() {
-    let classHide = this.state.isHide
-      ? "hide"
-      : ""
+    let classHide = this.state.isHide ? "hide" : "" ;
     return (<header className={classHide}>
 
       <nav>
-        <ul>
-          <li className="promo">
+        <ul className="flex_r">
+          <li className="reseaux_icones">
             <a href="https://www.facebook.com/Quadratikfr-528507077617370">
               <i className="fab fa-facebook"></i>
             </a>
@@ -54,7 +52,7 @@ class Header extends Component {
             </a>
           </li>
           <li>
-            <a href="/"><img src="images/logo_black.svg" alt="Logo Quadratik" className="logo_header"/></a>
+            <a href="/"><img src="images/logo_black.svg" alt="Logo Quadratik"/></a>
           </li>
           <li>
             <a href="/quadralab">QuadraLab</a>
@@ -64,11 +62,7 @@ class Header extends Component {
               ? <li className="boutique_header">
                   <a href="/shop">Boutique</a>
                 </li>
-              : null
-          }
-          {
-            window.location.pathname.split("/").pop() === 'shop'
-              ? <li>
+              : <li>
                   <i className="cursor fas fa-shopping-cart" onClick={() => {
                       shopStore.showWidget = !shopStore.showWidget
                     }}>{
@@ -77,11 +71,12 @@ class Header extends Component {
                         : null
                     }</i>
                 </li>
-              : null
           }
-
           <li>
-          <a href='/admin'><i className="fas fa-user"></i></a>  </li>
+            <a href='/admin'>
+              <i className="fas fa-user"></i>
+            </a>
+          </li>
         </ul>
 
       </nav>

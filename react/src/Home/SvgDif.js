@@ -15,7 +15,7 @@ xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.411766 98.21357">
     <g opacity="0.558" transform="translate(-44.807 -108.44)">
         <rect id="fond_vert" height="98.214" width="97.412" y="108.44" x="44.807"
         strokeWidth="0.317" fill="#00ab9c" />
-        <g id="group_carreaux" fillOpacity="0.897" stroke="#000" strokeWidth="0.1">
+        <g id="diffuseur_svg" fillOpacity="0.897" stroke="#000" strokeWidth="0.1">
             <rect id="car1" height="12.718" width="12.782" y="123.83" x="59.617" />
             <rect height="10.724" width="10.724" y="112.02" x="47.774" />
             <rect height="9.455" width="10.624" y="113.22" x="61.839" />

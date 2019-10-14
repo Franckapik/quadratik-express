@@ -19,14 +19,14 @@ class CartWidget extends Component {
     return (<div>
       {
         shopStore.showWidget
-          ? <div className="cart_widget_container">
+          ? <div className="cart_widget_container box_light2 center">
               {
                 shopStore.cart.length !== 0
                   ? <div>
                       <Cart control="control"></Cart>
-                    <span> Total (sans frais de ports) : <strong>{shopStore.somme} € TTC</strong></span>
+                    <span> Total : <strong>{shopStore.somme} € TTC</strong></span>
 <p></p>
-                      <button className="button_blue" onClick={this.getPanier}>
+                      <button className="button_light" onClick={this.getPanier}>
                         Voir le Panier
                       </button>
                     </div>
@@ -36,7 +36,7 @@ class CartWidget extends Component {
 
           : null
       }
-      <div className="addCart_display" style={sidewidth}>
+      <div className="addCart_display box_dark2" style={sidewidth}>
         {shopStore.cart.length !== 0 ? <span className="addCart_title">{shopStore.cart[shopStore.cart.length-1].produit.nom}</span> : 'vide'}
         <button className="boutique_header" onClick={this.getPanier}>
            Voir le Panier

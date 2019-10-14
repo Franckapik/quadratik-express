@@ -387,6 +387,10 @@ ignore:
     - react > react-scripts > jest > jest-cli > jest-runner > jest-runtime > yargs > os-locale > mem:
         reason: None given
         expires: '2019-09-11T22:45:19.029Z'
+  SNYK-JS-HTMLPDF-467248:
+    - html-pdf:
+        reason: None given
+        expires: '2019-11-13T20:38:52.276Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:uglify-js:20150824':

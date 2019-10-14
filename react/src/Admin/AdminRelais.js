@@ -152,7 +152,7 @@ class AdminRelais extends Component {
           width: "100px"
         }}/>
     </label>
-    <input type="submit" value="Rechercher" className="admin_form_button"/>
+    <button type="submit">Rechercher</button>
   </form>
   : null}
 

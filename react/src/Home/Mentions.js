@@ -65,7 +65,7 @@ class Mentions extends Component {
       <p><br/>
         <strong>5. Liens hypertextes et cookies :</strong><br/>
         <br/>
-        Le site www.quadratik.fr contient un certain nombre de liens hypertextes vers d’autres sites (partenaires, informations …) mis en place avec l’autorisation de l'entreprise Quadratik.fr. Cependant, l'entreprise Quadratik.fr n’a pas la possibilité de vérifier l'ensemble du contenu des sites ainsi visités et décline donc toute responsabilité de ce fait quand aux risques éventuels de contenus illicites.<br/>
+        Le site www.quadratik.fr contient un certain nombre de  hypertextes vers d’autres sites (partenaires, informations …) mis en place avec l’autorisation de l'entreprise Quadratik.fr. Cependant, l'entreprise Quadratik.fr n’a pas la possibilité de vérifier l'ensemble du contenu des sites ainsi visités et décline donc toute responsabilité de ce fait quand aux risques éventuels de contenus illicites.<br/>
         L’utilisateur est informé que lors de ses visites sur le site www.quadratik.fr, un ou des cookies sont susceptibles de s’installer automatiquement sur son ordinateur par l'intermédiaire de son logiciel de navigation. Un cookie est un bloc de données qui ne permet pas d'identifier l'utilisateur, mais qui enregistre des informations relatives à la navigation de celui-ci sur le site.
         <br/>
         Le paramétrage du logiciel de navigation permet d’informer de la présence de cookie et éventuellement, de la refuser de la manière décrite à l’adresse suivante :

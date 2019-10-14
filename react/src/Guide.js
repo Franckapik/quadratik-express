@@ -1,11 +1,11 @@
 import React from 'react'
 
 export default function Guide() {
-  return (<div>
+  return (<div id="guide">
     <h1>
     >  Guide de l'acoustique Quadratik.fr
     </h1>
-    <div className="sommaire">
+    <div className="sommaire box_dark1">
       <i class="fas fa-angle-right"></i> Pourquoi contrôler l’acoustique d’une pièce?
       <ul>
         <li>
@@ -85,7 +85,7 @@ export default function Guide() {
     </div>
     <div className="guide_container">
 
-      <div className="guide_intro">
+      <div className="box_light2">
         <p className="accent">Avez-vous déjà eu la sensation que “quelque chose sonne mal” ?
         </p>
         <p/>
@@ -130,7 +130,7 @@ export default function Guide() {
         <p/>
         Elles ne sonnaient pas pareil du tout ! Seulement voilà, devais-je les incriminer aussitot ? J’y avais mis un sacré budget ! Mais vous me voyez venir, il me manquait ce qu’un bon nombre de personne néglige souvent, un traitement adéquat de ma pièce.<p/>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 1
           </span>
           Il ne sert a rien de se procurer des enceintes de qualité supérieure si l'environnement dans lequel elles sont placées est négligée.
@@ -179,7 +179,7 @@ export default function Guide() {
           Comment est le son ? Cela ne résonne plus certes, mais cela me fait un son mat pour ne pas dire un son mort ! J’ai l’impression d’être enfermé dans une boite ! Roger est très satisfait de pouvoir taper toujours plus fort sur sa batterie mais le son manque finalement d’air, d’ouverture ou encore de vie ! Explication !
         </p>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 2
           </span>
           Le traitement d’une pièce nécessite une complémentarité entre absorption et diffusion.
@@ -234,7 +234,7 @@ export default function Guide() {
           Faites confiance à vos oreilles! Ce sont elles qui décident et vous donneront votre satisfaction.
         </p>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 3
           </span>
           Si il existe en effet de nombreux moyens techniques, les émotions ne se révèlent jamais à la lecture d’un graphique de mesure !
@@ -306,7 +306,7 @@ export default function Guide() {
           Aie ! Par expérience, on aime rarement ce mot là car toujours un peu difficile à expliquer. Allez hop nouvelle règle pour comprendre !
         </p>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 4
           </span>
           Lorsque deux fréquences se rencontrent, soit elles s’annulent, soit elles s’additionnent.
@@ -421,7 +421,7 @@ export default function Guide() {
           Souvenez-vous, l’acoustique d’une pièce est “simplement” liée aux multiples rebonds du son sur les surfaces qui nous entoure. Allez, une nouvelle règle ?
         </p>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 5
           </span>
           Réaliser un traitement acoustique sur les premiers rebonds du son permets d’éviter les phénomènes indésirables en les contrôlant au plus près de la source.
@@ -478,7 +478,7 @@ export default function Guide() {
           Placer un unique diffuseur derrière soi, au milieu d’une surface de 15 m² n’a probablement peu d’intérêt.
         </p>
         <p></p>
-        <p className="rule">
+        <p className="rule box_light3">
           <span className="rule_title">Règle 6
           </span>
           le nombre de diffuseur acoustique doit répondre au besoin de la pièce et aux surfaces “nues” dont elle dispose.

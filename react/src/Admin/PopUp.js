@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.scss';
+import '../styles/App.scss';
 
 
 class PopUp extends Component {
@@ -14,14 +14,14 @@ class PopUp extends Component {
 
   render() {
     return (
-      <div className="slide" style={this.props.sidewidth}>
+      <div className="" style={this.props.sidewidth}>
         <div
           className='slide_close cursor'
           onClick={()=> {this.setState({sidewidth : 0})}}>
           <i className="fas fa-times">
           </i> Fermer
         </div>
-        <div className="slide_container flex_c">
+        <div className=" flex_c">
         {this.props.content === 'Cgv' ? 'CGV' : null}
         </div>
 

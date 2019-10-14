@@ -1,0 +1,4 @@
+2019-10-14 22:42:30 [32minfo[39m: [Knex] Mode %s
+2019-10-14 22:42:30 [34mdebug[39m: [Braintree] Mode Sandbox
+2019-10-14 22:42:30 [32minfo[39m: [Boxtal] Mode Test
+2019-10-14 22:42:30 [32minfo[39m: [Express] Port %d

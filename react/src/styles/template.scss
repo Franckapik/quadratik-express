@@ -1,0 +1,55 @@
+$font-size: 0.9em;
+$line-height: 1.5em;
+$font-weight: 300;
+$font1: 'Roboto', sans-serif;
+
+//styles generaux
+.style_dark {
+  @include style($dark,$white)
+}
+
+.style_light {
+  @include style($white,$darklight)
+}
+
+//box
+.box_light1 {
+  @include box($white, $whitedark, 10px, 5px);
+}
+
+.box_light2 {
+  @include box($darklight1, $accent, 15px, 5px, 0.8px);
+}
+
+.box_light3 {
+  @include box($accent, white, 10px, 5px, 0);
+}
+
+.box_light4 {
+  @include box($bgc: $white, $c:$dark, $p:10px 50px, $bs:thin, $bc: grey);
+}
+
+.box_dark1 {
+  @include box($white, white, 10px, 0px, 0);
+}
+
+.box_dark2 {
+  @include box($darklight1, white, 10px, 2px, 0);
+}
+
+.box_dark3 {
+  @include box($accent3, $darklight1, 10px, 0px,0px, white);
+}
+
+//buttons
+.button_dark {
+  @include button($b: solid 2px $white);
+}
+
+.button_dark:hover {
+  background-color: $accent2;
+}
+
+.button_light {
+  @include button($bg:$main,$c:$white);
+}

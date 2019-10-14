@@ -67,10 +67,10 @@ class Etiquette extends Component {
 
   render() {
     return (<div>
-      <i className="fas fa-truck colis_i cursor" onClick={() => {
+      <i className="fas fa-truck cursor" onClick={() => {
           this.createEtiquette(this.props.id);
         }}> Expedition</i>
-      <div className="flex_r flex_w slide" style={this.state.sidewidth}>
+      <div className="flex_r flex_w " style={this.state.sidewidth}>
         <div className='slide_close cursor' onClick={() => this.changeWidth(0)}>
           <i className="fas fa-times"></i>
           Fermer
@@ -87,7 +87,7 @@ class Etiquette extends Component {
                     </p>);
                   })
                 }
-                <input type="submit" value="Régler la livraison"/> {this.state.message}
+                <button type="submit" > Régler la livraison</button> {this.state.message}
               </form>
             : null
         }

@@ -8,43 +8,18 @@ const logger = require('../log/logger');
 // Query Database
 
 orderQuery = (sessid) => {
-  return knex('user')
-    .where('userid', sessid)
-    .then(user => {
-      user.length ? logger.debug("[Etiquette] Utilisateur retrouvé: %o", user[0].id) :
-        logger.warn("[Etiquette] Utilisateur manquant");
-      knex('cart')
-        .where('userid', sessid)
-        .then(cart => {
-          cart.length ? logger.debug("[Etiquette] Panier retrouvé: %o", cart[0].id) :
-            logger.warn("[Etiquette] Panier manquant");
-          knex('commande')
-            .where('userid', sessid)
-            .then(commande => {
-              commande.length ? logger.debug("[Etiquette] Commande retrouvée: %o", commande[0].id) :
-                logger.warn("[Etiquette] Commande manquante");
-              knex('livraison')
-                .where('userid', sessid)
-                .then(livraison => {
-                  livraison.length ? logger.debug("[Etiquette] livraison retrouvée: %o", livraison[0].id) :
-                    logger.warn("[Etiquette] Livraison manquante");
-
-                  const order = {
-                    user: user[user.length - 1],
-                    livraison: livraison[livraison.length - 1],
-                    cart: cart,
-                    commande: commande[commande.length - 1]
-                  };
-
-                  return order
-
-                })
-            })
-        })
+  return Promise.all([userQuery(sessid), cartQuery(sessid), livraisonQuery(sessid), commandeQuery(sessid)])
+    .then(([user, cart, livraison, paiement]) => {
+      return {
+        user: user,
+        cart: cart,
+        livraison: livraison,
+        paiement: paiement
+      }
     })
-    .catch(error => logger.error(error));
-
 };
+
+
 
 userQuery = (sessid) => {
   return knex('user')
@@ -68,8 +43,10 @@ livraisonQuery = (sessid) => {
   return knex('livraison')
     .where('userid', sessid)
     .then(livraison => {
-      livraison.length ? logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
+      livraison.length ?
+      logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
       return livraison[livraison.length - 1]
+      console.log(livraison[livraison.length - 1]);
     }).catch(error => logger.error('[Knex] Livraison Query error: %s', error));
 }
 

@@ -47,7 +47,6 @@ router.get('/relais', function(req, res, next) {
 router.get('/etiquette', function(req, res, next) {
   fromDb.orderQuery(req.query.sessid)
   .then(order => {
-    console.log('order', order);
                   const time = new Date().toLocaleDateString("fr-FR", {
                     year: "numeric",
                     month: "2-digit",
@@ -92,26 +91,26 @@ router.get('/etiquette', function(req, res, next) {
 
                   const destinataire = {
                     "destinataire.pays": "FR",
-                    "destinataire.code_postal": livraison[0].livr_postal,
-                    "destinataire.ville": livraison[0].livr_ville,
+                    "destinataire.code_postal": order.livraison.livr_postal,
+                    "destinataire.ville": order.livraison.livr_ville,
                     "destinataire.type": "particulier",
-                    "destinataire.adresse": livraison[0].livr_adresse,
+                    "destinataire.adresse": order.livraison.livr_adresse,
                     "destinataire.civilite": "M",
-                    "destinataire.prenom": user[0].prenom,
-                    "destinataire.nom": user[0].nom,
-                    "destinataire.email": user[0].mail,
-                    "destinataire.tel": user[0].telephone
+                    "destinataire.prenom": order.user.prenom,
+                    "destinataire.nom": order.user.nom,
+                    "destinataire.email": order.user.mail,
+                    "destinataire.tel": order.user.telephone
                   }
 
                   const options = {
                     "depot.pointrelais": "SOGP-O2187",
-                    "retrait.pointrelais": livraison[0].livr_mode,
+                    "retrait.pointrelais": order.livraison.livr_mode,
                     "assurance.selected": "false",
                     "platform": "api",
                     "collecte": time,
                     "delai": "aucun",
-                    "operateur": livraison[0].operateur,
-                    "service": livraison[0].livr_service,
+                    "operateur": order.livraison.operateur,
+                    "service": order.livraison.livr_service,
                     "code_contenu": 10120
                   }
 

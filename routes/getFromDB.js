@@ -19,6 +19,15 @@ orderQuery = (sessid) => {
     })
 };
 
+boxtalQuery = (sessid) => {
+  return knex('boxtal')
+    .where('userid', sessid)
+    .then(boxtal => {
+      boxtal.length ? logger.debug('[Knex] Données client Boxtal chargées (ref): %s',boxtal[boxtal.length - 1].reference) : logger.warn('[Knex] Données Boxtal manquantes (sessid): %s', sessid);
+      return boxtal[boxtal.length - 1]
+    }).catch(error => logger.error('[Knex] Boxtal Query error: %s', error));
+};
+
 
 
 userQuery = (sessid) => {
@@ -219,3 +228,4 @@ module.exports.userQuery = userQuery;
 module.exports.cartQuery = cartQuery;
 module.exports.adminQuery = adminQuery;
 module.exports.orderQuery = orderQuery;
+module.exports.boxtalQuery = boxtalQuery;

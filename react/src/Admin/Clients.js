@@ -3,12 +3,9 @@ import SessionCart from './SessionCart';
 import Sessionlivraison from './SessionLivraison';
 import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
-import Etiquette from './Etiquette';
-import Facture from './Facture';
-import Mail from './Mail';
+import SessionServices from './SessionServices';
 import '../styles/App.scss';
 import client from '../Store/client';
-
 
 class Clients extends Component {
   constructor(props) {
@@ -50,16 +47,12 @@ class Clients extends Component {
                       {p.prenom + ' ' + p.nom}
                       <small>{p.userid}</small>
                     </h3>
-                    <ul className="flex_r box_light1">
-                      <Etiquette id= {p.userid}></Etiquette>
-                      <Facture id= {p.userid}></Facture>
-                      <Mail id= {p.userid}></Mail>
-                    </ul>
-                    <div className="flex_r details_client">
+                    <div className="flex_r flex_baseline">
                       <SessionAdresse sessid={p.userid}></SessionAdresse>
                       <Sessionlivraison sessid={p.userid}></Sessionlivraison>
                       <SessionCart sessid={p.userid}></SessionCart>
                       <SessionPaiement sessid={p.userid}></SessionPaiement>
+                      <SessionServices sessid={p.userid} mail facture suivi etiquette></SessionServices>
                     </div>
                   </div>);
                 })

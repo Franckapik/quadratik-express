@@ -28,9 +28,23 @@ En developpement, l'application s'execute sur le port 3000.
 
 Les fichiers compilés et minifiés grace à Webpack (CRA) sont placés dans le dossier build pour le transfert vers le serveur de production.
 
-### Mise à jour NPM
+### NPM
 
 `npm update --save`
+
+Scripts supplémentaires :
+
+`npm run [...]`
+
+```    
+    "start": "node ./bin/www", 
+    "zipit": "tar -zcvf quadra.tar.gz -X exclude_list.txt .",
+    "lint": "node --max_old_space_size=4096 ./node_modules/eslint/bin/eslint.js .",
+    "ssl": "python -m sslyze --regular www.quadratik.fr",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect",
+    "test": "snyk test"
+```
 
 Mise à jour des packages installés via le gestionnaire de packets officiel de Node.js.
 
@@ -77,9 +91,11 @@ Le fichier snyk policy .snyk permets d'enregistrer les diférentes règles (upgr
 `git init`
 
 Hebergement web de l'api en lien avec le gestionnaire de version Git linux.
-`git add *`
-`git commit -m "up"`
-`git push origin master`
+
+```git add *
+git commit -m "up"
+git push origin master
+```
 
 Le fichier .gitignore exclut les fichiers/dossiers.
 

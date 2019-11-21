@@ -24,7 +24,6 @@ logger.info('[Knex] Mode %s', environment);
 const sessionStore = new KnexSessionStore({
   knex,
   tablename: 'sessions', // optional. Defaults to 'sessions'
-
 });
 
 router.post('/enregistrement', function(req, res, next) {
@@ -66,6 +65,28 @@ router.post('/livraison', function(req, res, next) {
     }).catch(error => logger.error('[Livraison] Sauvegarde db %s', error))
 });
 
+const saveOrderColis = (result, sessid) => {
+
+  logger.debug('[Boxtal db] Sessid: %o', sessid);
+
+  return knex('boxtal')
+    .insert({
+      userid: sessid,
+      reference: result.order.shipment[0].reference[0],
+      collection_date:result.order.shipment[0].collection_date,
+      prix_boxtal:result.order.shipment[0].offer[0].price[0]['tax-inclusive'][0],
+      livraison_date:result.order.shipment[0].offer[0].delivery[0].date[0],
+      service:result.order.shipment[0].offer[0].operator[0]['label'][0],
+      date_commande: Number(new Date())
+
+    })
+    .returning('reference')
+    .then(reference => {
+      logger.info('[Boxtal db] Commande de colis enregistrée: %s', reference);
+      return reference
+    }).catch((error) => logger.error('[Boxtal db] Commande de colis non enregistrée %s', error));
+};
+
 router.post('/savesessioncart', function(req, res, next) {
   req.session.cart = req.body;
   req.session.save(function(err) {
@@ -74,11 +95,10 @@ router.post('/savesessioncart', function(req, res, next) {
   res.end();
 });
 
-router.post('/resetcart', function(req, res, next) {
-  req.session.cart = 0;
-  req.session.save(function(err) {
-    err ? logger.error('[Panier] Reset Panier échoué : %s', err) : logger.debug('[Panier] Reset du Panier');
-  })
+router.get('/resetsession', function(req, res, next) {
+  req.session.destroy(function(err) {
+    err ? logger.error('[Session] Erreur de suppression de session : %s', err) : logger.debug('[Session] Suppression effectuée');
+})
   res.end();
 });
 
@@ -130,7 +150,8 @@ const saveCommandeInDB = (result, sessid) => {
       cardtype: result.transaction.creditCard.cardType,
       number: result.transaction.creditCard.maskedNumber,
       expirationdate: result.transaction.creditCard.expirationDate,
-      transactionid: result.transaction.id
+      transactionid: result.transaction.id,
+      date: result.transaction.updatedAt,
     })
     .returning('transactionid')
     .then(transactionid => {
@@ -141,4 +162,5 @@ const saveCommandeInDB = (result, sessid) => {
 
 module.exports = router;
 module.exports.saveCommandeInDB = saveCommandeInDB;
+module.exports.saveOrderColis = saveOrderColis;
 module.exports.sessionStore = sessionStore;

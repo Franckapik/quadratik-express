@@ -4,6 +4,11 @@ var config = require('../config');
 var facture = require('./facture');
 const fromDb = require('./getFromDB');
 const path = require('path');
+var sass = require('node-sass');
+const fs = require('fs');
+const logger = require('../log/logger');
+
+
 
 
 
@@ -202,6 +207,29 @@ router.get('/mailfacture', function(req, res, next) {
 
 router.get('/confirmationCommande', function(req, res, next) {
 
+//convertion du Sass en CSS vers le dossier du template.
+
+sass.render({
+  file: path.join(__dirname, '..', 'react/src/styles/App.scss'),
+  outputStyle: 'compressed',
+  outFile: path.join(__dirname, '..', 'react/src/styles/app.css'),
+}, function(error, result) { // node-style callback from v3.0.0 onwards
+  if(!error){
+
+    logger.info('[Template Mail] Préparation Sass vers CSS');
+
+    fs.writeFile(path.join(__dirname, '..', 'react/src/styles/app.css'), result.css, function(err){
+      if(!err){
+        logger.info('[Template Mail] Fichier Css généré %s:', path.join(__dirname, '..', 'react/src/styles/app.css'));
+      }
+    });
+  }
+});
+
+
+
+
+
   fromDb.orderQuery(req.query.sessid).then(
     order => {
       const expediteur = 'atelier@quadratik.fr'
@@ -226,7 +254,7 @@ router.get('/confirmationCommande', function(req, res, next) {
             }
           }
         });
-
+console.log(order.livraison);
         email
           .send({
             template: 'mars',
@@ -235,7 +263,7 @@ router.get('/confirmationCommande', function(req, res, next) {
             },
             locals: {
               user: order.user,
-              cart: order.cart[0],
+              cart: order.cart,
               livraison : order.livraison,
               paiement : order.paiement
 

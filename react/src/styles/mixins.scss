@@ -75,7 +75,7 @@ max-width: 40%;
 
   li {
     border-radius: 3px;
-    padding: 25px 30px;
+    padding: 1em;
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
@@ -91,34 +91,7 @@ max-width: 40%;
     background-color: $white;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
   }
-  @media all and (max-width: 767px) {
-    .table-header {
-      display: none;
-    }
-
-    .table-row {}
-
-    li {
-      display: block;
-    }
-
-    .col {
-      flex-basis: 100%;
-    }
-
-    .col {
-      display: flex;
-      padding: 10px 0;
-
-      &:before {
-        color: $accent4;
-        padding-right: 10px;
-        content: attr(data-label);
-        flex-basis: 50%;
-        text-align: right;
-      }
-    }
-  }
+  
 }
 
 @mixin input ($b:$main,$p:2px,$m:5px 5px 15px 0px,$s:1em,$w:100%) {

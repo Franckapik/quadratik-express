@@ -60,6 +60,8 @@ const client = {
   livraisonPost: (body) => postData('/saveInDB/livraison', body),
   enregistrementPost: (body) => postData('/saveInDB/enregistrement', body),
   createEtiquetteFetch: (id) => getData('/boxtal/etiquette?sessid=' + id),
+  getSuiviFetch: (ref) => getData('/boxtal/suiviColis?ref=' + ref),
+  getReferenceFetch:(id) => getData('/boxtal/getRefFromId?sessid=' + id),
   createFactureFetch: (id) => getData('/facture/createFacture?sessid=' + id),
   getFactureFetch: (id) => getData('/facture/getFacture?sessid=' + id), //a resoudre
   loginPost: (body) => postData('/auth/login', body),
@@ -76,7 +78,7 @@ const client = {
   cartsessionFetch: () => getData('/getFromDB/getsessioncart'),
   saveCartPost : (body) => postData('/saveInDB/saveCartOnDB', body),
   reductionfetch: (code)=> getData('getFromDB/getreduction?code=' + code),
-  resetCartPost : () => postData('/saveInDB/resetcart'),
+  resetCartPost : () => postData('/saveInDB/resetsession'),
   nonceFetch : (nonce) => getData(`/paiement/nonce/${nonce}`),
   confirmCommandeFetch : (id) => getData('/sendMail/confirmationCommande?sessid=' + id)
 }

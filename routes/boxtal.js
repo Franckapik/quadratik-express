@@ -10,6 +10,7 @@ global.Headers = fetch.Headers;
 let boxtalUrl = null;
 const logger = require('../log/logger');
 const fromDb = require('./getFromDB');
+const inDb = require('./saveInDB');
 
 
 if (env === 'development') {
@@ -36,7 +37,7 @@ router.get('/relais', function(req, res, next) {
       parseString(data, function(err, result) {
         res.json(result);
         logger.debug('Informations relais : %s', result.pickup_point.code);
-        if(err) {
+        if (err) {
           logger.error('Impossible de recevoir/convertir les données du relais');
         }
       });
@@ -44,93 +45,126 @@ router.get('/relais', function(req, res, next) {
 
 });
 
+router.get('/suiviColis', function(req, res, next) {
+  console.log('ici', req.query.ref);
+  fetch(boxtalUrl + "order_status/" + req.query.ref + "/informations", {
+      headers: headers,
+      credentials: 'include',
+      mode: 'cors',
+      method: 'GET',
+    })
+    .then(response => response.text())
+    .then(data => {
+      parseString(data, function(err, result) {
+        console.log(result);
+        res.json(result);
+        logger.debug('Informations suivi : %s', result.order.emc_reference[0]);
+        if (err) {
+          logger.error('Impossible de recevoir/convertir les données du suivi colis pour la reference suivante %s:', req.query.ref);
+        }
+      });
+    })
+
+});
+
+router.get('/getRefFromId', function(req, res, next) {
+  fromDb.boxtalQuery(req.query.sessid)
+    .then(data => {
+      console.log(data);
+      res.json(data);
+      logger.debug('[Boxtal] Recherche OK pour la reference colis: %s', data.reference);
+    })
+    .catch(error => logger.error('[Boxtal] Recherche reference colis non disponible pour l utilisateur suivant %s:', req.query.sessid));
+})
+
 router.get('/etiquette', function(req, res, next) {
   fromDb.orderQuery(req.query.sessid)
-  .then(order => {
-                  const time = new Date().toLocaleDateString("fr-FR", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit"
-                  }).replace('/\//g', '-');
+    .then(order => {
+      const time = new Date().toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).replace('/\//g', '-');
 
-                  const nbMax = 5;
-                  const nbColis = Math.trunc(order.cart[0].unites / nbMax);
-                  const resteColis = order.cart[0].unites % nbMax;
+      const nbMax = 5;
+      const nbColis = Math.trunc(order.cart[0].unites / nbMax);
+      const resteColis = order.cart[0].unites % nbMax;
 
-                  let listeColis = [];
-                  for (i = 1; i <= nbColis; i++) {
-                    listeColis['colis_' + i + '.poids'] = '8';
-                    listeColis['colis_' + i + '.longueur'] = '50';
-                    listeColis['colis_' + i + '.largeur'] = '50';
-                    listeColis['colis_' + i + '.hauteur'] = '55';
-                    listeColis['colis_' + i + '.description'] = "Diffuseurs acoustiques";
-                  }
+      let listeColis = [];
+      for (i = 1; i <= nbColis; i++) {
+        listeColis['colis_' + i + '.poids'] = '8';
+        listeColis['colis_' + i + '.longueur'] = '50';
+        listeColis['colis_' + i + '.largeur'] = '50';
+        listeColis['colis_' + i + '.hauteur'] = '55';
+        listeColis['colis_' + i + '.description'] = "Diffuseurs acoustiques";
+      }
 
-                  if (resteColis) {
-                    a = nbColis + 1;
-                    listeColis['colis_' + a + '.poids'] = (resteColis * 2).toString();
-                    listeColis['colis_' + a + '.longueur'] = '50';
-                    listeColis['colis_' + a + '.largeur'] = '50';
-                    listeColis['colis_' + a + '.hauteur'] = (resteColis * 10).toString();
-                    listeColis['colis_' + a + '.description'] = "Diffuseurs acoustiques";
-                  }
+      if (resteColis) {
+        a = nbColis + 1;
+        listeColis['colis_' + a + '.poids'] = (resteColis * 2).toString();
+        listeColis['colis_' + a + '.longueur'] = '50';
+        listeColis['colis_' + a + '.largeur'] = '50';
+        listeColis['colis_' + a + '.hauteur'] = (resteColis * 10).toString();
+        listeColis['colis_' + a + '.description'] = "Diffuseurs acoustiques";
+      }
 
-                  const expediteur = {
-                    "expediteur.pays": "FR",
-                    "expediteur.code_postal": "35440",
-                    "expediteur.ville": "Feins",
-                    "expediteur.type": "entreprise",
-                    "expediteur.adresse": "1 rue d'aubigné",
-                    "expediteur.civilite": "M",
-                    "expediteur.prenom": "Fanch",
-                    "expediteur.nom": "Cavellec",
-                    "expediteur.email": "contact@quadratik.fr",
-                    "expediteur.tel": "0631927481",
-                    "expediteur.societe": "Quadratik.fr"
-                  }
+      const expediteur = {
+        "expediteur.pays": "FR",
+        "expediteur.code_postal": "35440",
+        "expediteur.ville": "Feins",
+        "expediteur.type": "entreprise",
+        "expediteur.adresse": "1 rue d'aubigné",
+        "expediteur.civilite": "M",
+        "expediteur.prenom": "Fanch",
+        "expediteur.nom": "Cavellec",
+        "expediteur.email": "contact@quadratik.fr",
+        "expediteur.tel": "0631927481",
+        "expediteur.societe": "Quadratik.fr"
+      }
 
-                  const destinataire = {
-                    "destinataire.pays": "FR",
-                    "destinataire.code_postal": order.livraison.livr_postal,
-                    "destinataire.ville": order.livraison.livr_ville,
-                    "destinataire.type": "particulier",
-                    "destinataire.adresse": order.livraison.livr_adresse,
-                    "destinataire.civilite": "M",
-                    "destinataire.prenom": order.user.prenom,
-                    "destinataire.nom": order.user.nom,
-                    "destinataire.email": order.user.mail,
-                    "destinataire.tel": order.user.telephone
-                  }
+      const destinataire = {
+        "destinataire.pays": "FR",
+        "destinataire.code_postal": order.livraison.livr_postal,
+        "destinataire.ville": order.livraison.livr_ville,
+        "destinataire.type": "particulier",
+        "destinataire.adresse": order.livraison.livr_adresse,
+        "destinataire.civilite": "M",
+        "destinataire.prenom": order.user.prenom,
+        "destinataire.nom": order.user.nom,
+        "destinataire.email": order.user.mail,
+        "destinataire.tel": order.user.telephone
+      }
 
-                  const options = {
-                    "depot.pointrelais": "SOGP-O2187",
-                    "retrait.pointrelais": order.livraison.livr_mode,
-                    "assurance.selected": "false",
-                    "platform": "api",
-                    "collecte": time,
-                    "delai": "aucun",
-                    "operateur": order.livraison.operateur,
-                    "service": order.livraison.livr_service,
-                    "code_contenu": 10120
-                  }
+      const options = {
+        "depot.pointrelais": "SOGP-O2187",
+        "retrait.pointrelais": order.livraison.livr_mode,
+        "assurance.selected": "false",
+        "platform": "api",
+        "collecte": time,
+        "delai": "aucun",
+        "operateur": order.livraison.operateur,
+        "service": order.livraison.livr_service,
+        "code_contenu": 10120
+      }
 
-                  let envoi = {
-                    ...expediteur,
-                    ...destinataire,
-                    ...listeColis,
-                    ...options
-                  };
+      let envoi = {
+        ...expediteur,
+        ...destinataire,
+        ...listeColis,
+        ...options
+      };
 
-                  res.json(envoi);
-                  logger.debug("Demande de création d'étiquette suivante: %o", envoi);
-                })
+      res.json(envoi);
+      logger.debug("Demande de création d'étiquette suivante: %o", envoi);
+    })
     .catch(error => logger.error('[Boxtal Etiquette] Erreur: %o', error));
 
 
 
 });
 
-router.post('/order', function(req, res, next) {
+router.post('/order/:id', function(req, res, next) {
+  console.log(req.params.id);
   let recherche = new URLSearchParams(req.body);
   var url = new URL(boxtalUrl + 'order')
   url.search = recherche;
@@ -149,6 +183,7 @@ router.post('/order', function(req, res, next) {
           res.json(err);
           logger.error("[Boxtal Order] Erreur lors de la commande: %o", err);
         } else {
+          inDb.saveOrderColis(result, req.params.id);
           res.json(result);
           logger.info("[Boxtal Order] Commande validée: %s", result.order.shipment[0].reference);
         }

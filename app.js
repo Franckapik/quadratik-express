@@ -71,6 +71,9 @@ app.get('/callback', (req, res) => {
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
+app.get('/resetsession', (req, res) => {
+  res.send('reset');
+});
 
 
 

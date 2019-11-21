@@ -8,6 +8,7 @@ import Mail from './Mail';
 import Newsletter from './Newsletter';
 import Questionnaire from './Questionnaire';
 import Menu from '../Menu';
+import Etiquette from '../Admin/Etiquette';
 
 class PanelInfo extends Component {
   render() {
@@ -28,6 +29,7 @@ class PanelInfo extends Component {
         {homeStore.content === 'Newsletter' ? <Newsletter></Newsletter> : null}
         {homeStore.content === 'Questionnaire' ? <Questionnaire></Questionnaire> : null}
         {homeStore.content === 'Menu' ? <Menu></Menu> : null}
+        {homeStore.content === 'Etiquette' ? <Etiquette></Etiquette> : null}
         </div>
 
 

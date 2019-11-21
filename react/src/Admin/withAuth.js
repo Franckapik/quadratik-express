@@ -16,7 +16,11 @@ export default function withAuth(ComponentToProtect) {  return class extends Com
       client.checkTokenFetch(adminToken)
       .then(res => {
           if (!res.message) {
-            this.setState({ loading: false });
+            this.setState({
+              loading: false,
+              userid: res.userid
+             });
+            console.log(res);
           } else {
             const error = new Error(res.error);
             throw error;
@@ -35,7 +39,7 @@ export default function withAuth(ComponentToProtect) {  return class extends Com
       }
       return (
         <React.Fragment>
-          <ComponentToProtect {...this.props} />
+          <ComponentToProtect userid={this.state.userid} />
         </React.Fragment>
       );
     }

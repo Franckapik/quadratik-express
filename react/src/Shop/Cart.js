@@ -6,24 +6,25 @@ class Cart extends Component {
 
   render() {
     return (<div className="cart box_light1 center fullsize">
+    <div className="table ">
+  <ul>
+    <li className="table-header">
+      <div className="col w10">Diffuseur</div>
+      <div className="col w25">Nom</div>
+      <div className="col w20">Quantité</div>
+        {
+          this.props.prices
+            ?<><div className="col w10">Articles</div>
+      <div className="col w20">Frais de ports</div>
+      <div className="col w20">Sous-total</div></>:null}
+        {
+          this.props.control
+            ? <div className="col w40">Ajuster</div>: null
+        }
+    </li>
       {
         shopStore.cart.map((p, i) => {
-          return <div className="table ">
-        <ul>
-          <li className="table-header">
-            <div className="col w10">Diffuseur</div>
-            <div className="col w25">Nom</div>
-            <div className="col w20">Quantité</div>
-              {
-                this.props.prices
-                  ?<><div className="col w10">Articles</div>
-            <div className="col w20">Frais de ports</div>
-            <div className="col w20">Sous-total</div></>:null}
-              {
-                this.props.control
-                  ? <div className="col w40">Ajuster</div>: null
-              }
-          </li>
+          return <>
           <li className="table-row">
             <div className="col w10" data-label="Diffuseur"><img src={p.produit.srcImg} alt='Aperçu du produit'/></div>
             <div className="col w25" data-label="Nom">{p.produit.nom}</div>
@@ -47,11 +48,13 @@ class Cart extends Component {
                   </div>
                 : null
             }
-          </li>
-        </ul>
-      </div>
+          </li></>
+
     })
   }
+</ul>
+</div>
+
 
     </div>)
 

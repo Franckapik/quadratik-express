@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import client from '../Store/client';
+import homeStore from '../Store/homeStore'
+
 
 class Etiquette extends Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class Etiquette extends Component {
   }
 
   handleSubmit(event) {
-    this.orderEtiquette();
+    this.orderEtiquette(this.props.id);
     event.preventDefault();
   }
 
@@ -35,6 +37,8 @@ class Etiquette extends Component {
         width: size
       }
     })
+
+
   }
 
   createEtiquette(id) {
@@ -48,9 +52,9 @@ class Etiquette extends Component {
     });
   }
 
-  orderEtiquette() {
+  orderEtiquette(id) {
     const values = this.state.etiquette;
-    fetch('/boxtal/order', {
+    fetch('/boxtal/order/'+id, {
       credentials: 'include',
       method: 'post',
       body: JSON.stringify(values),
@@ -67,9 +71,10 @@ class Etiquette extends Component {
 
   render() {
     return (<div>
-      <i className="fas fa-truck cursor" onClick={() => {
-          this.createEtiquette(this.props.id);
-        }}> Expedition</i>
+
+      <i className="fas fa-truck cursor" onClick={() =>
+          this.createEtiquette(this.props.id)
+        }> Expedition</i>
       <div className="flex_r flex_w " style={this.state.sidewidth}>
         <div className='slide_close cursor' onClick={() => this.changeWidth(0)}>
           <i className="fas fa-times"></i>

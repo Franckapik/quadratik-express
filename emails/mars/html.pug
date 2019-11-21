@@ -1,92 +1,70 @@
-link(rel="stylesheet",href="/styles/App.scss")
-link(rel="stylesheet",href="/styles/basic.scss")
-link(rel="stylesheet",href="/styles/mixins.scss")
-link(rel="stylesheet",href="/styles/colors.scss")
-link(rel="stylesheet",href="/styles/template.scss")
-
+link(rel="stylesheet",href="styles/app.css")
   
 body#mail
   p(style='line-height: 14px;font-size: 12px;color: #CCCCCC;text-align:left;') 
-    | Quadratik.fr 
+    a(href='https://quadratik.fr')| Quadratik.fr 
     span(style='float:right;') 
-      | Traitement acoustique de votre studio.
-
-
-
-  p
-    img(style='vertical-align: middle;margin-left: 20px; width:80px', src='logo_black.svg', alt='Logo Quadratik.fr', width='150', height='149')
-    span(style='padding:30px;') 
-      a(href='https://quadratik.fr/shop') Boutique
-    span(style='padding:10px;') 
-      a(href='https://quadratik.fr/guide') Guide
-
+      | Traitement acoustique de votre studio. 
 
   .container
     span.title Du changement pour votre studio !
     img.header(src='../public/images/mails/atelier.jpg', alt='Logo Quadratik.fr')
 
-  .flex_c.w50.center
+  .flex_c.w80.center
     h3 Nous avons bien reçu votre commande
     p(style='line-height: 14px;font-size: 12px;text-align:left;') 
       | L'acoustique d'un studio est un élément incontournable pour un espace dédié à la production sonore. Vous avez réalisé un choix essentiel à l'attention de vos oreilles!​
-    button.button_dot.button_accent(style='background-color:#FAA912;color:white')
-      | Suivre votre colis  
+    button(style='margin-bottom: 10px').center
+      | Suivre votre colis 
       
-  .mail_order_container.flex_r
-    .col_title.red
-      h4| En resume
-      .green Commande #
-      .blue Date
-      .blue Total
-    .col_title.green 
-      h4| Livraison
-      
-  table
-      tr
-        th En resumé
-        th Livraison
-      tr
-        td 
-          table
-            tr Commande #  
-            tr Date    
-            tr Total
+  .filter 
+    i.fab.fa-accusoft
+  
+  
+  .table
+    ul
+      li.table-header.center
+        .col.w50.left Commande de Mr #{user.nom} #{user.prenom}
+        .col.w50.left Livraison avec #{livraison.livr_service}
+      li.table_row
+        .col.w50.flex_c
+          p Commande # #{paiement.transactionid}
+          p Date #{paiement.date}
+          p Total #{paiement.amount} €
+        .col.w50.flex_c
+          p #{livraison.livr_nom}
+          p #{livraison.livr_adresse}
+          p #{livraison.livr_postal} #{livraison.livr_ville}
 
-            
-        td 
-          table
-            tr
-              td Andry Petrin
-            tr
-              td 78 Somewhere St
-            tr
-              td Somewhere, Canada 9974
-  table
-            tr
-              th Sous-total (x articles)
-              th x euros
-            tr
-              td Frais de ports
-              td x euros
-            tr
-              td Réduction
-              td aucune
-            tr
-              td Total de la commande
-              td x euros
-                
-  p
-  |Contactez-nous
-  p
-  |Nous préparons votre commande tout en restant à votre écoute. Besoin de conseils? Des recommandations? Partagez-nous vos attentes!
-  p      
-  | Nous vous remercions pour votre confiance accordée à Quadratik.fr !
-  br
-  | A bientôt !
-  br
-  | ​
-  br
-  | L'équipe de Quadratik.fr.
+  .table
+    ul
+      li.table-header.center
+        .col.w30 Votre colis
+        .col.w30 Quantité
+        .col.w30 Sous total
+        
+      each val in cart
+        li.table_row
+          .col.w30.flex_r= val.name
+          .col.w30.flex_r=val.quantite
+          .col.w30.flex_r=val.sous_total + '€' 
+  
+  .flex_c.w80.center
+    button(style='margin-bottom: 10px').center
+      | Retrouver les détails en Boutique
+          
+  
+p
+|Nous préparons votre commande tout en restant à votre écoute. Besoin de conseils et recommandations? Partagez-nous vos attentes ou consulter notre 
+a(href='https://quadratik.fr/guide') Guide!
+p      
+| Nous vous remercions pour votre confiance accordée à Quadratik.fr
+br
+| A bientôt !
+br
+| ​
+br
+| L'équipe de Quadratik.fr
 p
   span(style='font-size: 8pt;')
-    | Cet e-mail est un accusé de réception de votre commande et vaut confirmation du contrat d'achat. Un e-mail confirmant l'expédition de vos articles vous sera envoyé prochainement.
+    | Cet e-mail est un accusé de réception de votre commande et vaut confirmation du contrat d'achat.

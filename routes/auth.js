@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const fromDb = require('./getFromDB');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const logger = require('../log/logger');
 const config = require('../config'); // require environment's settings from knexfile
 

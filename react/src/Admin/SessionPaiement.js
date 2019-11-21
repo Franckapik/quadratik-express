@@ -38,6 +38,8 @@ class SessionPaiement extends Component {
                 {a.status}</li>
               <li key={'Paiement_transactionid'}>
                 {a.transactionid}</li>
+              <li key={'Paiement_date'}>
+                {a.date}</li>
 
             </ul>
             : null

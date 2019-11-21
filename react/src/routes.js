@@ -16,6 +16,7 @@ import NotFoundPage from './404';
 import Login from './Admin/Login';
 import withAuth from './Admin/withAuth';
 import InternalServerError from './500';
+import ClientDashboard from './Admin/ClientDashboard';
 
 import history from './History';
 
@@ -35,6 +36,7 @@ export default function MainRouter() {
       <Route path="/commande" component={Commande}/>
       <Route path="/admin" component={withAuth(Admin)} />
       <Route path="/login" component={Login} />
+      <Route path="/dashboard" component={withAuth(ClientDashboard)} />
       <Route path="/404" component={NotFoundPage} />
       <Route path="/500" component={InternalServerError} />
       <Route component={NotFoundPage} /></Switch>

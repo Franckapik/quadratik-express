@@ -85,16 +85,6 @@ footer {
   justify-content: flex-start;
   background: $whitedark0;
 
-  .details_client {
-    justify-content: flex-start;
-    align-items: baseline;
-    max-width: 72vw;
-  }
-
-  .details_client ul {
-    width: 20vw;
-  }
-
   .contenu {
     width: 80%;
   }
@@ -770,6 +760,10 @@ div#logo_container {
 #mail {
   margin: 0;
   padding: 0;
+}
+
+#mail a {
+  color: $accent2;
 }
 
 #mail .container {

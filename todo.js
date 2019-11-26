@@ -1,26 +1,27 @@
-Faire un reset db via omnidb puis faire un enregistremenrt clean de nouveau via le site.
-
-Resoudre l'insertion de la date dans la mail + ajout de la fonctionalité de suivi simplifiée.
-
-la fonction router.get resetsession dans SaveInDB permets de faire une destruction de session suite à une commande pour eviter une accumulation de panier dans l'admin et les mails.
-Est-elle eeffective après une commande ?
-
-Process de commande pas tres jolis
-
-Trouver un moyen de bouger le slider home + refaire la section valeurs!
-
 la page config doit ne plus exister ou etre sous forme d'env de variable ou autre methode. possibilité d'un rappel des variables demandées lors du npm start (et noter les mdp sur une feuille dans le bureau)
 
-Réduire l'ombre des diffuseurs sur le mur .
 
-COmprendre le probleme d'installation d ebcrypt et utiliser plutot bcrypt-nodejs
-
-
-Mettre le site en production !!
+COnnection psql a configurer
 
 --version v4-
 
+Quadralab avec un lien vers la boutique
+
+Rétablir le filtre de la page shop
+
+Confirmation automatique de la commande.
+
+Remettre la carte leaflet en choix de point relais pour le client
+
+le bordereau du suivi est-il l'etiquette a imprimer et coller ?
+
 être prévenu d'une commande avec le mail de succes.
+
+facebook messenger intégré a la page accueil
+
+faire avec email template tous les autres mails.
+
+refaire la section valeurs
 
 Retirer le zoom et placer le png en icone avec les images de bonnes taille.
 

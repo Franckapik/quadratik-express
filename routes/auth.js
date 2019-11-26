@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const logger = require('../log/logger');
 const config = require('../config'); // require environment's settings from knexfile
-
 const secret = config.jwtSecret;
 
 
@@ -20,7 +19,7 @@ router.post('/login', (req, res, next) => {
             const userData = adminUser[0];
             jwt.sign({
               userData
-            }, 'mycatiscuteandyoudontcare', {
+            }, secret, {
               expiresIn: '30m'
             }, (err, token) => {
               res.json({

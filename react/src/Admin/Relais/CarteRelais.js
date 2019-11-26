@@ -6,7 +6,7 @@ import {OpenStreetMapProvider} from 'leaflet-geosearch';
 const provider = new OpenStreetMapProvider();
 
 const iconPerson = new L.Icon({
-  iconUrl: require('./carte/markerhome.svg'),
+  iconUrl: require('./carte/markerhome.svg'), 
   iconSize: [
     60, 95
   ],
@@ -61,7 +61,7 @@ class CarteRelais extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="map_container">
     { this.props.admin? <>{this.state.geoloc}</> : null}
       <LeafletMap center={this.state.center} zoom={13} maxZoom={18} attributionControl={true} zoomControl={true} doubleClickZoom={true} scrollWheelZoom={true} dragging={true} animate={true} easeLinearity={0.35}>
       <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>

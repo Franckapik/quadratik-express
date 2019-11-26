@@ -72,6 +72,7 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
 app.get('/resetsession', (req, res) => {
+  saveInDB.resetsession(req);
   res.send('reset');
 });
 

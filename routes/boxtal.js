@@ -255,15 +255,13 @@ router.get('/cotation', function(req, res, next) {
     })
     .then(response => response.text())
     .then(data => {
-      console.log('cotation', data);
-      parseString(data, function(result, err) {
+      parseString(data, function(err, result) {
         if (err) {
           res.json(err);
           logger.error("[Boxtal Relais] Erreur lors de la recherche relais: %o", err);
         } else {
           res.json(result);
           logger.debug("[Boxtal Relais] Relais listés: %o", result.cotation.shipment[0].offer[0].mandatory_informations[0].parameter[13].type[0].enum);
-
         }
       });
     })

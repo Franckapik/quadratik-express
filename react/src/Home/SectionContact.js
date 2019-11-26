@@ -17,7 +17,7 @@ export default function SectionContact() {
       <div className="box_light1 flex_r fullsize flex_baseline ">
         <div className="box_light1 flex_c ">
 
-          <div className="box_light2 box_light1 cursor contact_box center givemespace ">
+          <div className="box_dark4 cursor contact_box center givemespace ">
             <h3>Téléphone</h3>
             <hr></hr>
             <p className="e_box">
@@ -28,7 +28,7 @@ export default function SectionContact() {
             </p>
           </div>
 
-          <div className="box_light2  cursor contact_box center givemespace">
+          <div className="box_dark4  cursor contact_box center givemespace">
             <h3>Mail</h3>
             <hr></hr>
             <p className="e_box" onClick={() => {
@@ -42,7 +42,7 @@ export default function SectionContact() {
         </div>
 
         <div className="box_light1 flex_c ">
-          <div className="box_light2 mobile_hide cursor contact_box center givemespace">
+          <div className="box_dark4 mobile_hide cursor contact_box center givemespace">
             <h3>Newsletter</h3>
             <hr></hr>
             <p className="e_box" onClick={() => {
@@ -55,7 +55,7 @@ export default function SectionContact() {
               en un seul mail mensuel</p>
           </div>
 
-          <div className="box_light2 mobile_hide cursor contact_box center givemespace">
+          <div className="box_dark4 mobile_hide cursor contact_box center givemespace">
             <h3>Votre studio</h3>
             <hr></hr>
             <p className="e_box" onClick={() => {
@@ -68,7 +68,7 @@ export default function SectionContact() {
           </div>
 
         </div>
-        <div className="box_light2 contact_box center givemespace">
+        <div className="box_dark4 contact_box center givemespace">
           <h3>Atelier</h3>
           <hr></hr>
           <p className="e_box">

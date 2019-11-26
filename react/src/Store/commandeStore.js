@@ -3,10 +3,12 @@ import {
 } from 'react-easy-state'
 
 const commandeStore = store({
-  display: 'enregistrement',
+  display: 'commande',
   status: '20vw',
   livraison: 'domicile',
-  reload: true
+  reload: true,
+  cotation: true,
+  relais_selected: ""
 })
 
 export default store(commandeStore);

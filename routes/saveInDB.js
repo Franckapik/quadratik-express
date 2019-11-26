@@ -73,10 +73,10 @@ const saveOrderColis = (result, sessid) => {
     .insert({
       userid: sessid,
       reference: result.order.shipment[0].reference[0],
-      collection_date:result.order.shipment[0].collection_date,
-      prix_boxtal:result.order.shipment[0].offer[0].price[0]['tax-inclusive'][0],
-      livraison_date:result.order.shipment[0].offer[0].delivery[0].date[0],
-      service:result.order.shipment[0].offer[0].operator[0]['label'][0],
+      collection_date: result.order.shipment[0].collection_date,
+      prix_boxtal: result.order.shipment[0].offer[0].price[0]['tax-inclusive'][0],
+      livraison_date: result.order.shipment[0].offer[0].delivery[0].date[0],
+      service: result.order.shipment[0].offer[0].operator[0]['label'][0],
       date_commande: Number(new Date())
 
     })
@@ -98,8 +98,10 @@ router.post('/savesessioncart', function(req, res, next) {
 router.get('/resetsession', function(req, res, next) {
   req.session.destroy(function(err) {
     err ? logger.error('[Session] Erreur de suppression de session : %s', err) : logger.debug('[Session] Suppression effectuée');
-})
-  res.end();
+    console.log(req.session);
+    res.end();
+  })
+
 });
 
 
@@ -160,7 +162,15 @@ const saveCommandeInDB = (result, sessid) => {
     }).catch((error) => logger.error('[Braintree db] Transaction non enregistrée %s', error));
 };
 
+const resetsession = (req) => {
+  console.log(req.session.id);
+  req.session.destroy(function(err) {
+    err ? logger.error('[Session] Erreur de suppression de session : %s', err) : logger.debug('[Session] Suppression effectuée');
+  })
+}
+
 module.exports = router;
 module.exports.saveCommandeInDB = saveCommandeInDB;
 module.exports.saveOrderColis = saveOrderColis;
 module.exports.sessionStore = sessionStore;
+module.exports.resetsession = resetsession;

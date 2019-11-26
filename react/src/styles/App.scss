@@ -102,15 +102,6 @@ footer {
       cursor: pointer;
     }
 
-    .admin_form_relais {
-      background: cornsilk;
-      padding: 1em;
-      margin: 1em 0;
-    }
-
-    .admin_form_button {
-      @include button($bg:$accent2);
-    }
   }
 
   .modele_box {
@@ -131,6 +122,13 @@ footer {
     align-items: baseline;
   }
 }
+
+.map_container {
+  display: block;
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
 /* HOME */
 .letter_special {
   padding: 1.3vh;
@@ -147,19 +145,11 @@ footer {
 }
 
 .relais_liste {
-  overflow-y: scroll;
-  max-height: 400px;
-  min-width: 25em;
+  overflow : auto;
+  position: relative;
+  max-height: 300px;
 }
 
-.relais_liste .package li {
-  padding: 1.5em;
-  border: 1px solid black;
-}
-
-.relais_liste .package {
-  margin-bottom: 20px;
-}
 /*Presentation*/
 #presentation {
   .list-number {
@@ -200,7 +190,7 @@ footer {
   }
 
   .quadralab_diffuseur {
-    width: 28vw;
+    width: 24vw;
     position: relative;
     right: 66vw;
   }
@@ -234,13 +224,14 @@ footer {
   .valeurs_text {
     position: relative;
     @include texte2;
-    width: 15em;
+    width: 20em;
     text-align: left;
     margin: 3em;
+    font-size: 1.5em;
   }
 
   .valeurs_img_atelier {
-    height: 30vw;
+    height: 22vw;
     border: solid 2px white;
     margin: 0;
   }
@@ -378,7 +369,7 @@ footer {
   }
 
   .produit_img {
-    filter: drop-shadow(0 0 8px rgba($dark, .7)) grayscale(0.1) contrast(0.9);
+    filter: drop-shadow(0 0 8px rgba($dark, .5)) grayscale(0.1) contrast(0.9);
     padding: 6em 0 12em;
   }
 
@@ -479,10 +470,10 @@ footer {
   color: $darklight;
   position: relative;
   background-color: $whitedark0;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 
   li {
-    padding: 1.2vw;
+    padding: 1vw;
     cursor: pointer;
   }
 }
@@ -672,17 +663,13 @@ footer {
 }
 /* Statut commande */
 .status_container {
-  background-color: $whitedark0;
-  border-radius: 2px;
-
-  .commande_status {
-    height: 7px;
-    background-color: $accent2;
+  .status_activated {
+    @include box($accent2, white, 5px, 2px, 0);
   }
 
-  .status_activated {
+  .commande_status {
     background-color: $accent2;
-    color: $white;
+    height: 10px;
   }
 }
 /* Quadralab */

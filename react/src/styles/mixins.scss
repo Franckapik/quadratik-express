@@ -41,17 +41,33 @@
   line-height: $h;
 }
 @mixin form() {
-max-width: 40%;
+  max-width: 600px;
 
   label {
     text-align: left;
-    margin-top: 2em;
+    margin: 2em 2em 0 0;
 
     i {
       margin-right: 1em;
       margin-left: 20px;
     }
   }
+
+  input[type="submit"] {
+    cursor: pointer;
+    max-width: 180px;
+    background-color: $accent2;
+    color: $white;
+  }
+
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
+  input {
+    margin: 1em;
+  }
+
   button {
     margin: auto;
   }
@@ -70,15 +86,16 @@ max-width: 40%;
   letter-spacing: $ls;
   line-height: $lh;
 }
-@mixin table {
-  max-width: 1000px;
+@mixin table($j: space-between,$m:1000px) {
+  max-width: $m;
 
   li {
     border-radius: 3px;
     padding: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: $j;
     margin-bottom: 25px;
+    align-items: center;
   }
 
   .table-header {
@@ -91,10 +108,8 @@ max-width: 40%;
     background-color: $white;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
   }
-  
 }
-
-@mixin input ($b:$main,$p:2px,$m:5px 5px 15px 0px,$s:1em,$w:100%) {
+@mixin input ($b:$whitedark,$p:2px,$m:5px 5px 15px 0px,$s:1em,$w:100%) {
   background-color: $b;
   padding: $p;
   margin: $m;

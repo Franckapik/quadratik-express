@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import client from '../../Store/client';
 import {view} from 'react-easy-state';
-import client from '../Store/client';
+import commandeStore from '../../Store/commandeStore';
 
-class RelaisList extends Component {
+class Relais extends Component {
   constructor(props) {
     super(props);
     this.state = {
       relais: null,
-      showHoraires: false
+      showHoraires: false,
     };
   }
 
@@ -28,45 +29,23 @@ class RelaisList extends Component {
     });
   }
 
-  handleClick(code) {
-    this.getRelaisInfo(code.p)
-  }
-
-  handleChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({[name]: value});
-
-  }
-
-  handleSubmit(event) {
-    this.getCotation();
-    event.preventDefault();
-  }
-
-
-
   render() {
+
     var relaisColor = {
       backgroundColor: 'white'
     }
 
-    if (this.props.selected === this.state.relais) {
+    if (this.props.relaisSelected === this.state.relais) {
 		relaisColor = {
 			backgroundColor: 'crimson'
 		}
 	}
 
     return (
-
-
-
       <div>
       {
         this.state.relais
-          ? <ul key='relais' className="relais_box box_light1 givemespace" style={relaisColor} onClick={() => this.props.setcoords(this.state.relais.latitude[0], this.state.relais.longitude[0], this.state.relais)}>
+          ? <ul key='relais' className="relais_box box_light1 givemespace" style={relaisColor} onClick={() => {this.props.setRelais(this.state.relais)}}>
               <li><h4>{this.state.relais.name[0]}</h4></li>
               <li>{this.state.relais.address[0]}</li>
               <li>
@@ -108,4 +87,4 @@ class RelaisList extends Component {
   }
 }
 
-export default view(RelaisList);
+export default view(Relais);

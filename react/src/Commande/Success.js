@@ -19,11 +19,12 @@ class Paiement extends React.Component {
         commande: data
       });
     });
+    shopStore.resetCart();
   }
 
   render() {
     const c = this.state.commande;
-    shopStore.resetCart();
+
     return ( this.state.commande ?
       <div className="center">
             <h1>Félicitation, votre transaction a bien été enregistrée !</h1>

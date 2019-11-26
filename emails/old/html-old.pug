@@ -1,26 +1,27 @@
 link(rel="stylesheet",href="styles/app.css")
-  
+
 body#mail
-  p(style='line-height: 14px;font-size: 12px;color: #CCCCCC;text-align:left;') 
+  p(style='line-height: 14px;font-size: 12px;color: grey;text-align:left;') 
     a(href='https://quadratik.fr')| Quadratik.fr 
     span(style='float:right;') 
       | Traitement acoustique de votre studio. 
 
   .container
     span.title Du changement pour votre studio !
-    img.header(src='../public/images/mails/atelier.jpg', alt='Logo Quadratik.fr')
+    img.header(src="https://www.quadratik.fr/images/mails/atelier.jpg", alt='Logo Quadratik.fr' style='width:100%')
 
   .flex_c.w80.center
     h3 Nous avons bien reçu votre commande
     p(style='line-height: 14px;font-size: 12px;text-align:left;') 
       | L'acoustique d'un studio est un élément incontournable pour un espace dédié à la production sonore. Vous avez réalisé un choix essentiel à l'attention de vos oreilles!​
-    button(style='margin-bottom: 10px').center
-      | Suivre votre colis 
-      
+    a(href='https://www.quadratik.fr/suivi/'+`${user.userid}`)
+      button(style='margin-bottom: 10px').center
+        | Suivre votre colis 
+
   .filter 
     i.fab.fa-accusoft
-  
-  
+
+
   .table
     ul
       li.table-header.center
@@ -42,18 +43,19 @@ body#mail
         .col.w30 Votre colis
         .col.w30 Quantité
         .col.w30 Sous total
-        
+
       each val in cart
         li.table_row
           .col.w30.flex_r= val.name
           .col.w30.flex_r=val.quantite
           .col.w30.flex_r=val.sous_total + '€' 
-  
+
   .flex_c.w80.center
-    button(style='margin-bottom: 10px').center
-      | Retrouver les détails en Boutique
-          
-  
+    a(href='https://www.quadratik.fr/shop')
+      button(style='margin-bottom: 10px').center
+        | Retrouver les détails en Boutique
+
+
 p
 |Nous préparons votre commande tout en restant à votre écoute. Besoin de conseils et recommandations? Partagez-nous vos attentes ou consulter notre 
 a(href='https://quadratik.fr/guide') Guide!

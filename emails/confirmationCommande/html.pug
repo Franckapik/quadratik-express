@@ -1,0 +1,80 @@
+style.
+  @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+font(style='font-family: Roboto, Arial, sans-serif;')
+  table(cellspacing='0' cellpadding='0' border='0' width='600px')
+    tr
+      td
+        table(cellspacing='0' cellpadding='10px' border='0' width='550px')
+          tr
+            td(align='left')
+              a(href='https://www.quadratik.fr' style='text-decoration: none; font-size: 0.8em; font-color: grey;') Quadratik.fr 
+            td(align='right')
+              a(href='https://www.quadratik.fr' style='text-decoration: none; font-size: 0.8em; font-color: grey;') Maitriser l&apos;acoustique de votre studio
+    tr(bgcolor='#252525')
+      td(align='center' height='120px')
+        p
+          font(color='#00AB9C' size='2')
+            strong En route vers
+        p
+          font(color='#00AB9C' size='5' style='font-family: Roboto, Arial, sans-serif; text-transform: uppercase;') Une acoustique 
+          font(color='#DC143C' size='5' style='font-family: Roboto, Arial, sans-serif; text-transform: uppercase;') de qualité
+    tr(bgcolor='#252525')
+      td(align='center' height='50px')
+        font(color='white' size='3') Nous avons bien reçu votre commande!
+    tr(bgcolor='#FFFFFF')
+      td(align='center' height='80px')
+        h4 Commande de Mr #{user.nom} #{user.prenom}
+        h5 Reference : #{paiement.transactionid} | Date #{paiement.date}
+    tr
+      td
+        table(cellspacing='0px' cellpadding='10px' border='0' width='600px')
+          tr(bgcolor="#00AB9C")
+            td(align='center')
+              | Votre colis
+            td(align='center')
+              | Quantit&eacute;
+            td(align='center')
+              | Sous total
+          
+          each val in cart
+            tr
+              td(align='center')=val.name
+              td(align='center')=val.quantite
+              td(align='center')=val.sous_total
+          
+    tr
+      td(align='center' height='50px')
+        | Total #{paiement.amount} €
+    tr
+      td(align='center')
+        hr
+        h4 Livraison avec #{livraison.livr_service}
+        p #{livraison.livr_nom}
+        p #{livraison.livr_adresse}
+        p #{livraison.livr_postal} #{livraison.livr_ville}
+    tr
+      td(style='border-radius: 5px;' bgcolor='#FAA912' align='center' width='80px')
+        a(href='https://www.quadratik.fr/suivi/'+`${user.userid}` target='_blank' style='padding: 8px 12px; font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;')
+          | Suivre mon colis
+
+    tr
+      td(align='center')
+        hr
+        h4(style="color:#00AB9C;") Besoin de conseils?
+        p(align='left') Partagez-nous vos attentes ou suivez 
+          a(href='https://www.quadratik.fr/guide' style='text-decoration: none; font-color:#DC143C;')  notre guide sur l'acoustique!
+        p(align='left') Contactez-nous par mail: 
+          strong atelier@quadratik.fr
+        p(align='left') ou appelez directement l'atelier au 
+          strong +33631927481
+        p(align='left' style='font-size:10px') Lundi au Vendredi 8h30 - 18h30
+        
+          table(border='0' bgcolor='#00AB9C' cellpadding='20px')
+            tr
+              td(align='center' style='color:white;')
+                p Entreprise Quadratik.fr
+                p SIRET 83529797900014
+                | rue d'Aubigné, 35440 Feins
+
+        p(style='font-size:10px') Cet e-mail est un accusé de réception de votre commande et vaut confirmation du contrat d'achat.

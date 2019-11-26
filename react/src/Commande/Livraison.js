@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../styles/App.scss';
 import LivraisonAdresse from './LivraisonAdresse';
 import LivraisonDomicile from './LivraisonDomicile';
-import AdminRelais from '../Admin/AdminRelais';
+import LivraisonRelais from './LivraisonRelais';
 
 import {view} from 'react-easy-state';
 
@@ -19,28 +19,23 @@ class Livraison extends Component {
   };
 
   render() {
-    return (<div>
-
-      <div>
-
-        <h1 className="center">Livraison</h1>
-          <h3>Choisissez votre point de livraison</h3>
-        <div className="flex_r givemespace">
-          <div className="box_light2">
+    return (<div className="flex_c fullsize">
+        <div className="flex_r givemespace center">
+          <div className="box_dark2">
             <label>
-              <input type="radio" name="react-tips" value="domicile" checked={this.state.selectedOption === "domicile"} className="form-check-input" onChange={this.handleOptionChange}/>
+              <input type="radio" name="react-tips" value="domicile" checked={this.state.selectedOption === "domicile"}  onChange={this.handleOptionChange}/>
               A Domicile
             </label>
           </div>
 
-          <div className="box_light2">
+          <div className="box_dark2">
             <label>
-              <input type="radio" name="react-tips" value="relais" checked={this.state.selectedOption === "relais"} className="form-check-input" onChange={this.handleOptionChange}/>
+              <input type="radio" name="react-tips" value="relais" checked={this.state.selectedOption === "relais"}  onChange={this.handleOptionChange}/>
               En Point Relais
             </label>
           </div>
 
-          <div className="box_light2">
+          <div className="box_dark2">
             <label>
               <input type="radio" name="react-tips" value="nouvelleadresse" checked={this.state.selectedOption === "nouvelleadresse"} onChange={this.handleOptionChange}/>
               Nouvelle Adresse
@@ -59,10 +54,10 @@ class Livraison extends Component {
         }
         {
           this.state.selectedOption === "relais"
-            ? <AdminRelais></AdminRelais>
+            ? <LivraisonRelais></LivraisonRelais>
             : null
         }
-      </div>
+
 
     </div>)
   }

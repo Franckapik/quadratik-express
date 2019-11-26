@@ -1,0 +1,47 @@
+h3 Bonjour #{user.nom} #{user.prenom}
+
+p Nous avons bien reçu votre commande et vous remercions pour votre confiance!
+
+
+hr 
+
+h4 Commande de Mr #{user.nom} #{user.prenom} | Reference : #{paiement.transactionid} | p Date #{paiement.date}
+
+ul
+  each val in cart
+    li
+      strong=val.name + '|'
+      strong=val.quantite + '|'
+      strong=val.sous_total + '€' 
+
+p Total #{paiement.amount} €
+
+hr
+
+h4 Livraison avec #{livraison.livr_service}
+
+p #{livraison.livr_nom}
+p #{livraison.livr_adresse}
+p #{livraison.livr_postal} #{livraison.livr_ville}
+            
+p Vous pouvez suivre votre colis à l'adresse suivante : https://www.quadratik.fr/suivi/#{user.userid}
+
+hr
+  
+h4 Besoin de conseils?
+p Partagez-nous vos attentes ou suivez notre guide sur l'acoustique!
+
+
+p
+| Contactez-nous par mail atelier@quadratik.fr
+| ou appelez directement l'atelier au +33631927481
+| Lundi au Vendredi 8:30h -18:30h
+
+
+h4 Entreprise Quadratik.fr
+
+p SIRET 83529797900014
+p rue d'Aubigné, 35440 Feins
+
+p Quadratik.fr | Maitrisez l'acoustique de votre studio
+| Cet e-mail est un accusé de réception de votre commande et vaut confirmation du contrat d'achat.

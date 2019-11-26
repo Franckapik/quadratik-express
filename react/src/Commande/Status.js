@@ -17,7 +17,7 @@ class Status extends Component {
       width: commandeStore.status
     }
 
-    return (<div className="status_container">
+    return (<div className="status_container filter">
       <ul className="flex_r center">
         <li>
           <p className={this.props.statut === 'enregistrement' ? 'status_activated' : null}>1</p>Enregistrement</li>

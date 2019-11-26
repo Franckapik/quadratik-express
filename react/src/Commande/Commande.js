@@ -17,8 +17,8 @@ class Commande extends Component {
   render() {
     return (<div>
       <Status statut = {commandeStore.display}></Status>
-      <div className='flex_r'>
-        <div>
+      <div className='flex_r fullsize'>
+
           {
             commandeStore.display === 'enregistrement'
               ? <Enregistrement></Enregistrement>
@@ -39,8 +39,6 @@ class Commande extends Component {
               ? <Success></Success>
               : null
           }
-        </div>
-
       </div>
     </div>)
   }

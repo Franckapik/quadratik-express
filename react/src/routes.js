@@ -17,6 +17,7 @@ import Login from './Admin/Login';
 import withAuth from './Admin/withAuth';
 import InternalServerError from './500';
 import ClientDashboard from './Admin/ClientDashboard';
+import SuiviSimple from './Admin/SuiviSimple';
 
 import history from './History';
 
@@ -39,6 +40,7 @@ export default function MainRouter() {
       <Route path="/dashboard" component={withAuth(ClientDashboard)} />
       <Route path="/404" component={NotFoundPage} />
       <Route path="/500" component={InternalServerError} />
+      <Route path="/suivi/:userid" component={SuiviSimple} />
       <Route component={NotFoundPage} /></Switch>
       <PanelDetails/>
       <CartWidget></CartWidget>

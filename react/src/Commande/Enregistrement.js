@@ -32,7 +32,6 @@ class Enregistrement extends Component {
     return (<div>
 
       <div>
-        <h1 className="center">Enregistrement de commande</h1>
         <Formik initialValues={{
             firstName: '',
             lastName: '',

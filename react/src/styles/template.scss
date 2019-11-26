@@ -41,6 +41,10 @@ $font1: 'Roboto', sans-serif;
   @include box($accent3, $darklight1, 10px, 0px,0px, white);
 }
 
+.box_dark4 {
+  @include box($dark, $darklight1, 10px, 0px,0px, white);
+}
+
 //buttons
 .button_dark {
   @include button($b: solid 2px $white);
@@ -52,4 +56,12 @@ $font1: 'Roboto', sans-serif;
 
 .button_light {
   @include button($bg:$main,$c:$white);
+}
+
+.table-left {
+  @include table($j:left,$m:unset);
+  i {
+    font-size: 3em;
+    color: $accent2;
+  }
 }

@@ -55,7 +55,7 @@ function verifyToken(req, res, next) {
   const bearer = req.query.admin_token;
   // Check if bearer is undefined
   if (typeof bearer !== 'undefined') {
-    logger.info('[Auth] Vérification du token suivant: %s', bearer);
+    logger.warn('[Auth] Vérification du token suivant: %s', bearer);
     jwt.verify(bearer, secret, (err, authData) => {
       if (err) {
         err.name === 'TokenExpiredError' ? logger.warn('[Auth] Session admin expirée (renouvellement token demandé)') : logger.error('[Auth] Token invalidé %s', err);

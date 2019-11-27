@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run lint && node ./bin/www",
+    "start": "node ./bin/www",
     "zipit": "tar -zcvf quadra.tar.gz -X exclude_list.txt .",
     "lint": "node --max_old_space_size=4096 ./node_modules/eslint/bin/eslint.js .;exit 0",
     "ssl": "python -m sslyze --regular www.quadratik.fr",
@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "email-templates": "^6.0.4",
+    "eslint": "^5.16.0",
     "express": "~4.16.0",
     "express-jwt": "^5.3.1",
     "express-jwt-authz": "^2.3.1",
@@ -46,7 +47,6 @@
     "xml2js": "^0.4.22"
   },
   "devDependencies": {
-    "eslint": "^6.7.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-flowtype": "^4.5.2",
     "eslint-plugin-import": "^2.18.2",

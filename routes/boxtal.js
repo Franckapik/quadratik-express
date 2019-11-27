@@ -19,7 +19,7 @@ if (env === 'development') {
   boxtalUrl = 'https://test.envoimoinscher.com/api/v1/';
 
 } else if (env === 'production') {
-  logger.info('[Boxtal] Mode PRODUCTION');
+  logger.warn('[Boxtal] Mode PRODUCTION');
   headers = new Headers(config.boxtalProduction);
   boxtalUrl = 'https://www.envoimoinscher.com/api/v1/';
 
@@ -185,7 +185,7 @@ router.post('/order/:id', function(req, res, next) {
         } else {
           inDb.saveOrderColis(result, req.params.id);
           res.json(result);
-          logger.info("[Boxtal Order] Commande validée: %s", result.order.shipment[0].reference);
+          logger.warn("[Boxtal Order] Commande validée: %s", result.order.shipment[0].reference);
         }
 
       });

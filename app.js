@@ -87,6 +87,6 @@ app.use('/facture', facture);
 app.use('/boxtal', boxtal);
 app.use('/auth', auth);
 
-logger.info('[Express] Port %d', process.env.PORT);
+logger.warn('[Express] Port %d', process.env.PORT);
 
 module.exports = app;

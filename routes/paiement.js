@@ -20,11 +20,11 @@ var inDb = require('./saveInDB');
 var braintree = require("braintree");
 
 if (environment === 'development') {
-  logger.debug('[Braintree] Mode Sandbox');
+  logger.info('[Braintree] Mode Sandbox');
   var gateway = braintree.connect(config.braintreeSandbox);
 } else {
   if (environment === 'production') {
-    logger.debug('[Braintree] Mode PRODUCTION');
+    logger.warn('[Braintree] Mode PRODUCTION');
     gateway = braintree.connect(config.braintreeProduction);
   }
 }
@@ -62,7 +62,7 @@ router.get("/nonce/:nonce", cors(corsOptions), function(req, res, next) {
       }
     }, function(err, result) {
       if (result.success) {
-        logger.info('[Braintree] Nouvelle transaction: %s', result.transaction.id);
+        logger.warn('[Braintree] Nouvelle transaction: %s', result.transaction.id);
         inDb.saveCommandeInDB(result, req.sessionID);
         console.log('ici', result);
         res.json(result);

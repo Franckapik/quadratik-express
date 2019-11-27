@@ -16,7 +16,7 @@ var corsOptions = {
   "credentials": true
 }
 
-logger.info('[Knex] Mode %s', environment);
+logger.warn('[Knex] Mode %s', environment);
 
 
 //enregistrement des sessions Express

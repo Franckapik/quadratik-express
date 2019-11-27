@@ -1,6 +1,4 @@
 import React from 'react'
-import SlideValeurs from './SlideValeurs'
-import ScrollAnimation from 'react-animate-on-scroll';
 
 export default function SectionValeurs() {
   return (<section id="valeurs">

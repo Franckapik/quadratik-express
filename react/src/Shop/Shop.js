@@ -61,7 +61,7 @@ class CollectionsList extends Component {
                 </ul>
               </div>
               {
-                this.state.top && this.state.filtre == 0
+                this.state.top && this.state.filtre === 0
                   ? <Top key="1" collectionid={this.state.top}/>
                   : null
               }

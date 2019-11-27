@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import client from '../../Store/client';
 import {view} from 'react-easy-state';
-import commandeStore from '../../Store/commandeStore';
 
 class Relais extends Component {
   constructor(props) {

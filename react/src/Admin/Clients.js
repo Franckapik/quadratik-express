@@ -5,7 +5,6 @@ import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
 import SessionServices from './SessionServices';
 import '../styles/App.scss';
-import client from '../Store/client';
 
 class Clients extends Component {
   constructor(props) {

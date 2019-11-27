@@ -8,6 +8,7 @@ var corsOptions = {
   "credentials": true
 }
 var cors = require('cors');
+var config = require ('./../config');
 
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
 
@@ -24,7 +25,7 @@ if (environment === 'development') {
 } else {
   if (environment === 'production') {
     logger.debug('[Braintree] Mode PRODUCTION');
-    var gateway = braintree.connect(config.braintreeProduction);
+    gateway = braintree.connect(config.braintreeProduction);
   }
 }
 

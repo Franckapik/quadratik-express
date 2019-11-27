@@ -6,3 +6,4 @@ react/build
 react/.git
 react/Atom\ Crashes
 quadra.tar.gz
+.log

@@ -32,7 +32,6 @@ class SuiviSimple extends Component {
 
   render() {
 
-    const reference = this.state.reference.reference;
     const suivi = this.state.suivi;
 
     return (<div className="center">

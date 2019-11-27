@@ -9,6 +9,7 @@ const m_scenes    = b4w.scenes; //not default
 const m_mat       = b4w.material;
 const m_storage   = b4w.storage;
 
+// eslint-disable-next-line
 let _previous_selected_obj = null;
 
 const APP_ASSETS_PATH = "quadralab_assets/";
@@ -129,6 +130,7 @@ const changeColor = (ObjName) => {
 const changeAllColor = () => {
   var carreau = m_scenes.get_all_objects("MESH");
   var b =  m_storage.get("couleur").split(',').map(Number);
+  // eslint-disable-next-line
   var color = m_rgba.css_to_rgba(b[0], b[1], b[2], b[3]);
   carreau.map((x, i) => {
     m_mat.set_diffuse_color(x, "mat", m_rgba.from_values(color[0], color[1], color[2], color[3]));
@@ -136,6 +138,7 @@ const changeAllColor = () => {
   m_storage.cleanup("couleur")
 };
 
+// eslint-disable-next-line
 const changeRandomColor = () => {
   var carreau = m_scenes.get_all_objects("MESH");
   carreau.map((x, i) => {
@@ -146,6 +149,7 @@ const changeRandomColor = () => {
 };
 
 const changesmallRandomColor = () => {
+  // eslint-disable-next-line
   var carreau = m_scenes.get_all_objects("MESH");
   var b =  m_storage.get("couleur").split(',').map(Number);
   var color = m_rgba.css_to_rgba(b[0], b[1], b[2], b[3]);

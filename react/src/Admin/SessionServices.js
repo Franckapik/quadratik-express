@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
-import client from '../Store/client';
 import Etiquette from './Etiquette';
 import Facture from './Facture';
 import Mail from './Mail';
 import Suivi from './Suivi';
 
 class SessionServices extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     const u = this.props.sessid;
   return (

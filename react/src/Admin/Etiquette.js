@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import client from '../Store/client';
-import homeStore from '../Store/homeStore'
-
 
 class Etiquette extends Component {
   constructor(props) {

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import CarteRelais from './Relais/CarteRelais';
 import {view} from 'react-easy-state';
 import commandeStore from '../Store/commandeStore';
 import client from '../Store/client';
@@ -8,10 +7,6 @@ import ChoisirRelais from './Relais/ChoisirRelais';
 import DepotColis from './Relais/DepotColis';
 
 class AdminRelais extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   saveRelais() {
     const r = this.state.relais_selected;
     if (r.code[0]) {

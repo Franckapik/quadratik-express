@@ -105,7 +105,7 @@ class Construction extends Component {
               herbidas
               <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-            <a>Suivez le lien</a>
+            <a href="/lien.html">Suivez le lien</a>
           </div>
 
           <div className="texte1">
@@ -123,7 +123,7 @@ class Construction extends Component {
             herbidas
             <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-          <a>Suivez le lien</a>
+          <a href="/lien.html">Suivez le lien</a>
         </div>
 
         <div className="texte2">
@@ -141,7 +141,7 @@ class Construction extends Component {
           herbidas
           <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-        <a>Suivez le lien</a>
+        <a href="/lien.html">Suivez le lien</a>
       </div>
       </div>
 
@@ -169,7 +169,7 @@ class Construction extends Component {
           herbidas
           <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-        <a>Suivez le lien</a>
+        <a href="/lien.html">Suivez le lien</a>
       </div>
 
       <div className="texte1">
@@ -187,7 +187,7 @@ class Construction extends Component {
         herbidas
         <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-      <a>Suivez le lien</a>
+      <a href="/lien.html">Suivez le lien</a>
     </div>
 
     <div className="texte2">
@@ -205,7 +205,7 @@ class Construction extends Component {
       herbidas
       <em>ripas</em>, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.
 
-    <a>Suivez le lien</a>
+    <a href="/lien.html">Suivez le lien</a>
   </div>
 
       </div>

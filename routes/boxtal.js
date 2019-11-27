@@ -20,7 +20,7 @@ if (env === 'development') {
 
 } else if (env === 'production') {
   logger.info('[Boxtal] Mode PRODUCTION');
-  var headers = new Headers(config.boxtalProduction);
+  headers = new Headers(config.boxtalProduction);
   boxtalUrl = 'https://www.envoimoinscher.com/api/v1/';
 
 }
@@ -84,7 +84,7 @@ router.get('/etiquette', function(req, res, next) {
         year: "numeric",
         month: "2-digit",
         day: "2-digit"
-      }).replace('/\//g', '-');
+      }).replace('/\//g', '-'); // eslint-disable-line no-useless-escape
 
       const nbMax = 5;
       const nbColis = Math.trunc(order.cart[0].unites / nbMax);
@@ -197,7 +197,7 @@ router.get('/cotation', function(req, res, next) {
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
-  }).replace('/\//g', '-');
+  }).replace('/\//g', '-'); // eslint-disable-line no-useless-escape
 
 
   const expediteur = {

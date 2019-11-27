@@ -55,7 +55,6 @@ livraisonQuery = (sessid) => {
       livraison.length ?
       logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
       return livraison[livraison.length - 1]
-      console.log(livraison[livraison.length - 1]);
     }).catch(error => logger.error('[Knex] Livraison Query error: %s', error));
 }
 

@@ -2,16 +2,6 @@ import React from "react";
 
 class SlideValeurs extends React.Component {
   render() {
-    var settings = {
-      dots: false,
-      infinite: true,
-      speed: 300,
-      fade: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      arrows:false
-    };
     return (<div>
         <div className="case">
           <div className="flex_c">

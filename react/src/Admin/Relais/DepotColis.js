@@ -4,9 +4,6 @@ import commandeStore from '../../Store/commandeStore';
 
 class DepotColis extends Component {
 
-  constructor(props) {
-    super(props);
-  }
   render() {
     const c = commandeStore.cotation;
     return (<div>

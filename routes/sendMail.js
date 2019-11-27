@@ -4,7 +4,6 @@ var config = require('../config');
 var facture = require('./facture');
 const fromDb = require('./getFromDB');
 const path = require('path');
-var sass = require('node-sass');
 const fs = require('fs');
 const logger = require('../log/logger');
 const environment = process.env.NODE_ENV || 'development'; // if something else isn't setting ENV, use development
@@ -13,25 +12,6 @@ const knex = require('knex')(configuration);
 var nodemailer = require('nodemailer');
 const Email = require('email-templates');
 let transporter = nodemailer.createTransport(config.mail);
-
-function sassToCss() {
-  sass.render({
-    file: path.join(__dirname, '..', 'react/src/styles/App.scss'),
-    outputStyle: 'compressed',
-    outFile: path.join(__dirname, '..', 'react/src/styles/app.css'),
-  }, function(error, result) { // node-style callback from v3.0.0 onwards
-    if (!error) {
-
-      logger.info('[Template Mail] Préparation Sass vers CSS');
-
-      fs.writeFile(path.join(__dirname, '..', 'react/src/styles/app.css'), result.css, function(err) {
-        if (!err) {
-          logger.info('[Template Mail] Fichier Css généré %s:', path.join(__dirname, '..', 'react/src/styles/app.css'));
-        }
-      });
-    }
-  });
-};
 
 router.post('/mailcontact', function(req, res, next) {
   nodemailer.createTestAccount((err, account) => {

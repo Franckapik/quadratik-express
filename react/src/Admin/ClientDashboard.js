@@ -5,10 +5,7 @@ import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
 import SessionServices from './SessionServices';
 
-import Facture from './Facture';
-import Suivi from './Suivi';
 import '../styles/App.scss';
-import client from '../Store/client';
 
 
 class ClientDashboard extends Component {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Admin from './Admin';
 import client from '../Store/client';
 
 

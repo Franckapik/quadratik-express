@@ -130,17 +130,19 @@ const changeColor = (ObjName) => {
 const changeAllColor = () => {
   var carreau = m_scenes.get_all_objects("MESH");
   var b =  m_storage.get("couleur").split(',').map(Number);
-  // eslint-disable-next-line
+
   var color = m_rgba.css_to_rgba(b[0], b[1], b[2], b[3]);
+    // eslint-disable-next-line
   carreau.map((x, i) => {
     m_mat.set_diffuse_color(x, "mat", m_rgba.from_values(color[0], color[1], color[2], color[3]));
   })
   m_storage.cleanup("couleur")
 };
 
-// eslint-disable-next-line
+
 const changeRandomColor = () => {
   var carreau = m_scenes.get_all_objects("MESH");
+  // eslint-disable-next-line
   carreau.map((x, i) => {
     var color = m_rgba.css_to_rgba(Math.floor(Math.random() * 255), Math.floor(Math.random() * 255),Math.floor(Math.random() * 255), Math.floor(Math.random() * 255));
     m_mat.set_diffuse_color(x, "mat", m_rgba.from_values(color[0], color[1], color[2], color[3]));
@@ -149,10 +151,11 @@ const changeRandomColor = () => {
 };
 
 const changesmallRandomColor = () => {
-  // eslint-disable-next-line
+
   var carreau = m_scenes.get_all_objects("MESH");
   var b =  m_storage.get("couleur").split(',').map(Number);
   var color = m_rgba.css_to_rgba(b[0], b[1], b[2], b[3]);
+    // eslint-disable-next-line
   carreau.map((x, i) => {
     if (Math.floor(Math.random() * 10)%4 === 0) {
       m_mat.set_diffuse_color(x, "mat", m_rgba.from_values(color[0], color[1], color[2], color[3]));

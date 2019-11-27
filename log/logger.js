@@ -16,7 +16,7 @@ const logger = winston.createLogger({
   ]
 });
 
-if (env!== 'production') {
+if (env!== 'production') { //utilisation de la console uniquement en developpement
   logger.add(
     new winston.transports.Console({
     format: winston.format.combine(

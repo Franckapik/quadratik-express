@@ -36,12 +36,11 @@ class CartWidget extends Component {
 
           : null
       }
-      <div className="addCart_display box_dark2" style={sidewidth}>
+      <div className="addCart_display box_light4 center" style={sidewidth}>
         {shopStore.cart.length !== 0 ? <span className="addCart_title">{shopStore.cart[shopStore.cart.length-1].produit.nom}</span> : 'vide'}
-        <button className="boutique_header" onClick={this.getPanier}>
-           Voir le Panier
-        </button>
-        <p></p>
+        <p><button className="button_light" onClick={this.getPanier}>
+          Voir le Panier
+        </button></p>
       </div>
 
     </div>)

@@ -3,7 +3,6 @@ import {Router, Route, Switch} from 'react-router-dom'
 import Home from './Home/Home'
 import Shop from './Shop/Shop'
 import Header from './Header'
-import PanelDetails from './Shop/PanelDetails';
 import Guide from './Guide';
 import Quadralab from './Quadralab/Quadralab';
 import Commande from './Commande/Commande';
@@ -18,6 +17,8 @@ import withAuth from './Admin/withAuth';
 import InternalServerError from './500';
 import ClientDashboard from './Admin/ClientDashboard';
 import SuiviSimple from './Admin/SuiviSimple';
+import ProduitDetails from './Shop/ProduitDetails';
+
 
 import history from './History';
 
@@ -40,9 +41,9 @@ export default function MainRouter() {
       <Route path="/dashboard" component={withAuth(ClientDashboard)} />
       <Route path="/404" component={NotFoundPage} />
       <Route path="/500" component={InternalServerError} />
-      <Route path="/suivi/:userid" component={SuiviSimple} />
+      <Route path="/suivi:userid" component={SuiviSimple} />
+      <Route path="/produit:productsrc" component={ProduitDetails} />
       <Route component={NotFoundPage} /></Switch>
-      <PanelDetails/>
       <CartWidget></CartWidget>
       <PanelInfo></PanelInfo>
 

@@ -78,6 +78,18 @@ productQuery = () => {
     }).catch(error => logger.error('[Knex] Product Query error: %s', error));
 }
 
+productQueryFromSrc = (src) => {
+  return knex('product')
+    .where('product.src', src)
+    .leftJoin('collection', 'product.collectionId', 'collection.id')
+    .innerJoin('product_performances', 'product.performance', 'product_performances.type')
+    .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
+    .then(product => {
+      product.length ? logger.debug('[Knex] Produit retrouvé [id]: %s', product.id) : logger.error('[Knex] Données Produit manquantes');
+      return product
+    }).catch(error => logger.error('[Knex] Product Query error: %s', error));
+}
+
 promoQuery = (code) => {
   return knex('promo')
     .where('code', code)
@@ -220,6 +232,16 @@ router.get('/adminData', function(req, res, next) {
         })
     })
 });
+
+router.get('/getProduitFromSrc', function(req, res, next) {
+  productQueryFromSrc(req.query.productsrc)
+  .then(data => {
+    console.log(data);
+    res.json(data);
+    logger.debug('[Details Produits] Details du produit OK: %s', data);
+  })
+  .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.productid));
+})
 
 
 module.exports = router;

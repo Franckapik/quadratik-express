@@ -58,11 +58,9 @@ class Header extends Component {
             <a href="/quadralab">QuadraLab</a>
           </li>
           {
-            window.location.pathname.split("/").pop() !== 'shop'
-              ? <li className="boutique_header">
-                  <a href="/shop">Boutique</a>
-                </li>
-              : <li>
+            window.location.pathname.split("/").pop() == 'shop' ||
+            window.location.pathname.split("/").pop().includes('produit')
+              ? <li>
                   <i className="cursor fas fa-shopping-cart" onClick={() => {
                       shopStore.showWidget = !shopStore.showWidget
                     }}>{
@@ -71,6 +69,9 @@ class Header extends Component {
                         : null
                     }</i>
                 </li>
+              : <li className="boutique_header">
+                <a href="/shop">Boutique</a>
+              </li>
           }
           <li>
             <a href='/admin'>

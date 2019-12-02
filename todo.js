@@ -1,15 +1,13 @@
-la page config doit ne plus exister ou etre sous forme d'env de variable ou autre methode. possibilité d'un rappel des variables demandées lors du npm start (et noter les mdp sur une feuille dans le bureau)
-
-
-COnnection psql a configurer
-
 --version v4-
+
+winston log %s
+
+documentation en anglais pour les produits. (systeme de template avec locales a gerer)
+
+sur mobile pas de hide du panier dajout
 
 Quadralab avec un lien vers la boutique
 
-Rétablir le filtre de la page shop
-
-Confirmation automatique de la commande.
 
 Remettre la carte leaflet en choix de point relais pour le client
 
@@ -43,7 +41,22 @@ Faire un npm run lint --fix sur tout le dossier
 ajouter des packs avec l'absorbeur.
 absorbeurs de différentes couleurs.
 proposer des modèles 1D diffuseur.
---
+
+
+-- version 5 ---
+
+Confirmation automatique de la commande.
+
+
+refaire le processus d'ajout au panier pour permettre plus de flexibilité entre les components. (quadralab, details,...)
+
+Internationalisation du site avec ajout de la locale en : tout un travail de récriture et chaque partie texte du site doit etre en json.
+Travail lourd et peu indispensable pour le moment. A faire probablement plus tard.
+pour react et un peu de clarté : https://react.i18next.com/latest/usetranslation-hook
+
+in the link i sent with the useTranslations hook, `t` is the `_` equivalent
+the `_` convention comes from GNU gettext
+
 
 Remplacer le react easy state par du Contexte React ou un simple import/export webpack pour les fonctions ne necessitant pas d'actualisation.
 
@@ -53,3 +66,5 @@ lien pour devenir partenaire sur la section contact
 
 TRES BONNE PAGE sur les promises :
 https://dzone.com/articles/common-promise-mistakes
+
+Attention au path relative des images pour le router /:id

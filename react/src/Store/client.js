@@ -62,6 +62,7 @@ const client = {
   createEtiquetteFetch: (id) => getData('/boxtal/etiquette?sessid=' + id),
   getSuiviFetch: (ref) => getData('/boxtal/suiviColis?ref=' + ref),
   getReferenceFetch:(id) => getData('/boxtal/getRefFromId?sessid=' + id),
+  getProductFetch:(src) => getData('/getFromDB/getProduitFromSrc?productsrc=' + src),
   createFactureFetch: (id) => getData('/facture/createFacture?sessid=' + id),
   getFactureFetch: (id) => getData('/facture/getFacture?sessid=' + id), //a resoudre
   loginPost: (body) => postData('/auth/login', body),

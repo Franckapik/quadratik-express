@@ -37,8 +37,9 @@ class Produit extends Component {
       largeur,
       longueur,
       srcImg,
-      unite
-    } = this.props;
+      unite,
+      src
+        } = this.props;
 
     return (<div className="flex_c center produit">
 
@@ -48,7 +49,7 @@ class Produit extends Component {
 
       <p>
         <div className="produit_img_container">
-          <img className="produit_img cursor" src={srcImg} alt='Affichage non disponible' onClick={this.produitClicked.bind(this)}/>
+          <a href={'/produit'+src}><img className="produit_img cursor" src={srcImg} alt='Affichage non disponible'/></a>
           <div className="produit_add flex_r">
             <div className="flex_r">
               <input className="input_qte" type="text" value={this.state.value} onChange={this.handleChange} size="2"/>

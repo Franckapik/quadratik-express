@@ -615,20 +615,26 @@ footer {
     font-weight: 200;
     color: $main;
   }
+}
 
-  .slideG {
-    ul {
-      width: 8vw;
-      position: absolute;
-      z-index: 5;
-      top: 30vh;
-      left: 1.7vw;
+.produit_details_container {
+  @include box($white, $whitedark, 0px, 0);
 
-      img {
-        width: 100%;
-        margin-bottom: 0.8em;
-      }
-    }
+  strong {
+    font-weight: 200;
+    color: $main;
+  }
+
+  .nom {
+    font-size: 3em;
+    margin: 0px;
+  }
+
+  .prix {
+    font-size: 1.5em;
+    color: $accent2;
+    font-weight: bold;
+
   }
 
   .slideD_box {
@@ -636,18 +642,19 @@ footer {
     min-width: 250px;
     text-align: left;
 
-    .nom {
-      font-size: 2em;
-    }
+
 
     ul {
       position: relative;
-      display: inline-block;
       color: grey;
+      margin: 10px;
 
       li {
         padding-bottom: 12px;
         font-size: 1.1em;
+        width: 400px;
+        display: inline-block;
+        border-bottom: 1px solid #dfd3d3;
       }
 
       i {
@@ -661,6 +668,7 @@ footer {
     }
   }
 }
+
 /* Statut commande */
 .status_container {
   .status_activated {

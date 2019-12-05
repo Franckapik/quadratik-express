@@ -1,15 +1,23 @@
 --version v4-
+ajouter des packs avec l'absorbeur.
+
+Un diffuseur completement noir 
+
+Il faut plus de blanc pour que cela fasse epuré !
+
+refaire la section valeurs
+
+montrer le systeme d'Accroche
+
+nouvelles img pour noel
+
+promotions? plus d'actualités
 
 winston log %s
-
-documentation en anglais pour les produits. (systeme de template avec locales a gerer)
 
 sur mobile pas de hide du panier dajout
 
 Quadralab avec un lien vers la boutique
-
-
-Remettre la carte leaflet en choix de point relais pour le client
 
 le bordereau du suivi est-il l'etiquette a imprimer et coller ?
 
@@ -18,10 +26,6 @@ le bordereau du suivi est-il l'etiquette a imprimer et coller ?
 facebook messenger intégré a la page accueil
 
 faire avec email template tous les autres mails.
-
-refaire la section valeurs
-
-Retirer le zoom et placer le png en icone avec les images de bonnes taille.
 
 Gestion de login pour les clients via les userid enregsitrés lors de la cmde.
 
@@ -38,14 +42,15 @@ Inscrire le prix de livraison dans la bd. (si choix point relais ou autre )
 
 Faire un npm run lint --fix sur tout le dossier
 
-ajouter des packs avec l'absorbeur.
-absorbeurs de différentes couleurs.
 proposer des modèles 1D diffuseur.
 
 
 -- version 5 ---
 
 Confirmation automatique de la commande.
+
+Remettre la carte leaflet en choix de point relais pour le client
+
 
 
 refaire le processus d'ajout au panier pour permettre plus de flexibilité entre les components. (quadralab, details,...)

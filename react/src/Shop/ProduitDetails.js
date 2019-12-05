@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import client from '../Store/client';
 import ReactImageZoom from 'react-image-zoom';
 import shopStore from '../Store/shopStore';
+import FileSaver from 'file-saver';
+
 
 
 class ProduitDetails extends Component {
@@ -19,6 +21,15 @@ class ProduitDetails extends Component {
   getProduit(src) {
     return client.getProductFetch(src).then(produit => {
       this.setState({produit: produit})
+    });
+  }
+
+  getDataSheet(src, locale) {
+    client.dataSheetFetch(src, locale)
+    .then(response => {
+      return response.blob();
+    }).then(myBlob => {
+      FileSaver.saveAs(myBlob, "DataSheet"+this.state.produit[0].src+".pdf");
     });
   }
 
@@ -46,12 +57,12 @@ class ProduitDetails extends Component {
                 </div>
               </div>
               <div className='center'>
-                <div className='slideD_box'>
+                <div className='caracteristiques'>
                   <div className="givemespace-hori flex_r">
                     <ul className="flex_c w50">
                     <li> <i className="fas fa-angle-right"></i> Type <span className="left"> {produit.filter} </span> </li>
                     <li> <i className="fas fa-tint"></i> Couleur <span className="left"> {produit.nbColors} </span> </li>
-                    <li> <i className="fas fa-crop-alt"></i> Taille <span className="left"> {produit.longueur} x {produit.largeur} cm </span> </li>
+                    <li> <i className="fas fa-crop-alt"></i> Taille <span className="left"> {produit.unite > 1 ? <> { produit.unite } unités de {produit.largeur} x {produit.longueur } cm < /> : <> { produit.largeur } x { produit.longueur } cm < />}</span></li>
                     <li> <i className="fab fa-codepen"></i> Profondeur <span className="left"> {produit.prof} cm </span> </li>
                     <li> <i class="fas fa-sort-numeric-up-alt"></i> Nombre de cellules <span className="left"> {produit.nbcarreaux} </span> </li>
                     <li> <i className="fas fa-chart-bar"></i> Frequences <span className="left"> {produit.frequence} Hz </span> </li>
@@ -62,7 +73,8 @@ class ProduitDetails extends Component {
                     <li> <i class="fab fa-confluence"></i> Fixation <span className="left"> Accroche intégrée </span> </li>
                     <li> <i class="fas fa-fill-drip"></i> Vernis <span className="left"> Non </span> </li>
                     <li> <i class="fas fa-globe-africa"></i> Origine <span className="left"> France </span> </li>
-                    <li> <i className="fas fa-file-alt"></i> Documentation technique <span className="left"> Télécharger </span> </li>
+                    <li> <i className="fas fa-file-alt"></i> Documentation technique <span className="left cursor" onClick={() => this.getDataSheet(this.props.match.params.productsrc,'FR')}> Télécharger (FRANÇAIS) </span>
+                      <span className="left cursor" onClick={() => this.getDataSheet(this.props.match.params.productsrc,'EN')}> Download (ENGLISH) </span></li>
                     </ul>
 
                   </div>

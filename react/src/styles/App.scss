@@ -637,12 +637,10 @@ footer {
 
   }
 
-  .slideD_box {
-    width: 28vw;
+  .caracteristiques {
+    width: 40vw;
     min-width: 250px;
     text-align: left;
-
-
 
     ul {
       position: relative;
@@ -652,7 +650,7 @@ footer {
       li {
         padding-bottom: 12px;
         font-size: 1.1em;
-        width: 400px;
+        width: 500px;
         display: inline-block;
         border-bottom: 1px solid #dfd3d3;
       }

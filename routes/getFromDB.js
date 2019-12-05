@@ -250,3 +250,4 @@ module.exports.cartQuery = cartQuery;
 module.exports.adminQuery = adminQuery;
 module.exports.orderQuery = orderQuery;
 module.exports.boxtalQuery = boxtalQuery;
+module.exports.productQueryFromSrc = productQueryFromSrc;

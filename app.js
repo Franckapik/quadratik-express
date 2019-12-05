@@ -16,7 +16,7 @@ const saveInDB = require('./routes/saveInDB');
 const getFromDB = require('./routes/getFromDB');
 const paiement = require('./routes/paiement');
 const sendMail = require('./routes/sendMail');
-const facture = require('./routes/facture');
+const createPDF = require('./routes/createPDF');
 const boxtal = require('./routes/boxtal');
 const auth = require('./routes/auth');
 
@@ -86,7 +86,7 @@ app.use('/saveInDB', saveInDB);
 app.use('/paiement', paiement);
 app.use('/getFromDB', getFromDB);
 app.use('/sendMail', sendMail);
-app.use('/facture', facture);
+app.use('/createPDF', createPDF);
 app.use('/boxtal', boxtal);
 app.use('/auth', auth);
 

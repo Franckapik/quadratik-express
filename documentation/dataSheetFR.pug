@@ -1,0 +1,107 @@
+doctype 
+html(lang="en")
+  head
+    link(href='https://fonts.googleapis.com/css?family=Roboto&display=swap', rel='stylesheet')
+    style(type='text/css').
+      body {
+        font-size:7px;
+        color: grey;
+        font-family: 'Roboto', sans-serif;
+      }
+      .title {
+        color: #DC143C;
+        font-size:18px;
+        padding:0;
+      }
+
+      .logo img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+      }
+      .first {
+        color: #313130;
+        font-size: 8px;
+        width: 40%;
+      }
+
+      .second {
+        color: grey;
+        margin-left : 30px;
+      }
+
+      .flex_img {
+        display:flex;
+        justify-content:center;
+        flex-direction: row;
+        align-items: baseline;
+      }
+      
+  body
+    .logo
+      img(src="https://www.quadratik.fr/images/logo_black.svg" width="50px")
+      p.logo Quadratik.fr
+
+    h1.title #{produit.nom}
+    h2 Collection #{produit.name}
+
+    .flex_img
+      img(src='https://www.quadratik.fr/images/modeles/'+`${produit.folder}`+'/'+`${produit.src}`+'-b.jpg' width="200px")
+      img(src='https://www.quadratik.fr/images/modeles/'+`${produit.folder}`+'/'+`${produit.src}`+'.png' width="200px")
+
+      table(style='width:100%;margin-top:20px;margin-bottom:20px;', border='0')
+        tr
+          td.first CATEGORIE
+          td.second #{produit.filter}
+        tr
+          td.first APPLICATIONS
+          td.second Diffusion hemispherique des ondes sonores quelque soit l’angle d’incidence pour murs et plafonds. Il convient aux espaces tels que les auditoriums, cinema, studio d'enregistrement et mixage, home studio, salles de reunion, salles de fête, salles d’audition,...
+        tr
+          td.first SUPPORT
+          td.second Bois contreplaque peuplier epaisseur 4mm (Populus spp) de couleur claire.
+        tr
+          td.first BANDE D'ACTION
+          td.second #{produit.frequence} Hz
+        tr
+          td.first FINITION
+          td.second nature, verni satine mat ou peint
+        tr
+          td.first NOMBRE D'UNITE
+          td.second #{produit.unite} piece(s)
+        tr
+          td.first DIMENSIONS DE 1 UNITE
+          td.second #{produit.longueur} x #{produit.largeur} cm
+        tr
+          td.first EPAISSEUR
+          td.second #{produit.prof} cm
+        tr
+          td.first POIDS
+          td.second #{produit.poids} kg
+        tr
+          td.first TAILLE DES CELLULES
+          td.second #{produit.taillecellule} mm
+        tr
+          td.first NOMBRE DE CELLULES
+          td.second #{produit.nbcarreaux}
+        tr
+          td.first MONTAGE
+          td.second système d'accrochage integre à l'arrière du diffuseur sur les quatres cotes.
+        tr
+          td.first CLASSEMENT AU FEU
+          td.second B s1 d0 (EN 13501-1+A1)
+        tr
+          td.first CONDUCTIVITE THERMIQUE
+          td.second 0,17 (W/(m.K))
+        tr
+          td.first RESISTANCE VAPEUR D'EAU
+          td.second 90 (coupelle humide) // 220 (coupelle seche) 
+        tr
+          td.first DEGAGEMENT FORMALDEIDE
+          td.second E1
+        tr
+          td.first MASSE VOLUMIQUE
+          td.second 420 kg/m3
+
+    p.center Coefficients de dispersion (ISO 17497-1)
+    img(src='http://localhost:3000/images/coefDispersion.png' width="80%")
+      

@@ -1,0 +1,107 @@
+doctype 
+html(lang="en")
+  head
+    link(href='https://fonts.googleapis.com/css?family=Roboto&display=swap', rel='stylesheet')
+    style(type='text/css').
+      body {
+        font-size:7px;
+        color: grey;
+        font-family: 'Roboto', sans-serif;
+      }
+      .title {
+        color: #DC143C;
+        font-size:18px;
+        padding:0;
+      }
+
+      .logo img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+      }
+      .first {
+        color: #313130;
+        font-size: 8px;
+        width: 40%;
+      }
+
+      .second {
+        color: grey;
+        margin-left : 30px;
+      }
+
+      .flex_img {
+        display:flex;
+        justify-content:center;
+        flex-direction: row;
+        align-items: baseline;
+      }
+      
+  body
+    .logo
+      img(src="https://www.quadratik.fr/images/logo_black.svg" width="50px")
+      p.logo Quadratik.fr
+
+    h1.title #{produit.nom}
+    h2 Collection #{produit.name}
+
+    .flex_img
+      img(src='https://www.quadratik.fr/images/modeles/'+`${produit.folder}`+'/'+`${produit.src}`+'-b.jpg' width="200px")
+      img(src='https://www.quadratik.fr/images/modeles/'+`${produit.folder}`+'/'+`${produit.src}`+'.png' width="200px")
+
+      table(style='width:100%;margin-top:20px;margin-bottom:20px;', border='0')
+        tr
+          td.first TYPE
+          td.second #{produit.filter}
+        tr
+          td.first USE
+          td.second Hemispheric diffusion of sound waves whatever the angle of incidence for walls and ceilings. It is suitable for spaces such as auditoriums, cinema, recording and mixing studio, home studio, meeting rooms, party rooms, audition rooms, etc.
+        tr
+          td.first MATERIAL
+          td.second Poplar plywood thickness 4mm, light color.
+        tr
+          td.first FREQUENCY SPECTRUM
+          td.second #{produit.frequence} Hz
+        tr
+          td.first FINISHING
+          td.second varnished or painted
+        tr
+          td.first NUMBER OF UNITS
+          td.second #{produit.unite} piece(s)
+        tr
+          td.first SIZES OF 1 UNIT
+          td.second #{produit.longueur} x #{produit.largeur} cm (20 x 20in)
+
+        tr
+          td.first THICKNESS
+          td.second #{produit.prof} cm (4 in)
+        tr
+          td.first WEIGHT
+          td.second #{produit.poids} kg (8 pounds)
+        tr
+          td.first CELL SIZE
+          td.second #{produit.taillecellule} mm (2.6 in)
+        tr
+          td.first CELL NUMBER
+          td.second #{produit.nbcarreaux}
+        tr
+          td.first HANGING
+          td.second integrated hanging system on the back of the diffusor.
+        tr
+          td.first FIRE CLASSIFICATION
+          td.second B s1 d0 (EN 13501-1+A1)
+        tr
+          td.first THERMAL CONDUCTIVITY
+          td.second 0,17 (W/(m.K))
+        tr
+          td.first WATER VAPOUR RESISTANCE
+          td.second 90 (coupelle humide) // 220 (coupelle seche) 
+        tr
+          td.first FORMALDEHYDE RELEASE
+          td.second E1
+        tr
+          td.first DENSITY
+          td.second 420 kg/m3
+
+    p.center Coefficient of Dispersion (ISO 17497-1)
+    img(src='http://localhost:3000/images/coefDispersion.png' width="80%")

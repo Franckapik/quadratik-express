@@ -1,6 +1,8 @@
 --version v4-
 ajouter des packs avec l'absorbeur.
 
+Montrer bandeau reduction pour les packs.
+
 Un diffuseur completement noir 
 
 Il faut plus de blanc pour que cela fasse epuré !
@@ -46,6 +48,8 @@ proposer des modèles 1D diffuseur.
 
 
 -- version 5 ---
+
+Creation de devis selon  un formulaire
 
 Confirmation automatique de la commande.
 

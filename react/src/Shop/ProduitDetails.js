@@ -47,7 +47,7 @@ class ProduitDetails extends Component {
           ? <div className="flex_c" style={{paddingTop:'3vw'}}>
               <div className = "flex_r flex_w" style={{justifyContent:'center', paddingBottom:'5vh'}}>
                 <div className='produit_img_container w30'>
-                  <ReactImageZoom {...props} img={"../images/modeles/" + produit.name + "/" + produit.src + "-b.jpg"}/>
+                  <ReactImageZoom {...props} img={"../images/modeles/" + produit.folder + "/" + produit.src + "-b.jpg"}/>
                 </div>
                 <div className=' box_light4 w30 givemespace' style={{height:'90%'}}>
                   <p > {produit.name} </p>

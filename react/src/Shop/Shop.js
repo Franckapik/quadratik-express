@@ -17,8 +17,6 @@ class CollectionsList extends Component {
       filtre: '',
       top: ''
     };
-
-
   }
 
   componentDidMount() {
@@ -74,7 +72,7 @@ class CollectionsList extends Component {
                     return item
                   }
                 })).map((c, i) => {
-                  return (      <ScrollAnimation animateIn='fadeIn' animateOnce={true} className="mobile_hide">
+                  return (      <ScrollAnimation animateIn='fadeIn' animateOnce={true}>
                         <Collection key={i} collectionid={c}/>
                         </ScrollAnimation>);
                 })

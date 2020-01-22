@@ -1,7 +1,8 @@
 import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll';
 
-export default function SectionBoutique() {
+const SectionBoutique = (props) => {
+  console.log(props);
   return (<section id="boutique">
     <div className="flex_r flex_wr style_dark fullsize">
       <ScrollAnimation animateIn='bounceInRight' className="mobile_hide" animateOnce={true}>
@@ -73,7 +74,7 @@ export default function SectionBoutique() {
 
         </div>
         <div className="boutique_promo flex_c">
-          <p>Ca y est !</p>
+          <p>{props.title}</p>
           <div className="box_light1 flex_c">
             <p>Absorbeurs de nouveau en stock!</p>
             <p><strong>Quadrablack</strong></p>
@@ -93,3 +94,5 @@ export default function SectionBoutique() {
 
   </section>)
 }
+
+export default SectionBoutique;

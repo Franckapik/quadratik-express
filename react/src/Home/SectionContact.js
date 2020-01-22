@@ -14,13 +14,13 @@ export default function SectionContact() {
         <p className="contact_text mobile_hide">Communiquez-nous votre projet et discutons de vos envies!
         </p>
       </div>
-      <div className="box_light1 flex_r fullsize flex_baseline ">
+      <div className="box_light1 flex_r flex_baseline flex_w">
         <div className="box_light1 flex_c ">
 
           <div className="box_dark4 cursor contact_box center givemespace ">
             <h3>Téléphone</h3>
             <hr></hr>
-            <p className="e_box">
+            <p className="">
               <span className="e_gros">06 31 92 74 81</span>
               <br></br>
               <br></br>
@@ -31,7 +31,7 @@ export default function SectionContact() {
           <div className="box_dark4  cursor contact_box center givemespace">
             <h3>Mail</h3>
             <hr></hr>
-            <p className="e_box" onClick={() => {
+            <p className="" onClick={() => {
                 homeStore.width = '100%';
                 homeStore.content = 'Mail';
               }}>
@@ -45,7 +45,7 @@ export default function SectionContact() {
           <div className="box_dark4 mobile_hide cursor contact_box center givemespace">
             <h3>Newsletter</h3>
             <hr></hr>
-            <p className="e_box" onClick={() => {
+            <p className="" onClick={() => {
                 homeStore.width = '100%';
                 homeStore.content = 'Newsletter';
               }}>
@@ -55,10 +55,10 @@ export default function SectionContact() {
               en un seul mail mensuel</p>
           </div>
 
-          <div className="box_dark4 mobile_hide cursor contact_box center givemespace">
+          <div className="box_dark4 cursor contact_box center givemespace mobile_hide">
             <h3>Votre studio</h3>
             <hr></hr>
-            <p className="e_box" onClick={() => {
+            <p className="" onClick={() => {
                 homeStore.width = '100%';
                 homeStore.content = 'Questionnaire';
               }}>
@@ -71,7 +71,7 @@ export default function SectionContact() {
         <div className="box_dark4 contact_box center givemespace">
           <h3>Atelier</h3>
           <hr></hr>
-          <p className="e_box">
+          <p className="">
             Entreprise Quadratik.fr
             <br></br>
             <strong>SIRET 83529797900014</strong>

@@ -225,7 +225,7 @@ footer {
     position: relative;
     @include texte2;
     width: 20em;
-    text-align: left;
+    text-align: justify;
     margin: 3em;
     font-size: 1.5em;
   }
@@ -499,8 +499,7 @@ footer {
   }
 
   .contact_box {
-    width: 25vw;
-    height: 170px;
+    width: 300px;
   }
 }
 
@@ -822,6 +821,10 @@ div#logo_container {
     background-color: $main;
   }
 }
+
+.desktop_hide {
+  display: none;
+}
 /*
 First : 360 x 640 (smartphone)
 Second : 1366x768 (laptop)
@@ -842,29 +845,72 @@ Third : 1920x1080 (desktop)
     display: none;
   }
 
-  #presentation ul {
+  .desktop_hide {
+    display: flex;
+  }
+
+  .logo_mobile {
+    width: 60vw;
+    margin: 20px;
+  }
+
+  .arrow_mobile {
+    position: fixed;
+    bottom: -170px;
+font-size: 4em;
+text-align: center;
+  }
+
+  #presentation{
+
+    ul {
     text-align: center;
   }
 
-  .quadralab_diffuseur {
-    width: 45vw;
-    right: -25vw;
+  .list-number {
+    display: none;
+    line-height: 0.5em;
   }
 
-  .quadralab_title {
-    position: relative;
-    right: unset;
-    top: unset;
+  .list-text {
+    padding: 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
-  .quadrabutton {
-    text-align: center;
-    position: relative;
-    bottom: unset;
-    right: unset;
-    margin: auto;
+}
+
+#shop {
+
+  .produit_add {
+    opacity: 1;
   }
 
+}
+
+  #quadralab {
+    .quadralab_diffuseur {
+      width: 60vw;
+      position: unset;
+      right: unset;
+    }
+
+    .quadralab_title {
+      position: relative;
+      right: 0;
+      top: 0;
+    }
+
+    .quadrabutton {
+      text-align: center;
+      position: relative;
+      bottom: unset;
+      right: unset;
+      margin: auto;
+    }
+  }
+
+#valeurs {
   .valeurs_img_atelier {
     width: 100%;
     height: auto;
@@ -884,10 +930,20 @@ Third : 1920x1080 (desktop)
   }
 
   .valeurs_text {
-    text-align: center;
+    text-align: justify;
     margin: 1em;
     font-size: 1em;
   }
+}
+
+#contact {
+  .contact_box {
+    padding: 0;
+  }
+}
+
+
+
 
   .burger {
     display: block;

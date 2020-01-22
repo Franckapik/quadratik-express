@@ -3,7 +3,7 @@ import homeStore from './Store/homeStore'
 
 class Footer extends Component {
   render() {
-    return (<footer>
+    return (<footer className="mobile_hide">
       <span className="cursor" onClick={() => {
           homeStore.width = '100%';
           homeStore.content = 'Cgv';

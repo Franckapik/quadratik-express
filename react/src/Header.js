@@ -52,7 +52,7 @@ class Header extends Component {
             </a>
           </li>
           <li>
-            <a href="/"><img src="images/logo_black.svg" alt="Logo Quadratik"/></a>
+            <a href="/"><img src="images/logo/logo_cercle.svg" alt="Logo Quadratik"/></a>
           </li>
           <li>
             <a href="/quadralab">QuadraLab</a>

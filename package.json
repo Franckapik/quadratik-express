@@ -12,6 +12,7 @@
     "test": "snyk test"
   },
   "dependencies": {
+    "@mollie/api-client": "^3.0.0-beta.1",
     "@rimiti/invoice-it": "^3.4.0",
     "bcryptjs": "^2.4.3",
     "braintree": "^2.21.0",

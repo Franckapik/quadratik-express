@@ -32,7 +32,6 @@ class Questionnaire extends Component {
             traitement_perso: '',
             autres: ''
           }} onSubmit={values => {
-            console.log(values);
             client.questionnairePost(values)
             .then(res => {
               if(res.ok) {

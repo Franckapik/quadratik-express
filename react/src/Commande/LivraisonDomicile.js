@@ -33,11 +33,15 @@ class LivraisonAdresse extends Component {
           }} onSubmit={values => {
             client.livraisonPost(values)
             .then(res => {
-              if(res.ok) {
-                commandeStore.display = 'paiement';
-                commandeStore.status = '80vw';
+              if (res.ok) {
+                if (!window.location.href.includes('admin')) {
+                  commandeStore.display = 'paiement';
+                  commandeStore.status = '80vw';
+                } else {
+                  commandeStore.admindisplay = 'paiement';
+                }
               } else {
-                window.location ='/500' ;
+                window.location = '/500';
               }
 
             });

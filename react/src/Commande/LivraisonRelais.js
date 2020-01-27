@@ -21,11 +21,16 @@ class LivraisonRelais extends Component {
 
       client.livraisonPost(values).then(res => {
         if (res.ok) {
-          commandeStore.display = 'paiement';
-          commandeStore.status = '80vw';
+          if (!window.location.href.includes('admin')) {
+            commandeStore.display = 'paiement';
+            commandeStore.status = '80vw';
+          } else {
+            commandeStore.admindisplay = 'paiement';
+          }
         } else {
           window.location = '/500';
         }
+
       });
     }
   }

@@ -108,6 +108,15 @@ adminQuery = (email) => {
     }).catch(error => logger.error('[Knex] Admin User Query error: %s', error));
 }
 
+newsQuery = (index) => {
+  return knex('news')
+    .where('page', index)
+    .then(news => {
+      news.length ? logger.debug('[Knex] Données news chargées (ref): %s',news.id) : logger.warn('[Knex] Données News manquantes (id): %s', news.id);
+      return news
+    }).catch(error => logger.error('[Knex] News Query error: %s', error));
+};
+
 // Routes
 
 router.get('/adminCart', function(req, res, next) {
@@ -185,6 +194,13 @@ router.get('/getreduction', function(req, res, next) {
   promoQuery(req.query.code)
     .then(reduction => {
       res.json(reduction)
+    })
+});
+
+router.get('/newsDB', function(req, res, next) {
+  newsQuery(req.query.index)
+    .then(news => {
+      res.json(news)
     })
 });
 

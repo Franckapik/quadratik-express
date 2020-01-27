@@ -5,23 +5,32 @@ import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
 import SessionServices from './SessionServices';
 import '../styles/App.scss';
+import Enregistrement from '../Commande/Enregistrement';
+import Livraison from '../Commande/Livraison';
+import Paiement from '../Commande/Paiement';
+import PanierForm from './PanierForm';
+import AddProduct from './AddProduct';
+import commandeStore from '../Store/commandeStore';
+import {view} from 'react-easy-state';
+
 
 class Clients extends Component {
   constructor(props) {
     super(props);
     this.state = {
       filterLast: 1,
-      etiquette_id : null,
+      etiquette_id: null,
       sidewidth: {
         width: 0
-      }
+      },
+      form: false
     }
   }
 
   render() {
     return (<div>
       <h2>Mes clients</h2>
-      {
+            {
         this.props.user
           ? <div>
 
@@ -51,7 +60,7 @@ class Clients extends Component {
                       <Sessionlivraison sessid={p.userid}></Sessionlivraison>
                       <SessionCart sessid={p.userid}></SessionCart>
                       <SessionPaiement sessid={p.userid}></SessionPaiement>
-                      <SessionServices sessid={p.userid} mail facture suivi etiquette></SessionServices>
+                      <SessionServices sessid={p.userid} mail="mail" facture="facture" suivi="suivi" etiquette="etiquette"></SessionServices>
                     </div>
                   </div>);
                 })
@@ -63,4 +72,4 @@ class Clients extends Component {
   }
 }
 
-export default Clients;
+export default view(Clients);

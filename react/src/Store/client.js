@@ -52,6 +52,7 @@ function postData(url, body){
 
 const client = {
   shopFetch: () => getData('/getFromDB/shopDB'),
+  newsFetch: (index) => getData('/getFromDB/newsDB?index=' + index),
   adminFetch: () => getData('/getFromDB/adminData'),
   userFetch: () => getData('/getFromDB/user'),
   commandeFetch: () => getData('/getFromDB/commande'),

@@ -1,31 +1,41 @@
 --version v4-
+trouver un moyen de calculer et afficher le total.
+
+completer le panierform avec un add input dynbamically pour la gestion du panier lors de l'enregistrement manuel. (devis)
+
+faire un ajout d'un objet produit dans la tableau cart lorsqu'on demande une nouvelle ligne. possibilité de supprimer la ligne. (index)
+
+mollie
+
+frais de ports dans le processus de livraison + livraison gratuite en point relais.
+
+rss : fetch avant le render ? ou bien faire un update de props dans la fonction stateless?
+
+ajouter le flux rss : https://www.npmjs.com/package/rss-parser
+
 ajouter des packs avec l'absorbeur.
+
+ajouter 1d et skyline et diffuseur à peindre soi meme
+
+En stock, livraison express, pièce unique ou dispo sur commande.
 
 Montrer bandeau reduction pour les packs.
 
-Un diffuseur completement noir 
-
-Il faut plus de blanc pour que cela fasse epuré !
-
 refaire la section valeurs
 
-montrer le systeme d'Accroche
+forcer le mouseover sur la version mobile pr le prix.
 
-nouvelles img pour noel
+montrer le systeme d'Accroche et montrer un vrai diffuseur
 
-promotions? plus d'actualités
+Livraison express mi-janvier.
 
-winston log %s
+streaming actualité d'AF.
 
 sur mobile pas de hide du panier dajout
 
 Quadralab avec un lien vers la boutique
 
-le bordereau du suivi est-il l'etiquette a imprimer et coller ?
-
-être prévenu d'une commande avec le mail de succes.
-
-facebook messenger intégré a la page accueil
+être prévenu d'une commande avec le mail de success.
 
 faire avec email template tous les autres mails.
 
@@ -34,22 +44,24 @@ Gestion de login pour les clients via les userid enregsitrés lors de la cmde.
 Regarder un force scroll si c'est interessant ou pas :/!?
 https://projects.lukehaas.me/scrollify/#examples
 
+Formulaire de generation de devis/facture sur l'admin.
+
 Facture generation avec les fonctions reduites ?
 
-prévoir adresse mail et numéro de téléphone visible depuis accueil.
+prévoir adresse mail et numéro de téléphone visible depuis accueil. (en photo)
 
-supprimer ts les logs coté cllient
+verfier ts les logs coté cllient
 
 Inscrire le prix de livraison dans la bd. (si choix point relais ou autre )
 
 Faire un npm run lint --fix sur tout le dossier
 
-proposer des modèles 1D diffuseur.
-
 
 -- version 5 ---
 
 Creation de devis selon  un formulaire
+
+Graphique de la composition de prix d'un produit.
 
 Confirmation automatique de la commande.
 
@@ -77,3 +89,5 @@ TRES BONNE PAGE sur les promises :
 https://dzone.com/articles/common-promise-mistakes
 
 Attention au path relative des images pour le router /:id
+
+le bordereau du suivi est-il l'etiquette a imprimer et coller ?

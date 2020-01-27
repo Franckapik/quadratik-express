@@ -4,6 +4,7 @@ import {
 
 const commandeStore = store({
   display: 'enregistrement',
+  admindisplay: 'panier',
   status: '20vw',
   livraison: 'domicile',
   reload: true,

@@ -5,7 +5,6 @@ class SlideHome extends React.Component {
     super(props)
     this.state = {
       images: [
-        "images/ampli-slide1.png",
         "images/quadrablack-slide2.png",
         "images/qualitebois-slide3.png"],
       currentIndex: 0,

@@ -37,8 +37,8 @@ app.use(session({
     maxAge: 3600000, // 30min
   },
   store: saveInDB.sessionStore,
-  resave: true,
-  saveUninitialized: true,
+  resave : true,
+  saveUninitialized : true
 }));
 app.use(express.json());
 app.use(express.urlencoded({
@@ -72,6 +72,12 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
 app.get('/produit:param', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+});
+app.get('/devis/:param', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+});
+app.get('/facture/:param', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
 app.get('/resetsession', (req, res) => {

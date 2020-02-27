@@ -19,15 +19,28 @@ orderQuery = (sessid) => {
     })
 };
 
+devisAllQuery = (sessid) => {
+  return Promise.all([devisQuery(sessid), userQuery(sessid), cartQuery(sessid), livraisonQuery(sessid), commandeQuery(sessid), infoQuery() ])
+    .then(([devis, user, cart, livraison, paiement, infos]) => {
+      return {
+        devis : devis,
+        user: user,
+        cart: cart,
+        livraison: livraison,
+        paiement: paiement,
+        infos : infos
+      }
+    })
+};
+
 boxtalQuery = (sessid) => {
   return knex('boxtal')
     .where('userid', sessid)
     .then(boxtal => {
-      boxtal.length ? logger.debug('[Knex] Données client Boxtal chargées (ref): %s',boxtal[boxtal.length - 1].reference) : logger.warn('[Knex] Données Boxtal manquantes (sessid): %s', sessid);
+      boxtal.length ? logger.debug('[Knex] Données client Boxtal chargées (ref): %s', boxtal[boxtal.length - 1].reference) : logger.warn('[Knex] Données Boxtal manquantes (sessid): %s', sessid);
       return boxtal[boxtal.length - 1]
     }).catch(error => logger.error('[Knex] Boxtal Query error: %s', error));
 };
-
 
 
 userQuery = (sessid) => {
@@ -36,6 +49,15 @@ userQuery = (sessid) => {
     .then(user => {
       user.length ? logger.debug('[Knex] Données Utilisateur chargées (id): %s', user[user.length - 1].id) : logger.warn('[Knex] Données Utilisateur manquantes (sessid): %s', sessid);
       return user[user.length - 1]
+    }).catch(error => logger.error('[Knex] User Query error: %s', error));
+};
+
+devisQuery = (sessid) => {
+  return knex('devis')
+    .where('id', sessid)
+    .then(devis => {
+      devis.length ? logger.debug('[Knex] Données Devis chargées (id): %s', devis[devis.length - 1].id) : logger.warn('[Knex] Données Utilisateur manquantes (sessid): %s', sessid);
+      return devis[devis.length - 1]
     }).catch(error => logger.error('[Knex] User Query error: %s', error));
 };
 
@@ -53,7 +75,7 @@ livraisonQuery = (sessid) => {
     .where('userid', sessid)
     .then(livraison => {
       livraison.length ?
-      logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
+        logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
       return livraison[livraison.length - 1]
     }).catch(error => logger.error('[Knex] Livraison Query error: %s', error));
 }
@@ -69,7 +91,7 @@ commandeQuery = (sessid) => {
 
 productQuery = () => {
   return knex('product')
-    .leftJoin('collection', 'product.collectionId', 'collection.id')
+    .rightJoin('collection', 'product.collectionId', 'collection.col_id')
     .innerJoin('product_performances', 'product.performance', 'product_performances.type')
     .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
     .then(product => {
@@ -81,11 +103,23 @@ productQuery = () => {
 productQueryFromSrc = (src) => {
   return knex('product')
     .where('product.src', src)
-    .leftJoin('collection', 'product.collectionId', 'collection.id')
+    .leftJoin('collection', 'product.collectionId', 'collection.col_id')
     .innerJoin('product_performances', 'product.performance', 'product_performances.type')
     .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
     .then(product => {
       product.length ? logger.debug('[Knex] Produit retrouvé [id]: %s', product.id) : logger.error('[Knex] Données Produit manquantes');
+      return product
+    }).catch(error => logger.error('[Knex] Product Query error: %s', error));
+}
+
+productQueryById = (id) => {
+  return knex('product')
+    .where('product.id', id)
+    .leftJoin('collection', 'product.collectionId', 'collection.col_id')
+    .innerJoin('product_performances', 'product.performance', 'product_performances.type')
+    .leftJoin('product_colors', 'product.nbColors', 'product_colors.nbcolors')
+    .then(product => {
+      product.length ? logger.debug('[Knex] Produit retrouvé [id]: %s', product.id) : logger.error('[Knex] Données Produit manquantes pour l\'id suivant : %s', id);
       return product
     }).catch(error => logger.error('[Knex] Product Query error: %s', error));
 }
@@ -112,9 +146,17 @@ newsQuery = (index) => {
   return knex('news')
     .where('page', index)
     .then(news => {
-      news.length ? logger.debug('[Knex] Données news chargées (ref): %s',news.id) : logger.warn('[Knex] Données News manquantes (id): %s', news.id);
+      news.length ? logger.debug('[Knex] Données news chargées (ref): %s', news.id) : logger.warn('[Knex] Données News manquantes (id): %s', news.id);
       return news
     }).catch(error => logger.error('[Knex] News Query error: %s', error));
+};
+
+infoQuery = () => {
+  return knex('informations')
+    .then(infos => {
+      infos.length ? logger.debug('[Knex] Données Informations chargées') : logger.warn('[Knex] Données Informations manquantes');
+      return infos[0]
+    }).catch(error => logger.error('[Knex] Informations Query error: %s', error));
 };
 
 // Routes
@@ -154,6 +196,13 @@ router.get('/user', function(req, res, next) {
     })
 });
 
+router.get('/devis', function(req, res, next) {
+  devisAllQuery(req.query.sessid)
+    .then(devis => {
+      res.json(devis)
+    })
+});
+
 
 router.get('/livraison', function(req, res, next) {
   livraisonQuery(req.sessionID)
@@ -168,20 +217,22 @@ router.get('/commande', function(req, res, next) {
       res.json(commande)
     })
 });
-
+/*
 router.get('/getsessioncart', function(req, res, next) {
+
+  console.log(req.session.cart);
   if (req.session.cart) {
     res.json({
       cart: req.session.cart
     });
-    logger.debug('[Panier] Session récupérée (produits) : %o', req.session.cart.length);
+    logger.debug('[Panier] Session récupérée (produits) : %o', req.session.cart);
   } else {
     logger.debug('[Panier] Nouvelle session');
     res.json({
       cart: []
     })
   }
-});
+}); */
 
 router.get('/getDBCart', function(req, res, next) {
   cartQuery(req.sessionID)
@@ -249,14 +300,32 @@ router.get('/adminData', function(req, res, next) {
     })
 });
 
+router.get('/getProduits', function(req, res, next) {
+  productQuery()
+    .then(function(productData) {
+      logger.debug('[Produits db] Données récupérées');
+      res.json({
+        product: productData,
+      });
+    });
+});
+
 router.get('/getProduitFromSrc', function(req, res, next) {
   productQueryFromSrc(req.query.productsrc)
-  .then(data => {
-    console.log(data);
-    res.json(data);
-    logger.debug('[Details Produits] Details du produit OK: %s', data);
-  })
-  .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.productid));
+    .then(data => {
+      res.json(data);
+      logger.debug('[Details Produits] Details du produit OK: %s', data);
+    })
+    .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.productsrc));
+})
+
+router.get('/getProduitById', function(req, res, next) {
+  productQueryById(req.query.id)
+    .then(data => {
+      res.json(data[0]);
+      logger.debug('[Details Produits] Details du produit OK: %s', data);
+    })
+    .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.id));
 })
 
 
@@ -267,3 +336,5 @@ module.exports.adminQuery = adminQuery;
 module.exports.orderQuery = orderQuery;
 module.exports.boxtalQuery = boxtalQuery;
 module.exports.productQueryFromSrc = productQueryFromSrc;
+module.exports.devisAllQuery = devisAllQuery;
+module.exports.productQueryById = productQueryById;

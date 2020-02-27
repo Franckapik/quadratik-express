@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './styles/App.scss';
-import shopStore from './Store/shopStore';
+import panier, {panierOperations} from './Store/shopStore';
 import {view} from 'react-easy-state';
 
 class Header extends Component {
@@ -52,24 +52,23 @@ class Header extends Component {
             </a>
           </li>
           <li>
-            <a href="/"><img src="images/logo/logo_cercle.svg" alt="Logo Quadratik"/></a>
+            <a href="/"><img src="https://www.quadratik.fr/images/logo/logo_cercle.svg" alt="Logo Quadratik"/></a>
           </li>
           <li>
             <a href="/quadralab">QuadraLab</a>
           </li>
           {
-            window.location.pathname.split("/").pop() == 'shop' ||
+            window.location.pathname.split("/").pop() === 'shop' ||
             window.location.pathname.split("/").pop().includes('produit')
-              ? <li>
-                  <i className="cursor fas fa-shopping-cart" onClick={() => {
-                      shopStore.showWidget = !shopStore.showWidget
-                    }}>{
-                      shopStore.cart.length > 0
-                        ? <span className="headerCartnb">{shopStore.sumProduits}</span>
+              ?
+          <li className="cursor" onClick={()=> {panierOperations.showMiniPanier = !panierOperations.showMiniPanier}}>
+                  <i className="cursor fas fa-shopping-cart">{
+                      panier.listeProduits
+                        ? <span className="headerCartnb">{panier.qteTotale}</span>
                         : null
                     }</i>
                 </li>
-              : <li className="boutique_header">
+                : <li className="boutique_header">
                 <a href="/shop">Boutique</a>
               </li>
           }

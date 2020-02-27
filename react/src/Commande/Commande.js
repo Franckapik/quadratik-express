@@ -5,13 +5,13 @@ import Livraison from './Livraison'
 import Paiement from './Paiement'
 import Success from './Success'
 import Status from './Status'
-import shopStore from '../Store/shopStore'
+import {panierOperations} from '../Store/shopStore';
 import commandeStore from '../Store/commandeStore'
 import {view} from 'react-easy-state';
 
 class Commande extends Component {
   componentDidMount() {
-    shopStore.getSessionCart();
+    panierOperations.getLocalCart();
   }
 
   render() {

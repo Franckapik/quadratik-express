@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import shopStore from '../Store/shopStore';
+import {panierOperations} from '../Store/shopStore';
 
 class Reduction extends Component {
   constructor(props) {
@@ -17,14 +17,16 @@ class Reduction extends Component {
   }
 
   handleSubmit(event) {
-    shopStore.getReduction(this.state.value);
+    panierOperations.getReduction(this.state.value);
     event.preventDefault();
   }
 
   render() {
     return (<form className="flex_r" onSubmit = {
       this.handleSubmit
-    } > <input type = "text" size = "8" value = {
+    } >
+    Code promotion
+    <input type = "text" size = "8" value = {
       this.state.value
     }
     onChange = {

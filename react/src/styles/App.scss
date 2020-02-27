@@ -31,18 +31,19 @@ header {
   }
 
   .boutique_header {
-    @include button($w:120px,$h:20px,$bg:$accent);
+    @include button($w:120px,$h:20px,$bg:$accent2);
     position: relative;
     top: 30px;
     }
 
   .headerCartnb {
-    @include button($w:15px,$h:15px,$bg:$accent);
+    @include button($w:10px,$h:10px,$bg:$accent2);
     left: -8px;
     border-radius: 50%;
     position: relative;
     display: inline-block;
     top: 20px;
+    font-size: 0.8em;
   }
 }
 
@@ -464,6 +465,11 @@ footer {
     font-size: 1.5em;
     padding: 5px;
   }
+
+  i {
+    font-size: 2.5em;
+    color: $accent2;
+  }
 }
 
 .filter {
@@ -581,18 +587,31 @@ footer {
     }
   }
 }
-/* CartWidget */
-.cart_widget_container {
-  width: 21vw;
+
+.panier_header {
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  border: solid thin ;
+}
+
+/* MiniPanier */
+.minipanier_container {
+  display: block;
+  width: 360px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: fixed;
-  top: 80px;
-  right: 1vw;
-  transition: 0.5s ease-in-out;
-  opacity: 1;
+  top: 0;
+  right: 0;
+  z-index: 1050;
+  padding: 5px;
 }
 /*Panier*/
 .cart {
-  width: 90%;
+  vertical-align: middle;
+  width: 100%;
 
   img {
     width: 4vw;
@@ -665,6 +684,14 @@ footer {
     }
   }
 }
+
+/* Json Foms */
+
+i.glyphicon { display: none; }
+.btn-add::after { content: '+'; }
+.array-item-move-up::after { content: '↑'; }
+.array-item-move-down::after { content: '↓'; }
+.array-item-remove::after { content: '-'; }
 
 /* Statut commande */
 .status_container {

@@ -26,49 +26,130 @@ const sessionStore = new KnexSessionStore({
   tablename: 'sessions', // optional. Defaults to 'sessions'
 });
 
-router.post('/enregistrement', function(req, res, next) {
-  knex('user')
+userSave = (user, sessid) => {
+  return knex('user')
     .insert({
-      nom: req.body.firstName,
-      userid: req.sessionID,
-      prenom: req.body.lastName,
-      adresse: req.body.adresse,
-      ville: req.body.ville,
-      postal: req.body.codepostal,
-      mail: req.body.email,
-      telephone: req.body.telephone,
-      contexte: req.body.contexte
+      nom: user.firstName,
+      userid: sessid,
+      prenom: user.lastName,
+      adresse: user.adresse,
+      ville: user.ville,
+      pays: user.pays,
+      postal: user.codepostal,
+      mail: user.email,
+      telephone: user.telephone,
+      contexte: user.contexte
     })
     .returning('id')
-    .then(user => {
-      logger.info('[Knex] Données Utilisateur enregistrées (id): %s', user[0]);
-      res.sendStatus(200);
+    .then(userId => {
+      logger.info('[Knex] Données Utilisateur enregistrées (id): %s', userId[0]);
+      return userId
     }).catch(error => logger.error('[Enregistrement utilisateur] Sauvegarde db %s', error))
-});
+};
 
-router.post('/livraison', function(req, res, next) {
-  knex('livraison')
+devisSave = (devis, sessid) => {
+  return knex('devis')
     .insert({
-      livr_mode: req.body.mode,
-      livr_service: req.body.service,
-      livr_nom: req.body.firstName,
-      livr_adresse: req.body.adresse,
-      livr_ville: req.body.ville,
-      livr_postal: req.body.codepostal,
-      operateur: req.body.operateur,
-      userid: req.sessionID,
+      id: sessid,
+      entreprise: devis.entreprise.Nom_entreprise,
+      code_postal: devis.entreprise.Code_postal,
+      mail: devis.entreprise.Mail,
+      adresse: devis.entreprise.Adresse,
+      pays: devis.entreprise.Pays,
+      siret: devis.entreprise.Siret,
+      telephone: devis.entreprise.Telephone,
+      ville: devis.entreprise.Ville,
+      titulaire: devis.banque.titulaire,
+      iban: devis.banque.iban,
+      bic: devis.banque.bic,
+      date_devis: devis.Date_devis,
+      date_val: devis.Date_validite,
+      numero: devis.Numero,
+      moyen_paiement: devis.mode,
+      acompte: devis.acompte,
+      logo: devis.logo
     })
     .returning('id')
-    .then(livraison => {
-      logger.info('[Knex] Données Livraison enregistrées (id): %s', livraison[0]);
-      res.sendStatus(200);
+    .then(devisId => {
+      logger.info('[Knex] Données Devis enregistrées (id): %s', devisId);
+      return devisId
+    }).catch(error => logger.error('[Enregistrement Devis] Sauvegarde db %s', error))
+};
+
+livraisonSave = (livraison, sessid) => {
+  return knex('livraison')
+    .insert({
+      livr_mode: livraison.mode,
+      livr_service: livraison.service,
+      livr_nom: livraison.firstName,
+      livr_adresse: livraison.adresse,
+      livr_ville: livraison.ville,
+      livr_postal: livraison.codepostal,
+      livr_pays: livraison.pays,
+      operateur: livraison.operateur,
+      userid: sessid,
+    })
+    .returning('id')
+    .then(livraisonId => {
+      logger.info('[Knex] Données Livraison enregistrées (id): %s', livraisonId[0]);
+      return livraisonId
     }).catch(error => logger.error('[Livraison] Sauvegarde db %s', error))
-});
+};
 
-const saveOrderColis = (result, sessid) => {
+cartSave = (panier, sessid) => {
+  const saveProduct = panier.listeProduits.map((p, i) => {
+    return knex('cart')
+      .insert({
+        pid: p.id,
+        nom: p.nom,
+        quantite: p.qte,
+        prix: p.prix,
+        reduction: panier.reduction,
+        sous_total: p.qte * p.prix,
+        fdp: 0,
+        montant: panier.montantTotal,
+        quantite_totale: panier.qteTotale,
+        userid: sessid,
+        hauteur: panier.hauteur,
+        poids: panier.poids,
+        unites: panier.unite
+      })
+      .returning('id')
+      .then(cart => {
+        return cart
+      }).catch(error => logger.error('[Enregistrement panier] Sauvegarde db %s', error))
+  });
 
+  return Promise.all(saveProduct)
+    .then(function(results) {
+      logger.info('[Knex] Données Panier enregistrées (id): %s', results);
+      return results
+    })
+
+};
+
+saveCommandeInDB = (commande, panier, sessid) => {
+  return knex('commande')
+    .insert({
+      userid: sessid,
+      status: commande.status,
+      mode: commande.mode,
+      amount: panier.montantTotal,
+      cardtype: commande.cardType,
+      number: commande.maskedNumber,
+      expirationdate: commande.expirationDate,
+      transactionid: commande.id,
+      date: Number(new Date()),
+    })
+    .returning('transactionid')
+    .then(transactionid => {
+      logger.info('[Knex] Transaction bancaire enregistrée: %s', transactionid);
+      return transactionid
+    }).catch((error) => logger.error('[Knex] Transaction non enregistrée %s', error));
+};
+
+saveOrderColis = (result, sessid) => {
   logger.debug('[Boxtal db] Sessid: %o', sessid);
-
   return knex('boxtal')
     .insert({
       userid: sessid,
@@ -87,83 +168,48 @@ const saveOrderColis = (result, sessid) => {
     }).catch((error) => logger.error('[Boxtal db] Commande de colis non enregistrée %s', error));
 };
 
-router.post('/savesessioncart', function(req, res, next) {
-  req.session.cart = req.body;
-  req.session.save(function(err) {
-    err ? logger.error('[Panier] Session Panier non sauvegardée : %s', err) : logger.debug('[Panier] Session Panier sauvegardée (produits) : %d', req.session.cart.length);
-  })
-  res.end();
+
+router.post('/enregistrement', function(req, res, next) {
+  console.log(req.body);
+  userSave(req.body, req.session.id)
+    .then(user => {
+      res.sendStatus(200);
+    })
 });
-
-router.get('/resetsession', function(req, res, next) {
-  req.session.destroy(function(err) {
-    err ? logger.error('[Session] Erreur de suppression de session : %s', err) : logger.debug('[Session] Suppression effectuée');
-    console.log(req.session);
-    res.end();
-  })
-
-});
-
-
 
 router.post('/saveCartOnDB', function(req, res, next) {
-  const panier = req.body.cart;
-  var enregistrementCart = panier.map((p, i) => {
-    return knex('cart')
-      .returning('id')
-      .insert({
-        name: p.produit.nom,
-        quantite: p.qte,
-        reduction: req.body.reduction,
-        fdp: req.body.fdp,
-        sous_total: p.qte * p.produit.prix,
-        prix: p.produit.prix,
-        montant: req.body.total,
-        userid: req.session.id,
-        hauteur: req.body.hauteur,
-        poids: req.body.poids,
-        unites: req.body.unites
-      }).then((id) => {
-        return id
-      }).catch((error) => logger.error('[Panier] Sauvegarde db %s', error));
-  });
-
-  Promise.all(enregistrementCart).then(function(results) {
-    logger.info('[Knex] Données Panier enregistrées (id): %s', results);
-    res.json({
-      success: results
+  cartSave(req.body, req.session.id)
+    .then(cart => {
+      res.sendStatus(200);
     })
-  })
-
 });
 
-//braintree
-
-const saveCommandeInDB = (result, sessid) => {
-  logger.debug('[Braintree] Result: %o', result.transaction.status);
-  logger.debug('[Braintree] Sessid: %o', sessid);
-
-  return knex('commande')
-    .insert({
-      userid: sessid,
-      status: result.transaction.status,
-      mode: result.transaction.paymentInstrumentType,
-      amount: result.transaction.amount,
-      cardtype: result.transaction.creditCard.cardType,
-      number: result.transaction.creditCard.maskedNumber,
-      expirationdate: result.transaction.creditCard.expirationDate,
-      transactionid: result.transaction.id,
-      date: result.transaction.updatedAt,
+router.post('/livraison', function(req, res, next) {
+  console.log(req.body);
+  livraisonSave(req.body, req.session.id)
+    .then(livraison => {
+      res.sendStatus(200);
     })
-    .returning('transactionid')
-    .then(transactionid => {
-      logger.info('[Braintree db] Transaction enregistrée: %s', transactionid);
-      return transactionid
-    }).catch((error) => logger.error('[Braintree db] Transaction non enregistrée %s', error));
-};
+});
+
+router.post('/devis', function(req, res, next) {
+  userSave(req.body.formData.client, req.session.id)
+    .then(user => {
+      cartSave(req.body.panier, req.session.id)
+        .then(cart => {
+          devisSave(req.body.formData, req.session.id)
+            .then(
+              devis => {
+                saveCommandeInDB(req.body.formData, req.body.panier, req.session.id)
+                  .then(commande => {
+                    res.send(commande)
+                  })
+              })
+        })
+    })
+});
 
 const resetsession = (req) => {
-  console.log(req.session.id);
   req.session.destroy(function(err) {
     err ? logger.error('[Session] Erreur de suppression de session : %s', err) : logger.debug('[Session] Suppression effectuée');
   })

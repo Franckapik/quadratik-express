@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
+import {panierOperations} from '../Store/shopStore';
+
 
 class AddProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [],
-      prix: 0,
-      nom: '',
-      qte: 0,
-      sousTotal: 0,
-      reduction: 0,
-      toggleAutre: true,
-      total: 0
+      autre: true,
+      id : 0,
+      nom : 0,
+      qte : 0,
+      prix : 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,13 +20,16 @@ class AddProduct extends Component {
 
   handleChange(event) {
     const name = event.target.name;
-    if (name === "produitId") {
+    if (name === "id") {
       if (event.target.value === "Autre") {
-        this.choixAutre();
+        this.setState(state => ({
+          autre: !state.autre
+        }))
       } else {
         this.setState({
+          id : this.props.produits[event.target.value].id,
           prix: Number(this.props.produits[event.target.value].prix),
-          nom: this.props.produits[event.target.value].nom
+          nom: this.props.produits[event.target.value].nom,
         });
       }
     } else {
@@ -35,29 +37,14 @@ class AddProduct extends Component {
     }
   }
 
-  appendInput() {
-    const produit = {
-      prix: this.state.prix,
-      quantite: this.state.qte,
-      name: this.state.nom,
-      reduction: this.state.reduction,
-      sous_total: this.state.qte * this.state.prix
-    }
+  choixAutre() {
+    this.setState(state => ({
+      autre: !state.autre
+    }))
+  }
 
-    this.setState({
-      cart: this.state.cart.concat([produit])
-    }, () => {
+  appendInput(id, qte, prix, nom) {
 
-      this.setState({
-        prix: 0,
-        nom: '',
-        qte: 0,
-        sousTotal: 0,
-        reduction: 0,
-        toggleAutre : true,
-        total: this.sumProduits
-      })
-    });
   }
 
   get sumProduits() {
@@ -66,30 +53,24 @@ class AddProduct extends Component {
     }, 0);
   }
 
-  choixAutre() {
-    this.setState(state => ({
-      toggleAutre: !state.toggleAutre
-    }));
-  }
-
   render() {
     return (<div>
 
       <form className="flex_r box_light1 center">
         <label>
-          Produit
-
-          {this.state.toggleAutre ? <select name="produitId" onChange={this.handleChange}>
-            <option>Liste de produits</option>
-            {
-              this.props.produits.map((n, a) => {
-                return (<option value={a} key={"select" + a}>{n.nom}</option>)
-              })
-            }
-            <option selected={this.choixAutre}>Autre</option>
-          </select> :
-        <input name="nom" value={this.state.nom} onChange={this.handleChange}/>
-        }
+          Produit {
+            this.state.autre
+              ? <select name="id" onChange={this.handleChange}>
+                  <option>Liste de produits</option>
+                  {
+                    this.props.produits.map((n, a) => {
+                      return (<option value={n.id} key={"select" + a}>{n.nom}</option>)
+                    })
+                  }
+                  <option selected={this.choixAutre}>Autre</option>
+                </select>
+              : <input name="nom" value={this.state.nom} onChange={this.handleChange}/>
+          }
         </label>
 
         <label>
@@ -107,54 +88,18 @@ class AddProduct extends Component {
           <input name="sousTotal" value={this.state.qte * this.state.prix} onChange={this.handleChange}/>
         </label>
 
-        <label><i className="fas fa-plus-circle" onClick={() => this.appendInput()}>
-        </i></label>
+        <label>
+          <i className="fas fa-plus-circle" onClick={() => panierOperations.addToCart(this.state.id, this.state.qte, this.state.prix, this.state.nom)}></i>
+        </label>
 
       </form>
 
-      <PanierDevis cart={this.state.cart} total={this.state.total}></PanierDevis>
-
-      Valider le devis
+      
 
     </div>);
   }
 
 }
 
-class PanierDevis extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (<div className="box_light2 width80 center">
-      <div className="table ">
-        <ul className="flex_c">
-          <li className="table-header">
-            <div className="col w10">Nom</div>
-            <div className="col w25">Quantité</div>
-            <div className="col w20">Prix</div>
-            <div className="col w20">Montant</div>
-
-          </li>
-          {
-            this.props.cart.map((p, i) => {
-              return (<li className="table-row" key={"produit" + i}>
-                <div className="col w10" data-label="Nom">{p.name}</div>
-                <div className="col w25" data-label="Quantite">{p.quantite}</div>
-                <div className="col w25" data-label="Prix">{p.prix}€</div>
-                <div className="col w20" data-label="Montant">{p.sous_total}
-                  €</div>
-              </li>)
-            })
-          }
-        </ul>
-      </div>
-      Total TTC : {this.props.total}
-      €
-    </div>)
-  }
-}
 
 export default AddProduct

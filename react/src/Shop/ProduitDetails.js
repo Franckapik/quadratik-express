@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import client from '../Store/client';
 import ReactImageZoom from 'react-image-zoom';
-import shopStore from '../Store/shopStore';
 import FileSaver from 'file-saver';
 
 
@@ -41,7 +40,7 @@ class ProduitDetails extends Component {
     };
 
     return (<div className="produit_details_container">
-    <a href="/shop"><div className='close cursor' ><i className="fas fa-times"></i> Retourner en Boutique </div></a>
+    <a href="/shop"><div className='close2 cursor' ><i className="fas fa-times"></i> Retourner en Boutique </div></a>
       {
         this.state.produit
           ? <div className="flex_c" style={{paddingTop:'3vw'}}>

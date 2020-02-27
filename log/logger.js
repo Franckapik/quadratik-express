@@ -32,6 +32,7 @@ if (env!== 'production') { //console dvp sans precision de level
   logger.add(
     new winston.transports.Console({
     format: winston.format.combine(
+    winston.format.timestamp(),
     winston.format.colorize(),
     winston.format.prettyPrint(),
     winston.format.splat(),
@@ -47,8 +48,10 @@ if (env!== 'production') { //console dvp sans precision de level
 if (env== 'production') { //console production avec le level warn
   logger.add(
     new winston.transports.Console({
+
     level:'warn',
     format: winston.format.combine(
+    winston.format.timestamp(),
     winston.format.colorize(),
     winston.format.prettyPrint(),
     winston.format.splat(),

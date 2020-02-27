@@ -6,7 +6,7 @@ import Header from './Header'
 import Guide from './Guide';
 import Quadralab from './Quadralab/Quadralab';
 import Commande from './Commande/Commande';
-import CartWidget from './Shop/CartWidget';
+import MiniPanier from './Shop/MiniPanier';
 import PanelInfo from './Home/PanelInfo';
 import Burger from './Burger';
 import ReactGA from 'react-ga';
@@ -18,35 +18,40 @@ import InternalServerError from './500';
 import ClientDashboard from './Admin/ClientDashboard';
 import SuiviSimple from './Admin/SuiviSimple';
 import ProduitDetails from './Shop/ProduitDetails';
+import DevisDisplay from './Admin/DevisDisplay';
+import FactureDisplay from './Admin/FactureDisplay';
+import Panier from './Shop/Panier';
 
 
 import history from './History';
 
-
-
 export default function MainRouter() {
-  return (<Router history={history} >
+  return (<Router history={history}>
     <div className="app_container">
       {ReactGA.initialize('UA-112792874-1')}
       {ReactGA.pageview(window.location.pathname + window.location.search)}
       <Header></Header>
       <Burger></Burger>
-      <Switch><Route exact path="/" component={Home}/>
-      <Route path="/shop" component={Shop}/>
-      <Route path="/guide" component={Guide}/>
-      <Route path="/quadralab" component={Quadralab}/>
-      <Route path="/commande" component={Commande}/>
-      <Route path="/admin" component={withAuth(Admin)} />
-      <Route path="/login" component={Login} />
-      <Route path="/dashboard" component={withAuth(ClientDashboard)} />
-      <Route path="/404" component={NotFoundPage} />
-      <Route path="/500" component={InternalServerError} />
-      <Route path="/suivi:userid" component={SuiviSimple} />
-      <Route path="/produit:productsrc" component={ProduitDetails} />
-      <Route component={NotFoundPage} /></Switch>
-      <CartWidget></CartWidget>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/shop" component={Shop}/>
+        <Route path="/guide" component={Guide}/>
+        <Route path="/quadralab" component={Quadralab}/>
+        <Route path="/commande" component={Commande}/>
+        <Route path="/panier" component={Panier}/>
+        <Route path="/admin" component={withAuth(Admin)}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/dashboard" component={withAuth(ClientDashboard)}/>
+        <Route path="/404" component={NotFoundPage}/>
+        <Route path="/500" component={InternalServerError}/>
+        <Route path="/suivi:userid" component={SuiviSimple}/>
+        <Route path="/devis/:userid" component={DevisDisplay}/>
+        <Route path="/facture/:userid" component={FactureDisplay}/>
+        <Route path="/produit:productsrc" component={ProduitDetails}/>
+        <Route component={NotFoundPage}/>
+      </Switch>
+      <MiniPanier></MiniPanier>
       <PanelInfo></PanelInfo>
-
     </div>
   </Router>)
 }

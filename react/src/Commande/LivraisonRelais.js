@@ -7,7 +7,7 @@ import ChoisirRelais from '../Admin/Relais/ChoisirRelais';
 
 class LivraisonRelais extends Component {
   saveRelais() {
-    const r = this.state.relais_selected;
+    const r = commandeStore.relais_selected;
     if (r.code[0]) {
       const values = {
         mode: r.code[0],

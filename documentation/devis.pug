@@ -1,0 +1,128 @@
+doctype 
+html(lang="fr")
+  head
+    link(href='https://fonts.googleapis.com/css?family=Roboto&display=swap', rel='stylesheet')
+    style(type='text/css').
+      body {
+        font-size:7px;
+        color: #1a1a1a;
+        font-family: 'Roboto', sans-serif;
+        line-height:12px;
+        bgcolor: #f2f2f2;
+      }
+      .title {
+        color: #00AB9C;
+        font-size:15px;
+        padding:0;
+        text-align: center
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      .cadre {
+      border : thin solid gray; 
+      padding: 20px;
+      height: 100%;
+      }
+
+      .left {
+      text-align: left
+      }
+      .right {
+      text-align: right
+      }
+
+      table {
+      bgcolor : "grey"
+      }
+      
+      td {
+        height : 20px;
+        padding: 10px;
+        text-align: center
+      }
+      
+      tr {
+      text-align: center
+      }
+
+      th {
+        background-color: #95A5A6;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        height: 20px;
+      }
+      
+      .head {
+        background-color: #3a4450 ;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        height: 20px;
+        color: #f2f2f2;
+      }
+
+  body
+    h1.title Devis #{devis.devis.entreprise}
+
+    h3(align='center') #{devis.user.prenom} #{devis.user.nom}
+
+    table(cellspacing='0' cellpadding='0' border='0' width='100%')
+      tr
+        td.left
+          |Entreprise
+          ul.cadre
+            li #{devis.devis.entreprise}
+            li #{devis.devis.adresse}
+            li #{devis.devis.code_postal} #{devis.devis.ville}
+            li #{devis.devis.pays}
+            li #{devis.devis.mail}
+            li #{devis.devis.telephone}
+            li SIRET #{devis.devis.siret}
+        td(align='center')
+          if devis.devis.logo    
+            img(alt='Logo Quadratik.fr' src='https://www.quadratik.fr/images/logo/logo_cercle.svg' width='100px')
+        td.right
+          |Client
+          ul.cadre
+            li #{devis.user.nom} #{devis.user.prenom}
+            li #{devis.user.adresse}
+            li #{devis.user.postal} #{devis.user.ville}
+            li #{devis.user.mail}
+            li #{devis.user.telephone}
+            li id #{devis.user.id}
+    
+    table(cellspacing='0' cellpadding='0' border='0' width='100%')
+      tr
+        th.head Devis N° #{devis.devis.numero}, le #{devis.devis.date_devis}
+      tr
+        td
+          table(cellspacing='0' cellpadding='0' border='0' width='100%' bgcolor='#f2f2f2')
+            tr
+              th
+                |Nom
+              th
+                |Quantité
+              th
+                |Prix
+              th
+                |Sous total
+
+            each val in devis.cart
+              tr
+                td= val.nom
+                td= val.quantite
+                td= val.prix
+                td= val.sous_total
+                
+      if devis.cart[0].reduction
+        tr 
+          td Reduction : #{devis.cart[0].reduction} € 
+      tr
+        td.head TOTAL (TTC) : #{devis.paiement.amount} €    
+
+    p Devis valable jusqu'au #{devis.devis.date_val}
+    p Moyen de paiement : #{devis.devis.moyen_paiement}
+    p Escompte pour r&eacute;glement anticip&eacute; de 0% - P&eacute;nalit&eacute; en cas de retard de paiement: 1.5 fois le taux d&apos;int&eacute;ret l&eacute;gal
+    p Information bancaire : Titulaire du compte : #{devis.devis.titulaire} IBAN : #{devis.devis.iban} BIC/SWIFT : #{devis.devis.bic}

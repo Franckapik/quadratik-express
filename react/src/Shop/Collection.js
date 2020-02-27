@@ -27,6 +27,7 @@ class Collection extends Component {
           return (
             <Produit
               key={i}
+              id = {produit.id}
               name={produit.name}
               nom={produit.nom}
               src={produit.src}

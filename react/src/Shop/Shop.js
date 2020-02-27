@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Collection from './Collection';
-import shopStore from '../Store/shopStore';
-import Panier from './Panier';
+import {panierOperations} from '../Store/shopStore';
 import Footer from '../Footer';
 import Top from './Top';
 import ScrollAnimation from 'react-animate-on-scroll';
@@ -21,10 +20,12 @@ class CollectionsList extends Component {
 
   componentDidMount() {
 
+    panierOperations.getLocalCart();
     client.shopFetch()
     .then(data => {
       const collectionsObj = data[0].collections;
       this.setState({collections: collectionsObj});
+      console.log(collectionsObj);
 
       if(data[0].collections.length !== 0) {
         const top = data[0].collections.reduce(function(a, b) {
@@ -41,10 +42,7 @@ class CollectionsList extends Component {
 
   render() {
 
-    return (<div>{
-        shopStore.showCart
-          ? <Panier></Panier>
-          : <div id="shop" className="flex_c style_light">
+    return (<div><div id="shop" className="flex_c style_light">
               <h1 className="boutique_title">> Boutique Quadratik</h1>
               <div >
                 <ul className="flex_r filter">

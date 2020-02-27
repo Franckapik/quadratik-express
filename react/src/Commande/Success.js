@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/App.scss';
 import {view} from 'react-easy-state';
-import shopStore from '../Store/shopStore';
+import {panierOperations} from '../Store/shopStore';
 import client from '../Store/client';
 
 
@@ -19,7 +19,7 @@ class Paiement extends React.Component {
         commande: data
       });
     });
-    shopStore.resetCart();
+    panierOperations.resetCart();
   }
 
   render() {

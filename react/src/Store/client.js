@@ -45,6 +45,7 @@ function postData(url, body){
     headers: new Headers({'Content-Type': 'application/json'})
   })
   .then(response => {
+    console.log(response);
     return response
   });
 }
@@ -60,11 +61,16 @@ const client = {
   cotationFetch: (param) => getData('/boxtal/cotation?transporteur=' + param.transporteur + '&poids=' + param.poids + '&longueur=' + param.longueur + '&largeur=' + param.largeur + '&hauteur=' + param.hauteur + '&code_postal=' + param.code_postal + '&ville=' + param.ville + '&adresse=' + param.adresse),
   livraisonPost: (body) => postData('/saveInDB/livraison', body),
   enregistrementPost: (body) => postData('/saveInDB/enregistrement', body),
+  devisPost: (body) => postData('/saveInDB/devis', body),
+  devisFetch: (id) => getData('/getFromDB/devis?sessid='+id),
   createEtiquetteFetch: (id) => getData('/boxtal/etiquette?sessid=' + id),
   dataSheetFetch: (src, locale) => getData('/createPDF/dataSheet?productsrc='+src+'&locale='+locale),
+  devisPdfFetch: (id) => getData('/createPDF/devis?sessid='+id),
   getSuiviFetch: (ref) => getData('/boxtal/suiviColis?ref=' + ref),
   getReferenceFetch:(id) => getData('/boxtal/getRefFromId?sessid=' + id),
+  getProductsFetch:() => getData('/getFromDB/getProduits'),
   getProductFetch:(src) => getData('/getFromDB/getProduitFromSrc?productsrc=' + src),
+  getProductByIdFetch:(id) => getData('/getFromDB/getProduitById?id=' + id),
   createFactureFetch: (id) => getData('/createPDF/createFacture?sessid=' + id),
   getFactureFetch: (id) => getData('/createPDF/getFacture?sessid=' + id),
   loginPost: (body) => postData('/auth/login', body),
@@ -77,9 +83,7 @@ const client = {
   mailPost : (body) => postData('/sendMail/mailcontact', body),
   newsletterPost : (body) => postData('/sendMail/newsletter', body),
   questionnairePost : (body) => postData('/sendMail/questionnaire', body),
-  cartsessionPost : (body) => postData('/saveInDB/savesessioncart', body),
-  cartsessionFetch: () => getData('/getFromDB/getsessioncart'),
-  saveCartPost : (body) => postData('/saveInDB/saveCartOnDB', body),
+  saveCartPost : (panier) => postData('/saveInDB/saveCartOnDB', panier),
   reductionfetch: (code)=> getData('getFromDB/getreduction?code=' + code),
   resetCartPost : () => getData('/saveInDB/resetsession'),
   nonceFetch : (nonce) => getData(`/paiement/nonce/${nonce}`),

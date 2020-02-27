@@ -24,9 +24,9 @@
     color: $c;
   }
 }
-@mixin button($w:12em,$h:auto,$c:$white,$bg:$dark,$p:2vh,$b:solid 0 $white,$br:15px) {
+@mixin button($w:4em,$h:auto,$c:$white,$bg:$darklight,$p:10px,$b:solid 0 $white,$br:15px) {
   min-width: $w;
-  max-width: 300px;
+  max-width: 180px;
   height: $h;
   padding: $p;
   background-clip: padding-box;
@@ -55,7 +55,7 @@
 
   input[type="submit"] {
     cursor: pointer;
-    max-width: 180px;
+    max-width: 100px;
     background-color: $accent2;
     color: $white;
   }
@@ -70,6 +70,16 @@
 
   button {
     margin: auto;
+    max-width: 50px;
+    background-color: inherit;
+    color: $accent2;
+    border: solid thin;
+    padding: 5px;
+    border-radius: 2px;
+  }
+
+  textarea {
+    width: 100%;
   }
 }
 @mixin texte1($s:1em,$w:300,$ls:0.05em,$lh:$line-height) {
@@ -105,11 +115,10 @@
   }
 
   .table-row {
-    background-color: $white;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.1);
   }
 }
-@mixin input ($b:$whitedark,$p:2px,$m:5px 5px 15px 0px,$s:1em,$w:100%) {
+@mixin input ($b:$whitedark,$p:2px,$m:5px 5px 15px 0px,$s:1em,$w:90%) {
   background-color: $b;
   padding: $p;
   margin: $m;

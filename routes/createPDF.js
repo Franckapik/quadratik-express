@@ -146,18 +146,7 @@ router.get('/getFacture', function(req, res, next) {
 router.get('/dataSheet', function(req, res, next) {
   fromDb.productQueryFromSrc(req.query.productsrc)
     .then(produit => {
-      console.log(req.query.locale);
-      if(req.query.locale === 'FR') {
-        var template = '././documentation/dataSheetFR.pug';
-      }
-      else if(req.query.locale === 'EN') {
-        template= '././documentation/dataSheetEN.pug';
-      }
-      else {
-        logger.debug('[DataSheet] Locale manquante ou non correspondante');
-      }
-
-      const compiledFunction = pug.compileFile(template);
+      const compiledFunction = pug.compileFile('././documentation/dataSheet'+req.query.locale+'.pug');
 
       const html = compiledFunction({ produit: produit[0] });
 
@@ -167,13 +156,34 @@ router.get('/dataSheet', function(req, res, next) {
         res.download(url.filename, 'dataSheet'+req.query.locale, (err) => {
           if (err) {
             logger.error('[DataSheet download] %s', err);
-            return
+            return err
           } else {
             logger.info('[DataSheet download] Demande de téléchargement : %s', url.filename);
           }
         });
       });
+    });
+});
 
+router.get('/devis', function(req, res, next) {
+  fromDb.devisAllQuery(req.query.sessid)
+    .then(devis => {
+      const compiledFunction = pug.compileFile('././documentation/devis.pug');
+      console.log(devis);
+      const html = compiledFunction({ devis: devis });
+
+      pdf.create(html, config.toPDF).toFile('./../documentation/devis.pdf', function(err, url) {
+        if (err) return logger.error('[DataSheet] Erreur lors de la création %s', err);
+
+        res.download(url.filename, 'devis', (err) => {
+          if (err) {
+            logger.error('[Devis download] %s', err);
+            return err
+          } else {
+            logger.info('[Devis download] Demande de téléchargement : %s', url.filename);
+          }
+        });
+      });
     });
 });
 

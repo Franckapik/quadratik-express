@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
-import shopStore from '../Store/shopStore';
+import {panierOperations} from '../Store/shopStore';
+
 
 class Produit extends Component {
 
@@ -11,16 +12,6 @@ class Produit extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  produitClicked() {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.nom);
-      shopStore.showDetails = true;
-      shopStore.width = '100%';
-      shopStore.selected = this.props;
-
-    }
   }
 
   handleChange(event) {
@@ -71,7 +62,7 @@ class Produit extends Component {
               </div>
             </div>
           <span className="prix">{prix} €</span>
-            <i className="fas fa-cart-arrow-down cart_add cursor" onClick={shopStore.addToCart.bind(this)}></i>
+            <i className="fas fa-cart-arrow-down cart_add cursor" onClick={ () => {panierOperations.addToCart(this.props.id, this.state.value, this.props.prix, this.props.nom)}}></i>
           </div>
         </div>
       </p>

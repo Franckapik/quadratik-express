@@ -22,7 +22,7 @@ class Quadralab extends Component {
   componentDidMount() {}
 
   handleChange(color, event) {
-    console.log(color.rgb);
+    
     m_storage.set("couleur", [color.rgb.r, color.rgb.g, color.rgb.b, color.rgb.a])
   }
 

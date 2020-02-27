@@ -21,7 +21,7 @@ class Livraison extends Component {
 
   componentDidMount() {
     client.userFetch().then(user => {
-      console.log(user);
+      
       this.formData = {
         mode: "domicile",
         firstName: user.nom + " " + user.prenom,
@@ -54,7 +54,7 @@ class Livraison extends Component {
 
   saveRelais(event) {
     const r = commandeStore.relais_selected
-    console.log(r);
+    
 
     if (r.code[0]) {
       const values = {

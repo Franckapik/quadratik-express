@@ -10,7 +10,7 @@ const secret = config.jwtSecret;
 
 //creation du token
 router.post('/login', (req, res, next) => {
-  console.log(req.body);
+  
   fromDb.adminQuery(req.body.email)
     .then(adminUser => {
       adminUser.length ?
@@ -37,7 +37,7 @@ router.post('/login', (req, res, next) => {
 router.post('/signIn', (req, res, next) => { //a finir
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
-      console.log(hash);
+      
     });
   });
 });

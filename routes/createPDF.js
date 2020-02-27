@@ -33,7 +33,7 @@ router.get('/devis', function(req, res, next) {
   fromDb.devisAllQuery(req.query.sessid)
     .then(devis => {
       const compiledFunction = pug.compileFile('././documentation/devis.pug');
-      console.log(devis);
+      
       const html = compiledFunction({ devis: devis });
 
       pdf.create(html, config.toPDF).toFile('./../documentation/devis.pdf', function(err, url) {

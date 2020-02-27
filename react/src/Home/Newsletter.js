@@ -26,7 +26,7 @@ class Newsletter extends Component {
           }} validationSchema={SignupSchema} onSubmit={values => {
             client.newsletterPost(values)
             .then(res => {
-              console.log('ici', res);
+              
               if(res.ok) {
                 this.setState({receptionMsg: 'Votre email a bien été enregistré à la newsletter. Merci!'});
               } else {

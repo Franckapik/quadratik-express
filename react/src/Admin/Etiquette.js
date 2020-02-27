@@ -59,7 +59,6 @@ class Etiquette extends Component {
       headers: new Headers({'Content-Type': 'application/json'})
     }).then(res => res.json()).then(res => {
       if (res.error) {
-        console.log(res.error);
         this.setState({message: res.error.message[0]})
       } else {
         this.setState({message: res.order.shipment[0].reference[0]})

@@ -19,7 +19,7 @@ export default function withAuth(ComponentToProtect) {  return class extends Com
               loading: false,
               userid: res.userid
              });
-            console.log(res);
+
           } else {
             const error = new Error(res.error);
             throw error;

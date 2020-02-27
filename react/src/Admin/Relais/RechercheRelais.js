@@ -35,7 +35,6 @@ class RechercheRelais extends Component {
         this.formData.adresse = user.adresse;
         this.formData.code_postal = user.postal;
         this.formData.ville = user.ville;
-        console.log(this.formData);
         this.forceUpdate();
         this.getCotation(this.formData);
       });

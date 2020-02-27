@@ -42,7 +42,7 @@ export const init_app = () => {
 const init_cb = (canvas_elem, success) => {
 
     if (!success) {
-        console.log("b4w init failure");
+        
         return;
     }
 
@@ -79,7 +79,7 @@ const preloader_cb = (percentage) => {
 const load_cb = (data_id, success) => {
 
     if (!success) {
-        console.log("b4w load failure");
+        
         return;
     }
 

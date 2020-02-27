@@ -15,7 +15,7 @@ class Messenger extends Component {
 
 /* Envoi vers serveur */
   handleNewUserMessage = (newMessage) => {
-    console.log(`Nouveau message ! ${newMessage}`);
+    
     socket.emit('clientServer', newMessage);
   }
 

@@ -23,7 +23,7 @@ class Home extends Component {
   componentWillMount() {
     client.newsFetch("home").then(data => {
       this.setState({news: data})
-      console.log(data);
+      
     });
   }
 

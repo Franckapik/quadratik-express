@@ -2,7 +2,7 @@ import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll';
 
 const SectionBoutique = (props) => {
-  console.log(props);
+  
   return (<section id="boutique">
     <div className="flex_r flex_wr style_dark fullsize">
       <ScrollAnimation animateIn='bounceInRight' className="mobile_hide" animateOnce={true}>

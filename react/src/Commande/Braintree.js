@@ -25,7 +25,7 @@ class Braintree extends React.Component {
     .then(
       ({nonce}) => client.nonceFetch(nonce)
       .then(res => {
-        console.log(res);
+        
           if (res.success) {
             commandeStore.display = 'success';
             commandeStore.status = '100vw';

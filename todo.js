@@ -2,9 +2,6 @@
 
 ajouter choix du paiement et envoyer directement sur un site tiers ?
 
-retirer invoice-it et nettoyer le createPDF.
-
-
 clef api pour mollie : test_VbGxbhupu2QVN7xDkH6KvAW34EQEWh
 
 Calcul du nombre de colis au sein du store en prop de panier.
@@ -16,15 +13,30 @@ En stock, livraison express, pièce unique ou dispo sur commande.
 Les frais de ports vont être desormais gratuits. IL faudra mettre cela en avant sur le site !
 Il faut penser tout de même à integrer les frais de port dans le processus de paiement quite à les annuler si le choix d'un relais colis est réalisé.
 
-Trouver le moyen de debugguer le store.
-
 Pouvoir switcher entre commandes via CB ou Virement bancaire.
 
-rss : fetch avant le render ? ou bien faire un update de props dans la fonction stateless?
+  rss : fetch avant le render ? ou bien faire un update de props dans la fonction stateless?
 
-ajouter le flux rss : https://www.npmjs.com/package/rss-parser
+  ajouter le flux rss : https://www.npmjs.com/package/rss-parser
 
-ajouter des packs avec l'absorbeur.
+  streaming actualité d'AF.
+
+être prévenu d'une commande avec le mail de success.
+
+améliorer visibilité des deux contacts.
+
+
+Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
+
+
+-- version 5 ---
+
+Quadralab avec un lien vers la boutique
+
+faire avec email template tous les autres mails.
+
+Gestion de login pour les clients via les userid enregsitrés lors de la cmde.
+
 
 ajouter 1d et skyline et diffuseur à peindre soi meme
 
@@ -34,29 +46,8 @@ refaire la section valeurs
 
 montrer le systeme d'Accroche et montrer un vrai diffuseur
 
-streaming actualité d'AF.
-
-Quadralab avec un lien vers la boutique
-
-être prévenu d'une commande avec le mail de success.
-
-faire avec email template tous les autres mails.
-
-Gestion de login pour les clients via les userid enregsitrés lors de la cmde.
-
 Regarder un force scroll si c'est interessant ou pas :/!?
 https://projects.lukehaas.me/scrollify/#examples
-
-améliorer visibilité des deux contacts.
-
-verfier ts les logs coté cllient
-
-Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
-
-
--- version 5 ---
-
-mollie
 
 Graphique de la composition de prix d'un produit.
 
@@ -84,3 +75,5 @@ https://dzone.com/articles/common-promise-mistakes
 Attention au path relative des images pour le router /:id
 
 le bordereau du suivi est-il l'etiquette a imprimer et coller ? Oui.
+
+nettoyer les console.log avec un regex : console\.log\(([^)]+)\);

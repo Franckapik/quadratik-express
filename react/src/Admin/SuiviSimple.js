@@ -26,7 +26,6 @@ class SuiviSimple extends Component {
   getSuivi(ref) {
     client.getSuiviFetch(ref).then(data => {
       this.setState({suivi: data.order})
-      console.log(data);
     });
   }
 

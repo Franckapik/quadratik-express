@@ -220,7 +220,7 @@ router.get('/commande', function(req, res, next) {
 /*
 router.get('/getsessioncart', function(req, res, next) {
 
-  console.log(req.session.cart);
+  
   if (req.session.cart) {
     res.json({
       cart: req.session.cart

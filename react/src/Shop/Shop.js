@@ -25,7 +25,7 @@ class CollectionsList extends Component {
     .then(data => {
       const collectionsObj = data[0].collections;
       this.setState({collections: collectionsObj});
-      console.log(collectionsObj);
+      
 
       if(data[0].collections.length !== 0) {
         const top = data[0].collections.reduce(function(a, b) {
@@ -35,7 +35,7 @@ class CollectionsList extends Component {
         });
         this.setState({top: top});
       } else {
-        console.log("Top non valide");
+        
       }
     });
   }

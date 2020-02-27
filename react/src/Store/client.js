@@ -5,7 +5,7 @@ const getOptions = {
 };
 
 function status(response) {
-  console.log('reponse', response);
+  
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response)
   } else {
@@ -28,10 +28,10 @@ function getData(url){
     .then(status)
     .then(json)
     .then(function(data) {
-      console.log('Request succeeded with JSON response', data);
+      
       return data
     }).catch(function(error) {
-      console.log('Request failed', error);
+      
     //  window.location ='/500' ;
       return error
     });
@@ -45,7 +45,7 @@ function postData(url, body){
     headers: new Headers({'Content-Type': 'application/json'})
   })
   .then(response => {
-    console.log(response);
+    
     return response
   });
 }

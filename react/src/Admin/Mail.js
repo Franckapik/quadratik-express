@@ -12,7 +12,6 @@ class Mail extends Component {
   getMail(id) {
     client.confirmCommandeFetch(id)
     .then(res=> {
-console.log(res);
     })
 
   }

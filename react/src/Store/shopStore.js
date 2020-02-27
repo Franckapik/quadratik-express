@@ -15,11 +15,11 @@ const panier = store({
           let unite = 0;
           if (a.unite) {
             unite = a.unite
-            console.log(1);
+            
           }
           else if (panierOperations.infos[i].unite) {
             unite = panierOperations.infos[i].unite
-            console.log(2);
+            
           }
           return h += a.qte * unite
         } else {
@@ -172,7 +172,7 @@ const produitSurMesure = {
 client.getProductsFetch()
   .then(product => {
     product.product.push(produitSurMesure);
-    console.log('ici le produit', product.product);
+    
 
     panierOperations.infos = product.product;
   });

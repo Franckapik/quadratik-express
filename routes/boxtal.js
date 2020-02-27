@@ -46,7 +46,7 @@ router.get('/relais', function(req, res, next) {
 });
 
 router.get('/suiviColis', function(req, res, next) {
-  console.log('ici', req.query.ref);
+  
   fetch(boxtalUrl + "order_status/" + req.query.ref + "/informations", {
       headers: headers,
       credentials: 'include',
@@ -56,7 +56,7 @@ router.get('/suiviColis', function(req, res, next) {
     .then(response => response.text())
     .then(data => {
       parseString(data, function(err, result) {
-        console.log(result);
+        
         res.json(result);
         logger.debug('Informations suivi : %s', result.order.emc_reference[0]);
         if (err) {
@@ -70,7 +70,7 @@ router.get('/suiviColis', function(req, res, next) {
 router.get('/getRefFromId', function(req, res, next) {
   fromDb.boxtalQuery(req.query.sessid)
     .then(data => {
-      console.log(data);
+      
       res.json(data);
       logger.debug('[Boxtal] Recherche OK pour la reference colis: %s', data.reference);
     })
@@ -164,7 +164,7 @@ router.get('/etiquette', function(req, res, next) {
 });
 
 router.post('/order/:id', function(req, res, next) {
-  console.log(req.params.id);
+  
   let recherche = new URLSearchParams(req.body);
   var url = new URL(boxtalUrl + 'order')
   url.search = recherche;

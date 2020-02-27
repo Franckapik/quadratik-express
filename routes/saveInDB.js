@@ -170,7 +170,7 @@ saveOrderColis = (result, sessid) => {
 
 
 router.post('/enregistrement', function(req, res, next) {
-  console.log(req.body);
+  
   userSave(req.body, req.session.id)
     .then(user => {
       res.sendStatus(200);
@@ -185,7 +185,7 @@ router.post('/saveCartOnDB', function(req, res, next) {
 });
 
 router.post('/livraison', function(req, res, next) {
-  console.log(req.body);
+  
   livraisonSave(req.body, req.session.id)
     .then(livraison => {
       res.sendStatus(200);

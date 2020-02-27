@@ -139,7 +139,7 @@ router.get("/nonce/:nonce", cors(corsOptions), function(req, res, next) {
       if (result.success) {
         logger.warn('[Braintree] Nouvelle transaction: %s', result.transaction.id);
         inDb.saveCommandeInDB(result, req.sessionID);
-        console.log('ici', result);
+        
         res.json(result);
       } else {
         logger.error('[Braintree] Erreur de transaction: %s', result.message);

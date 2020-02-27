@@ -117,7 +117,7 @@ router.post('/newsletter', function(req, res, next) {
 
 router.get('/mailfacture', function(req, res, next) {
 
-  console.log('ici', req.sessionID);
+  
 
   knex('user')
     .where('userid', req.sessionID)
@@ -134,7 +134,7 @@ router.get('/mailfacture', function(req, res, next) {
                   facture.facturation(user, cart, commande, livraison).then(result => console.log(result))
 
                   nodemailer.createTestAccount((err, account) => {
-                    console.log(user[user.length - 1].mail);
+                    
                     let transporter = nodemailer.createTransport(config.mail);
                     let mailOptions = {
                       from: user[user.length - 1].mail, // sender address

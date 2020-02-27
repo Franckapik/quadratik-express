@@ -3,7 +3,6 @@ import '../styles/App.scss';
 import Etiquette from './Etiquette';
 import Facture from './Facture';
 import Mail from './Mail';
-import DevisCreate from './DevisCreate';
 import Suivi from './Suivi';
 
 class SessionServices extends Component {

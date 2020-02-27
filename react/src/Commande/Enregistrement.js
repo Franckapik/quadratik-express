@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import commandeStore from '../Store/commandeStore';
 import {view} from 'react-easy-state';
 import client from '../Store/client';
-import SignupSchema from './Forms/Validation';
 import enregistrementSchema from '../forms.js'
 import Form from "react-jsonschema-form";
 

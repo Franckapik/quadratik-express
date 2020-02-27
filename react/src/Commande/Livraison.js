@@ -3,7 +3,6 @@ import '../styles/App.scss';
 import commandeStore from '../Store/commandeStore';
 import client from '../Store/client';
 import {livraisonDomicileSchema} from '../forms';
-import LivraisonRelais from './LivraisonRelais';
 import Form from "react-jsonschema-form";
 import {view} from 'react-easy-state';
 import RechercheRelais from '../Admin/Relais/RechercheRelais';

@@ -82,8 +82,8 @@ class RechercheRelais extends Component {
     return (<div>
       {
         this.props.admin
-          ? <Form schema={rechercheRelaisSchema.schema } uiSchema={rechercheRelaisSchema.uiSchema } formData={this.formData} onChange={log(this.formData)} onSubmit={this.submit} />
-        : <Form schema={rechercheRelaisSchemaClient.schema } uiSchema={rechercheRelaisSchemaClient.uiSchema } formData={this.formData} onChange={log(this.formData)} onSubmit={this.submit} />
+          ? <Form schema={rechercheRelaisSchema.schema } uiSchema={rechercheRelaisSchema.uiSchema } formData={this.formData} onChange={log(this.formData)} onSubmit={this.submit} > <button type="submit">Nouvelle adresse</button> </Form>
+        : <Form schema={rechercheRelaisSchemaClient.schema } uiSchema={rechercheRelaisSchemaClient.uiSchema } formData={this.formData} onChange={log(this.formData)} onSubmit={this.submit} > <button type="submit">Valider</button> </Form>
       }
     </div>)
   }

@@ -1,5 +1,4 @@
 --version v4-
-
 ajouter choix du paiement et envoyer directement sur un site tiers ?
 
 clef api pour mollie : test_VbGxbhupu2QVN7xDkH6KvAW34EQEWh
@@ -26,10 +25,10 @@ Pouvoir switcher entre commandes via CB ou Virement bancaire.
 améliorer visibilité des deux contacts.
 
 
+-- version 5 ---
+
 Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
 
-
--- version 5 ---
 
 Quadralab avec un lien vers la boutique
 
@@ -77,3 +76,7 @@ Attention au path relative des images pour le router /:id
 le bordereau du suivi est-il l'etiquette a imprimer et coller ? Oui.
 
 nettoyer les console.log avec un regex : console\.log\(([^)]+)\);
+
+l'api relais colis en javascript existe a partir d'une iframe au cas ou boxtal devient compliqué.
+
+Ajouter un id auto implémenté : ALTER TABLE public.devis ADD COLUMN ID SERIAL PRIMARY KEY;

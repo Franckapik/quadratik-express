@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config')
 
 const logger = require('../log/logger');
 var pdf = require('html-pdf');
@@ -33,7 +34,7 @@ router.get('/devis', function(req, res, next) {
   fromDb.devisAllQuery(req.query.sessid)
     .then(devis => {
       const compiledFunction = pug.compileFile('././documentation/devis.pug');
-      
+
       const html = compiledFunction({ devis: devis });
 
       pdf.create(html, config.toPDF).toFile('./../documentation/devis.pdf', function(err, url) {

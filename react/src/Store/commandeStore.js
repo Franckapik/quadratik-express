@@ -3,7 +3,7 @@ import {
 } from 'react-easy-state'
 
 const commandeStore = store({
-  display: 'livraison',
+  display: 'enregistrement',
   admindisplay: 'panier',
   status: '20vw',
   livraison: 'domicile',

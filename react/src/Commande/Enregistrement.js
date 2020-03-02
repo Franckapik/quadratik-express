@@ -32,7 +32,7 @@ class Enregistrement extends Component {
 
   render() {
     return (
-        <Form schema={enregistrementSchema.schema } uiSchema={enregistrementSchema.uiSchema } formData={enregistrementSchema.formData } onChange={log(this.formData) } onSubmit={this.submit } onError={log("errors")}/>
+        <Form schema={enregistrementSchema.schema } uiSchema={enregistrementSchema.uiSchema } formData={enregistrementSchema.formData } onChange={log(this.formData) } onSubmit={this.submit } onError={log("errors")}> <button type="submit">Valider</button></Form>
     )
   }
 }

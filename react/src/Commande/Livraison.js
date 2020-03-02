@@ -21,7 +21,7 @@ class Livraison extends Component {
 
   componentDidMount() {
     client.userFetch().then(user => {
-      
+
       this.formData = {
         mode: "domicile",
         firstName: user.nom + " " + user.prenom,
@@ -54,7 +54,7 @@ class Livraison extends Component {
 
   saveRelais(event) {
     const r = commandeStore.relais_selected
-    
+
 
     if (r.code[0]) {
       const values = {
@@ -109,7 +109,7 @@ class Livraison extends Component {
         this.state.selectedOption === "domicile"
           ? <div>
               <h3>Livraison à domicile / Nouvelle adresse</h3>
-              <Form schema={livraisonDomicileSchema.schema} uiSchema={livraisonDomicileSchema.uiSchema} formData={this.formData} onSubmit={this.submit} onChange={log(this.formData)}/>
+              <Form schema={livraisonDomicileSchema.schema} uiSchema={livraisonDomicileSchema.uiSchema} formData={this.formData} onSubmit={this.submit} onChange={log(this.formData)}> <button type="submit">Valider</button> </Form>
             </div>
           : null
       }

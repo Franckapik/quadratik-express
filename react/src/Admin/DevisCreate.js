@@ -75,7 +75,7 @@ class DevisCreate extends Component {
         }
       };
 
-
+      this.forceUpdate();
 
     });
   }
@@ -90,7 +90,7 @@ class DevisCreate extends Component {
             } onChange={log(this.formData)
             } fields={fields
             } onSubmit={this.submit
-            } onError={log("errors")}/>
+            } onError={log("errors")}> <button type="submit">Valider</button> </Form>
           : "Erreur d'acquisition de donnée - Rafraichir la page "
       }</> : "Devis créé"
     }  < />

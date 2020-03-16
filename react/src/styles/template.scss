@@ -58,6 +58,10 @@ $font1: 'Roboto', sans-serif;
   @include button($bg:$main,$c:$white);
 }
 
+.button_accent {
+  @include button($bg:$accent2,$c:$white);
+}
+
 .table-left {
   @include table($j:left,$m:unset);
   i {

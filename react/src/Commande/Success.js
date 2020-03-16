@@ -14,12 +14,17 @@ class Paiement extends React.Component {
   }
 
   componentDidMount() {
-    client.commandeFetch().then(data => {
+    this.getOrder(this.props.match.params.orderid);
+  }
+
+  getOrder(id) {
+    client.commandeFetch(id)
+    .then(data => {
       this.setState({
         commande: data
       });
     });
-    panierOperations.resetCart();
+
   }
 
   render() {
@@ -29,10 +34,9 @@ class Paiement extends React.Component {
       <div className="center">
             <h1>Félicitation, votre transaction a bien été enregistrée !</h1>
             <ul>
-                <li>Transaction : {c.id}</li>
+                <li>Transaction : {c.transactionid ? c.transactionid : "En attente de validation" }</li>
                 <li>Montant : {c.amount}</li>
-                <li>Type de carte : {c.cardtype}</li>
-                <li>Date d'expiration: {c.expirationdate}</li>
+                <li>{ c.expirationdate ? 'Date d expiration:' + c.expirationdate : null}</li>
             </ul>
 
       Merci pour votre confiance !

@@ -52,9 +52,9 @@ class Panier extends Component {
               <li className="table-row">
                 <div className="col w100 fullsize" data-label="reduction">
                   <Reduction></Reduction>
-
                 </div>
               </li>
+              <li> Nombre de colis estimé : {panier.nbColis}</li>
             </ul>
           </div>
           <p>En cliquant sur <strong>Commander</strong>, vous acceptez les             <u className="cursor" onClick={() => {
@@ -62,8 +62,8 @@ class Panier extends Component {
                 homeStore.content = 'Cgv';
               }}>Conditions générales de ventes</u>
           </p>
-          <button className="boutique_header" onClick={() => {
-              panierOperations.sendCartOnDB(0)
+          <button className="boutique_header button_accent" onClick={() => {
+              panierOperations.sendCartOnDB(0,1)
             }}>Commander</button>
         </div>
 

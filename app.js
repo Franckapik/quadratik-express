@@ -34,7 +34,7 @@ app.options('*', cors({
 app.use(session({
   secret: secret,
   cookie: {
-    maxAge: 3600000, // 30min
+    maxAge: 7200000, // 120min
   },
   store: saveInDB.sessionStore,
   resave : true,
@@ -77,12 +77,18 @@ app.get('/produit:param', (req, res) => {
 app.get('/devis/:param', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
+app.get('/order/:param', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+});
 app.get('/facture/:param', (req, res) => {
   res.sendFile(path.join(`${__dirname}/react/build/index.html`));
 });
 app.get('/resetsession', (req, res) => {
   saveInDB.resetsession(req);
   res.send('reset');
+});
+app.get('/webhookPaiement/:orderid', (req, res) => {
+  paiement.webhook(req.params.id)
 });
 
 

@@ -10,13 +10,14 @@ const secret = config.jwtSecret;
 
 //creation du token
 router.post('/login', (req, res, next) => {
-  
-  fromDb.adminQuery(req.body.email)
+
+  fromDb.tableQuery('admin', {'user' : req.body.email})
     .then(adminUser => {
-      adminUser.length ?
-        bcrypt.compare(req.body.password, adminUser[0].hashpwd).then(function(valide) {
+      console.log(adminUser);
+      adminUser.id ?
+        bcrypt.compare(req.body.password, adminUser.hashpwd).then(function(valide) {
           if (valide) {
-            const userData = adminUser[0];
+            const userData = adminUser;
             jwt.sign({
               userData
             }, secret, {
@@ -37,7 +38,7 @@ router.post('/login', (req, res, next) => {
 router.post('/signIn', (req, res, next) => { //a finir
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
-      
+
     });
   });
 });

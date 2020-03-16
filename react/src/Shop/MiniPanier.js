@@ -28,6 +28,11 @@ class MiniPanier extends Component {
             {
               panier.listeProduits.length !== 0
                 ? <div>
+                <a href="/panier">
+                  <button className="button_accent fullsize givemespace">
+                    Passer la commande
+                  </button>
+                </a>
                     <Cart control="control"></Cart>
                     <span>
                       Total :
@@ -36,8 +41,8 @@ class MiniPanier extends Component {
                     </span>
                     <p></p>
                     <a href="/panier">
-                      <button className="button_light fullsize givemespace">
-                        Ouvrir le Panier
+                      <button className="button_accent fullsize givemespace">
+                        Passer la commande
                       </button>
                     </a>
                     <button className="button_light fullsize givemespace" onClick={() => {

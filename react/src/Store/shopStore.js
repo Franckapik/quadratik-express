@@ -6,7 +6,8 @@ import client from './client';
 const panier = store({
   listeProduits: [],
   reduction: 0,
-  fdp: 0,
+  domicile: false,
+  cartid: 0,
   get unite() {
     if (panier.listeProduits.length > 0) {
       return panier.listeProduits.reduce((h, a) => {
@@ -15,11 +16,11 @@ const panier = store({
           let unite = 0;
           if (a.unite) {
             unite = a.unite
-            
+
           }
           else if (panierOperations.infos[i].unite) {
             unite = panierOperations.infos[i].unite
-            
+
           }
           return h += a.qte * unite
         } else {
@@ -36,6 +37,9 @@ const panier = store({
   get poids() {
     return this.unite * 3
   },
+  get nbColis() {
+    return Math.ceil(this.hauteur / 40)
+  },
 
   get qteTotale() {
     return panier.listeProduits.reduce((somme, i) => (somme += Number(i.qte)), 0);
@@ -47,6 +51,14 @@ const panier = store({
 
   get montantHorsFdp() {
     return panier.listeProduits.reduce((sum, i) => (sum += i.qte * i.prix), 0);
+  },
+
+  get fdp() {
+    if (panier.domicile) {
+      return panier.nbColis * 15
+    } else {
+      return 0
+    }
   }
 });
 
@@ -91,6 +103,8 @@ const panierOperations = store({
 
   save() {
     window.localStorage.setItem('panier', JSON.stringify(panier.listeProduits));
+    window.localStorage.setItem('cartid', JSON.stringify(Number(new Date())));
+
   },
 
   resetCart() {
@@ -99,7 +113,7 @@ const panierOperations = store({
 
   },
 
-  sendCartOnDB(admin) {
+  sendCartOnDB(admin, create) {
     client.saveCartPost(panier).then(res => {
       if (!admin && res.ok) {
         window.location = '/commande';
@@ -114,6 +128,7 @@ const panierOperations = store({
   getLocalCart() {
     if (localStorage.getItem('panier')) {
       panier.listeProduits = JSON.parse(localStorage.getItem('panier'));
+      panier.cartid = JSON.parse(localStorage.getItem('cartid'));
     }
   },
 
@@ -172,8 +187,6 @@ const produitSurMesure = {
 client.getProductsFetch()
   .then(product => {
     product.product.push(produitSurMesure);
-    
-
     panierOperations.infos = product.product;
   });
 

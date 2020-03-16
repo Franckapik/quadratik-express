@@ -4,6 +4,8 @@ import commandeStore from '../Store/commandeStore';
 import Success from './Success';
 import client from '../Store/client';
 
+
+
 class Braintree extends React.Component {
   instance;
   state = {
@@ -25,7 +27,7 @@ class Braintree extends React.Component {
     .then(
       ({nonce}) => client.nonceFetch(nonce)
       .then(res => {
-        
+
           if (res.success) {
             commandeStore.display = 'success';
             commandeStore.status = '100vw';

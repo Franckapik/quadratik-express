@@ -29,7 +29,8 @@ class Produit extends Component {
       longueur,
       srcImg,
       unite,
-      src
+      src,
+      stock
         } = this.props;
 
     return (<div className="flex_c center produit">
@@ -80,6 +81,11 @@ class Produit extends Component {
         <i className="fas fa-th-large"/>{nbcellules} cellule{nbcellules > 1 ? 's' :null} {unite > 1 ? <> < i className = "fab fa-codepen" />{ unite } unités de {largeur} x { longueur } cm < /> : <><i className="fab fa-codepen" / > { largeur } x { longueur } cm < />}
 
       </p>
+
+      {stock.includes("Express") ?
+        <p><i className="fas fa-rocket" style = {{color : '#DC143C'}}></i> {stock} </p>
+      : <p><i class="fas fa-tools" style = {{color : '#00AB9C'}}></i> {stock}</p>
+      }
 
     </div>)
   }

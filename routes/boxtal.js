@@ -46,7 +46,7 @@ router.get('/relais', function(req, res, next) {
 });
 
 router.get('/suiviColis', function(req, res, next) {
-  
+
   fetch(boxtalUrl + "order_status/" + req.query.ref + "/informations", {
       headers: headers,
       credentials: 'include',
@@ -56,7 +56,7 @@ router.get('/suiviColis', function(req, res, next) {
     .then(response => response.text())
     .then(data => {
       parseString(data, function(err, result) {
-        
+
         res.json(result);
         logger.debug('Informations suivi : %s', result.order.emc_reference[0]);
         if (err) {
@@ -68,9 +68,9 @@ router.get('/suiviColis', function(req, res, next) {
 });
 
 router.get('/getRefFromId', function(req, res, next) {
-  fromDb.boxtalQuery(req.query.sessid)
+  tableQuery('boxtal', {'userid':req.query.sessid})
     .then(data => {
-      
+
       res.json(data);
       logger.debug('[Boxtal] Recherche OK pour la reference colis: %s', data.reference);
     })
@@ -78,7 +78,7 @@ router.get('/getRefFromId', function(req, res, next) {
 })
 
 router.get('/etiquette', function(req, res, next) {
-  fromDb.orderQuery(req.query.sessid)
+  fromDb.orderQuery({'userid' :req.query.sessid})
     .then(order => {
       const time = new Date().toLocaleDateString("fr-FR", {
         year: "numeric",
@@ -164,7 +164,7 @@ router.get('/etiquette', function(req, res, next) {
 });
 
 router.post('/order/:id', function(req, res, next) {
-  
+
   let recherche = new URLSearchParams(req.body);
   var url = new URL(boxtalUrl + 'order')
   url.search = recherche;
@@ -237,15 +237,11 @@ router.get('/cotation', function(req, res, next) {
     ...options
   };
 
-  logger.debug("Recherche Relais avec informations suivantes: %o", envoi);
-
   let recherche = new URLSearchParams(envoi);
 
   var url = new URL(boxtalUrl + 'cotation');
 
   url.search = recherche;
-
-  logger.debug("[Boxtal Relais] Paramètres de recherche relais: %o", url.search);
 
   fetch(url, {
       headers: headers,
@@ -261,7 +257,6 @@ router.get('/cotation', function(req, res, next) {
           logger.error("[Boxtal Relais] Erreur lors de la recherche relais: %o", err);
         } else {
           res.json(result);
-          logger.debug("[Boxtal Relais] Relais listés: %o", result.cotation.shipment[0].offer[0].mandatory_informations[0].parameter[13].type[0].enum);
         }
       });
     })

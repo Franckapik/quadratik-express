@@ -21,7 +21,7 @@ class SessionCart extends Component {
   render() {
   return (
     <div className="client_column"> <h3>Panier</h3>
-{ this.state.cart ? this.state.cart.map((p, i) => {
+{ this.state.cart.length ? this.state.cart.map((p, i) => {
         return (
           <div key={i}>
                       <ul>
@@ -36,7 +36,7 @@ class SessionCart extends Component {
           </div>
         )
 
-  }) : null
+  }) : "Pas de panier"
 } </div>
 
 )

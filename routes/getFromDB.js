@@ -7,8 +7,8 @@ const knex = require('knex')(configuration);
 const logger = require('../log/logger');
 // Query Database
 
-orderQuery = (sessid) => {
-  return Promise.all([userQuery(sessid), cartQuery(sessid), livraisonQuery(sessid), commandeQuery(sessid)])
+orderQuery = (where) => {
+  return Promise.all([userQuery(where), cartQuery(where), livraisonQuery(where), commandeQuery(where)])
     .then(([user, cart, livraison, paiement]) => {
       return {
         user: user,
@@ -19,8 +19,8 @@ orderQuery = (sessid) => {
     })
 };
 
-devisAllQuery = (sessid) => {
-  return Promise.all([devisQuery(sessid), userQuery(sessid), cartQuery(sessid), livraisonQuery(sessid), commandeQuery(sessid), infoQuery() ])
+devisAllQuery = (where) => {
+  return Promise.all([devisQuery(where), userQuery(where), cartQuery(where), livraisonQuery(where), commandeQuery(where), infoQuery() ])
     .then(([devis, user, cart, livraison, paiement, infos]) => {
       return {
         devis : devis,
@@ -33,61 +33,14 @@ devisAllQuery = (sessid) => {
     })
 };
 
-boxtalQuery = (sessid) => {
-  return knex('boxtal')
-    .where('userid', sessid)
-    .then(boxtal => {
-      boxtal.length ? logger.debug('[Knex] Données client Boxtal chargées (ref): %s', boxtal[boxtal.length - 1].reference) : logger.warn('[Knex] Données Boxtal manquantes (sessid): %s', sessid);
-      return boxtal[boxtal.length - 1]
-    }).catch(error => logger.error('[Knex] Boxtal Query error: %s', error));
+tableQuery = (table, where) => {
+  return knex(table)
+    .where(where)
+    .then(data => {
+      data.length ? logger.debug('[Knex] Données Table ' + table + ' chargées (where): %o', where) : logger.warn('[Knex] Données ' + table+ ' manquantes (where): %o', where);
+      return data[data.length - 1]
+    }).catch(error => logger.error('[Knex] Erreur de chargement de ' + table + ' %s', error));
 };
-
-
-userQuery = (sessid) => {
-  return knex('user')
-    .where('userid', sessid)
-    .then(user => {
-      user.length ? logger.debug('[Knex] Données Utilisateur chargées (id): %s', user[user.length - 1].id) : logger.warn('[Knex] Données Utilisateur manquantes (sessid): %s', sessid);
-      return user[user.length - 1]
-    }).catch(error => logger.error('[Knex] User Query error: %s', error));
-};
-
-devisQuery = (sessid) => {
-  return knex('devis')
-    .where('id', sessid)
-    .then(devis => {
-      devis.length ? logger.debug('[Knex] Données Devis chargées (id): %s', devis[devis.length - 1].id) : logger.warn('[Knex] Données Utilisateur manquantes (sessid): %s', sessid);
-      return devis[devis.length - 1]
-    }).catch(error => logger.error('[Knex] User Query error: %s', error));
-};
-
-cartQuery = (sessid) => {
-  return knex('cart')
-    .where('userid', sessid)
-    .then(cart => {
-      cart.length ? logger.debug('[Knex] Données Panier chargées (id): %s', cart[cart.length - 1].id) : logger.warn('[Knex] Données Panier manquantes (sessid): %s', sessid);
-      return cart
-    }).catch(error => logger.error('[Knex] Cart Query error: %s', error));
-}
-
-livraisonQuery = (sessid) => {
-  return knex('livraison')
-    .where('userid', sessid)
-    .then(livraison => {
-      livraison.length ?
-        logger.debug('[Knex] Données Livraison chargées (id): %s', livraison[livraison.length - 1].id) : logger.warn('[Knex] Données Livraison manquantes (sessid): %s', sessid);
-      return livraison[livraison.length - 1]
-    }).catch(error => logger.error('[Knex] Livraison Query error: %s', error));
-}
-
-commandeQuery = (sessid) => {
-  return knex('commande')
-    .where('userid', sessid)
-    .then(commande => {
-      commande.length ? logger.debug('[Knex] Données Commande chargées (id): %s', commande[commande.length - 1].id) : logger.warn('[Knex] Données Commande manquantes (sessid): %s', sessid);
-      return commande[commande.length - 1]
-    }).catch(error => logger.error('[Knex] Commande Query error: %s', error));
-}
 
 productQuery = () => {
   return knex('product')
@@ -124,80 +77,50 @@ productQueryById = (id) => {
     }).catch(error => logger.error('[Knex] Product Query error: %s', error));
 }
 
-promoQuery = (code) => {
-  return knex('promo')
-    .where('code', code)
-    .then(reduction => {
-      reduction.length ? logger.debug('[Knex] Données Reduction chargées (id): %s', reduction[0]) : logger.warn('[Knex] Données Reduction manquantes (code): %s', code);
-      return reduction[0]
-    }).catch(error => logger.error('[Knex] Promo Query error: %s', error));
-}
-
-adminQuery = (email) => {
-  return knex('admin')
-    .where('user', email)
-    .then(adminUser => {
-      adminUser.length ? logger.debug('[Knex] Données Administration Utilisateur chargées (id): %s', adminUser[adminUser.length - 1].id) : logger.warn('[Knex] Données Administration Utilisateur manquantes (user): %s', user);
-      return adminUser
-    }).catch(error => logger.error('[Knex] Admin User Query error: %s', error));
-}
-
-newsQuery = (index) => {
-  return knex('news')
-    .where('page', index)
-    .then(news => {
-      news.length ? logger.debug('[Knex] Données news chargées (ref): %s', news.id) : logger.warn('[Knex] Données News manquantes (id): %s', news.id);
-      return news
-    }).catch(error => logger.error('[Knex] News Query error: %s', error));
-};
-
-infoQuery = () => {
-  return knex('informations')
-    .then(infos => {
-      infos.length ? logger.debug('[Knex] Données Informations chargées') : logger.warn('[Knex] Données Informations manquantes');
-      return infos[0]
-    }).catch(error => logger.error('[Knex] Informations Query error: %s', error));
-};
 
 // Routes
 
+
+//admin
+//a changer sur l'admin si manquant
 router.get('/adminCart', function(req, res, next) {
-  cartQuery(req.query.sessid)
+  tableQuery('cart', {'userid':req.query.sessid})
     .then(cart => {
       res.json(cart)
     })
 });
 
 router.get('/adminLivraison', function(req, res, next) {
-  livraisonQuery(req.query.sessid)
+  tableQuery('livraison', {'userid':req.query.sessid})
     .then(livraison => {
       res.json(livraison)
     })
 });
 
 router.get('/adminPaiement', function(req, res, next) {
-  commandeQuery(req.query.sessid)
+  tableQuery('commande', {'userid':req.query.sessid})
     .then(commande => {
       res.json(commande)
     })
 });
 
 router.get('/adminUser', function(req, res, next) {
-  userQuery(req.query.sessid)
+  tableQuery('user', {'userid':req.query.sessid})
     .then(user => {
       res.json(user)
     })
 });
 
+//query selon session actuelle
 router.get('/user', function(req, res, next) {
-  userQuery(req.sessionID)
+  tableQuery('user', {'userid':req.sessionID})
     .then(user => {
       res.json(user)
     })
 });
 
 router.get('/devis', function(req, res, next) {
-  devisAllQuery(req.query.sessid)
+  devisAllQuery({'userid':req.query.sessid})
     .then(devis => {
       res.json(devis)
     })
@@ -205,51 +128,35 @@ router.get('/devis', function(req, res, next) {
 
 
 router.get('/livraison', function(req, res, next) {
-  livraisonQuery(req.sessionID)
+  tableQuery('livraison', {'userid':req.sessionID})
     .then(livraison => {
       res.json(livraison)
     })
 });
 
 router.get('/commande', function(req, res, next) {
-  commandeQuery(req.sessionID)
+  tableQuery('commande', {'orderid':req.query.orderid})
     .then(commande => {
       res.json(commande)
     })
 });
-/*
-router.get('/getsessioncart', function(req, res, next) {
-
-  
-  if (req.session.cart) {
-    res.json({
-      cart: req.session.cart
-    });
-    logger.debug('[Panier] Session récupérée (produits) : %o', req.session.cart);
-  } else {
-    logger.debug('[Panier] Nouvelle session');
-    res.json({
-      cart: []
-    })
-  }
-}); */
 
 router.get('/getDBCart', function(req, res, next) {
-  cartQuery(req.sessionID)
+  tableQuery('cart', {'userid': req.sessionID, 'cartid' : req.query.cartid})
     .then(cart => {
       res.json(cart)
     })
 });
 
 router.get('/getreduction', function(req, res, next) {
-  promoQuery(req.query.code)
+  tableQuery('promo', {'code':req.query.code})
     .then(reduction => {
       res.json(reduction)
     })
 });
 
 router.get('/newsDB', function(req, res, next) {
-  newsQuery(req.query.index)
+  tableQuery('news', {'page':req.query.index})
     .then(news => {
       res.json(news)
     })
@@ -281,8 +188,6 @@ router.get('/shopDB', function(req, res, next) {
 router.get('/adminData', function(req, res, next) {
   productQuery()
     .then(function(productData) {
-      knex('product_essences')
-        .then(function(essencesData) {
           knex('user')
             .then(function(userData) {
               knex('informations')
@@ -290,15 +195,14 @@ router.get('/adminData', function(req, res, next) {
                   logger.debug('[Admin db] Données récupérées');
                   res.json({
                     product: productData,
-                    essence: essencesData,
                     user: userData,
                     info: informations
                   });
                 })
             })
-        })
     })
 });
+
 
 router.get('/getProduits', function(req, res, next) {
   productQuery()
@@ -310,6 +214,7 @@ router.get('/getProduits', function(req, res, next) {
     });
 });
 
+
 router.get('/getProduitFromSrc', function(req, res, next) {
   productQueryFromSrc(req.query.productsrc)
     .then(data => {
@@ -319,22 +224,9 @@ router.get('/getProduitFromSrc', function(req, res, next) {
     .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.productsrc));
 })
 
-router.get('/getProduitById', function(req, res, next) {
-  productQueryById(req.query.id)
-    .then(data => {
-      res.json(data[0]);
-      logger.debug('[Details Produits] Details du produit OK: %s', data);
-    })
-    .catch(error => logger.error('[Details Produits] Recherche produit non disponible pour l\'id suivant %s:', req.query.id));
-})
-
 
 module.exports = router;
-module.exports.userQuery = userQuery;
-module.exports.cartQuery = cartQuery;
-module.exports.adminQuery = adminQuery;
+module.exports.tableQuery = tableQuery;
 module.exports.orderQuery = orderQuery;
-module.exports.boxtalQuery = boxtalQuery;
 module.exports.productQueryFromSrc = productQueryFromSrc;
 module.exports.devisAllQuery = devisAllQuery;
-module.exports.productQueryById = productQueryById;

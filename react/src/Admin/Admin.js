@@ -5,7 +5,6 @@ import Infos from './Infos';
 import Clients from './Clients';
 import DevisCreate from './DevisCreate';
 import Produits from './Produits';
-import Construction from './Construction';
 import TemplateCSS from './TemplateCSS';
 import client from '../Store/client';
 
@@ -18,7 +17,7 @@ class Admin extends Component {
       produits: false,
       essence: false,
       info: false,
-      page:"relais"
+      page:"clients"
     };
   }
 
@@ -27,7 +26,6 @@ class Admin extends Component {
     .then(adminData => {
       this.setState({user: adminData.user});
       this.setState({produits: adminData.product});
-      this.setState({essence: adminData.essence});
       this.setState({info: adminData.info});
     });
 
@@ -55,7 +53,6 @@ class Admin extends Component {
     <li onClick={() => this.setState({page: "clients"})}>Mes clients</li>
     <li onClick={() => this.setState({page: "devis"})}>Devis/Facturation</li>
     <li onClick={() => this.setState({page: "produits"})}>Mes produits</li>
-    <li onClick={() => this.setState({page: "construction"})}>Mes frais de construction</li>
     <li onClick={() => this.setState({page: "template"})}>Template CSS</li>
     </ul>
     <div className="contenu">
@@ -64,7 +61,6 @@ class Admin extends Component {
       {this.state.page==="clients" ? <Clients user={this.state.user} produits={this.state.produits}></Clients>: null }
       {this.state.page==="devis" ? <DevisCreate user={this.state.user} produits={this.state.produits} info={this.state.info}></DevisCreate>: null }
       {this.state.page==="produits" ? <Produits produits={this.state.produits}></Produits>: null }
-      {this.state.page==="construction" ? <Construction essence={this.state.essence}></Construction>: null }
       {this.state.page==="template" ? <TemplateCSS></TemplateCSS>: null }
     </div>
   </div>

@@ -348,6 +348,23 @@ footer {
 }
 
 #shop {
+
+  .infoShop{
+    img {
+      margin: 10px 100px 10px 50px;
+    }
+
+    .strongColor {
+      color: $accent2;
+      font-size : 1.5em;
+      margin: 5px;
+    }
+
+    justify-content: flex-start;
+    border-radius: 3px;
+    font-size: 1.3em;
+  }
+
   .input_qte {
     @include input($b:$whitedark,$m:0)
   }

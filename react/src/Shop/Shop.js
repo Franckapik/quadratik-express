@@ -25,7 +25,7 @@ class CollectionsList extends Component {
     .then(data => {
       const collectionsObj = data[0].collections;
       this.setState({collections: collectionsObj});
-      
+
 
       if(data[0].collections.length !== 0) {
         const top = data[0].collections.reduce(function(a, b) {
@@ -35,7 +35,7 @@ class CollectionsList extends Component {
         });
         this.setState({top: top});
       } else {
-        
+
       }
     });
   }
@@ -62,6 +62,7 @@ class CollectionsList extends Component {
                   : null
               }
 
+              <div className="flex_r box_dark3 givemespace infoShop"> <img src='./images/relaiscolis.gif' style={{width : '50px'}} className="givemespace"></img> <strong>Désormais la livraison est <span className="strongColor">GRATUITE</span> si vous choisissez de recevoir vos colis en <span className="strongColor">Point Relais</span> !</strong></div>
               {
                 this.state.collections.filter((item => {
                   if (this.state.filtre) {

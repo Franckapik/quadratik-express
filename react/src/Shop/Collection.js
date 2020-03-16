@@ -48,6 +48,7 @@ class Collection extends Component {
               color = 'blue'
               unite={produit.unite}
               poids={produit.poids}
+              stock={produit.stock}
               />
           );
 

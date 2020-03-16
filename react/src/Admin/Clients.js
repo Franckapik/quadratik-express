@@ -49,6 +49,7 @@ class Clients extends Component {
                       <small>{p.userid}</small>
                       <a href={"/devis/" + p.userid}>Devis</a>
                       <a href={"/facture/" + p.userid}>Facture</a>
+                      <a href={"/order/" + p.userid}>Commande</a>
                     </h3>
                     <div className="flex_r flex_baseline">
                       <SessionAdresse sessid={p.userid}></SessionAdresse>

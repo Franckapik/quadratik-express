@@ -1,18 +1,11 @@
 --version v4-
-ajouter choix du paiement et envoyer directement sur un site tiers ?
 
-clef api pour mollie : test_VbGxbhupu2QVN7xDkH6KvAW34EQEWh
-
-Calcul du nombre de colis au sein du store en prop de panier.
+Refactoriser toutes les query selon tablequery
 
 Affichage actualité selon un nom definis dans la db.
 
-En stock, livraison express, pièce unique ou dispo sur commande.
+erreur avec "Tous nos produits"
 
-Les frais de ports vont être desormais gratuits. IL faudra mettre cela en avant sur le site !
-Il faut penser tout de même à integrer les frais de port dans le processus de paiement quite à les annuler si le choix d'un relais colis est réalisé.
-
-Pouvoir switcher entre commandes via CB ou Virement bancaire.
 
   rss : fetch avant le render ? ou bien faire un update de props dans la fonction stateless?
 
@@ -27,6 +20,11 @@ améliorer visibilité des deux contacts.
 
 -- version 5 ---
 
+Résoudre le pb suivant : admin. La fonction admindata utilise les autres query mais sans sessid. Possible ?
+
+Parametrer le webhook du paiement. => maj de la db.
+
+
 Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
 
 
@@ -37,7 +35,7 @@ faire avec email template tous les autres mails.
 Gestion de login pour les clients via les userid enregsitrés lors de la cmde.
 
 
-ajouter 1d et skyline et diffuseur à peindre soi meme
+ajouter skyline et diffuseur à peindre soi meme
 
 Montrer bandeau reduction pour les packs.
 
@@ -68,6 +66,10 @@ resoudre le pb de child a du table
 faire un instagram ?
 lien pour devenir partenaire sur la section contact
 
+Utiliser chokidar au lieu de nodemon ?
+----------------------------------------
+
+
 TRES BONNE PAGE sur les promises :
 https://dzone.com/articles/common-promise-mistakes
 
@@ -80,3 +82,7 @@ nettoyer les console.log avec un regex : console\.log\(([^)]+)\);
 l'api relais colis en javascript existe a partir d'une iframe au cas ou boxtal devient compliqué.
 
 Ajouter un id auto implémenté : ALTER TABLE public.devis ADD COLUMN ID SERIAL PRIMARY KEY;
+
+
+L'adresse redirect url est celle qui est appelée suite à la transaction quoi qu'il arrive.
+Le webhook est un lien qui permet de recevoir le statut du paiement lorsqu'il change from mollie. Lorsque l'argent est arrivé, un statut est envoyé et permet d'engager ensuite la livraison, les mails , etc ...

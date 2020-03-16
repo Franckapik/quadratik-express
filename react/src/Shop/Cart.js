@@ -56,6 +56,7 @@ class Cart extends Component {
      }) : "Chargement des articles"
  }
         </ul>
+
       </div>
 
     </div>)

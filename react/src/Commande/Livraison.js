@@ -7,6 +7,8 @@ import Form from "react-jsonschema-form";
 import {view} from 'react-easy-state';
 import RechercheRelais from '../Admin/Relais/RechercheRelais';
 import ChoisirRelais from '../Admin/Relais/ChoisirRelais';
+import panier, {panierOperations} from '../Store/shopStore';
+
 
 const log = (type) => console.log.bind(console, type);
 
@@ -37,24 +39,23 @@ class Livraison extends Component {
   submit({
     formData
   }, e) {
-    client.livraisonPost(formData).then(res => {
-      if (res.ok) {
+    Promise.all([panierOperations.sendCartOnDB(1,0), client.livraisonPost(formData)])
+    .then(([panierSent, livraison]) => {
+      if (livraison.ok) {
         if (!window.location.href.includes('admin')) {
           commandeStore.display = 'paiement';
           commandeStore.status = '80vw';
         } else {
-          commandeStore.admindisplay = 'paiement'
+          commandeStore.admindisplay = 'paiement';
         }
       } else {
         window.location = '/500';
       }
-
-    });
+    })
   };
 
   saveRelais(event) {
-    const r = commandeStore.relais_selected
-
+    const r = commandeStore.relais_selected;
 
     if (r.code[0]) {
       const values = {
@@ -67,8 +68,10 @@ class Livraison extends Component {
         codepostal: r.zipcode[0]
       }
 
-      client.livraisonPost(values).then(res => {
-        if (res.ok) {
+      Promise.all([panierOperations.sendCartOnDB(1,0), client.livraisonPost(values)])
+      .then(([panierSent, livraison]) => {
+        console.log(panierSent);
+        if (livraison.ok) {
           if (!window.location.href.includes('admin')) {
             commandeStore.display = 'paiement';
             commandeStore.status = '80vw';
@@ -78,14 +81,18 @@ class Livraison extends Component {
         } else {
           window.location = '/500';
         }
-
-      });
+      })
     }
     event.preventDefault();
   }
 
   handleOptionChange = changeEvent => {
     this.setState({selectedOption: changeEvent.target.value});
+    if (changeEvent.target.value === 'domicile') {
+      panier.domicile = true
+    } else {
+      panier.domicile = false
+    }
   };
 
   render() {
@@ -109,6 +116,7 @@ class Livraison extends Component {
         this.state.selectedOption === "domicile"
           ? <div>
               <h3>Livraison à domicile / Nouvelle adresse</h3>
+              <p className="accent2"><i className="fas fa-exclamation-triangle givemespace"></i> Frais de ports supplémentaires : {panier.fdp} €</p>
               <Form schema={livraisonDomicileSchema.schema} uiSchema={livraisonDomicileSchema.uiSchema} formData={this.formData} onSubmit={this.submit} onChange={log(this.formData)}> <button type="submit">Valider</button> </Form>
             </div>
           : null
@@ -118,10 +126,10 @@ class Livraison extends Component {
           ? <div className="flex_r width80">
               <div className="center">
                 <h3>Livraison en Point relais</h3>
-
                 <RechercheRelais></RechercheRelais>
               </div>
               <div className="flex_c w50">
+                <div className="flex_r box_dark3 givemespace infoShop"> <img src='./images/relaiscolis.gif' style={{width : '50px'}} className="givemespace"></img> Livraison GRATUITE</div>
                 <div className="relais_liste box_light4">
                   <ChoisirRelais admin="admin"></ChoisirRelais>
                 </div>

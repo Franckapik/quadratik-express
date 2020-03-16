@@ -5,7 +5,7 @@ const getOptions = {
 };
 
 function status(response) {
-  
+
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response)
   } else {
@@ -28,10 +28,10 @@ function getData(url){
     .then(status)
     .then(json)
     .then(function(data) {
-      
+
       return data
     }).catch(function(error) {
-      
+
     //  window.location ='/500' ;
       return error
     });
@@ -45,7 +45,7 @@ function postData(url, body){
     headers: new Headers({'Content-Type': 'application/json'})
   })
   .then(response => {
-    
+
     return response
   });
 }
@@ -56,7 +56,8 @@ const client = {
   newsFetch: (index) => getData('/getFromDB/newsDB?index=' + index),
   adminFetch: () => getData('/getFromDB/adminData'),
   userFetch: () => getData('/getFromDB/user'),
-  commandeFetch: () => getData('/getFromDB/commande'),
+  cartFetch: (cartid) => getData('/getFromDB/getDBCart?cartid='+cartid),
+  commandeFetch: (id) => getData('/getFromDB/commande?orderid=' +id),
   adminUserFetch: (id) => getData('/getFromDB/adminUser?sessid='+id),
   cotationFetch: (param) => getData('/boxtal/cotation?transporteur=' + param.transporteur + '&poids=' + param.poids + '&longueur=' + param.longueur + '&largeur=' + param.largeur + '&hauteur=' + param.hauteur + '&code_postal=' + param.code_postal + '&ville=' + param.ville + '&adresse=' + param.adresse),
   livraisonPost: (body) => postData('/saveInDB/livraison', body),
@@ -70,7 +71,6 @@ const client = {
   getReferenceFetch:(id) => getData('/boxtal/getRefFromId?sessid=' + id),
   getProductsFetch:() => getData('/getFromDB/getProduits'),
   getProductFetch:(src) => getData('/getFromDB/getProduitFromSrc?productsrc=' + src),
-  getProductByIdFetch:(id) => getData('/getFromDB/getProduitById?id=' + id),
   createFactureFetch: (id) => getData('/createPDF/createFacture?sessid=' + id),
   getFactureFetch: (id) => getData('/createPDF/getFacture?sessid=' + id),
   loginPost: (body) => postData('/auth/login', body),
@@ -86,7 +86,8 @@ const client = {
   saveCartPost : (panier) => postData('/saveInDB/saveCartOnDB', panier),
   reductionfetch: (code)=> getData('getFromDB/getreduction?code=' + code),
   resetCartPost : () => getData('/saveInDB/resetsession'),
-  nonceFetch : (nonce) => getData(`/paiement/nonce/${nonce}`),
+  createPayment : (token) => getData('/paiement/create?token=' + token),
+  virement : (token) => getData('/paiement/virement'),
   confirmCommandeFetch : (id) => getData('/sendMail/confirmationCommande?sessid=' + id)
 }
 

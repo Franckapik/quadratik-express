@@ -9,12 +9,11 @@ const KnexSessionStore = require('connect-session-knex')(session);
 
 logger.warn('[Knex] Mode %s', environment);
 
-const upsert = (table, sessid, data, returned) => {
-  return knex.select('*').groupBy(returned)
+const upsert = (table, where, sessid, data, returned) => {
+  return knex.select('*')
+    .groupBy(returned)
     .from(table)
-    .where({
-      userid: sessid
-    })
+    .where(where)
     .count()
     .then((count) => {
       if (count == 0) {
@@ -22,18 +21,16 @@ const upsert = (table, sessid, data, returned) => {
           .insert(data)
           .returning(returned)
           .then(id => {
-            logger.info('[Knex] Table ' + table +' Données enregistrées (id): %s', id[0]);
+            logger.info('[Knex] Table ' + table + ' Données enregistrées (id): %s', id[0]);
             return id
-          }).catch(error => logger.error('[Enregistrement utilisateur] Sauvegarde db %s', error))
+          }).catch(error => logger.error('[Erreur Enregistrement ' + table +'] Sauvegarde db %s', error))
       } else {
         return knex(table)
-          .where({
-            userid: sessid
-          })
+          .where(where)
           .update(data)
           .returning(returned)
           .then(id => {
-            logger.info('[Knex] Table ' + table +': Données mise à jour (id): %s', id[0]);
+            logger.info('[Knex] Table ' + table + ': Données mise à jour (id): %s', id[0]);
             return id
           }).catch(error => logger.error('[Knex] Erreur sur la table ' + table + ' %s', error))
       }
@@ -60,7 +57,9 @@ userSave = (user, sessid) => {
     telephone: user.telephone,
     contexte: user.contexte
   }
-  return upsert('user', sessid, data, 'id');
+  return upsert('user', {
+    userid: sessid
+  }, sessid, data, 'id');
 };
 
 devisSave = (devis, sessid) => {
@@ -85,7 +84,9 @@ devisSave = (devis, sessid) => {
     logo: devis.logo
   }
 
-  return upsert('devis', sessid, data, 'id');
+  return upsert('devis', {
+    userid: sessid
+  }, sessid, data, 'id');
 
 };
 
@@ -101,71 +102,79 @@ livraisonSave = (livraison, sessid) => {
     operateur: livraison.operateur,
     userid: sessid,
   };
-  return upsert('livraison', sessid, data, 'id');
-  };
-
-cartSave = (panier, sessid) => {
-  const saveProduct = panier.listeProduits.map((p, i) => {
-    return knex('cart')
-      .insert({
-        pid: p.id,
-        nom: p.nom,
-        quantite: p.qte,
-        prix: p.prix,
-        reduction: panier.reduction,
-        sous_total: p.qte * p.prix,
-        fdp: 0,
-        montant: panier.montantTotal,
-        quantite_totale: panier.qteTotale,
-        userid: sessid,
-        hauteur: panier.hauteur,
-        poids: panier.poids,
-        unites: panier.unite
-      })
-      .returning('id')
-      .then(cart => {
-        return cart
-      }).catch(error => logger.error('[Enregistrement panier] Sauvegarde db %s', error))
-  });
-
-  return Promise.all(saveProduct)
-    .then(function(results) {
-      logger.info('[Knex] Données Panier enregistrées (id): %s', results);
-      return results
-    })
-
+  return upsert('livraison', {
+    userid: sessid
+  }, sessid, data, 'id');
 };
 
-saveCommandeInDB = (commande, panier, sessid) => {
+cartSave = (panier, sessid) => {
+  console.log(panier);
+  const saveProduct = panier.listeProduits.map((p, i) => {
+    const data = {
+      pid: p.id,
+      cartid: panier.cartid,
+      nom: p.nom,
+      quantite: p.qte,
+      prix: p.prix,
+      reduction: panier.reduction,
+      sous_total: p.qte * p.prix,
+      fdp: panier.fdp,
+      montanttotal: panier.montantTotal,
+      montanthorsfdp: panier.montantHorsFdp,
+      quantite_totale: panier.qteTotale,
+      userid: sessid,
+      hauteur: panier.hauteur,
+      poids: panier.poids,
+      unites: panier.unite,
+      nbcolis: panier.nbColis
+    }
+    console.log(data.nom);
+
+    return upsert('cart', { userid: sessid, nom: data.nom, cartid: panier.cartid}, sessid, data, 'id');
+
+})
+
+return Promise.all(saveProduct)
+  .then(function(results) {
+    return results
+  })
+};
+
+saveCommandeInDB = (commande, amount, sessid) => {
 
   const data = {
     userid: sessid,
     status: commande.status,
     mode: commande.mode,
-    amount: panier.montantTotal,
-    cardtype: commande.cardType,
-    number: commande.maskedNumber,
-    expirationdate: commande.expirationDate,
+    method: commande.method,
+    profileid: commande.profileId,
+    amount: amount,
+    orderid: commande.metadata.orderId,
+    expirationdate: commande.expiresAt,
     transactionid: commande.id,
     date: Number(new Date()),
   }
 
-  return upsert('commande', sessid, data, 'id');
+  return upsert('commande', {
+    userid: sessid
+  }, sessid, data, 'id');
 
 };
 
 saveOrderColis = (result, sessid) => {
-const data = {
-  userid: sessid,
-  reference: result.order.shipment[0].reference[0],
-  collection_date: result.order.shipment[0].collection_date,
-  prix_boxtal: result.order.shipment[0].offer[0].price[0]['tax-inclusive'][0],
-  livraison_date: result.order.shipment[0].offer[0].delivery[0].date[0],
-  service: result.order.shipment[0].offer[0].operator[0]['label'][0],
-  date_commande: Number(new Date())
-}
+  const data = {
+    userid: sessid,
+    reference: result.order.shipment[0].reference[0],
+    collection_date: result.order.shipment[0].collection_date,
+    prix_boxtal: result.order.shipment[0].offer[0].price[0]['tax-inclusive'][0],
+    livraison_date: result.order.shipment[0].offer[0].delivery[0].date[0],
+    service: result.order.shipment[0].offer[0].operator[0]['label'][0],
+    date_commande: Number(new Date())
+  }
 
-return upsert('boxtal', sessid, data, 'reference');
+  return upsert('boxtal', {
+    userid: sessid
+  }, sessid, data, 'reference');
 };
 
 

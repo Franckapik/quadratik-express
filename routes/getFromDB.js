@@ -8,7 +8,7 @@ const logger = require('../log/logger');
 // Query Database
 
 orderQuery = (where) => {
-  return Promise.all([userQuery(where), cartQuery(where), livraisonQuery(where), commandeQuery(where)])
+  return Promise.all([tableQuery('user', where), tableQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where)])
     .then(([user, cart, livraison, paiement]) => {
       return {
         user: user,

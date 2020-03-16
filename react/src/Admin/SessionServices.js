@@ -13,7 +13,6 @@ class SessionServices extends Component {
 { u ?
 
   <ul className="client_column box_light1">
-    {this.props.etiquette ? <Etiquette id= {u}></Etiquette> : null}
     {this.props.facture ? <Facture id= {u}></Facture> : null}
     {this.props.mail ? <Mail id= {u}></Mail> : null}
     {this.props.suivi ? <Suivi id= {u}></Suivi> : null}

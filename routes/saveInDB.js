@@ -162,6 +162,7 @@ saveCommandeInDB = (commande, amount, sessid) => {
 };
 
 saveOrderColis = (result, sessid) => {
+  console.log(result);
   const data = {
     userid: sessid,
     reference: result.order.shipment[0].reference[0],

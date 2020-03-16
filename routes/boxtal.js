@@ -87,8 +87,8 @@ router.get('/etiquette', function(req, res, next) {
       }).replace('/\//g', '-'); // eslint-disable-line no-useless-escape
 
       const nbMax = 5;
-      const nbColis = Math.trunc(order.cart[0].unites / nbMax);
-      const resteColis = order.cart[0].unites % nbMax;
+      const nbColis = Math.trunc(order.cart.unites / nbMax);
+      const resteColis = order.cart.unites % nbMax;
 
       let listeColis = [];
       for (i = 1; i <= nbColis; i++) {
@@ -178,10 +178,10 @@ router.post('/order/:id', function(req, res, next) {
     })
     .then(response => response.text())
     .then(data => {
-      parseString(data, function(err, result) {
-        if (err) {
-          res.json(err);
-          logger.error("[Boxtal Order] Erreur lors de la commande: %o", err);
+      parseString(data, function(error, result) {
+        if (result.error) {
+          res.json(result.error);
+          logger.error("[Boxtal Order] Erreur lors de la commande: %o", result);
         } else {
           inDb.saveOrderColis(result, req.params.id);
           res.json(result);

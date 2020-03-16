@@ -22,6 +22,7 @@ import DevisDisplay from './Admin/DevisDisplay';
 import FactureDisplay from './Admin/FactureDisplay';
 import Success from './Commande/Success';
 import Panier from './Shop/Panier';
+import Etiquette from './Admin/Etiquette';
 
 
 import history from './History';
@@ -48,6 +49,7 @@ export default function MainRouter() {
         <Route path="/suivi:userid" component={SuiviSimple}/>
         <Route path="/devis/:userid" component={DevisDisplay}/>
         <Route path="/facture/:userid" component={FactureDisplay}/>
+        <Route path="/etiquette/:userid" component={Etiquette}/>
         <Route path="/order/:orderid" component={Success}/>
         <Route path="/produit:productsrc" component={ProduitDetails}/>
         <Route component={NotFoundPage}/>

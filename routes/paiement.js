@@ -92,9 +92,9 @@ const makeTransaction = (amount, token) => {
 router.get("/virement", (req, res) => {
   const orderId = new Date().getTime();
 
-  fromDb.cartQuery(req.sessionID)
+  fromDb.tableQuery('cart', {'userid' : req.sessionID})
     .then(cart => {
-      const amount = parseInt(cart[cart.length - 1].montant, 10).toFixed(2);
+      const amount = parseInt(cart.montanttotal, 10).toFixed(2);
 
       const payment = {
         userid: req.sessionID,
@@ -123,7 +123,6 @@ router.get("/create", (req, res) => {
 
     fromDb.tableQuery('cart', {'userid' : req.sessionID})
     .then(cart => {
-      console.log(cart[0]);
       const amount = parseInt(cart.montanttotal, 10).toFixed(2);
       makeTransaction(amount)
         .then(payment => {

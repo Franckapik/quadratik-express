@@ -22,11 +22,10 @@ class Commande extends Component {
   }
   componentDidMount() {
     panierOperations.getLocalCart();
-
     client.cartFetch(panier.cartid)
     .then(cart => {
       this.setState({
-        cart: cart[0]
+        cart: cart
       });
     });
   }

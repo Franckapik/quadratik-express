@@ -23,6 +23,8 @@ import FactureDisplay from './Admin/FactureDisplay';
 import Success from './Commande/Success';
 import Panier from './Shop/Panier';
 import Etiquette from './Admin/Etiquette';
+import DevisCreate from './Admin/DevisCreate';
+import Mail from './Admin/Mail';
 
 
 import history from './History';
@@ -46,7 +48,9 @@ export default function MainRouter() {
         <Route path="/dashboard" component={withAuth(ClientDashboard)}/>
         <Route path="/404" component={NotFoundPage}/>
         <Route path="/500" component={InternalServerError}/>
-        <Route path="/suivi:userid" component={SuiviSimple}/>
+        <Route path="/suivi/:userid" component={SuiviSimple}/>
+        <Route path="/mail/:userid" component={Mail}/>
+        <Route path="/deviscreate/:userid" component={DevisCreate}/>
         <Route path="/devis/:userid" component={DevisDisplay}/>
         <Route path="/facture/:userid" component={FactureDisplay}/>
         <Route path="/etiquette/:userid" component={Etiquette}/>

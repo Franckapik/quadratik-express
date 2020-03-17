@@ -18,13 +18,14 @@ class FactureDisplay extends Component {
 
   getDevis(id) {
     client.devisFetch(id).then(data => {
+      console.log(data);
       this.setState({data: data})
     })
 
   }
 
-  getDevisPdf(id) {
-    client.devisPdfFetch(id).then(response => {
+  getDevisPdf(id, type) {
+    client.devisPdfFetch(id, type).then(response => {
       return response.blob();
     }).then(myBlob => {
       FileSaver.saveAs(myBlob, "Facture.pdf");
@@ -37,36 +38,40 @@ class FactureDisplay extends Component {
 
       <h2>Facture Client</h2>
 
-      <button className="left cursor givemespace" onClick={() => this.getDevisPdf(data.devis.id)}>
+      <button className="left cursor givemespace" onClick={() => this.getDevisPdf(this.props.match.params.userid, 'facture')}>
         Télécharger la Facture (PDF)
       </button>
+      <a href="/admin">
+       <button className="left cursor givemespace">
+         Retour
+       </button>
+     </a>
       {
         data
           ? <div className="box_light2 width80 center">
 
-              <h3>{data.user.prenom}
-                {data.user.nom}</h3>
+          <h3>{data.user.prenom + ' ' + data.user.nom}</h3>
               <div className="flex_r givemespace">
                 <div className="flex_c box_light1 left">
                   <ul>
-                    <li key="nomentreprise">{data.devis.entreprise}</li>
-                    <li key="adresse">{data.devis.adresse}</li>
-                    <li key="codepostal">{data.devis.code_postal}
-                      {data.devis.ville}</li>
-                    <li key="pays">{data.devis.pays}</li>
-                    <li key="mail">{data.devis.mail}</li>
-                    <li key="tel">{data.devis.telephone}</li>
-                    <li key="siret">SIRET {data.devis.siret}</li>
+                    <li key="nomentreprise">{data.infos[0].entreprise}</li>
+                    <li key="adresse">{data.infos[0].adresse}</li>
+                    <li key="codepostal">{data.infos[0].code_postal}
+                      {data.infos[0].ville}</li>
+                    <li key="pays">{data.infos[0].pays}</li>
+                    <li key="mail">{data.infos[0].mail}</li>
+                    <li key="tel">{data.infos[0].telephone}</li>
+                    <li key="siret">SIRET {data.infos[0].siret}</li>
                   </ul>
                 </div>
                 {
-                  data.devis.logo
-                    ? <img alt="Logo Quadratik.fr" src={data.infos.logo} width="150px"></img>
+                  data.infos[0].logo
+                    ? <img alt="Logo Quadratik.fr" src={data.infos[0].logo} width="150px"></img>
                     : null
                 }
                 <div className="flex_c box_light1 right">
                   <ul>
-                    <li key="nom">{data.user.prenom} {data.user.nom}</li>
+                    <li key="nom">{data.user.prenom}      {data.user.nom}</li>
                     <li key="codepostal">{data.user.postal} {data.user.ville}</li>
                     <li key="pays">{data.user.pays}</li>
                     <li key="mail">{data.user.mail}</li>
@@ -74,7 +79,7 @@ class FactureDisplay extends Component {
                   </ul>
                 </div>
               </div>
-              <div className="box_dark3 givemespace-hori">Facture N° {data.devis.numero}, réglée le {data.devis.date_devis}</div>
+              <div className="box_dark3 givemespace-hori">Facture N° {data.paiement.orderid}</div>
               <div className="table center ">
                 <ul className="flex_c">
                   <li className="table-header">
@@ -108,7 +113,9 @@ class FactureDisplay extends Component {
                 €</div>
 
               <div>
-                <p>Moyen de paiement utilisé : {data.devis.moyen_paiement}</p>
+                <p>Moyen de paiement utilisé : {data.paiement.method}</p>
+                  <p>Escompte pour réglement anticipé de 0% - Pénalité en cas de retard de paiement: 1.5 fois le taux d'intéret légal</p>
+<p>TVA non applicable, art. 293 B du CGI</p>
               </div>
 
             </div>

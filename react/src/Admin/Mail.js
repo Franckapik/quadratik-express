@@ -5,25 +5,47 @@ class Mail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      msg: ""
-    };
+      suivi: null,
+      reference: ""
+    }
+  }
+
+  componentDidMount() {
+
   }
 
   getMail(id) {
-    client.confirmCommandeFetch(id)
-    .then(res=> {
-    })
-
+    return client.confirmCommandeFetch(id)
+    .then(ref => {
+      this.setState({reference: ref})
+      return ref.reference
+    });
   }
 
   render() {
-    return (<> <i className = "fas fa-enveloppe cursor" onClick = {
-     () => {
-       this.getMail(this.props.id)
-     }
-   } > Confirmer la commande </i>
- {this.state.msg ? this.state.msg : null}
-      </>)
+
+    const suivi = this.state.suivi;
+
+    return (<div className="center">
+
+      <h3>Envoi de mail</h3>
+
+      {
+        this.props.match.params.userid
+          ? <div className="flex_c flex_w box_light1">
+{this.props.match.params.userid}
+
+<button onClick={() => this.getMail(this.props.match.params.userid)}>Mail de confirmation de commande -mailOrder</button>
+
+
+Mail de confirmation de Paiement //mailPayment
+Mail de commande prête //mailOrderReady
+Mail d'expedition de commande //mailShipping
+              </div>
+              : 'aucun suivi disponible'
+      }
+
+    </div>)
   }
 }
 

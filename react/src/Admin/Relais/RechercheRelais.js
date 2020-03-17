@@ -54,7 +54,8 @@ class RechercheRelais extends Component {
   getCotation(data) {
     client.cotationFetch(data)
     .then(cot => {
-      if(cot.error) {
+      console.log(cot);
+      if(cot.error || !cot.cotation.shipment[0].offer) {
         commandeStore.cotation = false;
       } else {
         commandeStore.cotation = cot.cotation.shipment[0];

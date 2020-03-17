@@ -18,13 +18,14 @@ class DevisDisplay extends Component {
 
   getDevis(id) {
     client.devisFetch(id).then(data => {
+      console.log(data);
       this.setState({data: data})
     })
 
   }
 
-  getDevisPdf(id) {
-    client.devisPdfFetch(id).then(response => {
+  getDevisPdf(id, type) {
+    client.devisPdfFetch(id, type).then(response => {
       return response.blob();
     }).then(myBlob => {
       FileSaver.saveAs(myBlob, "Devis.pdf");
@@ -37,12 +38,24 @@ class DevisDisplay extends Component {
 
       <h2>Devis Client</h2>
 
-      <button className="left cursor givemespace" onClick={() => this.getDevisPdf(data.devis.id)}>
+        {
+          data.devis
+            ? <div>
+
+       <a href={"/deviscreate/" + this.props.match.params.userid}>
+        <button className="left cursor givemespace">
+          Modifier le devis
+        </button>
+      </a>
+      <button className="left cursor givemespace" onClick={() => this.getDevisPdf(this.props.match.params.userid, 'devis')}>
         Télécharger le devis (PDF)
       </button>
-      {
-        data
-          ? <div className="box_light2 width80 center">
+      <a href="/admin">
+       <button className="left cursor givemespace">
+         Retour
+       </button>
+     </a>
+    <div className="box_light2 width80 center">
 
               <h3>{data.user.prenom}
                 {data.user.nom}</h3>
@@ -113,6 +126,7 @@ class DevisDisplay extends Component {
                 <p>A regler avant le {data.devis.date_val}</p>
                 <p>Moyen de paiement : {data.devis.moyen_paiement}</p>
                 <p>Escompte pour réglement anticipé de 0% - Pénalité en cas de retard de paiement: 1.5 fois le taux d'intéret légal</p>
+                <p>TVA non applicable, art. 293 B du CGI</p>
               </div>
               <p>Information bancaire :
               </p>
@@ -125,7 +139,20 @@ class DevisDisplay extends Component {
 
             </div>
           : "chargement"
-      }
+       </div> : <div>Devis inexistant
+       <a href={"/deviscreate/" + this.props.match.params.userid}>
+        <button className="left cursor givemespace">
+          Creation du devis
+        </button>
+      </a>
+      <a href="/admin">
+       <button className="left cursor givemespace">
+         Retour
+       </button>
+     </a>
+
+
+     </div> }
 
       </div>)
   }

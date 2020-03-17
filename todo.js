@@ -1,7 +1,10 @@
 --version v4-
 
-Vérifier chaque fonction service admin et supprimer l'encart associé. (ex : devis ne marche pas)
+mail. comment faire un preview du pug compilé dans le browser ? 
 
+autocompletion du panier dans le devis.
+
+De même pour la facture à partir d'un paiement réalisé.
 
 Affichage actualité selon un nom definis dans la db.
 
@@ -18,13 +21,14 @@ erreur avec "Tous nos produits"
 
 améliorer visibilité des deux contacts.
 
+covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard
 
 -- version 5 ---
 
 Résoudre le pb suivant : admin. La fonction admindata utilise les autres query mais sans sessid. Possible ?
 
 Parametrer le webhook du paiement. => maj de la db.
-
+form validation
 
 Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
 
@@ -69,6 +73,8 @@ lien pour devenir partenaire sur la section contact
 
 Utiliser chokidar au lieu de nodemon ?
 ----------------------------------------
+
+Création de devis avec une personne déjà enregsitrée . - > modification de commande . ajout d'une ligne devis dans la db => possibilité de génération de devis pdf. Quel intéret ? Meme parcours pour la modification d'un devis existant.
 
 
 TRES BONNE PAGE sur les promises :

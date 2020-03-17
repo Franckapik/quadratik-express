@@ -13,6 +13,9 @@ var nodemailer = require('nodemailer');
 const Email = require('email-templates');
 let transporter = nodemailer.createTransport(config.mail);
 
+const pug = require('pug');
+
+
 router.post('/mailcontact', function(req, res, next) {
   nodemailer.createTestAccount((err, account) => {
     // create reusable transporter object using the default SMTP transport
@@ -165,14 +168,15 @@ router.get('/mailfacture', function(req, res, next) {
     })
     .catch(error => logger.error(error));
 });
-
+/*
 router.get('/confirmationCommande', function(req, res, next) {
 
-  sassToCss();
+
 
   fromDb.orderQuery({'userid' :req.query.sessid})
 .then(
     order => {
+      console.log(order);
       const expediteur = 'atelier@quadratik.fr'
 
       const email = new Email({
@@ -218,6 +222,18 @@ router.get('/confirmationCommande', function(req, res, next) {
   )
 
 
+});*/
+router.get('/confirmationCommande', function(req, res, next) {
+  fromDb.orderQuery({'userid' :req.query.sessid})
+  .then(
+    data => {
+      console.log(data);
+      const compiledFunction = pug.compileFile('././emails/order/html.pug');
+      const html = compiledFunction(data);
+      console.log(html);
+      res.json(html)
+    }
+  )
 });
 
 module.exports = router;

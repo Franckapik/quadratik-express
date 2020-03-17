@@ -31,13 +31,13 @@ router.get('/dataSheet', function(req, res, next) {
 });
 
 router.get('/devis', function(req, res, next) {
-  fromDb.devisAllQuery(req.query.sessid)
-    .then(devis => {
-      const compiledFunction = pug.compileFile('././documentation/devis.pug');
+  fromDb.devisAllQuery({'userid' : req.query.sessid})
+    .then(data => {
+      const compiledFunction = pug.compileFile('././documentation/'+req.query.type+'.pug');
 
-      const html = compiledFunction({ devis: devis });
+      const html = compiledFunction({ data: data });
 
-      pdf.create(html, config.toPDF).toFile('./../documentation/devis.pdf', function(err, url) {
+      pdf.create(html, config.toPDF).toFile('./../documentation/'+req.query.type+'.pdf', function(err, url) {
         if (err) return logger.error('[DataSheet] Erreur lors de la création %s', err);
 
         res.download(url.filename, 'devis', (err) => {

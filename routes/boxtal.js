@@ -70,7 +70,7 @@ router.get('/suiviColis', function(req, res, next) {
 router.get('/getRefFromId', function(req, res, next) {
   tableQuery('boxtal', {'userid':req.query.sessid})
     .then(data => {
-
+      console.log(data);
       res.json(data);
       logger.debug('[Boxtal] Recherche OK pour la reference colis: %s', data.reference);
     })

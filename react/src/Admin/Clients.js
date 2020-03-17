@@ -3,7 +3,6 @@ import SessionCart from './SessionCart';
 import Sessionlivraison from './SessionLivraison';
 import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
-import SessionServices from './SessionServices';
 import '../styles/App.scss';
 import {view} from 'react-easy-state';
 
@@ -48,15 +47,15 @@ class Clients extends Component {
                       {p.prenom + ' ' + p.nom}
                       <small>{p.userid}</small>
                       <a href={"/devis/" + p.userid}>Devis</a>
-                      <a href={"/facture/" + p.userid}>Facture</a>
+                      <a href={"/facture/" + p.userid}>Facturer</a>
                       <a href={"/etiquette/" + p.userid}>Expedier</a>
+                      <a href={"/mail/" + p.userid}>Mailer</a>
                     </h3>
                     <div className="flex_r flex_baseline">
                       <SessionAdresse sessid={p.userid}></SessionAdresse>
                       <Sessionlivraison sessid={p.userid}></Sessionlivraison>
                       <SessionCart sessid={p.userid}></SessionCart>
                       <SessionPaiement sessid={p.userid}></SessionPaiement>
-                      <SessionServices sessid={p.userid} devis mail="mail" facture="facture" suivi="suivi" etiquette="etiquette"></SessionServices>
                     </div>
                   </div>);
                 })

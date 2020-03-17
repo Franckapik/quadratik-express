@@ -46,32 +46,34 @@ class DevisCreate extends Component {
   };
 
   componentDidMount() {
-    client.adminFetch().then(adminData => {
+    Promise.all([client.infoFetch(), client.adminUserFetch(this.props.match.params.userid)])
+    .then(([info, user]) => {
+      console.log(user);
       this.formData = {
         entreprise: {
-          Nom_entreprise: adminData.info[0].nomentreprise,
-          Adresse: adminData.info[0].adresse,
-          Siret: adminData.info[0].siret,
-          Code_postal: adminData.info[0].codepostal,
-          Ville: adminData.info[0].ville,
-          Pays: adminData.info[0].pays,
-          Mail: adminData.info[0].mail,
-          Telephone: adminData.info[0].telephone
+          Nom_entreprise: info[0].nomentreprise,
+          Adresse: info[0].adresse,
+          Siret: info[0].siret,
+          Code_postal: info[0].codepostal,
+          Ville: info[0].ville,
+          Pays: info[0].pays,
+          Mail: info[0].mail,
+          Telephone: info[0].telephone
         },
         client: {
-          firstName: "Sanchez",
-          lastName: "Rick",
-          adresse: "3 rue tartempion",
-          codepostal: "35000",
-          ville: "Froopyland",
-          pays: "France",
-          email: "charlesDupond@yahoo.fr",
-          telephone: "0631927481"
+          firstName: user.prenom,
+          lastName: user.nom,
+          adresse: user.adresse,
+          codepostal: user.postal,
+          ville: user.ville,
+          pays: user.pays,
+          email: user.mail,
+          telephone: user.telephone
         },
         banque: {
-          titulaire : adminData.info[0].titulaire,
-          iban : adminData.info[0].iban,
-          bic : adminData.info[0].bic,
+          titulaire : info[0].titulaire,
+          iban : info[0].iban,
+          bic : info[0].bic,
         }
       };
 
@@ -84,15 +86,18 @@ class DevisCreate extends Component {
     return (<> {
       !this.state.submitted ? <>{
         devisSchema.schema
-          ? <Form schema={devisSchema.schema
-          } uiSchema={devisSchema.uiSchema
+          ? <Form className="fullsize center"
+            schema={devisSchema.schema
+            } uiSchema={devisSchema.uiSchema
             } formData={this.formData
             } onChange={log(this.formData)
             } fields={fields
             } onSubmit={this.submit
             } onError={log("errors")}> <button type="submit">Valider</button> </Form>
           : "Erreur d'acquisition de donnée - Rafraichir la page "
-      }</> : "Devis créé"
+      }</> :                 <a href={"/devis/" + this.props.match.params.userid}><button> Afficher le devis</button>
+
+                      </a>
     }  < />
     )
   }

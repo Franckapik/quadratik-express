@@ -31,7 +31,7 @@ adminData = () => {
 }
 
 devisAllQuery = (where) => {
-  return Promise.all([tableQuery('devis', where), tableQuery('user', where), tableQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where), simpleQuery('informations') ])
+  return Promise.all([tableQuery('devis', where), tableQuery('user', where), tableAllQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where), simpleQuery('informations') ])
     .then(([devis, user, cart, livraison, paiement, infos]) => {
       return {
         devis : devis,
@@ -50,6 +50,15 @@ tableQuery = (table, where) => {
     .then(data => {
       data.length ? logger.debug('[Knex] Données Table ' + table + ' chargées (where): %o', where) : logger.warn('[Knex] Données ' + table+ ' manquantes (where): %o', where);
       return data[data.length - 1]
+    }).catch(error => logger.error('[Knex] Erreur de chargement de ' + table + ' %s', error));
+};
+
+tableAllQuery = (table, where) => {
+  return knex(table)
+    .where(where)
+    .then(data => {
+      data.length ? logger.debug('[Knex] Données Table ' + table + ' chargées (where): %o', where) : logger.warn('[Knex] Données ' + table+ ' manquantes (where): %o', where);
+      return data
     }).catch(error => logger.error('[Knex] Erreur de chargement de ' + table + ' %s', error));
 };
 
@@ -181,6 +190,13 @@ router.get('/newsDB', function(req, res, next) {
     })
 });
 
+router.get('/info', function(req, res, next) {
+  simpleQuery('informations')
+    .then(info => {
+      res.json(info)
+    })
+});
+
 router.get('/shopDB', function(req, res, next) {
   productQuery()
     .then(shopData => {
@@ -207,7 +223,6 @@ router.get('/shopDB', function(req, res, next) {
 router.get('/adminData', function(req, res, next) {
   adminData()
     .then(adminData => {
-      console.log(adminData);
       res.json(adminData)
     })
 });

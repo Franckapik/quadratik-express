@@ -108,7 +108,6 @@ livraisonSave = (livraison, sessid) => {
 };
 
 cartSave = (panier, sessid) => {
-  console.log(panier);
   const saveProduct = panier.listeProduits.map((p, i) => {
     const data = {
       pid: p.id,
@@ -128,7 +127,6 @@ cartSave = (panier, sessid) => {
       unites: panier.unite,
       nbcolis: panier.nbColis
     }
-    console.log(data.nom);
 
     return upsert('cart', { userid: sessid, nom: data.nom, cartid: panier.cartid}, sessid, data, 'id');
 
@@ -141,7 +139,13 @@ return Promise.all(saveProduct)
 };
 
 saveCommandeInDB = (commande, amount, sessid) => {
-
+  let orderid;
+  if (commande.metadata) {
+    orderid = commande.metadata.orderid
+  } else {
+    orderid = Number(new Date());
+  }
+console.log(commande, amount, sessid);
   const data = {
     userid: sessid,
     status: commande.status,
@@ -149,7 +153,7 @@ saveCommandeInDB = (commande, amount, sessid) => {
     method: commande.method,
     profileid: commande.profileId,
     amount: amount,
-    orderid: commande.metadata.orderId,
+    orderid: orderid,
     expirationdate: commande.expiresAt,
     transactionid: commande.id,
     date: Number(new Date()),
@@ -162,7 +166,6 @@ saveCommandeInDB = (commande, amount, sessid) => {
 };
 
 saveOrderColis = (result, sessid) => {
-  console.log(result);
   const data = {
     userid: sessid,
     reference: result.order.shipment[0].reference[0],
@@ -205,14 +208,31 @@ router.post('/livraison', function(req, res, next) {
 });
 
 router.post('/devis', function(req, res, next) {
-  userSave(req.body.formData.client, req.session.id)
+  let sessid = 'null';
+
+  if (req.query.id) { // modification de devis
+    sessid = req.query.id
+  } else { //creation de devis
+    sessid = req.sessionID
+  }
+
+  const commande = {
+    userid: sessid,
+    status : req.body.formData.status,
+    mode : "devis",
+    method: req.body.formData.mode,
+    expirationdate: req.body.formData.Date_validite,
+    date: Number(new Date()),
+  }
+
+  userSave(req.body.formData.client, sessid)
     .then(user => {
-      cartSave(req.body.panier, req.session.id)
+      cartSave(req.body.panier, sessid)
         .then(cart => {
-          devisSave(req.body.formData, req.session.id)
+          devisSave(req.body.formData, sessid)
             .then(
               devis => {
-                saveCommandeInDB(req.body.formData, req.body.panier, req.session.id)
+                saveCommandeInDB(commande, req.body.panier.montantTotal, sessid)
                   .then(commande => {
                     res.send(commande)
                   })

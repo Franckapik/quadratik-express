@@ -22,8 +22,9 @@ class Paiement extends Component {
   componentDidMount() {
     client.adminFetch()
     .then(adminData => {
+      console.log(adminData);
       this.setState({
-        info: adminData.info[0],
+        info: adminData.infos[0],
       });
     });
   }

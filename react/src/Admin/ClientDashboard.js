@@ -3,7 +3,6 @@ import SessionCart from './SessionCart';
 import Sessionlivraison from './SessionLivraison';
 import SessionPaiement from './SessionPaiement';
 import SessionAdresse from './SessionAdresse';
-import SessionServices from './SessionServices';
 
 import '../styles/App.scss';
 
@@ -29,7 +28,6 @@ class ClientDashboard extends Component {
                       <Sessionlivraison sessid={u}></Sessionlivraison>
                       <SessionCart sessid={u}></SessionCart>
                       <SessionPaiement sessid={u}></SessionPaiement>
-                      <SessionServices sessid={u} facture suivi></SessionServices>
                     </div>
                   </div>
 

@@ -11,7 +11,8 @@ class SuiviSimple extends Component {
   }
 
   componentDidMount() {
-    this.getReference(this.props.match.params.userid).then(ref => {
+    this.getReference(this.props.match.params.userid)
+    .then(ref => {
       this.getSuivi(ref);
     });
   }

@@ -1,6 +1,7 @@
 --version v4-
 
-Refactoriser toutes les query selon tablequery
+Vérifier chaque fonction service admin et supprimer l'encart associé. (ex : devis ne marche pas)
+
 
 Affichage actualité selon un nom definis dans la db.
 

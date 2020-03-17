@@ -1,0 +1,11 @@
+.cache
+react/node_modules/**
+node_modules/**
+react/build/**
+.git/**
+react/.git/**
+react/Atom\ Crashes/**
+log/**
+todo.js
+react/public/dist/**
+react/src/Quadralab/B4W.js

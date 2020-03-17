@@ -19,8 +19,19 @@ orderQuery = (where) => {
     })
 };
 
+adminData = () => {
+  return Promise.all([productQuery(), simpleQuery('user'), simpleQuery('informations')])
+    .then(([product, user, infos]) => {
+      return {
+        product : product,
+        user: user,
+        infos : infos
+      }
+    })
+}
+
 devisAllQuery = (where) => {
-  return Promise.all([devisQuery(where), userQuery(where), cartQuery(where), livraisonQuery(where), commandeQuery(where), infoQuery() ])
+  return Promise.all([tableQuery('devis', where), tableQuery('user', where), tableQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where), simpleQuery('informations') ])
     .then(([devis, user, cart, livraison, paiement, infos]) => {
       return {
         devis : devis,
@@ -39,6 +50,14 @@ tableQuery = (table, where) => {
     .then(data => {
       data.length ? logger.debug('[Knex] Données Table ' + table + ' chargées (where): %o', where) : logger.warn('[Knex] Données ' + table+ ' manquantes (where): %o', where);
       return data[data.length - 1]
+    }).catch(error => logger.error('[Knex] Erreur de chargement de ' + table + ' %s', error));
+};
+
+simpleQuery = (table) => {
+  return knex(table)
+    .then(data => {
+      data.length ? logger.debug('[Knex] Données Table ' + table + ' chargées (length): %o', data.length) : logger.warn('[Knex] Données ' + table+ ' manquantes (length): %o', data.length);
+      return data
     }).catch(error => logger.error('[Knex] Erreur de chargement de ' + table + ' %s', error));
 };
 
@@ -186,20 +205,10 @@ router.get('/shopDB', function(req, res, next) {
 });
 
 router.get('/adminData', function(req, res, next) {
-  productQuery()
-    .then(function(productData) {
-          knex('user')
-            .then(function(userData) {
-              knex('informations')
-                .then(function(informations) {
-                  logger.debug('[Admin db] Données récupérées');
-                  res.json({
-                    product: productData,
-                    user: userData,
-                    info: informations
-                  });
-                })
-            })
+  adminData()
+    .then(adminData => {
+      console.log(adminData);
+      res.json(adminData)
     })
 });
 
@@ -226,7 +235,7 @@ router.get('/getProduitFromSrc', function(req, res, next) {
 
 
 module.exports = router;
-module.exports.tableQuery = tableQuery;
-module.exports.orderQuery = orderQuery;
-module.exports.productQueryFromSrc = productQueryFromSrc;
-module.exports.devisAllQuery = devisAllQuery;
+module.exports.tableQuery = tableQuery; //general
+module.exports.orderQuery = orderQuery; //boxtal, sendmail
+module.exports.productQueryFromSrc = productQueryFromSrc;  //createpdf
+module.exports.devisAllQuery = devisAllQuery; //createpdf

@@ -24,6 +24,7 @@ class Admin extends Component {
   componentDidMount() {
     client.adminFetch()
     .then(adminData => {
+      console.log(adminData);
       this.setState({user: adminData.user});
       this.setState({produits: adminData.product});
       this.setState({info: adminData.info});

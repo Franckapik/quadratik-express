@@ -3,3 +3,7 @@
 /factures
 # configuration file
 config.js
+# logger files
+*.log
+/log
+*.tar.gz

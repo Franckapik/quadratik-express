@@ -11,8 +11,7 @@ class SessionPaiement extends Component {
   }
 
   componentDidMount() {
-    client.adminPaiementFetch(this.props.sessid)
-    .then(commande => {
+    client.adminPaiementFetch(this.props.sessid).then(commande => {
       this.setState({paiement: commande});
     });
 
@@ -20,10 +19,11 @@ class SessionPaiement extends Component {
 
   render() {
     const a = this.state.paiement;
-  return (
-    <div className="client_column"> <h3>Paiement</h3>
-{ a ?
-            <ul>
+    return (<div className="client_column">
+      <h3>Paiement</h3>
+      {
+        a
+          ? <ul>
               <li key={'Paiement_'}>
                 {a.amount}</li>
               <li key={'Paiement_mode'}>
@@ -38,16 +38,18 @@ class SessionPaiement extends Component {
                 {a.status}</li>
               <li key={'Paiement_transactionid'}>
                 {a.transactionid}</li>
-              <li key={'Paiement_date'}>
-                {a.date}</li>
-
+              <li key={'Paiement_profileid'}>
+                {a.profileid}</li>
+              <li key={'Paiement_orderid'}>
+                <a href={"/order/" + a.orderid}>
+                  Commande : {a.orderid}
+                </a>
+              </li>
             </ul>
-            : null
-} </div>
-
-)
+          : null
+      }
+    </div>)
+  }
 }
-}
-
 
 export default SessionPaiement;

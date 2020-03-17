@@ -117,7 +117,7 @@ router.post('/newsletter', function(req, res, next) {
 
 router.get('/mailfacture', function(req, res, next) {
 
-  
+
 
   knex('user')
     .where('userid', req.sessionID)
@@ -134,7 +134,7 @@ router.get('/mailfacture', function(req, res, next) {
                   facture.facturation(user, cart, commande, livraison).then(result => console.log(result))
 
                   nodemailer.createTestAccount((err, account) => {
-                    
+
                     let transporter = nodemailer.createTransport(config.mail);
                     let mailOptions = {
                       from: user[user.length - 1].mail, // sender address
@@ -170,7 +170,8 @@ router.get('/confirmationCommande', function(req, res, next) {
 
   sassToCss();
 
-  fromDb.orderQuery(req.query.sessid).then(
+  fromDb.orderQuery({'userid' :req.query.sessid})
+.then(
     order => {
       const expediteur = 'atelier@quadratik.fr'
 

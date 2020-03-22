@@ -31,7 +31,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.0.0",
     "react-twitter-embed": "^2.0.4",
-    "snyk": "^1.251.1",
+    "snyk": "^1.260.0",
     "socket.io-client": "^2.3.0",
     "yup": "^0.26.10"
   },
@@ -39,7 +39,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "proxy": "http://0.0.0.0:3005",
   "eslintConfig": {
@@ -54,5 +56,6 @@
   "devDependencies": {
     "glob-all": "^3.1.0",
     "purgecss-webpack-plugin": "^1.6.0"
-  }
+  },
+  "snyk": true
 }

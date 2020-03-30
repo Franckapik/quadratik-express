@@ -8,7 +8,7 @@ const logger = require('../log/logger');
 // Query Database
 
 orderQuery = (where) => {
-  return Promise.all([tableQuery('user', where), tableQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where)])
+  return Promise.all([tableQuery('user', where), tableAllQuery('cart', where), tableQuery('livraison', where), tableQuery('commande', where)])
     .then(([user, cart, livraison, paiement]) => {
       return {
         user: user,
@@ -112,7 +112,7 @@ productQueryById = (id) => {
 //admin
 //a changer sur l'admin si manquant
 router.get('/adminCart', function(req, res, next) {
-  tableQuery('cart', {'userid':req.query.sessid})
+  tableAllQuery('cart', {'userid':req.query.sessid})
     .then(cart => {
       res.json(cart)
     })

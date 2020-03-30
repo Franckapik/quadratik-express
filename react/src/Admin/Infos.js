@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import Rss from './../Home/Rss';
 
 class Infos extends Component {
   render() {
   return (
     <div>       <h2>Informations générales</h2>
+<div className="givemespace"><Rss nbNews="1"></Rss></div>
+
+
+
           {
             this.props.info
               ? <div>

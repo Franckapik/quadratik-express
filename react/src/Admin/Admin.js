@@ -17,7 +17,7 @@ class Admin extends Component {
       produits: false,
       essence: false,
       info: false,
-      page:"clients"
+      page:"infos"
     };
   }
 
@@ -27,7 +27,7 @@ class Admin extends Component {
       console.log(adminData);
       this.setState({user: adminData.user});
       this.setState({produits: adminData.product});
-      this.setState({info: adminData.info});
+      this.setState({info: adminData.infos});
     });
 
 

@@ -1,29 +1,26 @@
 --version v4-
 
-mail. comment faire un preview du pug compilé dans le browser ? 
-
 autocompletion du panier dans le devis.
 
 De même pour la facture à partir d'un paiement réalisé.
 
-Affichage actualité selon un nom definis dans la db.
+Affichage actualité selon un nom definis dans la db. -> a l place de la rubrique valeurs ? Actualités du site + celles de quadratik ? Ooui pour plus de dynamisme.
+Retrouver les valeurs au niveau de la (section) boutique.
 
 erreur avec "Tous nos produits"
 
-
-  rss : fetch avant le render ? ou bien faire un update de props dans la fonction stateless?
-
-  ajouter le flux rss : https://www.npmjs.com/package/rss-parser
-
-  streaming actualité d'AF.
-
-être prévenu d'une commande avec le mail de success.
 
 améliorer visibilité des deux contacts.
 
 covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard
 
 -- version 5 ---
+
+automatisation du mail de commande recue ?
+
+cors : pour les rss, omit a la place de include pour les credentials, comprendre.
+
+gerer les erreurs d'envoi de mail coté client (affichage du msg)
 
 Résoudre le pb suivant : admin. La fonction admindata utilise les autres query mais sans sessid. Possible ?
 

@@ -26,7 +26,7 @@ class SessionCart extends Component {
           <div key={i}>
                       <ul>
                         <li key={'Panier_nom_qte' + i}>
-                          {p.name} x {p.quantite}</li>
+                          {p.nom} x {p.quantite}</li>
                         <li key={'Panier_reduction' + i}>
                           reduction : {p.reduction}</li>
                         <li key={'Panier_sous_total' + i}>

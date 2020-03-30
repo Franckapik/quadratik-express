@@ -25,7 +25,7 @@ font(style='font-family: Roboto, Arial, sans-serif;')
     tr(bgcolor='#FFFFFF')
       td(align='center' height='80px')
         h4 Commande de Mr #{user.nom} #{user.prenom}
-        h5 Reference : #{paiement.transactionid} | Date #{paiement.date}
+        h5 Reference : #{paiement.orderid} 
     tr
       td
         table(cellspacing='0px' cellpadding='10px' border='0' width='600px')
@@ -39,8 +39,8 @@ font(style='font-family: Roboto, Arial, sans-serif;')
           
           each val in cart
             tr
-              td(align='center')=val.name
-              td(align='center')=val.quantite
+              td(align='center')=val.nom
+              td(align='center')=val.quantite 
               td(align='center')=val.sous_total
           
     tr
@@ -49,7 +49,7 @@ font(style='font-family: Roboto, Arial, sans-serif;')
     tr
       td(align='center')
         hr
-        h4 Livraison avec #{livraison.livr_service}
+        h4 Livraison #{livraison.livr_service}
         p #{livraison.livr_nom}
         p #{livraison.livr_adresse}
         p #{livraison.livr_postal} #{livraison.livr_ville}

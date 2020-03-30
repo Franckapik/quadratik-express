@@ -223,17 +223,44 @@ router.get('/confirmationCommande', function(req, res, next) {
 
 
 });*/
-router.get('/confirmationCommande', function(req, res, next) {
-  fromDb.orderQuery({'userid' :req.query.sessid})
-  .then(
-    data => {
-      console.log(data);
-      const compiledFunction = pug.compileFile('././emails/order/html.pug');
-      const html = compiledFunction(data);
-      console.log(html);
-      res.json(html)
-    }
-  )
+
+message = (from, to, subject, html) => {
+  return {
+    from: from,
+    to: to,
+    subject: subject,
+    html: html
+  }
+};
+
+
+router.get('/commandeStatus', function(req, res, next) {
+  fromDb.orderQuery({'userid': req.query.sessid })
+    .then(
+      data => {
+        const compiledFunction = pug.compileFile('././emails/'+req.query.type+'/html.pug');
+        const html = compiledFunction(data);
+
+        if (req.query.envoi === '1') {
+          console.log(req.query.envoi);
+          let mail = message('atelier@quadratik.fr', 'fanchcavellec@gmail.com', 'Confirmation de commande', html)
+          transporter.sendMail(mail, (error, info) => {
+            if (error) {
+              res.json({
+                error: error
+              });
+            } else {
+              logger.info('[Mail] Email de confirmation de commande envoyé à %s', mail.to)
+              res.setHeader('Content-type','text/html')
+              res.send('<p>Message envoyé</p>');
+            }
+          });
+        } else {
+          res.setHeader('Content-type','text/html')
+          res.send(html);
+        }
+      }
+    )
 });
 
 module.exports = router;

@@ -5,7 +5,6 @@ const getOptions = {
 };
 
 function status(response) {
-
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response)
   } else {
@@ -13,25 +12,29 @@ function status(response) {
   }
 }
 
-function json(response) {
 
+
+function json(response) {
   const contentType = response.headers.get("content-type");
   if (contentType && contentType.indexOf("application/json") !== -1) {
     return response.json();
-  } else {
+  } else if (contentType && contentType.indexOf('text/html') && contentType.indexOf('application/rss+xml') !== -1) {
+    return response.text();
+  }
+  else {
     return response // non json data
   }
 }
 
-function getData(url){
+function getData(url, getOptions){
   return fetch(url, getOptions)
     .then(status)
     .then(json)
     .then(function(data) {
-
+      console.log(data);
       return data
     }).catch(function(error) {
-
+      console.log(error);
     //  window.location ='/500' ;
       return error
     });
@@ -89,7 +92,8 @@ const client = {
   resetCartPost : () => getData('/saveInDB/resetsession'),
   createPayment : (token) => getData('/paiement/create?token=' + token),
   virement : (token) => getData('/paiement/virement'),
-  confirmCommandeFetch : (id) => getData('/sendMail/confirmationCommande?sessid=' + id)
+  sendMailStatus : (id, envoi, type) => getData('/sendMail/commandeStatus?sessid=' + id + '&envoi=' + envoi + '&type=' + type),
+  getRss : () => getData('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffr.audiofanzine.com%2Fnews%2Fa.rss.xml', { credentials: 'omit', method: 'GET', mode: "cors" })
 }
 
 export default client;

@@ -5,6 +5,8 @@ import Footer from '../Footer';
 import Top from './Top';
 import ScrollAnimation from 'react-animate-on-scroll';
 import client from '../Store/client';
+import News from '../Home/News'
+
 
 import {view} from 'react-easy-state';
 
@@ -63,7 +65,10 @@ class CollectionsList extends Component {
               }
 
               <div className="flex_r box_dark3 givemespace infoShop"> <img src='./images/relaiscolis.gif' style={{width : '50px'}} className="givemespace"></img> <strong>Désormais la livraison est <span className="strongColor">GRATUITE</span> si vous choisissez de recevoir vos colis en <span className="strongColor">Point Relais</span> !</strong></div>
-              {
+              <div className="box_light1 w50 givemespace fullsize"><News nbNews="3" page='shop'></News></div>
+
+
+          {
                 this.state.collections.filter((item => {
                   if (this.state.filtre) {
                     return item[0].filter === this.state.filtre;

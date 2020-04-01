@@ -4,8 +4,7 @@ autocompletion du panier dans le devis.
 
 De même pour la facture à partir d'un paiement réalisé.
 
-Affichage actualité selon un nom definis dans la db. -> a l place de la rubrique valeurs ? Actualités du site + celles de quadratik ? Ooui pour plus de dynamisme.
-Retrouver les valeurs au niveau de la (section) boutique.
+Faire un peu de css sur les vignettes de news. (crop)
 
 erreur avec "Tous nos produits"
 
@@ -17,6 +16,9 @@ covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler pl
 -- version 5 ---
 
 automatisation du mail de commande recue ?
+
+Retrouver les valeurs au niveau de la (section) boutique.
+
 
 cors : pour les rss, omit a la place de include pour les credentials, comprendre.
 

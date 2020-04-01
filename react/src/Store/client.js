@@ -56,7 +56,7 @@ function postData(url, body){
 
 const client = {
   shopFetch: () => getData('/getFromDB/shopDB'),
-  newsFetch: (index) => getData('/getFromDB/newsDB?index=' + index),
+  newsFetch: (page) => getData('/getFromDB/newsDB?page=' + page),
   adminFetch: () => getData('/getFromDB/adminData'),
   userFetch: () => getData('/getFromDB/user'),
   infoFetch: () => getData('/getFromDB/info'),
@@ -93,7 +93,7 @@ const client = {
   createPayment : (token) => getData('/paiement/create?token=' + token),
   virement : (token) => getData('/paiement/virement'),
   sendMailStatus : (id, envoi, type) => getData('/sendMail/commandeStatus?sessid=' + id + '&envoi=' + envoi + '&type=' + type),
-  getRss : () => getData('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffr.audiofanzine.com%2Fnews%2Fa.rss.xml', { credentials: 'omit', method: 'GET', mode: "cors" })
+  getRss : (url) => getData(url, { credentials: 'omit', method: 'GET', mode: "cors" })
 }
 
 export default client;

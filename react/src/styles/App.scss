@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,100i,300,300i,400,400i,500,500i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
-
 @import 'mixins';
 @import 'colors';
 @import 'template';
 @import 'basic';
-
 /* Header */
 header {
   font-size: 1.3em;
@@ -34,7 +32,7 @@ header {
     @include button($w:120px,$h:20px,$bg:$accent2);
     position: relative;
     top: 30px;
-    }
+  }
 
   .headerCartnb {
     @include button($w:10px,$h:10px,$bg:$accent2);
@@ -46,9 +44,6 @@ header {
     font-size: 0.8em;
   }
 }
-
-
-
 /* Menu burger */
 .burger {
   position: fixed;
@@ -82,9 +77,25 @@ footer {
   align-items: center;
 }
 
-.rss img {
-  width: 300px;
+.noImg img {
+  display: none;
 }
+
+.vignette { //ratio 16:9 a garder dans les imports dimg
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.box_news {
+  height: 200px;
+  align-items: center;
+  p, h3 {
+    margin: 0
+  }
+}
+
+
 
 .admin {
   justify-content: flex-start;
@@ -106,7 +117,6 @@ footer {
       padding: 1.2vw;
       cursor: pointer;
     }
-
   }
 
   .modele_box {
@@ -119,8 +129,6 @@ footer {
     max-width: 50px;
     margin: 1em;
   }
-
-
 }
 
 .relais_box {
@@ -152,11 +160,10 @@ footer {
 }
 
 .relais_liste {
-  overflow : auto;
+  overflow: auto;
   position: relative;
   max-height: 300px;
 }
-
 /*Presentation*/
 #presentation {
   .list-number {
@@ -354,18 +361,16 @@ footer {
 }
 
 #shop {
-
-  .infoShop{
+  .infoShop {
     img {
       margin: 10px 100px 10px 50px;
     }
 
     .strongColor {
       color: $accent2;
-      font-size : 1.5em;
+      font-size: 1.5em;
       margin: 5px;
     }
-
     justify-content: flex-start;
     border-radius: 3px;
     font-size: 1.3em;
@@ -615,9 +620,8 @@ footer {
   text-align: center;
   height: 40px;
   width: 40px;
-  border: solid thin ;
+  border: solid thin;
 }
-
 /* MiniPanier */
 .minipanier_container {
   display: block;
@@ -668,14 +672,13 @@ footer {
 
   .nom {
     font-size: 3em;
-    margin: 0px;
+    margin: 0;
   }
 
   .prix {
     font-size: 1.5em;
     color: $accent2;
     font-weight: bold;
-
   }
 
   .caracteristiques {
@@ -707,15 +710,26 @@ footer {
     }
   }
 }
-
 /* Json Foms */
+i.glyphicon {
+  display: none;
+}
 
-i.glyphicon { display: none; }
-.btn-add::after { content: '+'; }
-.array-item-move-up::after { content: '↑'; }
-.array-item-move-down::after { content: '↓'; }
-.array-item-remove::after { content: '-'; }
+.btn-add::after {
+  content: '+';
+}
 
+.array-item-move-up::after {
+  content: '↑';
+}
+
+.array-item-move-down::after {
+  content: '↓';
+}
+
+.array-item-remove::after {
+  content: '-';
+}
 /* Statut commande */
 .status_container {
   .status_activated {
@@ -832,7 +846,6 @@ div#logo_container {
   width: 100vw;
 }
 
-
 .mail_order_container {
   background-color: rgb(239, 239, 239);
   width: 80%;
@@ -907,36 +920,32 @@ Third : 1920x1080 (desktop)
   .arrow_mobile {
     position: fixed;
     bottom: -170px;
-font-size: 4em;
-text-align: center;
-  }
-
-  #presentation{
-
-    ul {
+    font-size: 4em;
     text-align: center;
   }
 
-  .list-number {
-    display: none;
-    line-height: 0.5em;
+  #presentation {
+    ul {
+      text-align: center;
+    }
+
+    .list-number {
+      display: none;
+      line-height: 0.5em;
+    }
+
+    .list-text {
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
-  .list-text {
-    padding: 0;
-    margin-top: 0px;
-    margin-bottom: 0px;
+  #shop {
+    .produit_add {
+      opacity: 1;
+    }
   }
-
-}
-
-#shop {
-
-  .produit_add {
-    opacity: 1;
-  }
-
-}
 
   #quadralab {
     .quadralab_diffuseur {
@@ -960,40 +969,37 @@ text-align: center;
     }
   }
 
-#valeurs {
-  .valeurs_img_atelier {
-    width: 100%;
-    height: auto;
-    border: none;
-    position: relative;
+  #valeurs {
+    .valeurs_img_atelier {
+      width: 100%;
+      height: auto;
+      border: none;
+      position: relative;
+    }
+
+    .valeurs_slidebox {
+      position: relative;
+      height: 50vh;
+      width: 90vw;
+      background: $white;
+      margin: auto;
+      transform: rotate(0deg);
+      top: unset;
+      left: unset;
+    }
+
+    .valeurs_text {
+      text-align: justify;
+      margin: 1em;
+      font-size: 1em;
+    }
   }
 
-  .valeurs_slidebox {
-    position: relative;
-    height: 50vh;
-    width: 90vw;
-    background: $white;
-    margin: auto;
-    transform: rotate(0deg);
-    top: unset;
-    left: unset;
+  #contact {
+    .contact_box {
+      padding: 0;
+    }
   }
-
-  .valeurs_text {
-    text-align: justify;
-    margin: 1em;
-    font-size: 1em;
-  }
-}
-
-#contact {
-  .contact_box {
-    padding: 0;
-  }
-}
-
-
-
 
   .burger {
     display: block;

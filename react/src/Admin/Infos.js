@@ -6,9 +6,6 @@ class Infos extends Component {
   return (
     <div>       <h2>Informations générales</h2>
 <div className="givemespace"><Rss nbNews="1"></Rss></div>
-
-
-
           {
             this.props.info
               ? <div>

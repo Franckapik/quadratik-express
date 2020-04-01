@@ -1,33 +1,33 @@
 import React from 'react'
+import Rss from './Rss'
+import News from './News'
 
 export default function SectionValeurs() {
-  return (<section id="valeurs">
-    <div className="flex_c flex_w style_dark fullsize" style={{
+  return (
+  <section id="valeurs">
+    <div className="flex_c style_dark fullsize" style={{
         justifyContent: 'space-evenly'
       }}>
       <div className=" flex_c center ">
-        <h1>
-          | 0<sub>4</sub>
-          |
-        </h1>
-        <h2>
-          Les
-          <span className="letter_special">v</span>aleurs de l'Atelier
-        </h2>
+        <h1> | 0<sub>4</sub> | </h1>
+        <h2> <span className="letter_special">a</span>ctualité sonore </h2>
       </div>
+      <div className="flex_r flex_w fullsize">
 
-      <div className="flex_r" style={{
-          justifyContent: 'center'
-        }}>
-
-        <img className="valeurs_img_atelier center mobile_hide" src="images/Fab2.jpg" alt="Aperçu de l'espace de travail de l'atelier"/>
-
-        <div className="valeurs_text">
-          <p>Un studio de musique est un espace intime où l'art et la création gouverne. L'esthétique et l’inspiration sont des éléments essentiels dans nos activités.
-          </p>
-          Nous sommes fiers de proposer un matériel répondant aux attentes des personnes passionées par le son, avec un respect du travail de l'artisan, de sa santé et de l’environnement.
+        <div className="flex_c w50">
+          <News first="0" second="1" page='home'></News>
+          <News first="1" second="2" page='home'></News>
         </div>
+
+        <div className="flex_c w50 mobile_hide">
+
+            <Rss nbNews="1" url='https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffr.audiofanzine.com%2Fnews%2Fa.rss.xml'></Rss>
+            <Rss nbNews="1" url='https://api.rss2json.com/v1/api.json?rss_url=http://www.lesinrocks.com/musique/feed/'></Rss>
+
+        </div>
+
       </div>
+
     </div>
   </section>)
 }

@@ -184,7 +184,7 @@ router.get('/getreduction', function(req, res, next) {
 });
 
 router.get('/newsDB', function(req, res, next) {
-  tableQuery('news', {'page':req.query.index})
+  tableAllQuery('news', {'page':req.query.page})
     .then(news => {
       res.json(news)
     })

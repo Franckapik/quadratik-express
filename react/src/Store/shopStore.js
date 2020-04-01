@@ -64,6 +64,7 @@ const panier = store({
 
 const panierOperations = store({
   infos: [],
+  notification: [0, "hidden"],
   addToCart(id, qte, prix, nom, unite, poids) {
     let produit = {};
     var i = panier.listeProduits.findIndex(x => x.id === id);
@@ -78,8 +79,8 @@ const panierOperations = store({
     } else {
       panier.listeProduits[i].qte += qte;
     }
-    panierOperations.notification = 150;
-    setTimeout(() => panierOperations.notification = 0, 3000);
+    panierOperations.notification = [150, "visible"];
+    setTimeout(() => panierOperations.notification = [0, "hidden"], 3000);
     panierOperations.save();
   },
 
@@ -146,9 +147,6 @@ const panierOperations = store({
   },
 
   showMiniPanier: false,
-
-  notification: 0,
-
 });
 
 const produitSurMesure = {

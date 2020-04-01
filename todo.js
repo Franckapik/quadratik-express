@@ -6,7 +6,6 @@ De même pour la facture à partir d'un paiement réalisé.
 
 améliorer visibilité des deux contacts.
 
-covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard
 
 -- version 5 ---
 
@@ -25,6 +24,8 @@ Parametrer le webhook du paiement. => maj de la db.
 form validation
 
 Option avec un select possible a la commande pour les couleurs. Mofgication du prix en fonction.
+
+covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard
 
 
 Quadralab avec un lien vers la boutique

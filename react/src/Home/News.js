@@ -5,7 +5,7 @@ import {Markup} from 'interweave';
 function BoxNews(props) {
   return (
     <div className="box_light1 box_news flex_c givemespace">
-      <div className="flex_r">
+      <div className="flex_r left">
 
         <img src={props.img} className="givemespace vignette mobile_hide"></img>
 

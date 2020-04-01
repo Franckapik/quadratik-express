@@ -4,11 +4,6 @@ autocompletion du panier dans le devis.
 
 De même pour la facture à partir d'un paiement réalisé.
 
-Faire un peu de css sur les vignettes de news. (crop)
-
-erreur avec "Tous nos produits"
-
-
 améliorer visibilité des deux contacts.
 
 covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard

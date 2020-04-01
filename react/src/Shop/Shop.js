@@ -45,12 +45,15 @@ class CollectionsList extends Component {
   render() {
 
     return (<div><div id="shop" className="flex_c style_light">
+    <div className="flex_r box_dark3 givemespace infoShop"> <img src='./images/relaiscolis.gif' style={{width : '50px'}} className="givemespace"></img> <strong>Désormais la livraison est <span className="strongColor">GRATUITE</span> si vous choisissez de recevoir vos colis en <span className="strongColor">Point Relais</span> !</strong></div>
+      <div className="width80 center"><News first="0" second="1" page='shop'></News></div>
+
               <h1 className="boutique_title">> Boutique Quadratik</h1>
               <div >
                 <ul className="flex_r filter">
                   <li onClick={() => this.setState({
-                      filtre: 'couleur' | 'classique'
-                    })}>Tous nos produits</li>
+                      filtre: ''
+                    })}>Tous les produits</li>
                     <li onClick={() => this.setState({filtre: 'couleur'})}>Les Diffuseurs Colorés</li>
 
                   <li onClick={() => this.setState({filtre: 'absorbeur'})}>
@@ -64,8 +67,6 @@ class CollectionsList extends Component {
                   : null
               }
 
-              <div className="flex_r box_dark3 givemespace infoShop"> <img src='./images/relaiscolis.gif' style={{width : '50px'}} className="givemespace"></img> <strong>Désormais la livraison est <span className="strongColor">GRATUITE</span> si vous choisissez de recevoir vos colis en <span className="strongColor">Point Relais</span> !</strong></div>
-              <div className="box_light1 w50 givemespace fullsize"><News nbNews="3" page='shop'></News></div>
 
 
           {
@@ -75,7 +76,7 @@ class CollectionsList extends Component {
                   } else {
                     return item
                   }
-                })).map((c, i) => {
+                })).reverse().map((c, i) => {
                   return (      <ScrollAnimation animateIn='fadeIn' animateOnce={true}>
                         <Collection key={i} collectionid={c}/>
                         </ScrollAnimation>);

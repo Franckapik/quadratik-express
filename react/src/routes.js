@@ -15,7 +15,6 @@ import NotFoundPage from './404';
 import Login from './Admin/Login';
 import withAuth from './Admin/withAuth';
 import InternalServerError from './500';
-import ClientDashboard from './Admin/ClientDashboard';
 import SuiviSimple from './Admin/SuiviSimple';
 import ProduitDetails from './Shop/ProduitDetails';
 import DevisDisplay from './Admin/DevisDisplay';
@@ -45,7 +44,6 @@ export default function MainRouter() {
         <Route path="/panier" component={Panier}/>
         <Route path="/admin" component={withAuth(Admin)}/>
         <Route path="/login" component={Login}/>
-        <Route path="/dashboard" component={withAuth(ClientDashboard)}/>
         <Route path="/404" component={NotFoundPage}/>
         <Route path="/500" component={InternalServerError}/>
         <Route path="/suivi/:userid" component={SuiviSimple}/>

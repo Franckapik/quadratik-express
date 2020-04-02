@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
 import {view} from 'react-easy-state';
-import MollieComp from './Mollie';
+import MollieComp from './MollieComp';
 import client from '../Store/client';
 
 class Paiement extends Component {

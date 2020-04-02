@@ -95,6 +95,37 @@ footer {
   }
 }
 
+.hidden-title label.control-label {
+  display: none;
+}
+
+.display_title label.control-label {
+  display: inline-block;
+}
+
+
+#root_coordonnées{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: slategrey;
+  margin: 10px;
+}
+#root_coordonnées_entreprise,  #root_coordonnées_client{
+  width : 600px;
+}
+#root_parametres {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: slategrey;
+  margin: 10px;
+}
+
+
+.listeProduits {
+  background-color: beige;
+  margin: 10px;
+}
+
 
 
 .admin {

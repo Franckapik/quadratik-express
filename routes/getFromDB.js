@@ -20,12 +20,13 @@ orderQuery = (where) => {
 };
 
 adminData = () => {
-  return Promise.all([productQuery(), simpleQuery('user'), simpleQuery('informations')])
-    .then(([product, user, infos]) => {
+  return Promise.all([productQuery(), simpleQuery('user'), simpleQuery('informations'), simpleQuery('devis')])
+    .then(([product, user, infos, devis]) => {
       return {
         product : product,
         user: user,
-        infos : infos
+        infos : infos,
+        devis : devis
       }
     })
 }
@@ -136,6 +137,13 @@ router.get('/adminUser', function(req, res, next) {
   tableQuery('user', {'userid':req.query.sessid})
     .then(user => {
       res.json(user)
+    })
+});
+
+router.get('/order', function(req, res, next) {
+  orderQuery({'userid':req.query.sessid})
+    .then(order => {
+      res.json(order)
     })
 });
 

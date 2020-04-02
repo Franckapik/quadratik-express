@@ -1,18 +1,18 @@
 --version v4-
 
-autocompletion du panier dans le devis.
-
-De même pour la facture à partir d'un paiement réalisé.
-
-améliorer visibilité des deux contacts.
-
+devis personnalisé ?
 
 -- version 5 ---
+
+devis avec une selection du Nom plutot que via l'id.
+
+un dashboard a la place de info generale
 
 automatisation du mail de commande recue ?
 
 Retrouver les valeurs au niveau de la (section) boutique.
 
+Chnager la section contacts pour quelque chose de plus ysmpa visuellement. Allez à l'essentiel.
 
 cors : pour les rss, omit a la place de include pour les credentials, comprendre.
 

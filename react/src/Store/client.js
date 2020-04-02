@@ -62,6 +62,7 @@ const client = {
   infoFetch: () => getData('/getFromDB/info'),
   cartFetch: (cartid) => getData('/getFromDB/getDBCart?cartid='+cartid),
   commandeFetch: (id) => getData('/getFromDB/commande?orderid=' +id),
+  orderFetch: (id) => getData('/getFromDB/order?sessid=' +id),
   adminUserFetch: (id) => getData('/getFromDB/adminUser?sessid='+id),
   cotationFetch: (param) => getData('/boxtal/cotation?transporteur=' + param.transporteur + '&poids=' + param.poids + '&longueur=' + param.longueur + '&largeur=' + param.largeur + '&hauteur=' + param.hauteur + '&code_postal=' + param.code_postal + '&ville=' + param.ville + '&adresse=' + param.adresse),
   livraisonPost: (body) => postData('/saveInDB/livraison', body),

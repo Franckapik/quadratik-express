@@ -34,10 +34,10 @@ router.get('/devis', function(req, res, next) {
   fromDb.devisAllQuery({'userid' : req.query.sessid})
     .then(data => {
       const compiledFunction = pug.compileFile('././documentation/'+req.query.type+'.pug');
-
+      console.log(data);
       const html = compiledFunction({ data: data });
 
-      pdf.create(html, config.toPDF).toFile('./../documentation/'+req.query.type+'.pdf', function(err, url) {
+      pdf.create(html, config.toPDF).toFile('././documentation/'+req.query.type+'.pdf', function(err, url) {
         if (err) return logger.error('[DataSheet] Erreur lors de la création %s', err);
 
         res.download(url.filename, 'devis', (err) => {

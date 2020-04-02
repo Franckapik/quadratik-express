@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import SessionCart from './SessionCart';
-import Sessionlivraison from './SessionLivraison';
-import SessionPaiement from './SessionPaiement';
-import SessionAdresse from './SessionAdresse';
 import '../styles/App.scss';
 import {view} from 'react-easy-state';
+import OrderInfo from './OrderInfo';
 
 
 class Clients extends Component {
@@ -46,16 +43,14 @@ class Clients extends Component {
                       <small><i className="fas fa-user"></i> {p.id}</small>
                       {p.prenom + ' ' + p.nom}
                       <small>{p.userid}</small>
-                      <a href={"/devis/" + p.userid}>Devis</a>
+
+                      {this.props.devis.findIndex(x => x.userid === p.userid) !== -1 ? <a href={"/devis/" + p.userid}> Voir Devis</a> : <a href={"/deviscreate/" + p.userid}> Créer Devis</a> }
                       <a href={"/facture/" + p.userid}>Facturer</a>
                       <a href={"/etiquette/" + p.userid}>Expedier</a>
                       <a href={"/mail/" + p.userid}>Mailer</a>
                     </h3>
                     <div className="flex_r flex_baseline">
-                      <SessionAdresse sessid={p.userid}></SessionAdresse>
-                      <Sessionlivraison sessid={p.userid}></Sessionlivraison>
-                      <SessionCart sessid={p.userid}></SessionCart>
-                      <SessionPaiement sessid={p.userid}></SessionPaiement>
+                      <OrderInfo sessid = {p.userid}></OrderInfo>
                     </div>
                   </div>);
                 })

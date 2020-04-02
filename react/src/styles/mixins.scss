@@ -41,8 +41,6 @@
   line-height: $h;
 }
 @mixin form() {
-  max-width: 600px;
-
   label {
     text-align: left;
     margin: 2em 2em 0 0;
@@ -66,6 +64,7 @@
 
   input {
     margin: 1em;
+    max-width: 600px;
   }
 
   button {

@@ -13,15 +13,9 @@ class DevisDisplay extends Component {
   }
 
   componentDidMount() {
-    this.getDevis(this.props.match.params.userid);
-  }
-
-  getDevis(id) {
-    client.devisFetch(id).then(data => {
-      console.log(data);
+    client.devisFetch(this.props.match.params.userid).then(data => {
       this.setState({data: data})
     })
-
   }
 
   getDevisPdf(id, type) {
@@ -114,7 +108,7 @@ class DevisDisplay extends Component {
                 </ul>
               </div>
               {
-                data.cart[0].reduction
+                data.cart.length
                   ? <div className="box_light3">Reduction : {data.cart[0].reduction}
                       €</div>
                   : null
@@ -138,7 +132,6 @@ class DevisDisplay extends Component {
               </p>
 
             </div>
-          : "chargement"
        </div> : <div>Devis inexistant
        <a href={"/deviscreate/" + this.props.match.params.userid}>
         <button className="left cursor givemespace">

@@ -64,38 +64,38 @@ html(lang="fr")
       }
 
   body
-    h1.title Devis #{devis.devis.entreprise}
+    h1.title Devis #{data.devis.entreprise}
 
-    h3(align='center') #{devis.user.prenom} #{devis.user.nom}
+    h3(align='center') #{data.user.prenom} #{data.user.nom}
 
     table(cellspacing='0' cellpadding='0' border='0' width='100%')
       tr
         td.left
           |Entreprise
           ul.cadre
-            li #{devis.devis.entreprise}
-            li #{devis.devis.adresse}
-            li #{devis.devis.code_postal} #{devis.devis.ville}
-            li #{devis.devis.pays}
-            li #{devis.devis.mail}
-            li #{devis.devis.telephone}
-            li SIRET #{devis.devis.siret}
+            li #{data.devis.entreprise}
+            li #{data.devis.adresse}
+            li #{data.devis.code_postal} #{data.devis.ville}
+            li #{data.devis.pays}
+            li #{data.devis.mail}
+            li #{data.devis.telephone}
+            li SIRET #{data.devis.siret}
         td(align='center')
-          if devis.devis.logo    
+          if data.devis.logo    
             img(alt='Logo Quadratik.fr' src='https://www.quadratik.fr/images/logo/logo_cercle.svg' width='100px')
         td.right
           |Client
           ul.cadre
-            li #{devis.user.nom} #{devis.user.prenom}
-            li #{devis.user.adresse}
-            li #{devis.user.postal} #{devis.user.ville}
-            li #{devis.user.mail}
-            li #{devis.user.telephone}
-            li id #{devis.user.id}
+            li #{data.user.nom} #{data.user.prenom}
+            li #{data.user.adresse}
+            li #{data.user.postal} #{data.user.ville}
+            li #{data.user.mail}
+            li #{data.user.telephone}
+            li id #{data.user.id}
     
     table(cellspacing='0' cellpadding='0' border='0' width='100%')
       tr
-        th.head Devis N° #{devis.devis.numero}, le #{devis.devis.date_devis}
+        th.head Devis N° #{data.devis.numero}, le #{data.devis.date_devis}
       tr
         td
           table(cellspacing='0' cellpadding='0' border='0' width='100%' bgcolor='#f2f2f2')
@@ -109,20 +109,20 @@ html(lang="fr")
               th
                 |Sous total
 
-            each val in devis.cart
+            each val in data.cart
               tr
                 td= val.nom
                 td= val.quantite
                 td= val.prix
                 td= val.sous_total
                 
-      if devis.cart[0].reduction
+      if data.cart[0].reduction
         tr 
-          td Reduction : #{devis.cart[0].reduction} € 
+          td Reduction : #{data.cart[0].reduction} € 
       tr
-        td.head TOTAL (TTC) : #{devis.paiement.amount} €    
+        td.head TOTAL (TTC) : #{data.paiement.amount} €    
 
-    p Devis valable jusqu'au #{devis.devis.date_val}
-    p Moyen de paiement : #{devis.devis.moyen_paiement}
+    p Devis valable jusqu'au #{data.devis.date_val}
+    p Moyen de paiement : #{data.devis.moyen_paiement}
     p Escompte pour r&eacute;glement anticip&eacute; de 0% - P&eacute;nalit&eacute; en cas de retard de paiement: 1.5 fois le taux d&apos;int&eacute;ret l&eacute;gal
-    p Information bancaire : Titulaire du compte : #{devis.devis.titulaire} IBAN : #{devis.devis.iban} BIC/SWIFT : #{devis.devis.bic}
+    p Information bancaire : Titulaire du compte : #{data.devis.titulaire} IBAN : #{data.devis.iban} BIC/SWIFT : #{data.devis.bic}

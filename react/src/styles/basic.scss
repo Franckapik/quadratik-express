@@ -67,7 +67,9 @@ a:link {
   text-decoration: none;
 }
 
-
+fieldset {
+  border : 0
+}
 
 button {
   @include button;

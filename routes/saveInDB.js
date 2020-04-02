@@ -23,7 +23,7 @@ const upsert = (table, where, sessid, data, returned) => {
           .then(id => {
             logger.info('[Knex] Table ' + table + ' Données enregistrées (id): %s', id[0]);
             return id
-          }).catch(error => logger.error('[Erreur Enregistrement ' + table +'] Sauvegarde db %s', error))
+          }).catch(error => logger.error('[Erreur Enregistrement ' + table + '] Sauvegarde db %s', error))
       } else {
         return knex(table)
           .where(where)
@@ -65,23 +65,23 @@ userSave = (user, sessid) => {
 devisSave = (devis, sessid) => {
   const data = {
     userid: sessid,
-    entreprise: devis.entreprise.Nom_entreprise,
-    code_postal: devis.entreprise.Code_postal,
-    mail: devis.entreprise.Mail,
-    adresse: devis.entreprise.Adresse,
-    pays: devis.entreprise.Pays,
-    siret: devis.entreprise.Siret,
-    telephone: devis.entreprise.Telephone,
-    ville: devis.entreprise.Ville,
-    titulaire: devis.banque.titulaire,
-    iban: devis.banque.iban,
-    bic: devis.banque.bic,
-    date_devis: devis.Date_devis,
-    date_val: devis.Date_validite,
+    entreprise: devis.coordonnées.entreprise.Nom_entreprise,
+    code_postal: devis.coordonnées.entreprise.Code_postal,
+    mail: devis.coordonnées.entreprise.Mail,
+    adresse: devis.coordonnées.entreprise.Adresse,
+    pays: devis.coordonnées.entreprise.Pays,
+    siret: devis.coordonnées.entreprise.Siret,
+    telephone: devis.coordonnées.entreprise.Telephone,
+    ville: devis.coordonnées.entreprise.Ville,
+    titulaire: devis.parametres.banque.titulaire,
+    iban: devis.parametres.banque.iban,
+    bic: devis.parametres.banque.bic,
+    date_devis: devis.parametres.autres.Date_devis,
+    date_val: devis.parametres.autres.Date_validite,
     numero: devis.Numero,
-    moyen_paiement: devis.mode,
-    acompte: devis.acompte,
-    logo: devis.logo
+    moyen_paiement: devis.parametres.autres.mode,
+    acompte: devis.parametres.autres.acompte,
+    logo: devis.parametres.autres.logo
   }
 
   return upsert('devis', {
@@ -107,7 +107,25 @@ livraisonSave = (livraison, sessid) => {
   }, sessid, data, 'id');
 };
 
+cartDelete = (sessid) => {
+  return knex('cart')
+    .where({
+      'userid': sessid
+    })
+    .del()
+}
+
 cartSave = (panier, sessid) => {
+  cartDelete(sessid)
+    .then(
+      rowsDeleted => {
+        if (rowsDeleted) {
+          logger.info('[Knex] Table cart [produits supprimés] %s', rowsDeleted);
+        }
+      }
+    )
+    console.log(panier);
+
   const saveProduct = panier.listeProduits.map((p, i) => {
     const data = {
       pid: p.id,
@@ -127,15 +145,13 @@ cartSave = (panier, sessid) => {
       unites: panier.unite,
       nbcolis: panier.nbColis
     }
-
-    return upsert('cart', { userid: sessid, nom: data.nom, cartid: panier.cartid}, sessid, data, 'id');
-
-})
-
-return Promise.all(saveProduct)
-  .then(function(results) {
-    return results
+    return upsert('cart', {
+      userid: sessid, nom : data.nom
+    }, sessid, data, 'id');
   })
+
+  return Promise.all(saveProduct)
+    .then(results => {return results})
 };
 
 saveCommandeInDB = (commande, amount, sessid) => {
@@ -145,7 +161,6 @@ saveCommandeInDB = (commande, amount, sessid) => {
   } else {
     orderid = Number(new Date());
   }
-console.log(commande, amount, sessid);
   const data = {
     userid: sessid,
     status: commande.status,
@@ -207,25 +222,26 @@ router.post('/livraison', function(req, res, next) {
     })
 });
 
+
+
 router.post('/devis', function(req, res, next) {
   let sessid = 'null';
-
-  if (req.query.id) { // modification de devis
-    sessid = req.query.id
+  if (req.body.sessid) { // modification de devis
+    sessid = req.body.sessid
   } else { //creation de devis
     sessid = req.sessionID
   }
 
   const commande = {
     userid: sessid,
-    status : req.body.formData.status,
-    mode : "devis",
-    method: req.body.formData.mode,
-    expirationdate: req.body.formData.Date_validite,
+    status: req.body.formData.parametres.autres.status,
+    mode: "devis",
+    method: req.body.formData.parametres.autres.mode,
+    expirationdate: req.body.formData.parametres.autres.Date_validite,
     date: Number(new Date()),
   }
 
-  userSave(req.body.formData.client, sessid)
+  userSave(req.body.formData.coordonnées.client, sessid)
     .then(user => {
       cartSave(req.body.panier, sessid)
         .then(cart => {

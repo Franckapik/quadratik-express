@@ -17,6 +17,7 @@ class Admin extends Component {
       produits: false,
       essence: false,
       info: false,
+      devis: false,
       page:"infos"
     };
   }
@@ -28,6 +29,7 @@ class Admin extends Component {
       this.setState({user: adminData.user});
       this.setState({produits: adminData.product});
       this.setState({info: adminData.infos});
+      this.setState({devis: adminData.devis});
     });
 
 
@@ -59,7 +61,7 @@ class Admin extends Component {
     <div className="contenu">
       {this.state.page==="infos" ?<Infos info={this.state.info}></Infos> : null}
       {this.state.page==="relais" ? <AdminRelais admin></AdminRelais> : null }
-      {this.state.page==="clients" ? <Clients user={this.state.user} produits={this.state.produits}></Clients>: null }
+      {this.state.page==="clients" ? <Clients user={this.state.user} produits={this.state.produits} devis={this.state.devis}></Clients>: null }
       {this.state.page==="devis" ? <DevisCreate user={this.state.user} produits={this.state.produits} info={this.state.info}></DevisCreate>: null }
       {this.state.page==="produits" ? <Produits produits={this.state.produits}></Produits>: null }
       {this.state.page==="template" ? <TemplateCSS></TemplateCSS>: null }

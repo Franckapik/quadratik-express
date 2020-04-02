@@ -32,7 +32,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.4.1",
     "react-twitter-embed": "^2.0.4",
-    "snyk": "^1.251.1",
+    "snyk": "^1.290.1",
     "socket.io-client": "^2.3.0",
     "yup": "^0.26.10"
   },

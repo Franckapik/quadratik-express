@@ -1,8 +1,10 @@
---version v4-
-
-devis personnalisé ?
-
 -- version 5 ---
+
+
+
+devis personnalisé ? -> pas visible dans le panier !?
+devis create 0 dans les options de l'admin avec une liste des devis et factures ? Redondant?
+
 
 devis avec une selection du Nom plutot que via l'id.
 
@@ -28,7 +30,7 @@ Option avec un select possible a la commande pour les couleurs. Mofgication du p
 covid-19 pas de relais enregistrable avec boxtal : suivisimple a retravailler plus tard
 
 
-Quadralab avec un lien vers la boutique
+Quadralab et la boutique harmonisée pour import export de produits automatique
 
 faire avec email template tous les autres mails.
 
@@ -88,3 +90,17 @@ Ajouter un id auto implémenté : ALTER TABLE public.devis ADD COLUMN ID SERIAL 
 
 L'adresse redirect url est celle qui est appelée suite à la transaction quoi qu'il arrive.
 Le webhook est un lien qui permet de recevoir le statut du paiement lorsqu'il change from mollie. Lorsque l'argent est arrivé, un statut est envoyé et permet d'engager ensuite la livraison, les mails , etc ...
+
+
+const useObjectState = (initial) => {
+  const [state, setState]  = React.useState(initial);
+
+  const changeDif = React.useCallback((update) => {
+    setState(previous => ({
+      ...previous,
+      ...typeof update === 'function' ? update(previous) : update
+    }));
+  }, []);
+
+  return [state, changeDif];
+}

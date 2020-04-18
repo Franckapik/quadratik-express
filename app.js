@@ -44,44 +44,43 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false,
 }));
-app.use(express.static(path.join(__dirname, 'react/build')));
+app.use(express.static(path.join(__dirname, 'views/build')));
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //routes
 
 app.get('/guide', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/shop', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/commande', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/quadralab', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/callback', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/produit:param', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/devis/:param', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/order/:param', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/facture/:param', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/react/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/resetsession', (req, res) => {
   saveInDB.resetsession(req);

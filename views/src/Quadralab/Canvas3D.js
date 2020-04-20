@@ -14,6 +14,7 @@ const Carreau = ({diffuseur : dif, ...alls}) => {
       <meshPhongMaterial attachArray="material" color ={dif.couleur}  map={map} roughness="0.8"/>
       <meshPhongMaterial attachArray="material" color ={dif.couleur}  map={map} roughness="0.8"/>
       <meshPhongMaterial attachArray="material" color ={dif.couleur}  map={map} roughness="0.8"/>
+      <meshPhongMaterial attachArray="material" color ={dif.couleur}  map={map} roughness="0.8"/>
       <meshPhongMaterial attachArray="material" name="avant" color ={dif.couleur}  map={map} roughness="0.8"/>
       <meshPhongMaterial attachArray="material" name="arriere" color={dif.bothSide ? dif.couleur : "white"} map={map} roughness="0.8"/>
     </mesh>

@@ -58,6 +58,9 @@ app.get('/guide', (req, res) => {
 app.get('/shop', (req, res) => {
   res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
+app.get('/panier', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
+});
 app.get('/commande', (req, res) => {
   res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
@@ -74,6 +77,9 @@ app.get('/produit:param', (req, res) => {
   res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/devis/:param', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/views/build/index.html`));
+});
+app.get('/deviscreate/:param', (req, res) => {
   res.sendFile(path.join(`${__dirname}/views/build/index.html`));
 });
 app.get('/order/:param', (req, res) => {

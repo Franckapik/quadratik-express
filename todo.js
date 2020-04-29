@@ -1,7 +1,8 @@
 -- version 5 ---
+Avant tout, retravailler le css de nouveau pour les hauteurs de pages.
+et le guide selon Projet Home STduio
 
-
-
+devis/facturation dans l'admin à changer (erreur)
 devis personnalisé ? -> pas visible dans le panier !?
 devis create 0 dans les options de l'admin avec une liste des devis et factures ? Redondant?
 
@@ -104,3 +105,5 @@ const useObjectState = (initial) => {
 
   return [state, changeDif];
 }
+
+https://icetutor.com/question/push-method-in-react-hooks-usestate/

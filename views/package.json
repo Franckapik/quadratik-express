@@ -36,7 +36,7 @@
     "react-twitter-embed": "^2.0.4",
     "snyk": "^1.305.1",
     "socket.io-client": "^2.3.0",
-    "three": "^0.115.0",
+    "three": "^0.137.0",
     "yup": "^0.26.10"
   },
   "scripts": {
